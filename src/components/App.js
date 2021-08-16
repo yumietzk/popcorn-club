@@ -30,6 +30,7 @@ import MysteryShow from './genre/tvs/Mystery';
 import RealityShow from './genre/tvs/Reality';
 import Modal from './Modal';
 import ModalTv from './ModalTv';
+import ScrollToTop from '../helpers/ScrollToTop';
 import history from '../history';
 import './App.css';
 
@@ -37,6 +38,7 @@ const App = () => {
   return (
     <Router history={history}>
       <Header />
+      <ScrollToTop />
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/movies" exact component={Movies} />

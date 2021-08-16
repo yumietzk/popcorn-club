@@ -67,6 +67,12 @@
   transition: all 0.3s;
 }
 
+.favorite-icon-true {
+  fill: #3aaa6f;
+  font-size: 2.3rem;
+  transition: all 0.3s;
+}
+
 .favorite-icon:hover,
 .favorite-icon:active {
   fill: #3aaa6f;

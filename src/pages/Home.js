@@ -28,9 +28,9 @@ const Home = (props) => {
         <p className={styles.category}>Favorite</p>
         {/* <p>No favorites yet.</p> */}
 
-        <div className={styles.container}>
-          <HomeFavorite />
-          <HomeFavorite />
+        <div className={styles.contents}>
+          <HomeFavorite type="Movies" />
+          <HomeFavorite type="TV Shows" />
         </div>
       </div>
     </div>

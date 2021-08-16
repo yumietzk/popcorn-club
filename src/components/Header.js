@@ -11,6 +11,9 @@ const Header = (props) => {
 
   const onSearchTerm = (e) => {
     e.preventDefault();
+
+    if (term.trim().length === 0) return;
+
     props.searchMovies(term);
     props.searchTvShows(term);
     setTerm('');

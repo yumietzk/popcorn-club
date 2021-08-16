@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as IoIcons from 'react-icons/io';
 import { Link } from 'react-router-dom';
-import movieTrailer from 'movie-trailer';
 import {
   fetchMovieDetail,
   fetchMovieCredits,
   fetchMovieReviews,
   fetchMovieRelated,
   saveMovies,
+  deleteMovie,
+  fetchFavoriteMovies,
 } from '../actions';
 import CastWrap from '../components/detail/Cast';
 import Reviews from '../components/detail/Reviews';
@@ -16,11 +17,7 @@ import Related from '../components/detail/Related';
 import styles from './Detail.module.css';
 
 const Detail = (props) => {
-  // Use useState for setting selected id
-  // const [selectedMovie, setSelectedMovie] = useState(550);
-
-  // Also movies added in the favorite could be stored in state. So, use redux for that?
-  // const [trailerUrl, setTrailerUrl] = useState('');
+  const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
     const { id } = props.match.params;
@@ -29,6 +26,13 @@ const Detail = (props) => {
     props.fetchMovieCredits(id);
     props.fetchMovieReviews(id);
     props.fetchMovieRelated(id);
+    props.fetchFavoriteMovies();
+
+    const isFavorite = (id) => {
+      return props.favorite?.some((item) => item.id === +id);
+    };
+
+    setFavorite(isFavorite(id));
   }, []);
 
   const calcYear = (date) => {
@@ -44,20 +48,14 @@ const Detail = (props) => {
   };
 
   const onClick = (id, path, title, date) => {
-    props.saveMovies(id, path, title, date);
+    if (!favorite) {
+      props.saveMovies(id, path, title, date);
+      setFavorite(!favorite);
+    } else {
+      props.deleteMovie(id);
+      setFavorite(!favorite);
+    }
   };
-
-  // const onPlay = () => {
-  //   movieTrailer(null, { tmdbId: props.detail.id })
-  //     .then((res) => {
-  //       const url = new URL(res);
-  //       const param = new URLSearchParams(url.search);
-  //       setTrailerUrl(param.get('v'));
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
-  // const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
 
   if (!props.detail) {
     return <div>Loading...</div>;
@@ -91,7 +89,13 @@ const Detail = (props) => {
                   )
                 }
               >
-                <IoIcons.IoIosHeart className={styles['favorite-icon']} />
+                <IoIcons.IoIosHeart
+                  className={
+                    favorite
+                      ? styles['favorite-icon-true']
+                      : styles['favorite-icon']
+                  }
+                />
               </button>
             </div>
             <p className={styles.date}>{calcYear(props.detail.release_date)}</p>
@@ -149,13 +153,16 @@ const mapStateToProps = (state) => {
   // console.log(state.detail.detail);
   return {
     detail: state.detail.detail,
+    favorite: state.movies.favorite,
   };
 };
 
 export default connect(mapStateToProps, {
-  fetchMovieDetail: fetchMovieDetail,
-  fetchMovieCredits: fetchMovieCredits,
-  fetchMovieReviews: fetchMovieReviews,
-  fetchMovieRelated: fetchMovieRelated,
-  saveMovies: saveMovies,
+  fetchMovieDetail,
+  fetchMovieCredits,
+  fetchMovieReviews,
+  fetchMovieRelated,
+  saveMovies,
+  deleteMovie,
+  fetchFavoriteMovies,
 })(Detail);

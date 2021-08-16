@@ -23,7 +23,9 @@ export default (state = {}, action) => {
       return { ...state, favorite: action.payload };
 
     case 'DELETE_MOVIE':
-      return state;
+      const data = state.favorite.filter((item) => item.id !== action.payload);
+      return { ...state, favorite: data };
+    // return _.omit(state, action.payload);
 
     // case 'FETCH_ACTION':
     //   // return { ...state, action: action.payload };

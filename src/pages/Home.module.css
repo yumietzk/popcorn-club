@@ -18,23 +18,27 @@
 }
 
 .favorite {
-  height: 45rem;
+  height: 85rem;
   padding: 1.5rem;
   margin-top: 2rem;
+  width: 100%;
 
-  /* display: flex;
-  flex-direction: column; */
+  display: flex;
+  flex-direction: column;
 }
 
 .category {
+  flex: 0 1 4rem;
+
   font-size: 2.2rem;
   font-weight: 100;
 }
 
-.container {
+.contents {
+  flex: 1;
+  padding: 1rem;
+
   display: flex;
   align-items: center;
-  justify-content: space-around;
-
-  padding: 1rem;
+  justify-content: space-between;
 }
