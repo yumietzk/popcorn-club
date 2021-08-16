@@ -1,35 +1,33 @@
 import React from 'react';
-// import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Router, Switch, Route } from 'react-router-dom';
-import Header from './Header';
+import Header from './navbar/Header';
 import Home from '../pages/Home';
 import Movies from '../pages/Movies';
+import Action from '../pages/genre/movies/Action';
+import Adventure from '../pages/genre/movies/Adventure';
+import Animation from '../pages/genre/movies/Animation';
+import Comedy from '../pages/genre/movies/Comedy';
+import Documentary from '../pages/genre/movies/Documentary';
+import Drama from '../pages/genre/movies/Drama';
+import Fantasy from '../pages/genre/movies/Fantasy';
+import Horror from '../pages/genre/movies/Horror';
+import Romance from '../pages/genre/movies/Romance';
+import Scifi from '../pages/genre/movies/Scifi';
 import TVshows from '../pages/Tvshows';
+import ActionAdventureShow from '../pages/genre/tvs/ActionAdventure';
+import AnimationShow from '../pages/genre/tvs/Animation';
+import ComedyShow from '../pages/genre/tvs/Comedy';
+import CrimeShow from '../pages/genre/tvs/Crime';
+import DocumentaryShow from '../pages/genre/tvs/Documentary';
+import DramaShow from '../pages/genre/tvs/Drama';
+import KidsShow from '../pages/genre/tvs/Kids';
+import MysteryShow from '../pages/genre/tvs/Mystery';
+import RealityShow from '../pages/genre/tvs/Reality';
 import Favorite from '../pages/Favorite';
 import Detail from '../pages/Detail';
 import DetailTV from '../pages/DetailTV';
 import Search from '../pages/Search';
-import Action from './genre/movies/Action';
-import Adventure from './genre/movies/Adventure';
-import Animation from './genre/movies/Animation';
-import Comedy from './genre/movies/Comedy';
-import Documentary from './genre/movies/Documentary';
-import Drama from './genre/movies/Drama';
-import Fantasy from './genre/movies/Fantasy';
-import Horror from './genre/movies/Horror';
-import Romance from './genre/movies/Romance';
-import Scifi from './genre/movies/Scifi';
-import ActionAdventureShow from './genre/tvs/ActionAdventure';
-import AnimationShow from './genre/tvs/Animation';
-import ComedyShow from './genre/tvs/Comedy';
-import CrimeShow from './genre/tvs/Crime';
-import DocumentaryShow from './genre/tvs/Documentary';
-import DramaShow from './genre/tvs/Drama';
-import KidsShow from './genre/tvs/Kids';
-import MysteryShow from './genre/tvs/Mystery';
-import RealityShow from './genre/tvs/Reality';
-import Modal from './Modal';
-import ModalTv from './ModalTv';
+import Modal from './modal/Modal';
 import ScrollToTop from '../helpers/ScrollToTop';
 import history from '../history';
 import './App.css';
@@ -68,18 +66,13 @@ const App = () => {
         <Route path="/favorite" component={Favorite} />
         <Route path="/detail/:id" exact component={Detail} />
         <Route path="/detailtv/:id" exact component={DetailTV} />
-        {/* <Route path="/search/:query" component={Search} /> */}
-        <Route path="/detail/:id/play" component={Modal} />
-        <Route path="/detailtv/:id/play" component={ModalTv} />
         <Route path="/search" component={Search} />
+        <Route path="/detail/:id/play" component={Modal} />
+        {/* <Route path="/detailtv/:id/play" component={ModalTv} /> */}
+        {/* <Route path="/search/:query" component={Search} /> */}
       </Switch>
     </Router>
   );
 };
 
 export default App;
-
-// Could be props
-// genres, year, country, producer...
-// Could be state
-// auth: isSignedIn,

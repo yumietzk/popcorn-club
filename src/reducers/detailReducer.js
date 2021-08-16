@@ -4,7 +4,7 @@ export default (state = {}, action) => {
       return { ...state, detail: action.payload };
 
     case 'MOVIE_CREDITS':
-      return { ...state, cast: action.payload };
+      return { ...state, casts: action.payload };
 
     case 'MOVIE_REVIEWS':
       return { ...state, reviews: action.payload };
@@ -16,7 +16,7 @@ export default (state = {}, action) => {
       return { ...state, tvdetail: action.payload };
 
     case 'TV_CREDITS':
-      return { ...state, tvcast: action.payload };
+      return { ...state, tvcasts: action.payload };
 
     case 'TV_RELATED':
       return { ...state, tvrelated: action.payload };

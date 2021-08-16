@@ -36,8 +36,8 @@ const Cast = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    moviecast: state.detail.cast,
-    tvcast: state.detail.tvcast,
+    moviecast: state.detail.casts,
+    tvcast: state.detail.tvcasts,
   };
 };
 

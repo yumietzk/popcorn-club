@@ -6,7 +6,8 @@ import {
   fetchTvDetail,
   fetchTvCredits,
   fetchTvRelated,
-  saveTVs,
+  saveTVShow,
+  deleteTVShow,
 } from '../actions';
 import Season from '../components/detail/Season';
 import Cast from '../components/detail/Cast';
@@ -14,10 +15,7 @@ import Related from '../components/detail/Related';
 import styles from './DetailTV.module.css';
 
 const DetailTV = (props) => {
-  // Use useState for setting selected id
-  // const [selectedShow, setSelectedShow] = useState(1668);
-
-  // Also movies added in the favorite could be stored in state. So, use redux for that?
+  const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
     const { id } = props.match.params;
@@ -25,11 +23,15 @@ const DetailTV = (props) => {
     props.fetchTvDetail(id);
     props.fetchTvCredits(id);
     props.fetchTvRelated(id);
+
+    const isFavorite = (id) => {
+      return props.favorite?.some((item) => item.id === +id);
+    };
+
+    setFavorite(isFavorite(id));
   }, []);
 
   const calcYear = (date) => {
-    // const year = date.slice(0, 4);
-    // return year;
     const year = date?.split('-')[0];
     return year;
   };
@@ -49,7 +51,13 @@ const DetailTV = (props) => {
   };
 
   const onClick = (id, path, name, date) => {
-    props.saveTVs(id, path, name, date);
+    if (!favorite) {
+      props.saveTVShow(id, path, name, date);
+      setFavorite(!favorite);
+    } else {
+      props.deleteTVShow(id);
+      setFavorite(!favorite);
+    }
   };
 
   if (!props.detail) {
@@ -59,6 +67,7 @@ const DetailTV = (props) => {
   return (
     <div className={styles.item}>
       <h3 className={styles.nav}>TV Shows</h3>
+
       <div className={styles.container}>
         <div className={styles.detail}>
           <div className={styles.fig}>
@@ -68,6 +77,7 @@ const DetailTV = (props) => {
               className={styles.img}
             />
           </div>
+
           <div className={styles.content}>
             <div className={styles.title}>
               <h4 className={styles.titleName}>{props.detail.original_name}</h4>
@@ -82,12 +92,20 @@ const DetailTV = (props) => {
                   )
                 }
               >
-                <IoIcons.IoIosHeart className={styles['favorite-icon']} />
+                <IoIcons.IoIosHeart
+                  className={
+                    favorite
+                      ? styles['favorite-icon-true']
+                      : styles['favorite-icon']
+                  }
+                />
               </button>
             </div>
+
             <p className={styles.date}>
               {calcYear(props.detail.first_air_date)}
             </p>
+
             <div className={styles.timerate}>
               <p className={styles.runtime}>
                 {`${calcHour(props.detail.episode_run_time)}`}
@@ -97,9 +115,6 @@ const DetailTV = (props) => {
                 <p>{props.detail.vote_average}</p>
               </p>
             </div>
-
-            {/* Have to consider when there are multiple genres */}
-            {/* <p className={styles.genre}>{selectedMovie.genres[0].name}</p> */}
 
             <div className={styles.others}>
               <Link
@@ -118,21 +133,10 @@ const DetailTV = (props) => {
                 <p>Website</p>
               </Link>
             </div>
+
             <p className={styles.overview}>{props.detail.overview}</p>
           </div>
         </div>
-
-        {/* <div className={styles.cast}>
-          <CastWrap />
-        </div>
-
-        <div className={styles.reviews}>
-          <Reviews />
-        </div>
-
-        <div className={styles.related}>
-          <Related />
-        </div> */}
 
         <div className={styles.seasons}>
           <Season />
@@ -151,15 +155,16 @@ const DetailTV = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  // console.log(state.detail.detail);
   return {
     detail: state.detail.tvdetail,
+    favorite: state.shows.favorite,
   };
 };
 
 export default connect(mapStateToProps, {
-  fetchTvDetail: fetchTvDetail,
-  fetchTvCredits: fetchTvCredits,
-  fetchTvRelated: fetchTvRelated,
-  saveTVs: saveTVs,
+  fetchTvDetail,
+  fetchTvCredits,
+  fetchTvRelated,
+  saveTVShow,
+  deleteTVShow,
 })(DetailTV);

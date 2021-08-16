@@ -1,22 +1,25 @@
 export default (state = {}, action) => {
   switch (action.type) {
-    case 'TV_ONAIR':
-      return { ...state, onair: action.payload };
-
-    case 'TV_POPULAR':
+    case 'MOVIE_POPULAR':
       return { ...state, popular: action.payload };
 
-    case 'TV_TOPRATED':
+    case 'MOVIE_NOWPLAYING':
+      return { ...state, nowplaying: action.payload };
+
+    case 'MOVIE_UPCOMING':
+      return { ...state, upcoming: action.payload };
+
+    case 'MOVIE_TOPRATED':
       return { ...state, toprated: action.payload };
 
-    case 'SEARCH_TVS':
+    case 'SEARCH_MOVIES':
       return { ...state, search: action.payload };
 
-    case 'SAVE_TV':
-    case 'FAVORITE_TVS':
+    case 'SAVE_MOVIE':
+    case 'FAVORITE_MOVIES':
       return { ...state, favorite: action.payload };
 
-    case 'DELETE_TV':
+    case 'DELETE_MOVIE':
       const data = state.favorite.filter((item) => item.id !== action.payload);
       return { ...state, favorite: data };
 

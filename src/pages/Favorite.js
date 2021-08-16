@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchFavoriteMovies, fetchFavoriteTVs } from '../actions';
-import MovieRow from '../components/movies/MovieRow';
-import TvRow from '../components/tvs/TvRow';
+import Row from '../components/Row';
 import styles from './Favorite.module.css';
 
 const Favorite = (props) => {
@@ -16,8 +15,8 @@ const Favorite = (props) => {
       <div className={styles.title}>
         <h3 className={styles.menu}>Favorite</h3>
       </div>
-      <MovieRow category="Movies" type="favorite" />
-      <TvRow category="TV Shows" type="favorite" />
+      <Row category="Movies" group="Movie" type="favorite" />
+      <Row category="TV Shows" group="TV Show" type="favorite" />
     </div>
   );
 };

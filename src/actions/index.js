@@ -1,40 +1,23 @@
 import tmdb from '../apis/tmdb';
 import requests from '../apis/requests';
-import { API_KEY } from '../apis/config';
 import favorites from '../apis/favorites';
+import { API_KEY } from '../apis/config';
 import history from '../history';
 
-// fetch movies based on selected menu whether it's genre, netflixoriginal, popular and so on from tmdb api
-// create action
-// And you call the action creator in componentDidMount of a component
-
-// url="/movie/now_playing?api_key=8a45061d820fb7b5b5f574766f028ff6"
-
 // HOME
-// export const fetchMovies = (type) => async (dispatch) => {
-//   const response = await tmdb.get(
-//     `/movie/${type}?api_key=8a45061d820fb7b5b5f574766f028ff6`
-//   );
-
-//   // console.log(response.data.results);
-//   dispatch({ type: 'MOVIE_NOWPLAYING', payload: response.data.results });
-// };
-
 export const fetchMovieNowPlaying = () => async (dispatch) => {
   const response = await tmdb.get(requests.fetchMovieNowPlaying);
 
-  // console.log(response.data.results);
   dispatch({ type: 'MOVIE_NOWPLAYING', payload: response.data.results });
 };
 
 export const fetchTvOnAir = () => async (dispatch) => {
   const response = await tmdb.get(requests.fetchTvOnAir);
 
-  // console.log(response.data.results);
   dispatch({ type: 'TV_ONAIR', payload: response.data.results });
 };
 
-// MOVIES
+// MOVIE
 export const fetchMoviePopular = () => async (dispatch) => {
   const response = await tmdb.get(requests.fetchMoviePopular);
 
@@ -67,12 +50,7 @@ export const fetchTvTopRated = () => async (dispatch) => {
 };
 
 // DETAIL
-// export const fetchDetail = () => async (dispatch) => {
-//   const response = await tmdb.get(requests.fetchDetail);
-
-//   dispatch({ type: 'DETAIL', payload: response.data });
-// };
-
+// movie
 export const fetchMovieDetail = (id) => async (dispatch) => {
   const response = await tmdb.get(`/movie/${id}?api_key=${API_KEY}`);
 
@@ -90,7 +68,7 @@ export const fetchMovieReviews = (id) => async (dispatch) => {
 
   dispatch({
     type: 'MOVIE_REVIEWS',
-    payload: response.data.results.slice(0, 3),
+    payload: response.data.results.slice(0, 5),
   });
 };
 
@@ -100,13 +78,8 @@ export const fetchMovieRelated = (id) => async (dispatch) => {
   dispatch({ type: 'MOVIE_RELATED', payload: response.data.results });
 };
 
+// tv
 export const fetchTvDetail = (id) => async (dispatch) => {
-  const response = await tmdb.get(`/tv/${id}?api_key=${API_KEY}`);
-
-  dispatch({ type: 'TV_DETAIL', payload: response.data });
-};
-
-export const fetchTvSeason = (id) => async (dispatch) => {
   const response = await tmdb.get(`/tv/${id}?api_key=${API_KEY}`);
 
   dispatch({ type: 'TV_DETAIL', payload: response.data });
@@ -126,7 +99,9 @@ export const fetchTvRelated = (id) => async (dispatch) => {
 
 // SEARCH
 export const searchMovies = (term) => async (dispatch) => {
-  const response = await tmdb.get(`${requests.searchMovies}&query=${term}`);
+  const response = await tmdb.get(
+    `${requests.searchMovies}&language=en-US&query=${term}`
+  );
 
   dispatch({ type: 'SEARCH_MOVIES', payload: response.data.results });
 
@@ -134,21 +109,18 @@ export const searchMovies = (term) => async (dispatch) => {
 };
 
 export const searchTvShows = (term) => async (dispatch) => {
-  const response = await tmdb.get(`${requests.searchTvShows}&query=${term}`);
+  const response = await tmdb.get(
+    `${requests.searchTvShows}&language=en-US&query=${term}`
+  );
 
   dispatch({ type: 'SEARCH_TVS', payload: response.data.results });
+
+  history.push('/search');
 };
 
-// by Genres
+// Genre
 // movie
 export const fetchActionMovies = () => async (dispatch) => {
-  // const response = await tmdb.get(`${requests.fetchActionMovies}&page=${page}`);
-
-  // dispatch({
-  //   type: 'FETCH_ACTION',
-  //   payload: response.data.results,
-  // });
-
   const response = await Promise.all([
     tmdb.get(`${requests.fetchActionMovies}&page=1`),
     tmdb.get(`${requests.fetchActionMovies}&page=2`),
@@ -471,7 +443,7 @@ export const fetchRealityTv = () => async (dispatch) => {
 };
 
 // FAVORITE
-export const saveMovies =
+export const saveMovie =
   (id, poster_path, original_title, release_date) => async (dispatch) => {
     const response = await favorites.post('/movies', {
       id,
@@ -483,7 +455,7 @@ export const saveMovies =
     dispatch({ type: 'SAVE_MOVIE', payload: response.data });
   };
 
-export const saveTVs =
+export const saveTVShow =
   (id, poster_path, original_name, first_air_date) => async (dispatch) => {
     const response = await favorites.post('/tvs', {
       id,
@@ -495,6 +467,18 @@ export const saveTVs =
     dispatch({ type: 'SAVE_TV', payload: response.data });
   };
 
+export const deleteMovie = (id) => async (dispatch) => {
+  await favorites.delete(`/movies/${id}`);
+
+  dispatch({ type: 'DELETE_MOVIE', payload: id });
+};
+
+export const deleteTVShow = (id) => async (dispatch) => {
+  await favorites.delete(`/tvs/${id}`);
+
+  dispatch({ type: 'DELETE_TV', payload: id });
+};
+
 export const fetchFavoriteMovies = () => async (dispatch) => {
   const response = await favorites.get('/movies');
 
@@ -505,11 +489,4 @@ export const fetchFavoriteTVs = () => async (dispatch) => {
   const response = await favorites.get('/tvs');
 
   dispatch({ type: 'FAVORITE_TVS', payload: response.data });
-};
-
-export const deleteMovie = (id) => async (dispatch) => {
-  await favorites.delete(`/movies/${id}`);
-
-  dispatch({ type: 'DELETE_MOVIE', payload: id });
-  // history.push('/');
 };

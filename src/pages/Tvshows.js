@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchTvPopular, fetchTvTopRated } from '../actions';
-import TvRow from '../components/tvs/TvRow';
+import Row from '../components/Row';
 import styles from './Tvshows.module.css';
 
 const Tvshows = (props) => {
@@ -13,12 +13,8 @@ const Tvshows = (props) => {
   return (
     <div className={styles.tv}>
       <h3 className={styles.title}>TV Shows</h3>
-      <TvRow category="Popular" type="popular" />
-      <TvRow category="Top Rated" type="toprated" />
-      {/* <TVrow
-        url="/tv/latest?api_key=8a45061d820fb7b5b5f574766f028ff6"
-        category="Latest"
-      /> */}
+      <Row category="Popular" group="TV Show" type="popular" />
+      <Row category="Top Rated" group="TV Show" type="toprated" />
     </div>
   );
 };

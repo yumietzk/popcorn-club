@@ -1,22 +1,22 @@
-// const API_KEY = '8a45061d820fb7b5b5f574766f028ff6';
 import { API_KEY } from './config';
 
 const requests = {
+  // Home
   fetchMovieNowPlaying: `/movie/now_playing?api_key=${API_KEY}`,
   fetchTvOnAir: `/tv/on_the_air?api_key=${API_KEY}`,
+
+  // Movie top
   fetchMoviePopular: `/movie/popular?api_key=${API_KEY}`,
   fetchMovieUpcoming: `/movie/upcoming?api_key=${API_KEY}`,
   fetchMovieTopRated: `/movie/top_rated?api_key=${API_KEY}`,
+  // TV top
   fetchTvPopular: `/tv/popular?api_key=${API_KEY}`,
   fetchTvTopRated: `/tv/top_rated?api_key=${API_KEY}`,
-  // 550 should be ${id}
-  // fetchDetail: `/movie/550?api_key=${API_KEY}`,
-  // fetchCredits: `/movie/550/credits?api_key=${API_KEY}`,
-  // fetchReviews: `/movie/550/reviews?api_key=${API_KEY}`,
-  // fetchRelated: `/movie/550/similar?api_key=${API_KEY}`,
-  // query length should be 1 in minimum
+
+  // Search term
   searchMovies: `/search/movie?api_key=${API_KEY}`,
   searchTvShows: `/search/tv?api_key=${API_KEY}`,
+
   // Genre
   // movie
   fetchActionMovies: `/discover/movie?api_key=${API_KEY}&with_genres=28`,

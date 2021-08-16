@@ -1,14 +1,13 @@
 import React from 'react';
-import MovieRow from '../components/movies/MovieRow';
-import TvRow from '../components/tvs/TvRow';
+import Row from '../components/Row';
 import styles from './Search.module.css';
 
 const Search = () => {
   return (
     <div className={styles.search}>
       <h3 className={styles.title}>Search results</h3>
-      <MovieRow category="Movies" type="search" />
-      <TvRow category="TV Shows" type="search" />
+      <Row category="Movies" group="Movie" type="search" />
+      <Row category="TV Shows" group="TV Show" type="search" />
     </div>
   );
 };

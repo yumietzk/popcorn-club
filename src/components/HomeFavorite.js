@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchFavoriteMovies, fetchFavoriteTVs } from '../actions';
+// import { fetchFavoriteMovies, fetchFavoriteTVs } from '../actions';
 import styles from './HomeFavorite.module.css';
 
 const HomeFavorite = (props) => {
-  useEffect(() => {
-    props.fetchFavoriteMovies();
-  }, []);
+  // useEffect(() => {
+  //   props.fetchFavoriteMovies();
+  //   props.fetchFavoriteTVs();
+  // }, []);
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];
@@ -89,5 +90,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  fetchFavoriteMovies,
+  // fetchFavoriteMovies,
+  // fetchFavoriteTVs,
 })(HomeFavorite);

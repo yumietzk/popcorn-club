@@ -7,9 +7,9 @@ import {
   fetchMovieCredits,
   fetchMovieReviews,
   fetchMovieRelated,
-  saveMovies,
+  saveMovie,
   deleteMovie,
-  fetchFavoriteMovies,
+  // fetchFavoriteMovies,
 } from '../actions';
 import CastWrap from '../components/detail/Cast';
 import Reviews from '../components/detail/Reviews';
@@ -26,7 +26,7 @@ const Detail = (props) => {
     props.fetchMovieCredits(id);
     props.fetchMovieReviews(id);
     props.fetchMovieRelated(id);
-    props.fetchFavoriteMovies();
+    // props.fetchFavoriteMovies();
 
     const isFavorite = (id) => {
       return props.favorite?.some((item) => item.id === +id);
@@ -49,7 +49,7 @@ const Detail = (props) => {
 
   const onClick = (id, path, title, date) => {
     if (!favorite) {
-      props.saveMovies(id, path, title, date);
+      props.saveMovie(id, path, title, date);
       setFavorite(!favorite);
     } else {
       props.deleteMovie(id);
@@ -64,6 +64,7 @@ const Detail = (props) => {
   return (
     <div className={styles.item}>
       <h3 className={styles.nav}>Movies</h3>
+
       <div className={styles.container}>
         <div className={styles.detail}>
           <div className={styles.fig}>
@@ -73,6 +74,7 @@ const Detail = (props) => {
               className={styles.img}
             />
           </div>
+
           <div className={styles.content}>
             <div className={styles.title}>
               <h4 className={styles.titleName}>
@@ -98,7 +100,9 @@ const Detail = (props) => {
                 />
               </button>
             </div>
+
             <p className={styles.date}>{calcYear(props.detail.release_date)}</p>
+
             <div className={styles.timerate}>
               <p className={styles.runtime}>
                 {`${calcHour(props.detail.runtime)}`}
@@ -108,9 +112,6 @@ const Detail = (props) => {
                 <p>{props.detail.vote_average} / 10</p>
               </p>
             </div>
-
-            {/* Have to consider when there are multiple genres */}
-            {/* <p className={styles.genre}>{selectedMovie.genres[0].name}</p> */}
 
             <div className={styles.others}>
               <Link
@@ -129,6 +130,7 @@ const Detail = (props) => {
                 <p>Website</p>
               </Link>
             </div>
+
             <p className={styles.overview}>{props.detail.overview}</p>
           </div>
         </div>
@@ -150,7 +152,6 @@ const Detail = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  // console.log(state.detail.detail);
   return {
     detail: state.detail.detail,
     favorite: state.movies.favorite,
@@ -162,7 +163,6 @@ export default connect(mapStateToProps, {
   fetchMovieCredits,
   fetchMovieReviews,
   fetchMovieRelated,
-  saveMovies,
+  saveMovie,
   deleteMovie,
-  fetchFavoriteMovies,
 })(Detail);
