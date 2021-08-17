@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import // fetchMovieNowPlaying,
@@ -9,6 +9,7 @@ import // fetchMovieNowPlaying,
 import styles from './Card.module.css';
 
 const Card = (props) => {
+  const [loaded, setLoaded] = useState(false);
   // useEffect(() => {
   //   props.fetchMovieNowPlaying();
   //   props.fetchTvOnAir();
@@ -17,6 +18,10 @@ const Card = (props) => {
   const calcYear = (date) => {
     const year = date?.split('-')[0];
     return year;
+  };
+
+  const onLoad = () => {
+    setLoaded(true);
   };
 
   const renderItems = () => {
@@ -34,13 +39,16 @@ const Card = (props) => {
           >
             <div className={styles.img}>
               <img
-                className={styles.poster}
+                className={`${styles.poster} ${
+                  loaded && styles['poster-open']
+                }`}
                 src={
                   props.cname
                     ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
                     : `https://image.tmdb.org/t/p/original${movie.poster_path}`
                 }
                 alt={movie.original_title}
+                onLoad={onLoad}
               />
             </div>
             {props.cname ? (
@@ -72,13 +80,16 @@ const Card = (props) => {
           >
             <div className={styles.img}>
               <img
-                className={styles.poster}
+                className={`${styles.poster} ${
+                  loaded && styles['poster-open']
+                }`}
                 src={
                   props.cname
                     ? `https://image.tmdb.org/t/p/original${show.backdrop_path}`
                     : `https://image.tmdb.org/t/p/original${show.poster_path}`
                 }
                 alt={show.original_name}
+                onLoad={onLoad}
               />
             </div>
             {props.cname ? (

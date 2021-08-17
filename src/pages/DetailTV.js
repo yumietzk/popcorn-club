@@ -16,6 +16,7 @@ import styles from './DetailTV.module.css';
 
 const DetailTV = (props) => {
   const [favorite, setFavorite] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const { id } = props.match.params;
@@ -50,6 +51,10 @@ const DetailTV = (props) => {
     return `${hours(hr)} ${min} min`;
   };
 
+  const onLoad = () => {
+    setLoaded(true);
+  };
+
   const onClick = (id, path, name, date) => {
     if (!favorite) {
       props.saveTVShow(id, path, name, date);
@@ -74,7 +79,8 @@ const DetailTV = (props) => {
             <img
               src={`https://image.tmdb.org/t/p/original${props.detail.poster_path}`}
               alt={props.detail.original_name}
-              className={styles.img}
+              className={`${styles.img} ${loaded && styles['img-open']}`}
+              onLoad={onLoad}
             />
           </div>
 

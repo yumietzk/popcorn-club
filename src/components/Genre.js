@@ -1,7 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import {
+  LazyLoadImage,
+  trackWindowScroll,
+} from 'react-lazy-load-image-component';
 import styles from './Genre.module.css';
+
 const Genre = (props) => {
   // LATER!!! render 15~20 results per page
 
@@ -53,13 +58,21 @@ const Genre = (props) => {
           className={styles.content}
         >
           <div className={styles.img}>
-            <img
+            <LazyLoadImage
               className={styles.poster}
               src={`https://image.tmdb.org/t/p/original/${show.poster_path}`}
               alt={
                 show.original_title ? show.original_title : show.original_name
               }
+              scrollPosition={props.scrollPosition}
             />
+            {/* <img
+              className={styles.poster}
+              src={`https://image.tmdb.org/t/p/original/${show.poster_path}`}
+              alt={
+                show.original_title ? show.original_title : show.original_name
+              }
+            /> */}
           </div>
           <div className={styles.description}>
             <p className={styles.movietitle}>
@@ -92,4 +105,6 @@ const mapStateToProps = (state, ownProps) => {
   return { shows: state.genre[ownProps.genre] };
 };
 
-export default connect(mapStateToProps)(Genre);
+// export default connect(mapStateToProps)(Genre);
+
+export default connect(mapStateToProps)(trackWindowScroll(Genre));

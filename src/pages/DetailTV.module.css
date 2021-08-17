@@ -34,6 +34,12 @@
   width: 90%;
   height: 80%;
   object-fit: cover;
+  opacity: 0;
+}
+
+.img-open {
+  opacity: 1;
+  transition: all 0.5s;
 }
 
 .content {

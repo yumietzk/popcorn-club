@@ -9,7 +9,7 @@ import {
   fetchMovieRelated,
   saveMovie,
   deleteMovie,
-  // fetchFavoriteMovies,
+  fetchFavoriteMovies,
 } from '../actions';
 import CastWrap from '../components/detail/Cast';
 import Reviews from '../components/detail/Reviews';
@@ -18,6 +18,7 @@ import styles from './Detail.module.css';
 
 const Detail = (props) => {
   const [favorite, setFavorite] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const { id } = props.match.params;
@@ -26,7 +27,7 @@ const Detail = (props) => {
     props.fetchMovieCredits(id);
     props.fetchMovieReviews(id);
     props.fetchMovieRelated(id);
-    // props.fetchFavoriteMovies();
+    props.fetchFavoriteMovies();
 
     const isFavorite = (id) => {
       return props.favorite?.some((item) => item.id === +id);
@@ -45,6 +46,10 @@ const Detail = (props) => {
     const hr = Math.floor(runtime / 60);
     const min = runtime % 60;
     return `${hr} hr ${min} min`;
+  };
+
+  const onLoad = () => {
+    setLoaded(true);
   };
 
   const onClick = (id, path, title, date) => {
@@ -71,7 +76,8 @@ const Detail = (props) => {
             <img
               src={`https://image.tmdb.org/t/p/original${props.detail.poster_path}`}
               alt={props.detail.original_title}
-              className={styles.img}
+              className={`${styles.img} ${loaded && styles['img-open']}`}
+              onLoad={onLoad}
             />
           </div>
 
@@ -165,4 +171,5 @@ export default connect(mapStateToProps, {
   fetchMovieRelated,
   saveMovie,
   deleteMovie,
+  fetchFavoriteMovies,
 })(Detail);
