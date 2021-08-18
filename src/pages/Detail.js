@@ -12,7 +12,7 @@ import {
   deleteMovie,
   fetchFavoriteMovies,
 } from '../actions';
-import CastWrap from '../components/detail/Cast';
+import Cast from '../components/detail/Cast';
 import Reviews from '../components/detail/Reviews';
 import Related from '../components/detail/Related';
 import styles from './Detail.module.css';
@@ -35,7 +35,7 @@ const Detail = (props) => {
     };
 
     setFavorite(isFavorite(id));
-  }, []);
+  }, [props]);
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];
@@ -46,7 +46,14 @@ const Detail = (props) => {
     // 139 -> 2hr 19min
     const hr = Math.floor(runtime / 60);
     const min = runtime % 60;
-    return `${hr} hr ${min} min`;
+    const hours = (hr) => {
+      if (hr === 0) {
+        return '';
+      } else {
+        return `${hr} hr`;
+      }
+    };
+    return `${hours(hr)} ${min} min`;
   };
 
   const onLoad = () => {
@@ -143,7 +150,7 @@ const Detail = (props) => {
         </div>
 
         <div className={styles.cast}>
-          <CastWrap />
+          <Cast />
         </div>
 
         <div className={styles.reviews}>

@@ -5,8 +5,11 @@ import Genre from '../../../components/Genre';
 
 const Action = (props) => {
   useEffect(() => {
+    console.log('Update!!');
     props.fetchActionMovies();
   }, []);
+
+  // const { id } = props.match.params;
 
   return <Genre title="Movies" type="Action" genre="action" />;
 };

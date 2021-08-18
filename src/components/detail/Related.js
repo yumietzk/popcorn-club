@@ -5,16 +5,22 @@ import styles from './Related.module.css';
 
 const Related = (props) => {
   const related = props.type === 'tv' ? props.tvrelated : props.movierelated;
-  const toPage = props.type === 'tv' ? '/detailtv' : '/detail';
+  const toPage = props.type === 'tv' ? 'detailtv' : 'detail';
 
   const renderRelated = () => {
+    console.log();
+
     if (!related) {
       return <div>Loading..</div>;
     }
 
     return related.map((item) => {
       return (
-        <Link key={item.id} to={`${toPage}/${item.id}`} className={styles.item}>
+        <Link
+          key={item.id}
+          to={`/${toPage}/${item.id}`}
+          className={styles.item}
+        >
           <div className={styles.fig}>
             <img
               src={`https://image.tmdb.org/t/p/original${item.poster_path}`}

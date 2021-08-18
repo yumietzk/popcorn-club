@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ReactLoading from 'react-loading';
@@ -6,28 +6,54 @@ import {
   LazyLoadImage,
   trackWindowScroll,
 } from 'react-lazy-load-image-component';
+import * as IoIcons from 'react-icons/io';
 import styles from './Genre.module.css';
 
 const Genre = (props) => {
-  // const getResultsPerPage = (page = 1) => {
-  //   state.search.page = page;
+  const [curPage, setCurPage] = useState(1);
+  const [allPage, setAllPage] = useState(null);
+  const [results, setResults] = useState([]);
 
-  //   const start = (page - 1) * 20;
-  //   const end = page * 20;
+  useEffect(() => {
+    if (!props.shows) return;
 
-  //   return state.search.businesses.slice(start, end);
-  // };
+    const getAllPage = () => {
+      const rest = props.shows.length % 20;
 
-  // const getAllPage = () => {
-  //   const rest = props.shows.length % 20;
+      if (rest === 0) {
+        setAllPage(props.shows.length / 20);
+      } else {
+        setAllPage(Math.floor(props.shows.length / 20) + 1);
+      }
+    };
 
-  //   if (rest === 0) allPage = props.shows.length / 20;
-  //   else allPage = Math.floor(props.shows.length / 20) + 1;
-  // };
+    getAllPage();
+  }, [props.shows]);
 
-  // const renderMovie = () => {
+  useEffect(() => {
+    if (!props.shows) return;
 
-  // };
+    const getResultsPerPage = () => {
+      const start = (curPage - 1) * 20;
+      const end = curPage * 20;
+
+      setResults(props.shows.slice(start, end));
+    };
+
+    getResultsPerPage();
+  }, [curPage, props.shows]);
+
+  const onPagePrevious = () => {
+    if (curPage === 1) return;
+
+    setCurPage(curPage - 1);
+  };
+
+  const onPageNext = () => {
+    if (curPage === allPage) return;
+
+    setCurPage(curPage + 1);
+  };
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];
@@ -35,13 +61,13 @@ const Genre = (props) => {
   };
 
   const renderShows = () => {
-    if (!props.shows) {
+    if (!results) {
       return (
         <ReactLoading type="spin" color="f7f7f7" height="20%" width="20%" />
       );
     }
 
-    return props.shows.map((show) => {
+    return results.map((show) => {
       return (
         <Link
           to={
@@ -77,6 +103,24 @@ const Genre = (props) => {
     });
   };
 
+  const renderPaginationPrev = () => {
+    return (
+      <button className={styles['pagination-prev']} onClick={onPagePrevious}>
+        <IoIcons.IoIosArrowRoundBack className={styles['prev-icon']} />
+        <p>Page {curPage - 1}</p>
+      </button>
+    );
+  };
+
+  const renderPaginationNext = () => {
+    return (
+      <button className={styles['pagination-next']} onClick={onPageNext}>
+        <p>Page {curPage + 1}</p>
+        <IoIcons.IoIosArrowRoundForward className={styles['next-icon']} />
+      </button>
+    );
+  };
+
   return (
     <div className={styles.box}>
       <div className={styles.title}>
@@ -84,16 +128,14 @@ const Genre = (props) => {
         <h3 className={styles.genre}>{props.type}</h3>
       </div>
       <div className={styles.container}>{renderShows()}</div>
+      {curPage > 1 ? renderPaginationPrev() : null}
+      {curPage < allPage ? renderPaginationNext() : null}
     </div>
   );
 };
 
-// to="/action/page=2"
-
 const mapStateToProps = (state, ownProps) => {
   return { shows: state.genre[ownProps.genre] };
 };
-
-// export default connect(mapStateToProps)(Genre);
 
 export default connect(mapStateToProps)(trackWindowScroll(Genre));

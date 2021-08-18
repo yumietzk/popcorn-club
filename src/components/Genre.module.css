@@ -1,5 +1,5 @@
 .box {
-  min-height: 90vh;
+  min-height: 100vh;
   background-color: #060b26;
   color: #f7f7f7;
 }
@@ -26,10 +26,11 @@
 }
 
 .container {
-  padding: 2rem 3rem;
+  padding: 2rem 3rem 10rem 3rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 6.5rem 4.5rem;
+  position: relative;
 }
 
 .content {
@@ -78,4 +79,58 @@
   margin-top: 1rem;
   font-size: 1.2rem;
   font-weight: 100;
+}
+
+.pagination-prev,
+.pagination-next {
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  bottom: 3.7rem;
+  text-decoration: none;
+  background-color: #f7f7f7;
+  color: #060b26;
+  border: none;
+  padding: 0.9rem 1.1rem;
+  border-radius: 10rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.pagination-prev {
+  left: 3rem;
+}
+
+.pagination-next {
+  right: 3rem;
+}
+
+.prev-icon,
+.next-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: #060b26;
+  transition: all 0.3s;
+}
+
+.prev-icon {
+  margin-right: 0.5rem;
+}
+
+.next-icon {
+  margin-left: 0.5rem;
+}
+
+.pagination-prev:hover,
+.pagination-next:hover {
+  background-color: #3aaa6f;
+  color: #f7f7f7;
+  transform: scale(1.05);
+}
+
+.pagination-prev:hover .prev-icon,
+.pagination-next:hover .next-icon {
+  fill: #f7f7f7;
 }

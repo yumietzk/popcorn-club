@@ -142,8 +142,6 @@ export const fetchAdventureMovies = () => async (dispatch) => {
     tmdb.get(`${requests.fetchAdventureMovies}&page=3`),
   ]);
 
-  console.log(response.data);
-
   const data = response.map((res) => res.data.results);
 
   dispatch({
@@ -158,8 +156,6 @@ export const fetchAnimationMovies = () => async (dispatch) => {
     tmdb.get(`${requests.fetchAnimationMovies}&page=2`),
     tmdb.get(`${requests.fetchAnimationMovies}&page=3`),
   ]);
-
-  console.log(response.data);
 
   const data = response.map((res) => res.data.results);
 
@@ -176,8 +172,6 @@ export const fetchComedyMovies = () => async (dispatch) => {
     tmdb.get(`${requests.fetchComedyMovies}&page=3`),
   ]);
 
-  console.log(response.data);
-
   const data = response.map((res) => res.data.results);
 
   dispatch({
@@ -192,8 +186,6 @@ export const fetchDocumentaryMovies = () => async (dispatch) => {
     tmdb.get(`${requests.fetchDocumentaryMovies}&page=2`),
     tmdb.get(`${requests.fetchDocumentaryMovies}&page=3`),
   ]);
-
-  console.log(response.data);
 
   const data = response.map((res) => res.data.results);
 
@@ -210,8 +202,6 @@ export const fetchDramaMovies = () => async (dispatch) => {
     tmdb.get(`${requests.fetchDramaMovies}&page=3`),
   ]);
 
-  console.log(response.data);
-
   const data = response.map((res) => res.data.results);
 
   dispatch({
@@ -226,8 +216,6 @@ export const fetchFantasyMovies = () => async (dispatch) => {
     tmdb.get(`${requests.fetchFantasyMovies}&page=2`),
     tmdb.get(`${requests.fetchFantasyMovies}&page=3`),
   ]);
-
-  console.log(response.data);
 
   const data = response.map((res) => res.data.results);
 
@@ -244,8 +232,6 @@ export const fetchHorrorMovies = () => async (dispatch) => {
     tmdb.get(`${requests.fetchHorrorMovies}&page=3`),
   ]);
 
-  console.log(response.data);
-
   const data = response.map((res) => res.data.results);
 
   dispatch({
@@ -261,8 +247,6 @@ export const fetchRomanceMovies = () => async (dispatch) => {
     tmdb.get(`${requests.fetchRomanceMovies}&page=3`),
   ]);
 
-  console.log(response.data);
-
   const data = response.map((res) => res.data.results);
 
   dispatch({
@@ -277,8 +261,6 @@ export const fetchSciFiMovies = () => async (dispatch) => {
     tmdb.get(`${requests.fetchSciFiMovies}&page=2`),
     tmdb.get(`${requests.fetchSciFiMovies}&page=3`),
   ]);
-
-  console.log(response.data);
 
   const data = response.map((res) => res.data.results);
 
@@ -296,8 +278,6 @@ export const fetchActionAdventureTv = () => async (dispatch) => {
     tmdb.get(`${requests.fetchActionAdventureTv}&page=3`),
   ]);
 
-  console.log(response.data);
-
   const data = response.map((res) => res.data.results);
 
   dispatch({
@@ -312,8 +292,6 @@ export const fetchAnimationTv = () => async (dispatch) => {
     tmdb.get(`${requests.fetchAnimationTv}&page=2`),
     tmdb.get(`${requests.fetchAnimationTv}&page=3`),
   ]);
-
-  console.log(response.data);
 
   const data = response.map((res) => res.data.results);
 
@@ -330,8 +308,6 @@ export const fetchComedyTv = () => async (dispatch) => {
     tmdb.get(`${requests.fetchComedyTv}&page=3`),
   ]);
 
-  console.log(response.data);
-
   const data = response.map((res) => res.data.results);
 
   dispatch({
@@ -346,8 +322,6 @@ export const fetchCrimeTv = () => async (dispatch) => {
     tmdb.get(`${requests.fetchCrimeTv}&page=2`),
     tmdb.get(`${requests.fetchCrimeTv}&page=3`),
   ]);
-
-  console.log(response.data);
 
   const data = response.map((res) => res.data.results);
 
@@ -364,8 +338,6 @@ export const fetchDocumentaryTv = () => async (dispatch) => {
     tmdb.get(`${requests.fetchDocumentaryTv}&page=3`),
   ]);
 
-  console.log(response.data);
-
   const data = response.map((res) => res.data.results);
 
   dispatch({
@@ -380,8 +352,6 @@ export const fetchDramaTv = () => async (dispatch) => {
     tmdb.get(`${requests.fetchDramaTv}&page=2`),
     tmdb.get(`${requests.fetchDramaTv}&page=3`),
   ]);
-
-  console.log(response.data);
 
   const data = response.map((res) => res.data.results);
 
@@ -398,8 +368,6 @@ export const fetchKidsTv = () => async (dispatch) => {
     tmdb.get(`${requests.fetchKidsTv}&page=3`),
   ]);
 
-  console.log(response.data);
-
   const data = response.map((res) => res.data.results);
 
   dispatch({
@@ -415,8 +383,6 @@ export const fetchMysteryTv = () => async (dispatch) => {
     tmdb.get(`${requests.fetchMysteryTv}&page=3`),
   ]);
 
-  console.log(response.data);
-
   const data = response.map((res) => res.data.results);
 
   dispatch({
@@ -431,8 +397,6 @@ export const fetchRealityTv = () => async (dispatch) => {
     tmdb.get(`${requests.fetchRealityTv}&page=2`),
     tmdb.get(`${requests.fetchRealityTv}&page=3`),
   ]);
-
-  console.log(response.data);
 
   const data = response.map((res) => res.data.results);
 

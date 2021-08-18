@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ReactLoading from 'react-loading';
 import * as IoIcons from 'react-icons/io';
 import {
   fetchTvDetail,
@@ -30,7 +31,7 @@ const DetailTV = (props) => {
     };
 
     setFavorite(isFavorite(id));
-  }, []);
+  }, [props]);
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];
@@ -116,10 +117,10 @@ const DetailTV = (props) => {
               <p className={styles.runtime}>
                 {`${calcHour(props.detail.episode_run_time[0])}`}
               </p>
-              <p className={styles.rate}>
+              <div className={styles.rate}>
                 <IoIcons.IoIosStar className={styles['rate-icon']} />
                 <p>{props.detail.vote_average}</p>
-              </p>
+              </div>
             </div>
 
             <div className={styles.others}>
