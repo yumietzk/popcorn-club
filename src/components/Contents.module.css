@@ -1,14 +1,16 @@
 .contents {
   flex: 1;
   padding: 1rem;
-  /* padding-top: 0; */
   overflow-x: scroll;
-  overflow-y: hidden;
 }
 
-/* Do not display scrollbar */
 .contents::-webkit-scrollbar {
-  display: none;
+  height: 4px;
+}
+
+.contents::-webkit-scrollbar-thumb {
+  background: rgba(133, 133, 133, 0.5);
+  border-radius: 3px;
 }
 
 .wrapper {
@@ -18,7 +20,3 @@
   width: 500rem;
   height: 100%;
 }
-
-/* .wrapper.wide {
-  width: 510rem;
-} */

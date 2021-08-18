@@ -10,7 +10,7 @@
   transition: all 0.3s;
 }
 
-.moviecard:hover {
+.card:hover {
   transform: scale(1.05);
 }
 

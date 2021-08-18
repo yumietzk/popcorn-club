@@ -1,15 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import { fetchFavoriteMovies, fetchFavoriteTVs } from '../actions';
 import styles from './HomeFavorite.module.css';
 
 const HomeFavorite = (props) => {
-  // useEffect(() => {
-  //   props.fetchFavoriteMovies();
-  //   props.fetchFavoriteTVs();
-  // }, []);
-
   const calcYear = (date) => {
     const year = date?.split('-')[0];
     return year;
@@ -22,10 +16,7 @@ const HomeFavorite = (props) => {
 
     if (props.shows && props.shows.length === 0) {
       return (
-        <p>
-          No favorite yet. Click heart button to save your favorite show on
-          Favorite :)
-        </p>
+        <p>No favorite yet. Click heart button to save your favorite show :)</p>
       );
     }
 
@@ -57,6 +48,7 @@ const HomeFavorite = (props) => {
                 <Link
                   to={`/detail/${sub.id}`}
                   className={`styles[subcontent${index}]`}
+                  key={index}
                 >
                   <img
                     className={styles.subposter}

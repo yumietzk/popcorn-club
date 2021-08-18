@@ -42,6 +42,9 @@
 .content2 {
   display: flex;
   flex-direction: column;
+
+  text-decoration: none;
+  color: #f7f7f7;
 }
 
 .img {

@@ -1,7 +1,6 @@
 .data {
   line-height: 6rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  /* position: relative; */
 }
 
 .mainmenu {
@@ -23,7 +22,7 @@
   top: 0;
   left: 0;
   height: 100%;
-  width: 3px;
+  width: 5px;
   background-color: #3aaa6f;
   transform: scaleY(0);
   transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s;
@@ -31,13 +30,7 @@
 
 .mainmenu:hover::before {
   transform: scaleY(1);
-  /* background-color: #272a3a; */
-  width: 100%;
 }
-
-/* .mainmenu:hover {
-  color: #3aaa6f;
-} */
 
 .mainicon {
   position: relative;

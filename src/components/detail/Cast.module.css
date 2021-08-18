@@ -1,18 +1,29 @@
 .title {
+  flex: 0 1 3rem;
   font-size: 1.7rem;
   font-weight: 400;
   margin-bottom: 1.8rem;
 }
 
 .wrap {
+  flex: 1;
   list-style: none;
   display: flex;
   align-items: center;
   overflow-x: scroll;
 }
 
+.wrap::-webkit-scrollbar {
+  height: 4px;
+}
+
+.wrap::-webkit-scrollbar-thumb {
+  background: rgba(133, 133, 133, 0.5);
+  border-radius: 3px;
+}
+
 .list {
-  margin-right: 3rem;
+  margin-right: 4rem;
 
   display: flex;
   flex-direction: column;

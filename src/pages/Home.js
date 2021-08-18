@@ -21,7 +21,6 @@ const Home = (props) => {
   return (
     <div className={styles.home}>
       <h3 className={styles.title}>Home</h3>
-
       <Row category="Movies" group="Movie" type="nowplaying" cname="wide" />
       <Row category="TV Shows" group="TV Show" type="onair" cname="wide" />
       <div className={styles.favorite}>

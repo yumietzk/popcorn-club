@@ -15,7 +15,7 @@ const Reviews = (props) => {
 
     return props.reviews.map((review) => {
       return (
-        <li className={styles.item}>
+        <li className={styles.item} key={review.id}>
           <div className={styles.user}>
             <IoIcons.IoIosPerson className={styles['user-icon']} />
             <p className={styles['user-name']}>{review.author}</p>

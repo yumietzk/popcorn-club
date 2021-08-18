@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import // fetchMovieNowPlaying,
-// fetchTvOnAir,
-// fetchMovieUpcoming,
-// fetchMovieTopRated,
-'../actions';
+import ReactLoading from 'react-loading';
 import styles from './Card.module.css';
 
 const Card = (props) => {
@@ -27,7 +23,9 @@ const Card = (props) => {
   const renderItems = () => {
     if (props.group === 'Movie') {
       if (!props.movies) {
-        return <div>Loading...</div>;
+        return (
+          <ReactLoading type="spin" color="f7f7f7" height="20%" width="20%" />
+        );
       }
 
       return props.movies.map((movie) => {
@@ -68,7 +66,9 @@ const Card = (props) => {
 
     if (props.group === 'TV Show') {
       if (!props.shows) {
-        return <div>Loading...</div>;
+        return (
+          <ReactLoading type="spin" color="f7f7f7" height="10" width="10" />
+        );
       }
 
       return props.shows.map((show) => {

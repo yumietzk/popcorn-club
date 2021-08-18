@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as IoIcons from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import ReactLoading from 'react-loading';
 import {
   fetchMovieDetail,
   fetchMovieCredits,
@@ -63,7 +64,7 @@ const Detail = (props) => {
   };
 
   if (!props.detail) {
-    return <div>Loading...</div>;
+    return <ReactLoading type="spin" color="f7f7f7" />;
   }
 
   return (

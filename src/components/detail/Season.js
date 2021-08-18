@@ -8,9 +8,9 @@ const Season = (props) => {
       return <div>Loading..</div>;
     }
 
-    return props.seasons.map((season) => {
+    return props.seasons.map((season, i) => {
       return (
-        <li className={styles.item}>
+        <li className={styles.item} key={i}>
           <div className={styles.fig}>
             <img
               src={`https://image.tmdb.org/t/p/original${season.poster_path}`}

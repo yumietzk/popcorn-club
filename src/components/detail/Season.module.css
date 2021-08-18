@@ -1,5 +1,5 @@
 .title {
-  flex: 0 1 5rem;
+  flex: 0 1 3rem;
   font-size: 1.7rem;
   font-weight: 400;
   margin-bottom: 1.8rem;
@@ -13,6 +13,15 @@
   overflow-x: scroll;
 }
 
+.seasons::-webkit-scrollbar {
+  height: 4px;
+}
+
+.seasons::-webkit-scrollbar-thumb {
+  background: rgba(133, 133, 133, 0.5);
+  border-radius: 3px;
+}
+
 .item {
   height: 100%;
   margin-right: 3rem;
@@ -23,7 +32,7 @@
 
 .fig {
   flex: 1;
-  width: 17rem;
+  width: 13rem;
 }
 
 .img {
@@ -35,5 +44,5 @@
 .name {
   flex: 0 1 3rem;
   margin-top: 2rem;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }

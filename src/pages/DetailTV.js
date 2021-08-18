@@ -114,7 +114,7 @@ const DetailTV = (props) => {
 
             <div className={styles.timerate}>
               <p className={styles.runtime}>
-                {`${calcHour(props.detail.episode_run_time)}`}
+                {`${calcHour(props.detail.episode_run_time[0])}`}
               </p>
               <p className={styles.rate}>
                 <IoIcons.IoIosStar className={styles['rate-icon']} />
@@ -123,13 +123,6 @@ const DetailTV = (props) => {
             </div>
 
             <div className={styles.others}>
-              <Link
-                to={`/detailtv/${props.detail.id}/play`}
-                className={styles.play}
-              >
-                <IoIcons.IoIosPlay className={styles['play-icon']} />
-                <p>Play</p>
-              </Link>
               <Link
                 to={{ pathname: props.detail.homepage }}
                 target="_blank"

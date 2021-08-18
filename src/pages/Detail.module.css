@@ -5,7 +5,7 @@
 
 .container {
   min-height: 100vh;
-  padding: 4rem;
+  padding: 4rem 6rem;
 }
 
 .nav {
@@ -20,6 +20,7 @@
 .detail {
   display: flex;
 
+  width: 70%;
   height: 50rem;
 }
 
@@ -82,15 +83,25 @@
 .favorite-icon:hover,
 .favorite-icon:active {
   fill: #3aaa6f;
+  transform: scale(1.1);
 }
 
 .favorite-icon:active {
   transform: scale(0.9);
 }
 
+.favorite-icon-true:hover,
+.favorite-icon-true:active {
+  transform: scale(1.1);
+}
+
+.favorite-icon-true:active {
+  transform: scale(0.9);
+}
+
 .date {
   font-size: 1.4rem;
-  margin-bottom: 0.7rem;
+  margin-bottom: 1rem;
 }
 
 .timerate {
@@ -163,15 +174,24 @@
 }
 
 .overview {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  line-height: 1.5;
 }
 
 .cast {
-  height: 30rem;
+  height: 20rem;
+  margin-bottom: 10rem;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .reviews {
-  height: 35rem;
+  height: 30rem;
+  margin-bottom: 10rem;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .related {

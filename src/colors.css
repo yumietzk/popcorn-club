@@ -16,3 +16,18 @@ font1: #f7f7f7
   --color-gray-dark-2: #777;
   --color-gray-dark-3: #999;
 */
+
+/* // 1200px / 16px = 75
+$bp-largest: 75em;
+// 1000px
+$bp-large: 62.5em;
+// 700px
+$bp-medium: 43.75em;
+// 600px
+$bp-small: 37.5em;
+// 500px
+$bp-smallest: 31.25em; */
+
+/* @media only screen and (max-width: $bp-medium) {
+  flex-direction: column;
+} */

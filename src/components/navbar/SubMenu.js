@@ -5,10 +5,6 @@ import styles from './SubMenu.module.css';
 const SubMenu = ({ item, index, onShowSidebar }) => {
   const [subnav, setSubnav] = useState(false);
 
-  // const showSidebar = () => {
-  //   setOpenSide(!openSide);
-  // };
-
   const showSubnav = () => {
     setSubnav(!subnav);
   };
@@ -20,25 +16,6 @@ const SubMenu = ({ item, index, onShowSidebar }) => {
       onShowSidebar();
     }
   };
-
-  // const showSubmenu = (item) => {
-  //   if (!item.subNav) return null;
-
-  //   return item.subNav.map((sub, index) => {
-  //     return (
-  //       <li className={styles.sublist}>
-  //         <Link
-  //           to={sub.path}
-  //           key={index}
-  //           className={styles.submenu}
-  //           onClick={onShowSidebar}
-  //         >
-  //           <span className={styles.label}>{sub.title}</span>
-  //         </Link>
-  //       </li>
-  //     );
-  //   })
-  // }
 
   return (
     <li key={index} className={styles[item.className]}>
@@ -62,7 +39,7 @@ const SubMenu = ({ item, index, onShowSidebar }) => {
         <ul className={styles.subitems}>
           {item.subNav?.map((sub, index) => {
             return (
-              <li className={styles.sublist}>
+              <li className={styles.sublist} key={index}>
                 <Link
                   to={sub.path}
                   key={index}

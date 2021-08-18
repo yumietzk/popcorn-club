@@ -68,7 +68,7 @@ export const fetchMovieReviews = (id) => async (dispatch) => {
 
   dispatch({
     type: 'MOVIE_REVIEWS',
-    payload: response.data.results.slice(0, 5),
+    payload: response.data.results.slice(0, 10),
   });
 };
 

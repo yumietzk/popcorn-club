@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ReactLoading from 'react-loading';
 import {
   LazyLoadImage,
   trackWindowScroll,
@@ -8,28 +9,20 @@ import {
 import styles from './Genre.module.css';
 
 const Genre = (props) => {
-  // LATER!!! render 15~20 results per page
-
-  // export const getResultsPerPage = function (page = 1) {
+  // const getResultsPerPage = (page = 1) => {
   //   state.search.page = page;
 
-  //   const start = (page - 1) * state.search.resultsPerPage;
-  //   const end = page * state.search.resultsPerPage;
+  //   const start = (page - 1) * 20;
+  //   const end = page * 20;
 
   //   return state.search.businesses.slice(start, end);
   // };
 
-  // export const getAllPage = function () {
-  //   const rest = state.search.businesses.length % state.search.resultsPerPage;
+  // const getAllPage = () => {
+  //   const rest = props.shows.length % 20;
 
-  //   if (rest === 0)
-  //     state.search.allPage =
-  //       state.search.businesses.length / state.search.resultsPerPage;
-  //   else
-  //     state.search.allPage =
-  //       Math.floor(
-  //         state.search.businesses.length / state.search.resultsPerPage
-  //       ) + 1;
+  //   if (rest === 0) allPage = props.shows.length / 20;
+  //   else allPage = Math.floor(props.shows.length / 20) + 1;
   // };
 
   // const renderMovie = () => {
@@ -43,7 +36,9 @@ const Genre = (props) => {
 
   const renderShows = () => {
     if (!props.shows) {
-      return <div>Loading...</div>;
+      return (
+        <ReactLoading type="spin" color="f7f7f7" height="20%" width="20%" />
+      );
     }
 
     return props.shows.map((show) => {
@@ -66,13 +61,6 @@ const Genre = (props) => {
               }
               scrollPosition={props.scrollPosition}
             />
-            {/* <img
-              className={styles.poster}
-              src={`https://image.tmdb.org/t/p/original/${show.poster_path}`}
-              alt={
-                show.original_title ? show.original_title : show.original_name
-              }
-            /> */}
           </div>
           <div className={styles.description}>
             <p className={styles.movietitle}>
@@ -95,11 +83,12 @@ const Genre = (props) => {
         <span>{props.title} &gt; </span>
         <h3 className={styles.genre}>{props.type}</h3>
       </div>
-
       <div className={styles.container}>{renderShows()}</div>
     </div>
   );
 };
+
+// to="/action/page=2"
 
 const mapStateToProps = (state, ownProps) => {
   return { shows: state.genre[ownProps.genre] };

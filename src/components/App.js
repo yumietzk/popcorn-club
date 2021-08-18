@@ -68,7 +68,7 @@ const App = () => {
         <Route path="/detailtv/:id" exact component={DetailTV} />
         <Route path="/search" component={Search} />
         <Route path="/detail/:id/play" component={Modal} />
-        {/* <Route path="/detailtv/:id/play" component={ModalTv} /> */}
+        <Route path="/detailtv/:id/play" component={Modal} />
         {/* <Route path="/search/:query" component={Search} /> */}
       </Switch>
     </Router>

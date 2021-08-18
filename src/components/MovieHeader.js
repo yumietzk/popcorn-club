@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as AiIcons from 'react-icons/ai';
-// import { fetchMoviePopular } from '../actions';
 import styles from './MovieHeader.module.css';
 
 const MovieHeader = (props) => {
   const [curSlide, setCurSlide] = useState(0);
 
-  // useEffect(() => {
-  //   props.fetchMoviePopular();
-  // }, []);
-
-  // const maxSlide = props.movies.length;
   const maxSlide = 10;
 
   const nextSlide = () => {
@@ -54,7 +48,7 @@ const MovieHeader = (props) => {
         >
           <div className={styles.description}>
             <p className={styles.name}>{movie.original_title}</p>
-            <p className={styles.overview}>{truncate(movie.overview, 150)}</p>
+            <p className={styles.overview}>{truncate(movie.overview, 250)}</p>
             <Link to={`/detail/${movie.id}`} className={styles.more}>
               More
             </Link>
