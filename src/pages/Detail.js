@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as IoIcons from 'react-icons/io';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import {
   fetchMovieDetail,
@@ -15,27 +15,62 @@ import {
 import Cast from '../components/detail/Cast';
 import Reviews from '../components/detail/Reviews';
 import Related from '../components/detail/Related';
+import history from '../history';
 import styles from './Detail.module.css';
 
-const Detail = (props) => {
+const Detail = ({
+  fetchMovieDetail,
+  fetchMovieCredits,
+  fetchMovieReviews,
+  fetchMovieRelated,
+  fetchFavoriteMovies,
+  saveMovie,
+  deleteMovie,
+  match,
+  favorites,
+  detail,
+}) => {
   const [favorite, setFavorite] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [locationKeys, setLocationKeys] = useState([]);
+  const btnhistory = useHistory();
 
   useEffect(() => {
-    const { id } = props.match.params;
+    return btnhistory.listen((location) => {
+      if (btnhistory.action === 'PUSH') {
+        setLocationKeys([location.key]);
+      }
 
-    props.fetchMovieDetail(id);
-    props.fetchMovieCredits(id);
-    props.fetchMovieReviews(id);
-    props.fetchMovieRelated(id);
-    props.fetchFavoriteMovies();
+      if (btnhistory.action === 'POP') {
+        if (locationKeys[1] === location.key) {
+          setLocationKeys(([_, ...keys]) => keys);
+
+          // Handle forward event
+        } else {
+          setLocationKeys((keys) => [location.key, ...keys]);
+
+          history.goBack();
+        }
+      }
+    });
+  }, [locationKeys]);
+
+  useEffect(() => {
+    const { id } = match.params;
+
+    fetchMovieDetail(id);
+    fetchMovieCredits(id);
+    fetchMovieReviews(id);
+    fetchMovieRelated(id);
+    fetchFavoriteMovies();
 
     const isFavorite = (id) => {
-      return props.favorite?.some((item) => item.id === +id);
+      return favorites?.some((item) => item.id === +id);
     };
 
     setFavorite(isFavorite(id));
-  }, [props]);
+    setLoaded(false);
+  }, [match.params]);
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];
@@ -43,7 +78,6 @@ const Detail = (props) => {
   };
 
   const calcHour = (runtime) => {
-    // 139 -> 2hr 19min
     const hr = Math.floor(runtime / 60);
     const min = runtime % 60;
     const hours = (hr) => {
@@ -62,15 +96,15 @@ const Detail = (props) => {
 
   const onClick = (id, path, title, date) => {
     if (!favorite) {
-      props.saveMovie(id, path, title, date);
+      saveMovie(id, path, title, date);
       setFavorite(!favorite);
     } else {
-      props.deleteMovie(id);
+      deleteMovie(id);
       setFavorite(!favorite);
     }
   };
 
-  if (!props.detail) {
+  if (!detail) {
     return <ReactLoading type="spin" color="f7f7f7" />;
   }
 
@@ -82,8 +116,8 @@ const Detail = (props) => {
         <div className={styles.detail}>
           <div className={styles.fig}>
             <img
-              src={`https://image.tmdb.org/t/p/original${props.detail.poster_path}`}
-              alt={props.detail.original_title}
+              src={`https://image.tmdb.org/t/p/original${detail.poster_path}`}
+              alt={detail.original_title}
               className={`${styles.img} ${loaded && styles['img-open']}`}
               onLoad={onLoad}
             />
@@ -91,17 +125,15 @@ const Detail = (props) => {
 
           <div className={styles.content}>
             <div className={styles.title}>
-              <h4 className={styles.titleName}>
-                {props.detail.original_title}
-              </h4>
+              <h4 className={styles.titleName}>{detail.original_title}</h4>
               <button
                 className={styles.favorite}
                 onClick={() =>
                   onClick(
-                    props.detail.id,
-                    props.detail.poster_path,
-                    props.detail.original_title,
-                    props.detail.release_date
+                    detail.id,
+                    detail.poster_path,
+                    detail.original_title,
+                    detail.release_date
                   )
                 }
               >
@@ -115,28 +147,23 @@ const Detail = (props) => {
               </button>
             </div>
 
-            <p className={styles.date}>{calcYear(props.detail.release_date)}</p>
+            <p className={styles.date}>{calcYear(detail.release_date)}</p>
 
             <div className={styles.timerate}>
-              <p className={styles.runtime}>
-                {`${calcHour(props.detail.runtime)}`}
-              </p>
-              <p className={styles.rate}>
+              <p className={styles.runtime}>{`${calcHour(detail.runtime)}`}</p>
+              <div className={styles.rate}>
                 <IoIcons.IoIosStar className={styles['rate-icon']} />
-                <p>{props.detail.vote_average} / 10</p>
-              </p>
+                <p>{detail.vote_average} / 10</p>
+              </div>
             </div>
 
             <div className={styles.others}>
-              <Link
-                to={`/detail/${props.detail.id}/play`}
-                className={styles.play}
-              >
+              <Link to={`/detail/${detail.id}/play`} className={styles.play}>
                 <IoIcons.IoIosPlay className={styles['play-icon']} />
                 <p>Play</p>
               </Link>
               <Link
-                to={{ pathname: props.detail.homepage }}
+                to={{ pathname: detail.homepage }}
                 target="_blank"
                 className={styles.link}
               >
@@ -145,9 +172,13 @@ const Detail = (props) => {
               </Link>
             </div>
 
-            <p className={styles.overview}>{props.detail.overview}</p>
+            <p className={styles.overview}>{detail.overview}</p>
           </div>
         </div>
+
+        <button className={styles['back-btn']} onClick={() => history.goBack()}>
+          &larr; Back
+        </button>
 
         <div className={styles.cast}>
           <Cast />
@@ -168,7 +199,7 @@ const Detail = (props) => {
 const mapStateToProps = (state) => {
   return {
     detail: state.detail.detail,
-    favorite: state.movies.favorite,
+    favorites: state.movies.favorite,
   };
 };
 

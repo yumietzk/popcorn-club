@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ReactLoading from 'react-loading';
+// import ReactLoading from 'react-loading';
 import * as IoIcons from 'react-icons/io';
 import {
   fetchTvDetail,
@@ -13,25 +13,40 @@ import {
 import Season from '../components/detail/Season';
 import Cast from '../components/detail/Cast';
 import Related from '../components/detail/Related';
+import history from '../history';
 import styles from './DetailTV.module.css';
 
-const DetailTV = (props) => {
+const DetailTV = ({
+  fetchTvDetail,
+  fetchTvCredits,
+  fetchTvRelated,
+  saveTVShow,
+  deleteTVShow,
+  match,
+  favorites,
+  detail,
+}) => {
   const [favorite, setFavorite] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const { id } = props.match.params;
+    const { id } = match.params;
 
-    props.fetchTvDetail(id);
-    props.fetchTvCredits(id);
-    props.fetchTvRelated(id);
+    fetchTvDetail(id);
+    fetchTvCredits(id);
+    fetchTvRelated(id);
 
-    const isFavorite = (id) => {
-      return props.favorite?.some((item) => item.id === +id);
-    };
+    // const isFavorite = (id) => {
+    //   return props.favorite?.some((item) => item.id === +id);
+    // };
 
     setFavorite(isFavorite(id));
-  }, [props]);
+    setLoaded(false);
+  }, [match.params]);
+
+  const isFavorite = (id) => {
+    return favorites?.some((item) => item.id === +id);
+  };
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];
@@ -39,7 +54,6 @@ const DetailTV = (props) => {
   };
 
   const calcHour = (runtime) => {
-    // 139 -> 2hr 19min
     const hr = Math.floor(runtime / 60);
     const min = runtime % 60;
     const hours = (hr) => {
@@ -58,15 +72,15 @@ const DetailTV = (props) => {
 
   const onClick = (id, path, name, date) => {
     if (!favorite) {
-      props.saveTVShow(id, path, name, date);
+      saveTVShow(id, path, name, date);
       setFavorite(!favorite);
     } else {
-      props.deleteTVShow(id);
+      deleteTVShow(id);
       setFavorite(!favorite);
     }
   };
 
-  if (!props.detail) {
+  if (!detail) {
     return <div>Loading...</div>;
   }
 
@@ -78,8 +92,8 @@ const DetailTV = (props) => {
         <div className={styles.detail}>
           <div className={styles.fig}>
             <img
-              src={`https://image.tmdb.org/t/p/original${props.detail.poster_path}`}
-              alt={props.detail.original_name}
+              src={`https://image.tmdb.org/t/p/original${detail.poster_path}`}
+              alt={detail.original_name}
               className={`${styles.img} ${loaded && styles['img-open']}`}
               onLoad={onLoad}
             />
@@ -87,15 +101,15 @@ const DetailTV = (props) => {
 
           <div className={styles.content}>
             <div className={styles.title}>
-              <h4 className={styles.titleName}>{props.detail.original_name}</h4>
+              <h4 className={styles.titleName}>{detail.original_name}</h4>
               <button
                 className={styles.favorite}
                 onClick={() =>
                   onClick(
-                    props.detail.id,
-                    props.detail.poster_path,
-                    props.detail.original_name,
-                    props.detail.first_air_date
+                    detail.id,
+                    detail.poster_path,
+                    detail.original_name,
+                    detail.first_air_date
                   )
                 }
               >
@@ -109,23 +123,21 @@ const DetailTV = (props) => {
               </button>
             </div>
 
-            <p className={styles.date}>
-              {calcYear(props.detail.first_air_date)}
-            </p>
+            <p className={styles.date}>{calcYear(detail.first_air_date)}</p>
 
             <div className={styles.timerate}>
               <p className={styles.runtime}>
-                {`${calcHour(props.detail.episode_run_time[0])}`}
+                {`${calcHour(detail.episode_run_time[0])}`}
               </p>
               <div className={styles.rate}>
                 <IoIcons.IoIosStar className={styles['rate-icon']} />
-                <p>{props.detail.vote_average}</p>
+                <p>{detail.vote_average}</p>
               </div>
             </div>
 
             <div className={styles.others}>
               <Link
-                to={{ pathname: props.detail.homepage }}
+                to={{ pathname: detail.homepage }}
                 target="_blank"
                 className={styles.link}
               >
@@ -134,9 +146,13 @@ const DetailTV = (props) => {
               </Link>
             </div>
 
-            <p className={styles.overview}>{props.detail.overview}</p>
+            <p className={styles.overview}>{detail.overview}</p>
           </div>
         </div>
+
+        <button className={styles['back-btn']} onClick={() => history.goBack()}>
+          &larr; Back
+        </button>
 
         <div className={styles.seasons}>
           <Season />
@@ -157,7 +173,7 @@ const DetailTV = (props) => {
 const mapStateToProps = (state) => {
   return {
     detail: state.detail.tvdetail,
-    favorite: state.shows.favorite,
+    favorites: state.shows.favorite,
   };
 };
 

@@ -10,12 +10,17 @@ import Row from '../components/Row';
 import HomeFavorite from '../components/HomeFavorite';
 import styles from './Home.module.css';
 
-const Home = (props) => {
+const Home = ({
+  fetchMovieNowPlaying,
+  fetchTvOnAir,
+  fetchFavoriteMovies,
+  fetchFavoriteTVs,
+}) => {
   useEffect(() => {
-    props.fetchMovieNowPlaying();
-    props.fetchTvOnAir();
-    props.fetchFavoriteMovies();
-    props.fetchFavoriteTVs();
+    fetchMovieNowPlaying();
+    fetchTvOnAir();
+    fetchFavoriteMovies();
+    fetchFavoriteTVs();
   }, []);
 
   return (

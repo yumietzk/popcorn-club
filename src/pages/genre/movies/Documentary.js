@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { fetchDocumentaryMovies } from '../../../actions';
 import Genre from '../../../components/Genre';
 
-const Documentary = (props) => {
+const Documentary = ({ fetchDocumentaryMovies }) => {
   useEffect(() => {
-    props.fetchDocumentaryMovies();
+    fetchDocumentaryMovies();
   });
 
   return <Genre title="Movies" type="Documentary" genre="documentary" />;

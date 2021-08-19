@@ -25,13 +25,13 @@ const Play = (props) => {
         setTrailerUrl(param.get('v'));
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [props.id]);
 
   const videoSrc = `https://www.youtube.com/embed/${trailerUrl}`;
 
   return (
     <div className={styles.modal}>
-      <iframe src={videoSrc} width="100%" height="100%" />
+      <iframe src={videoSrc} title={props.id} width="100%" height="100%" />
     </div>
   );
 };

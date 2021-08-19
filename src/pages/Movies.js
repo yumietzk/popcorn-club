@@ -9,11 +9,15 @@ import MovieHeader from '../components/MovieHeader';
 import Row from '../components/Row';
 import styles from './Movies.module.css';
 
-const Movies = (props) => {
+const Movies = ({
+  fetchMoviePopular,
+  fetchMovieUpcoming,
+  fetchMovieTopRated,
+}) => {
   useEffect(() => {
-    props.fetchMoviePopular();
-    props.fetchMovieUpcoming();
-    props.fetchMovieTopRated();
+    fetchMoviePopular();
+    fetchMovieUpcoming();
+    fetchMovieTopRated();
   }, []);
 
   return (

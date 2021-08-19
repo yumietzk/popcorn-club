@@ -4,10 +4,10 @@ import { fetchFavoriteMovies, fetchFavoriteTVs } from '../actions';
 import Row from '../components/Row';
 import styles from './Favorite.module.css';
 
-const Favorite = (props) => {
+const Favorite = ({ fetchFavoriteMovies, fetchFavoriteTVs }) => {
   useEffect(() => {
-    props.fetchFavoriteMovies();
-    props.fetchFavoriteTVs();
+    fetchFavoriteMovies();
+    fetchFavoriteTVs();
   }, []);
 
   return (

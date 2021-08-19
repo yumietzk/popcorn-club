@@ -1,26 +1,42 @@
 .container {
-  padding: 0.5rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
 }
 
 .type {
   flex: 0 1 3rem;
-
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 100;
 }
 
 .content {
   flex: 1;
-  /* border: 2px solid olivedrab; */
+  padding: 2rem 5rem 5rem 1rem;
   height: 70rem;
 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-columns: repeat(2, 1fr); */
+  grid-template-columns: repeat(2, minmax(15rem, 1fr));
   grid-template-rows: repeat(2, 1fr);
-  gap: 0.5rem 0.8rem;
+  gap: 2.5rem 4rem;
 }
+
+.content0,
+.content1,
+.content2 {
+  display: flex;
+  flex-direction: column;
+
+  text-decoration: none;
+  /* transition: all 0.3s; */
+}
+
+/* .content0:hover,
+.content1:hover,
+.content2:hover {
+  transform: scale(1.05);
+} */
 
 .content0 {
   grid-column: 1;
@@ -37,20 +53,10 @@
   grid-row: 2;
 }
 
-.content0,
-.content1,
-.content2 {
-  display: flex;
-  flex-direction: column;
-
-  text-decoration: none;
-  color: #f7f7f7;
-}
-
 .img {
   flex: 1;
-  /* width: 100%; */
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .poster {
@@ -58,27 +64,19 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* contin? */
 }
 
 .title {
   flex-basis: 0 1 3rem;
+  color: #f7f7f7;
   font-size: 1.5rem;
   padding: 0.3rem;
-  padding-top: 0.7rem;
-}
-
-.date {
-  flex-basis: 0 1 3rem;
-  padding: 0.3rem;
-  font-size: 1.2rem;
-  font-weight: 100;
+  padding-top: 1rem;
 }
 
 .subcontainer {
   grid-column: 2;
   grid-row: 2;
-  /* border: 2px solid orangered; */
   height: 100%;
 
   display: flex;
@@ -89,9 +87,9 @@
   flex: 1;
 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(7rem, 1fr));
   grid-template-rows: repeat(2, 1fr);
-  gap: 0.8rem 1rem;
+  gap: 2rem 3rem;
 }
 
 .subcontent0 {
@@ -119,20 +117,27 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .button {
   flex: 0 1 2.5rem;
   color: #f7f7f7;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
+  margin-top: 1.2rem;
   text-decoration: none;
+  background-color: #f7f7f780;
+  align-self: flex-end;
+  padding: 0.2rem 0.8rem;
+  border-radius: 10rem;
+  transform: scale(0.9);
   transition: all 0.3s;
-
-  display: flex;
-  justify-content: flex-end;
 }
 
 .button:hover,
 .button:active {
-  font-size: 1.5rem;
+  background-color: #3aaa6f;
+  color: #060b26;
+  transform: scale(1.02);
 }

@@ -1,5 +1,5 @@
 .home {
-  min-height: 90vh;
+  min-height: 100vh;
   background-color: #060b26;
   color: #f7f7f7;
 }
@@ -13,7 +13,7 @@
 }
 
 .favorite {
-  max-height: 85rem;
+  min-height: 70rem;
   padding: 1.5rem;
   margin-top: 2rem;
   width: 100%;
@@ -31,9 +31,9 @@
 
 .contents {
   flex: 1;
+  justify-content: flex-start;
   padding: 1rem;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }

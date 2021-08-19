@@ -6,6 +6,7 @@
 .container {
   min-height: 100vh;
   padding: 4rem 6rem;
+  position: relative;
 }
 
 .nav {
@@ -13,8 +14,6 @@
   padding: 2rem;
   font-size: 2.5rem;
   font-weight: 300;
-  /* box-shadow: 0 2rem 6rem rgba(#f7f7f7, 0.3); */
-  /* border-bottom: 5px solid #f7f7f721; */
 }
 
 .detail {
@@ -176,6 +175,24 @@
 .overview {
   font-size: 1.4rem;
   line-height: 1.5;
+}
+
+.back-btn {
+  position: absolute;
+  top: 3rem;
+  right: 5rem;
+  border: none;
+  background-color: #f7f7f7;
+  color: #060b26ad;
+  padding: 0.6rem 1rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #3aaa6e;
+  color: #f7f7f7;
 }
 
 .cast {

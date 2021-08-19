@@ -20,7 +20,11 @@ const Reviews = (props) => {
             <IoIcons.IoIosPerson className={styles['user-icon']} />
             <p className={styles['user-name']}>{review.author}</p>
           </div>
-          <p className={styles.content}>{truncate(review.content, 200)}</p>
+          {/* <p className={styles.content} >{truncate(review.content, 350)}</p> */}
+          <p
+            className={styles.content}
+            dangerouslySetInnerHTML={{ __html: truncate(review.content, 350) }}
+          ></p>
         </li>
       );
     });

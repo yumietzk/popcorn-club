@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { fetchRealityTv } from '../../../actions';
 import Genre from '../../../components/Genre';
 
-const RealityShow = (props) => {
+const RealityShow = ({ fetchRealityTv }) => {
   useEffect(() => {
-    props.fetchRealityTv();
+    fetchRealityTv();
   }, []);
 
   return <Genre title="TV Shows" type="Reality" genre="realityshow" />;

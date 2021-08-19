@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { fetchActionAdventureTv } from '../../../actions';
 import Genre from '../../../components/Genre';
 
-const ActionAdventureShow = (props) => {
+const ActionAdventureShow = ({ fetchActionAdventureTv }) => {
   useEffect(() => {
-    props.fetchActionAdventureTv();
+    fetchActionAdventureTv();
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ReactLoading from 'react-loading';
@@ -6,10 +6,10 @@ import styles from './Card.module.css';
 
 const Card = (props) => {
   const [loaded, setLoaded] = useState(false);
-  // useEffect(() => {
-  //   props.fetchMovieNowPlaying();
-  //   props.fetchTvOnAir();
-  // }, []);
+
+  useEffect(() => {
+    setLoaded(false);
+  }, []);
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];

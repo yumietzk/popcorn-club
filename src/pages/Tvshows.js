@@ -4,10 +4,10 @@ import { fetchTvPopular, fetchTvTopRated } from '../actions';
 import Row from '../components/Row';
 import styles from './Tvshows.module.css';
 
-const Tvshows = (props) => {
+const Tvshows = ({ fetchTvPopular, fetchTvTopRated }) => {
   useEffect(() => {
-    props.fetchTvPopular();
-    props.fetchTvTopRated();
+    fetchTvPopular();
+    fetchTvTopRated();
   }, []);
 
   return (

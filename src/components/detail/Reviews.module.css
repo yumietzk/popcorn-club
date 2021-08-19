@@ -8,6 +8,7 @@
 .reviews {
   flex: 1;
   list-style: none;
+  padding-bottom: 0.5rem;
 
   display: flex;
   align-items: flex-start;
@@ -19,7 +20,8 @@
 }
 
 .reviews::-webkit-scrollbar-thumb {
-  background: rgba(230, 230, 230, 0.87);
+  /* background: rgba(230, 230, 230, 0.87); */
+  background: rgba(133, 133, 133, 0.5);
   border-radius: 3px;
 }
 
