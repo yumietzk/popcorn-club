@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ReactLoading from 'react-loading';
+// import { ActivityIndicator } from 'antd-mobile';
 import {
   LazyLoadImage,
   trackWindowScroll,
@@ -9,39 +9,39 @@ import {
 import * as IoIcons from 'react-icons/io';
 import styles from './Genre.module.css';
 
-const Genre = (props) => {
+const Genre = ({ title, type, data, isFetching, isError, scrollPosition }) => {
   const [curPage, setCurPage] = useState(1);
   const [allPage, setAllPage] = useState(null);
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    if (!props.shows) return;
+    if (!data) return;
 
     const getAllPage = () => {
-      const rest = props.shows.length % 20;
+      const rest = data.length % 20;
 
       if (rest === 0) {
-        setAllPage(props.shows.length / 20);
+        setAllPage(data.length / 20);
       } else {
-        setAllPage(Math.floor(props.shows.length / 20) + 1);
+        setAllPage(Math.floor(data.length / 20) + 1);
       }
     };
 
     getAllPage();
-  }, [props.shows]);
+  }, [data]);
 
   useEffect(() => {
-    if (!props.shows) return;
+    if (!data) return;
 
     const getResultsPerPage = () => {
       const start = (curPage - 1) * 20;
       const end = curPage * 20;
 
-      setResults(props.shows.slice(start, end));
+      setResults(data.slice(start, end));
     };
 
     getResultsPerPage();
-  }, [curPage, props.shows]);
+  }, [curPage, data]);
 
   const onPagePrevious = () => {
     if (curPage === 1) return;
@@ -61,19 +61,27 @@ const Genre = (props) => {
   };
 
   const renderShows = () => {
-    if (!results) {
-      return (
-        <ReactLoading type="spin" color="f7f7f7" height="20%" width="20%" />
-      );
+    // if (!results) {
+    //   return (
+    //     <div className={styles.loading}>
+    //       <ActivityIndicator size="large" />
+    //     </div>
+    //   );
+    // }
+
+    if (isFetching || !results) {
+      return <div>Now loading...</div>;
+    }
+
+    if (isError?.status) {
+      return <p>{isError.error}</p>;
     }
 
     return results.map((show) => {
       return (
         <Link
           to={
-            props.title === 'Movies'
-              ? `/detail/${show.id}`
-              : `/detailtv/${show.id}`
+            title === 'Movies' ? `/detail/${show.id}` : `/detailtv/${show.id}`
           }
           key={show.id}
           className={styles.content}
@@ -85,7 +93,7 @@ const Genre = (props) => {
               alt={
                 show.original_title ? show.original_title : show.original_name
               }
-              scrollPosition={props.scrollPosition}
+              scrollPosition={scrollPosition}
             />
           </div>
           <div className={styles.description}>
@@ -124,8 +132,8 @@ const Genre = (props) => {
   return (
     <div className={styles.box}>
       <div className={styles.title}>
-        <span>{props.title} &gt; </span>
-        <h3 className={styles.genre}>{props.type}</h3>
+        <span>{title} &gt; </span>
+        <h3 className={styles.genre}>{type}</h3>
       </div>
       <div className={styles.container}>{renderShows()}</div>
       {curPage > 1 ? renderPaginationPrev() : null}
@@ -134,8 +142,4 @@ const Genre = (props) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return { shows: state.genre[ownProps.genre] };
-};
-
-export default connect(mapStateToProps)(trackWindowScroll(Genre));
+export default trackWindowScroll(Genre);

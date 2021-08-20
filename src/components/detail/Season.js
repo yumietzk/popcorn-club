@@ -1,14 +1,26 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import styles from './Season.module.css';
 
-const Season = (props) => {
+const Season = ({ data, isFetching, isError }) => {
   const renderSeasons = () => {
-    if (!props.seasons) {
-      return <div>Loading..</div>;
+    // if (!props.seasons) {
+    //   return <div>Loading..</div>;
+    // }
+
+    if (isFetching || !data) {
+      return <div>Now loading...</div>;
     }
 
-    return props.seasons.map((season, i) => {
+    if (isError?.status) {
+      return <p>{isError.error}</p>;
+    }
+
+    if (data.length === 0) {
+      return <p>No seasons.</p>;
+    }
+
+    return data.seasons.map((season, i) => {
       return (
         <li className={styles.item} key={i}>
           <div className={styles.fig}>
@@ -32,10 +44,10 @@ const Season = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    seasons: state.detail.tvdetail.seasons,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     seasons: state.detail.tvdetail.seasons,
+//   };
+// };
 
-export default connect(mapStateToProps)(Season);
+export default Season;

@@ -2,408 +2,705 @@ import tmdb from '../apis/tmdb';
 import requests from '../apis/requests';
 import favorites from '../apis/favorites';
 import { API_KEY } from '../apis/config';
-import history from '../history';
 
 // HOME
 export const fetchMovieNowPlaying = () => async (dispatch) => {
-  const response = await tmdb.get(requests.fetchMovieNowPlaying);
+  try {
+    dispatch({ type: 'REQUEST_DATA' });
 
-  dispatch({ type: 'MOVIE_NOWPLAYING', payload: response.data.results });
+    const response = await tmdb.get(requests.fetchMovieNowPlaying);
+    dispatch({ type: 'MOVIE_NOWPLAYING', payload: response.data.results });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchTvOnAir = () => async (dispatch) => {
-  const response = await tmdb.get(requests.fetchTvOnAir);
+  try {
+    dispatch({ type: 'REQUEST_TVDATA' });
 
-  dispatch({ type: 'TV_ONAIR', payload: response.data.results });
+    const response = await tmdb.get(requests.fetchTvOnAir);
+    dispatch({ type: 'TV_ONAIR', payload: response.data.results });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 // MOVIE
 export const fetchMoviePopular = () => async (dispatch) => {
-  const response = await tmdb.get(requests.fetchMoviePopular);
+  try {
+    dispatch({ type: 'REQUEST_DATA' });
 
-  dispatch({ type: 'MOVIE_POPULAR', payload: response.data.results });
+    const response = await tmdb.get(requests.fetchMoviePopular);
+    dispatch({ type: 'MOVIE_POPULAR', payload: response.data.results });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchMovieUpcoming = () => async (dispatch) => {
-  const response = await tmdb.get(requests.fetchMovieUpcoming);
+  try {
+    dispatch({ type: 'REQUEST_DATA' });
 
-  dispatch({ type: 'MOVIE_UPCOMING', payload: response.data.results });
+    const response = await tmdb.get(requests.fetchMovieUpcoming);
+    dispatch({ type: 'MOVIE_UPCOMING', payload: response.data.results });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchMovieTopRated = () => async (dispatch) => {
-  const response = await tmdb.get(requests.fetchMovieTopRated);
+  try {
+    dispatch({ type: 'REQUEST_DATA' });
 
-  dispatch({ type: 'MOVIE_TOPRATED', payload: response.data.results });
+    const response = await tmdb.get(requests.fetchMovieTopRated);
+    dispatch({ type: 'MOVIE_TOPRATED', payload: response.data.results });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 // TV
 export const fetchTvPopular = () => async (dispatch) => {
-  const response = await tmdb.get(requests.fetchTvPopular);
+  try {
+    dispatch({ type: 'REQUEST_TVDATA' });
 
-  dispatch({ type: 'TV_POPULAR', payload: response.data.results });
+    const response = await tmdb.get(requests.fetchTvPopular);
+    dispatch({ type: 'TV_POPULAR', payload: response.data.results });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchTvTopRated = () => async (dispatch) => {
-  const response = await tmdb.get(requests.fetchTvTopRated);
+  try {
+    dispatch({ type: 'REQUEST_TVDATA' });
 
-  dispatch({ type: 'TV_TOPRATED', payload: response.data.results });
+    const response = await tmdb.get(requests.fetchTvTopRated);
+    dispatch({ type: 'TV_TOPRATED', payload: response.data.results });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 // DETAIL
 // movie
 export const fetchMovieDetail = (id) => async (dispatch) => {
-  const response = await tmdb.get(`/movie/${id}?api_key=${API_KEY}`);
+  try {
+    dispatch({ type: 'REQUEST_DATA_DETAIL' });
 
-  dispatch({ type: 'MOVIE_DETAIL', payload: response.data });
+    const response = await tmdb.get(`/movie/${id}?api_key=${API_KEY}`);
+    dispatch({ type: 'MOVIE_DETAIL', payload: response.data });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchMovieCredits = (id) => async (dispatch) => {
-  const response = await tmdb.get(`/movie/${id}/credits?api_key=${API_KEY}`);
+  try {
+    dispatch({ type: 'REQUEST_DATA_DETAIL' });
 
-  dispatch({ type: 'MOVIE_CREDITS', payload: response.data.cast.slice(0, 15) });
+    const response = await tmdb.get(`/movie/${id}/credits?api_key=${API_KEY}`);
+    dispatch({
+      type: 'MOVIE_CREDITS',
+      payload: response.data.cast.slice(0, 15),
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchMovieReviews = (id) => async (dispatch) => {
-  const response = await tmdb.get(`/movie/${id}/reviews?api_key=${API_KEY}`);
+  try {
+    dispatch({ type: 'REQUEST_DATA_DETAIL' });
 
-  dispatch({
-    type: 'MOVIE_REVIEWS',
-    payload: response.data.results.slice(0, 10),
-  });
+    const response = await tmdb.get(`/movie/${id}/reviews?api_key=${API_KEY}`);
+    dispatch({
+      type: 'MOVIE_REVIEWS',
+      payload: response.data.results.slice(0, 10),
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchMovieRelated = (id) => async (dispatch) => {
-  const response = await tmdb.get(`/movie/${id}/similar?api_key=${API_KEY}`);
+  try {
+    dispatch({ type: 'REQUEST_DATA_DETAIL' });
 
-  dispatch({ type: 'MOVIE_RELATED', payload: response.data.results });
+    const response = await tmdb.get(`/movie/${id}/similar?api_key=${API_KEY}`);
+    dispatch({ type: 'MOVIE_RELATED', payload: response.data.results });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 // tv
 export const fetchTvDetail = (id) => async (dispatch) => {
-  const response = await tmdb.get(`/tv/${id}?api_key=${API_KEY}`);
+  try {
+    dispatch({ type: 'REQUEST_DATA_DETAIL' });
 
-  dispatch({ type: 'TV_DETAIL', payload: response.data });
+    const response = await tmdb.get(`/tv/${id}?api_key=${API_KEY}`);
+    dispatch({ type: 'TV_DETAIL', payload: response.data });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchTvCredits = (id) => async (dispatch) => {
-  const response = await tmdb.get(`/tv/${id}/credits?api_key=${API_KEY}`);
+  try {
+    dispatch({ type: 'REQUEST_DATA_DETAIL' });
 
-  dispatch({ type: 'TV_CREDITS', payload: response.data.cast.slice(0, 15) });
+    const response = await tmdb.get(`/tv/${id}/credits?api_key=${API_KEY}`);
+    dispatch({ type: 'TV_CREDITS', payload: response.data.cast.slice(0, 15) });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchTvRelated = (id) => async (dispatch) => {
-  const response = await tmdb.get(`/tv/${id}/similar?api_key=${API_KEY}`);
+  try {
+    dispatch({ type: 'REQUEST_DATA_DETAIL' });
 
-  dispatch({ type: 'TV_RELATED', payload: response.data.results });
+    const response = await tmdb.get(`/tv/${id}/similar?api_key=${API_KEY}`);
+    dispatch({ type: 'TV_RELATED', payload: response.data.results });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 // SEARCH
 export const searchMovies = (term) => async (dispatch) => {
-  const response = await tmdb.get(
-    `${requests.searchMovies}&language=en-US&query=${term}`
-  );
+  try {
+    dispatch({ type: 'REQUEST_DATA' });
 
-  dispatch({ type: 'SEARCH_MOVIES', payload: response.data.results });
-
-  history.push('/search');
+    const response = await tmdb.get(
+      `${requests.searchMovies}&language=en-US&query=${term}`
+    );
+    dispatch({ type: 'SEARCH_MOVIES', payload: response.data.results });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const searchTvShows = (term) => async (dispatch) => {
-  const response = await tmdb.get(
-    `${requests.searchTvShows}&language=en-US&query=${term}`
-  );
+  try {
+    dispatch({ type: 'REQUEST_TVDATA' });
 
-  dispatch({ type: 'SEARCH_TVS', payload: response.data.results });
+    const response = await tmdb.get(
+      `${requests.searchTvShows}&language=en-US&query=${term}`
+    );
 
-  history.push('/search');
+    dispatch({ type: 'SEARCH_TVS', payload: response.data.results });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 // Genre
 // movie
 export const fetchActionMovies = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchActionMovies}&page=1`),
-    tmdb.get(`${requests.fetchActionMovies}&page=2`),
-    tmdb.get(`${requests.fetchActionMovies}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchActionMovies}&page=1`),
+      tmdb.get(`${requests.fetchActionMovies}&page=2`),
+      tmdb.get(`${requests.fetchActionMovies}&page=3`),
+    ]);
+    const data = response.map((res) => res.data.results);
 
-  dispatch({
-    type: 'FETCH_ACTION',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    dispatch({
+      type: 'FETCH_ACTION',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchAdventureMovies = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchAdventureMovies}&page=1`),
-    tmdb.get(`${requests.fetchAdventureMovies}&page=2`),
-    tmdb.get(`${requests.fetchAdventureMovies}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchAdventureMovies}&page=1`),
+      tmdb.get(`${requests.fetchAdventureMovies}&page=2`),
+      tmdb.get(`${requests.fetchAdventureMovies}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_ADVENTURE',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_ADVENTURE',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchAnimationMovies = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchAnimationMovies}&page=1`),
-    tmdb.get(`${requests.fetchAnimationMovies}&page=2`),
-    tmdb.get(`${requests.fetchAnimationMovies}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchAnimationMovies}&page=1`),
+      tmdb.get(`${requests.fetchAnimationMovies}&page=2`),
+      tmdb.get(`${requests.fetchAnimationMovies}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_ANIMATION',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_ANIMATION',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchComedyMovies = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchComedyMovies}&page=1`),
-    tmdb.get(`${requests.fetchComedyMovies}&page=2`),
-    tmdb.get(`${requests.fetchComedyMovies}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchComedyMovies}&page=1`),
+      tmdb.get(`${requests.fetchComedyMovies}&page=2`),
+      tmdb.get(`${requests.fetchComedyMovies}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_COMEDY',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_COMEDY',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchDocumentaryMovies = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchDocumentaryMovies}&page=1`),
-    tmdb.get(`${requests.fetchDocumentaryMovies}&page=2`),
-    tmdb.get(`${requests.fetchDocumentaryMovies}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchDocumentaryMovies}&page=1`),
+      tmdb.get(`${requests.fetchDocumentaryMovies}&page=2`),
+      tmdb.get(`${requests.fetchDocumentaryMovies}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_DOCUMENTARY',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_DOCUMENTARY',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchDramaMovies = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchDramaMovies}&page=1`),
-    tmdb.get(`${requests.fetchDramaMovies}&page=2`),
-    tmdb.get(`${requests.fetchDramaMovies}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchDramaMovies}&page=1`),
+      tmdb.get(`${requests.fetchDramaMovies}&page=2`),
+      tmdb.get(`${requests.fetchDramaMovies}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_DRAMA',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_DRAMA',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchFantasyMovies = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchFantasyMovies}&page=1`),
-    tmdb.get(`${requests.fetchFantasyMovies}&page=2`),
-    tmdb.get(`${requests.fetchFantasyMovies}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchFantasyMovies}&page=1`),
+      tmdb.get(`${requests.fetchFantasyMovies}&page=2`),
+      tmdb.get(`${requests.fetchFantasyMovies}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_FANTASY',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_FANTASY',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchHorrorMovies = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchHorrorMovies}&page=1`),
-    tmdb.get(`${requests.fetchHorrorMovies}&page=2`),
-    tmdb.get(`${requests.fetchHorrorMovies}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchHorrorMovies}&page=1`),
+      tmdb.get(`${requests.fetchHorrorMovies}&page=2`),
+      tmdb.get(`${requests.fetchHorrorMovies}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_HORROR',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_HORROR',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchRomanceMovies = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchRomanceMovies}&page=1`),
-    tmdb.get(`${requests.fetchRomanceMovies}&page=2`),
-    tmdb.get(`${requests.fetchRomanceMovies}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchRomanceMovies}&page=1`),
+      tmdb.get(`${requests.fetchRomanceMovies}&page=2`),
+      tmdb.get(`${requests.fetchRomanceMovies}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_ROMANCE',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_ROMANCE',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchSciFiMovies = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchSciFiMovies}&page=1`),
-    tmdb.get(`${requests.fetchSciFiMovies}&page=2`),
-    tmdb.get(`${requests.fetchSciFiMovies}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchSciFiMovies}&page=1`),
+      tmdb.get(`${requests.fetchSciFiMovies}&page=2`),
+      tmdb.get(`${requests.fetchSciFiMovies}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_SCIFI',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_SCIFI',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 // tv
 export const fetchActionAdventureTv = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchActionAdventureTv}&page=1`),
-    tmdb.get(`${requests.fetchActionAdventureTv}&page=2`),
-    tmdb.get(`${requests.fetchActionAdventureTv}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchActionAdventureTv}&page=1`),
+      tmdb.get(`${requests.fetchActionAdventureTv}&page=2`),
+      tmdb.get(`${requests.fetchActionAdventureTv}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_ACTIONADVENTURESHOW',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_ACTIONADVENTURESHOW',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchAnimationTv = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchAnimationTv}&page=1`),
-    tmdb.get(`${requests.fetchAnimationTv}&page=2`),
-    tmdb.get(`${requests.fetchAnimationTv}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchAnimationTv}&page=1`),
+      tmdb.get(`${requests.fetchAnimationTv}&page=2`),
+      tmdb.get(`${requests.fetchAnimationTv}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_ANIMATIONSHOW',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_ANIMATIONSHOW',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchComedyTv = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchComedyTv}&page=1`),
-    tmdb.get(`${requests.fetchComedyTv}&page=2`),
-    tmdb.get(`${requests.fetchComedyTv}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchComedyTv}&page=1`),
+      tmdb.get(`${requests.fetchComedyTv}&page=2`),
+      tmdb.get(`${requests.fetchComedyTv}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_COMEDYSHOW',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_COMEDYSHOW',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchCrimeTv = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchCrimeTv}&page=1`),
-    tmdb.get(`${requests.fetchCrimeTv}&page=2`),
-    tmdb.get(`${requests.fetchCrimeTv}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchCrimeTv}&page=1`),
+      tmdb.get(`${requests.fetchCrimeTv}&page=2`),
+      tmdb.get(`${requests.fetchCrimeTv}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_CRIMESHOW',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_CRIMESHOW',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchDocumentaryTv = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchDocumentaryTv}&page=1`),
-    tmdb.get(`${requests.fetchDocumentaryTv}&page=2`),
-    tmdb.get(`${requests.fetchDocumentaryTv}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchDocumentaryTv}&page=1`),
+      tmdb.get(`${requests.fetchDocumentaryTv}&page=2`),
+      tmdb.get(`${requests.fetchDocumentaryTv}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_DOCUMENTARYSHOW',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_DOCUMENTARYSHOW',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchDramaTv = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchDramaTv}&page=1`),
-    tmdb.get(`${requests.fetchDramaTv}&page=2`),
-    tmdb.get(`${requests.fetchDramaTv}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchDramaTv}&page=1`),
+      tmdb.get(`${requests.fetchDramaTv}&page=2`),
+      tmdb.get(`${requests.fetchDramaTv}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_DRAMASHOW',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_DRAMASHOW',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchKidsTv = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchKidsTv}&page=1`),
-    tmdb.get(`${requests.fetchKidsTv}&page=2`),
-    tmdb.get(`${requests.fetchKidsTv}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchKidsTv}&page=1`),
+      tmdb.get(`${requests.fetchKidsTv}&page=2`),
+      tmdb.get(`${requests.fetchKidsTv}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_KIDSSHOW',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_KIDSSHOW',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchMysteryTv = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchMysteryTv}&page=1`),
-    tmdb.get(`${requests.fetchMysteryTv}&page=2`),
-    tmdb.get(`${requests.fetchMysteryTv}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchMysteryTv}&page=1`),
+      tmdb.get(`${requests.fetchMysteryTv}&page=2`),
+      tmdb.get(`${requests.fetchMysteryTv}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_MYSTERYSHOW',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_MYSTERYSHOW',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchRealityTv = () => async (dispatch) => {
-  const response = await Promise.all([
-    tmdb.get(`${requests.fetchRealityTv}&page=1`),
-    tmdb.get(`${requests.fetchRealityTv}&page=2`),
-    tmdb.get(`${requests.fetchRealityTv}&page=3`),
-  ]);
+  try {
+    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
-  const data = response.map((res) => res.data.results);
+    const response = await Promise.all([
+      tmdb.get(`${requests.fetchRealityTv}&page=1`),
+      tmdb.get(`${requests.fetchRealityTv}&page=2`),
+      tmdb.get(`${requests.fetchRealityTv}&page=3`),
+    ]);
 
-  dispatch({
-    type: 'FETCH_REALITYSHOW',
-    payload: [...data[0], ...data[1], ...data[2]],
-  });
+    const data = response.map((res) => res.data.results);
+
+    dispatch({
+      type: 'FETCH_REALITYSHOW',
+      payload: [...data[0], ...data[1], ...data[2]],
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 // FAVORITE
@@ -444,13 +741,29 @@ export const deleteTVShow = (id) => async (dispatch) => {
 };
 
 export const fetchFavoriteMovies = () => async (dispatch) => {
-  const response = await favorites.get('/movies');
+  try {
+    dispatch({ type: 'REQUEST_DATA' });
 
-  dispatch({ type: 'FAVORITE_MOVIES', payload: response.data });
+    const response = await favorites.get('/movies');
+    dispatch({ type: 'FAVORITE_MOVIES', payload: response.data });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };
 
 export const fetchFavoriteTVs = () => async (dispatch) => {
-  const response = await favorites.get('/tvs');
+  try {
+    dispatch({ type: 'REQUEST_TVDATA' });
 
-  dispatch({ type: 'FAVORITE_TVS', payload: response.data });
+    const response = await favorites.get('/tvs');
+    dispatch({ type: 'FAVORITE_TVS', payload: response.data });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: err.response,
+    });
+  }
 };

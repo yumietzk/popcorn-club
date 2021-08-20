@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as AiIcons from 'react-icons/ai';
 import styles from './MovieHeader.module.css';
 
-const MovieHeader = (props) => {
+const MovieHeader = ({ data, isFetching, isError }) => {
   const [curSlide, setCurSlide] = useState(0);
 
   const maxSlide = 10;
@@ -30,11 +30,19 @@ const MovieHeader = (props) => {
   };
 
   const renderHero = () => {
-    if (!props.movies) {
-      return <div>Loading...</div>;
+    // if (!data) {
+    //   return <div>Loading...</div>;
+    // }
+
+    if (isFetching || !data) {
+      return <div>Now loading...</div>;
     }
 
-    return props.movies.map((movie, i) => {
+    if (isError?.status) {
+      return <p>{isError.error}</p>;
+    }
+
+    return data.map((movie, i) => {
       return (
         <div
           className={styles.slide}
@@ -71,10 +79,10 @@ const MovieHeader = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    movies: state.movies.popular,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     movies: state.movies.popular,
+//   };
+// };
 
-export default connect(mapStateToProps)(MovieHeader);
+export default MovieHeader;

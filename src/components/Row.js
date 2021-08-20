@@ -3,11 +3,17 @@ import Category from './Category';
 import Contents from './Contents';
 import styles from './Row.module.css';
 
-const Row = (props) => {
+const Row = ({ category, group, cname, data, isFetching, isError }) => {
   return (
-    <div className={`${styles.container} ${styles[props.cname]}`}>
-      <Category category={props.category} />
-      <Contents group={props.group} type={props.type} cname={props.cname} />
+    <div className={`${styles.container} ${styles[cname]}`}>
+      <Category category={category} />
+      <Contents
+        group={group}
+        cname={cname}
+        data={data}
+        isFetching={isFetching}
+        isError={isError}
+      />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
@@ -9,6 +9,25 @@ import styles from './Navbar.module.css';
 
 const Navbar = (props) => {
   const [sidebar, setSidebar] = useState(false);
+  const ref = useRef();
+
+  useEffect(() => {
+    const onBodyClick = (event) => {
+      if (ref.current.contains(event.target)) return;
+
+      setSidebar(false);
+    };
+
+    document.body.addEventListener('click', onBodyClick, {
+      capture: true, // This needs from React v17
+    });
+
+    return () => {
+      document.body.removeEventListener('click', onBodyClick, {
+        capture: true, // This needs from React v17
+      });
+    };
+  }, []);
 
   const showSidebar = () => {
     setSidebar(!sidebar);
@@ -29,6 +48,7 @@ const Navbar = (props) => {
         className={
           sidebar ? `${styles.sidebar} ${styles.active}` : styles.sidebar
         }
+        ref={ref}
       >
         <div className={styles.toggle}>
           <Link to="#" className={styles.menu}>

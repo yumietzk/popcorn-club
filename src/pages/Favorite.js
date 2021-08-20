@@ -4,7 +4,15 @@ import { fetchFavoriteMovies, fetchFavoriteTVs } from '../actions';
 import Row from '../components/Row';
 import styles from './Favorite.module.css';
 
-const Favorite = ({ fetchFavoriteMovies, fetchFavoriteTVs }) => {
+const Favorite = ({
+  fetchFavoriteMovies,
+  fetchFavoriteTVs,
+  moviefavorite,
+  tvfavorite,
+  isFetching,
+  isFetchingTV,
+  isError,
+}) => {
   useEffect(() => {
     fetchFavoriteMovies();
     fetchFavoriteTVs();
@@ -15,13 +23,35 @@ const Favorite = ({ fetchFavoriteMovies, fetchFavoriteTVs }) => {
       <div className={styles.title}>
         <h3 className={styles.menu}>Favorite</h3>
       </div>
-      <Row category="Movies" group="Movie" type="favorite" />
-      <Row category="TV Shows" group="TV Show" type="favorite" />
+      <Row
+        category="Movies"
+        group="Movie"
+        data={moviefavorite}
+        isFetching={isFetching}
+        isError={isError}
+      />
+      <Row
+        category="TV Shows"
+        group="TV Show"
+        data={tvfavorite}
+        isFetching={isFetchingTV}
+        isError={isError}
+      />
     </div>
   );
 };
 
-export default connect(null, {
+const mapStateToProps = (state) => {
+  return {
+    moviefavorite: state.movies.favorite,
+    tvfavorite: state.shows.favorite,
+    isFetching: state.movies.isFetching,
+    isFetchingTV: state.shows.isFetching,
+    isError: state.error.isError,
+  };
+};
+
+export default connect(mapStateToProps, {
   fetchFavoriteMovies: fetchFavoriteMovies,
   fetchFavoriteTVs: fetchFavoriteTVs,
 })(Favorite);

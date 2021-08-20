@@ -1,20 +1,30 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './Related.module.css';
 
-const Related = (props) => {
-  const related = props.type === 'tv' ? props.tvrelated : props.movierelated;
-  const toPage = props.type === 'tv' ? 'detailtv' : 'detail';
+const Related = ({ type, data, isFetching, isError }) => {
+  // const related = props.type === 'tv' ? props.tvrelated : props.movierelated;
+  const toPage = type === 'movie' ? 'detail' : 'detailtv';
 
   const renderRelated = () => {
-    console.log();
+    // if (!related) {
+    //   return <div>Loading..</div>;
+    // }
 
-    if (!related) {
-      return <div>Loading..</div>;
+    if (isFetching || !data) {
+      return <div>Now loading...</div>;
     }
 
-    return related.map((item) => {
+    if (isError?.status) {
+      return <p>{isError.error}</p>;
+    }
+
+    if (data.length === 0) {
+      return <p>No similar movies.</p>;
+    }
+
+    return data.map((item) => {
       return (
         <Link
           key={item.id}
@@ -25,13 +35,13 @@ const Related = (props) => {
             <img
               src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
               alt={
-                props.type === 'tv' ? item.original_name : item.original_title
+                item.original_title ? item.original_title : item.original_name
               }
               className={styles.img}
             />
           </div>
           <p className={styles.name}>
-            {props.type === 'tv' ? item.original_name : item.original_title}
+            {item.original_title ? item.original_title : item.original_name}
           </p>
         </Link>
       );
@@ -46,11 +56,11 @@ const Related = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    movierelated: state.detail.related,
-    tvrelated: state.detail.tvrelated,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     movierelated: state.detail.related,
+//     tvrelated: state.detail.tvrelated,
+//   };
+// };
 
-export default connect(mapStateToProps)(Related);
+export default Related;

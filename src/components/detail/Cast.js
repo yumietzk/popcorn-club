@@ -1,16 +1,28 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import styles from './Cast.module.css';
 
-const Cast = (props) => {
-  const cast = props.type === 'tv' ? props.tvcast : props.moviecast;
+const Cast = ({ data, isFetching, isError }) => {
+  // const cast = props.type === 'tv' ? props.tvcast : props.moviecast;
 
   const renderCast = () => {
-    if (!cast) {
-      return <div>Loading...</div>;
+    // if (!cast) {
+    //   return <div>Loading...</div>;
+    // }
+
+    if (isFetching || !data) {
+      return <div>Now loading...</div>;
     }
 
-    return cast.map((person) => {
+    if (isError?.status) {
+      return <p>{isError.error}</p>;
+    }
+
+    if (data.length === 0) {
+      return <p>No cast registered.</p>;
+    }
+
+    return data.map((person) => {
       return (
         <li key={person.id} className={styles.list}>
           <div className={styles.fig}>
@@ -34,11 +46,11 @@ const Cast = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    moviecast: state.detail.casts,
-    tvcast: state.detail.tvcasts,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     moviecast: state.detail.casts,
+//     tvcast: state.detail.tvcasts,
+//   };
+// };
 
-export default connect(mapStateToProps)(Cast);
+export default Cast;

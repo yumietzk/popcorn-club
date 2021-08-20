@@ -1,15 +1,38 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Row from '../components/Row';
 import styles from './Search.module.css';
 
-const Search = () => {
+const Search = ({ movies, shows, isFetching, isFetchingTV, isError }) => {
   return (
     <div className={styles.search}>
       <h3 className={styles.title}>Search results</h3>
-      <Row category="Movies" group="Movie" type="search" />
-      <Row category="TV Shows" group="TV Show" type="search" />
+      <Row
+        category="Movies"
+        group="Movie"
+        data={movies}
+        isFetching={isFetching}
+        isError={isError}
+      />
+      <Row
+        category="TV Shows"
+        group="TV Show"
+        data={shows}
+        isFetching={isFetchingTV}
+        isError={isError}
+      />
     </div>
   );
 };
 
-export default Search;
+const mapStateToProps = (state) => {
+  return {
+    movies: state.movies.search,
+    shows: state.shows.search,
+    isFetching: state.movies.isFetching,
+    isFetchingTV: state.shows.isFetching,
+    isError: state.error.isError,
+  };
+};
+
+export default connect(mapStateToProps)(Search);

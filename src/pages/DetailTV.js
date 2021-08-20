@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import ReactLoading from 'react-loading';
+// import { ActivityIndicator } from 'antd-mobile';
 import * as IoIcons from 'react-icons/io';
 import {
   fetchTvDetail,
@@ -9,6 +9,7 @@ import {
   fetchTvRelated,
   saveTVShow,
   deleteTVShow,
+  fetchFavoriteTVs,
 } from '../actions';
 import Season from '../components/detail/Season';
 import Cast from '../components/detail/Cast';
@@ -22,9 +23,15 @@ const DetailTV = ({
   fetchTvRelated,
   saveTVShow,
   deleteTVShow,
+  fetchFavoriteTVs,
   match,
-  favorites,
   detail,
+  favorites,
+  // seasons,
+  tvcast,
+  tvrelated,
+  isFetching,
+  isError,
 }) => {
   const [favorite, setFavorite] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -35,6 +42,7 @@ const DetailTV = ({
     fetchTvDetail(id);
     fetchTvCredits(id);
     fetchTvRelated(id);
+    fetchFavoriteTVs();
 
     // const isFavorite = (id) => {
     //   return props.favorite?.some((item) => item.id === +id);
@@ -80,90 +88,113 @@ const DetailTV = ({
     }
   };
 
-  if (!detail) {
-    return <div>Loading...</div>;
-  }
+  const renderDetail = () => {
+    // if (!detail) {
+    //   return (
+    //     <div className={styles.loading}>
+    //       <ActivityIndicator size="large" />
+    //     </div>
+    //   );
+    // }
+
+    if (isFetching || !detail) {
+      return <div>Now loading...</div>;
+    }
+
+    if (isError?.status) {
+      return <p>{isError.error}</p>;
+    }
+
+    return (
+      <div className={styles.detail}>
+        <div className={styles.fig}>
+          <img
+            src={`https://image.tmdb.org/t/p/original${detail.poster_path}`}
+            alt={detail.original_name}
+            className={`${styles.img} ${loaded && styles['img-open']}`}
+            onLoad={onLoad}
+          />
+        </div>
+
+        <div className={styles.content}>
+          <div className={styles.title}>
+            <h4 className={styles.titleName}>{detail.original_name}</h4>
+            <button
+              className={styles.favorite}
+              onClick={() =>
+                onClick(
+                  detail.id,
+                  detail.poster_path,
+                  detail.original_name,
+                  detail.first_air_date
+                )
+              }
+            >
+              <IoIcons.IoIosHeart
+                className={
+                  favorite
+                    ? styles['favorite-icon-true']
+                    : styles['favorite-icon']
+                }
+              />
+            </button>
+          </div>
+
+          <p className={styles.date}>{calcYear(detail.first_air_date)}</p>
+
+          <div className={styles.timerate}>
+            <p className={styles.runtime}>
+              {`${calcHour(detail.episode_run_time[0])}`}
+            </p>
+            <div className={styles.rate}>
+              <IoIcons.IoIosStar className={styles['rate-icon']} />
+              <p>{detail.vote_average}</p>
+            </div>
+          </div>
+
+          <div className={styles.others}>
+            <Link
+              to={{ pathname: detail.homepage }}
+              target="_blank"
+              className={styles.link}
+            >
+              <IoIcons.IoIosLink className={styles['link-icon']} />
+              <p>Website</p>
+            </Link>
+          </div>
+
+          <p className={styles.overview}>{detail.overview}</p>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className={styles.item}>
       <h3 className={styles.nav}>TV Shows</h3>
 
       <div className={styles.container}>
-        <div className={styles.detail}>
-          <div className={styles.fig}>
-            <img
-              src={`https://image.tmdb.org/t/p/original${detail.poster_path}`}
-              alt={detail.original_name}
-              className={`${styles.img} ${loaded && styles['img-open']}`}
-              onLoad={onLoad}
-            />
-          </div>
-
-          <div className={styles.content}>
-            <div className={styles.title}>
-              <h4 className={styles.titleName}>{detail.original_name}</h4>
-              <button
-                className={styles.favorite}
-                onClick={() =>
-                  onClick(
-                    detail.id,
-                    detail.poster_path,
-                    detail.original_name,
-                    detail.first_air_date
-                  )
-                }
-              >
-                <IoIcons.IoIosHeart
-                  className={
-                    favorite
-                      ? styles['favorite-icon-true']
-                      : styles['favorite-icon']
-                  }
-                />
-              </button>
-            </div>
-
-            <p className={styles.date}>{calcYear(detail.first_air_date)}</p>
-
-            <div className={styles.timerate}>
-              <p className={styles.runtime}>
-                {`${calcHour(detail.episode_run_time[0])}`}
-              </p>
-              <div className={styles.rate}>
-                <IoIcons.IoIosStar className={styles['rate-icon']} />
-                <p>{detail.vote_average}</p>
-              </div>
-            </div>
-
-            <div className={styles.others}>
-              <Link
-                to={{ pathname: detail.homepage }}
-                target="_blank"
-                className={styles.link}
-              >
-                <IoIcons.IoIosLink className={styles['link-icon']} />
-                <p>Website</p>
-              </Link>
-            </div>
-
-            <p className={styles.overview}>{detail.overview}</p>
-          </div>
-        </div>
+        {renderDetail()}
 
         <button className={styles['back-btn']} onClick={() => history.goBack()}>
           &larr; Back
         </button>
 
         <div className={styles.seasons}>
-          <Season />
+          <Season data={detail} isFetching={isFetching} isError={isError} />
         </div>
 
         <div className={styles.cast}>
-          <Cast type="tv" />
+          <Cast data={tvcast} isFetching={isFetching} isError={isError} />
         </div>
 
         <div className={styles.related}>
-          <Related type="tv" />
+          <Related
+            type="tv"
+            data={tvrelated}
+            isFetching={isFetching}
+            isError={isError}
+          />
         </div>
       </div>
     </div>
@@ -174,6 +205,11 @@ const mapStateToProps = (state) => {
   return {
     detail: state.detail.tvdetail,
     favorites: state.shows.favorite,
+    // seasons: state.detail.tvdetail.seasons,
+    tvcast: state.detail.tvcasts,
+    tvrelated: state.detail.tvrelated,
+    isFetching: state.detail.isFetching,
+    isError: state.error.isError,
   };
 };
 
@@ -183,4 +219,5 @@ export default connect(mapStateToProps, {
   fetchTvRelated,
   saveTVShow,
   deleteTVShow,
+  fetchFavoriteTVs,
 })(DetailTV);

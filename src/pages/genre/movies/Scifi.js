@@ -3,14 +3,30 @@ import { connect } from 'react-redux';
 import { fetchSciFiMovies } from '../../../actions';
 import Genre from '../../../components/Genre';
 
-const Scifi = ({ fetchSciFiMovies }) => {
+const Scifi = ({ fetchSciFiMovies, scifi, isFetching, isError }) => {
   useEffect(() => {
     fetchSciFiMovies();
   });
 
-  return <Genre title="Movies" type="Science Fiction" genre="scifi" />;
+  return (
+    <Genre
+      title="Movies"
+      type="Science Fiction"
+      data={scifi}
+      isFetching={isFetching}
+      isError={isError}
+    />
+  );
 };
 
-export default connect(null, {
+const mapStateToProps = (state) => {
+  return {
+    scifi: state.genre.scifi,
+    isFetching: state.genre.isFetching,
+    isError: state.error.isError,
+  };
+};
+
+export default connect(mapStateToProps, {
   fetchSciFiMovies,
 })(Scifi);

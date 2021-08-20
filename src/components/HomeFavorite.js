@@ -1,22 +1,30 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './HomeFavorite.module.css';
 
-const HomeFavorite = (props) => {
+const HomeFavorite = ({ type, data, isFetching, isError }) => {
   const renderFavorite = () => {
     // if (!props.shows || !props.tvshows) {
     //   return <div>Loading...</div>;
     // }
 
-    const shows = props.type === 'Movies' ? props.shows : props.tvshows;
-    const toPage = props.type === 'Movies' ? 'detail' : 'detailtv';
+    // const shows = props.type === 'Movies' ? props.shows : props.tvshows;
+    const toPage = type === 'Movies' ? 'detail' : 'detailtv';
 
-    if (!shows) {
-      return <div>Loading...</div>;
+    // if (!data) {
+    //   return null;
+    // }
+
+    if (isFetching || !data) {
+      return <div>Now loading...</div>;
     }
 
-    if (shows && shows.length === 0) {
+    if (isError?.status) {
+      return <p>{isError.error}</p>;
+    }
+
+    if (data && data.length === 0) {
       return (
         <p>No favorite yet. Click heart button to save your favorite show :)</p>
       );
@@ -24,7 +32,7 @@ const HomeFavorite = (props) => {
 
     return (
       <React.Fragment>
-        {shows.slice(0, 3).map((show, index) => {
+        {data.slice(0, 3).map((show, index) => {
           return (
             <Link
               to={`/${toPage}/${show.id}`}
@@ -38,14 +46,15 @@ const HomeFavorite = (props) => {
                   alt={show.original_title}
                 />
               </div>
-              <p className={styles.title}>{show.original_title}</p>
-              {/* <p className={styles.date}>{calcYear(show.release_date)}</p> */}
+              <p className={styles.title}>
+                {show.original_title ? show.original_title : show.original_name}
+              </p>
             </Link>
           );
         })}
         <div className={styles.subcontainer}>
           <div className={styles.subcontent}>
-            {shows?.slice(3, 7).map((sub, index) => {
+            {data?.slice(3, 7).map((sub, index) => {
               return (
                 <Link
                   to={`/${toPage}/${sub.id}`}
@@ -55,7 +64,11 @@ const HomeFavorite = (props) => {
                   <img
                     className={styles.subposter}
                     src={`https://image.tmdb.org/t/p/original${sub.poster_path}`}
-                    alt={sub.original_title}
+                    alt={
+                      sub.original_title
+                        ? sub.original_title
+                        : sub.original_name
+                    }
                   />
                 </Link>
               );
@@ -71,17 +84,10 @@ const HomeFavorite = (props) => {
 
   return (
     <div className={styles.container}>
-      <p className={styles.type}>{props.type}</p>
+      <p className={styles.type}>{type}</p>
       <div className={styles.content}>{renderFavorite()}</div>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    shows: state.movies.favorite,
-    tvshows: state.shows.favorite,
-  };
-};
-
-export default connect(mapStateToProps)(HomeFavorite);
+export default HomeFavorite;

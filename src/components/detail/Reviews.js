@@ -1,19 +1,31 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import * as IoIcons from 'react-icons/io';
 import styles from './Reviews.module.css';
 
-const Reviews = (props) => {
+const Reviews = ({ data, isFetching, isError }) => {
   const truncate = (str, n) => {
     return str?.length > n ? `${str.substr(0, n - 1)}...` : str;
   };
 
   const renderReviews = () => {
-    if (!props.reviews) {
-      return <div>Loading..</div>;
+    // if (!props.reviews) {
+    //   return <div>Loading..</div>;
+    // }
+
+    if (isFetching || !data) {
+      return <div>Now loading...</div>;
     }
 
-    return props.reviews.map((review) => {
+    if (isError?.status) {
+      return <p>{isError.error}</p>;
+    }
+
+    if (data.length === 0) {
+      return <p>No reviews.</p>;
+    }
+
+    return data.map((review) => {
       return (
         <li className={styles.item} key={review.id}>
           <div className={styles.user}>
@@ -38,10 +50,10 @@ const Reviews = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    reviews: state.detail.reviews,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     reviews: state.detail.reviews,
+//   };
+// };
 
-export default connect(mapStateToProps)(Reviews);
+export default Reviews;

@@ -13,6 +13,11 @@ const Movies = ({
   fetchMoviePopular,
   fetchMovieUpcoming,
   fetchMovieTopRated,
+  popular,
+  upcoming,
+  toprated,
+  isFetching,
+  isError,
 }) => {
   useEffect(() => {
     fetchMoviePopular();
@@ -25,14 +30,37 @@ const Movies = ({
       <div className={styles.title}>
         <h3 className={styles.menu}>Movies</h3>
       </div>
-      <MovieHeader />
-      <Row category="Upcoming" group="Movie" type="upcoming" cname="wide" />
-      <Row category="Top Rated" group="Movie" type="toprated" />
+      <MovieHeader data={popular} isFetching={isFetching} isError={isError} />
+      <Row
+        category="Upcoming"
+        group="Movie"
+        cname="wide"
+        data={upcoming}
+        isFetching={isFetching}
+        isError={isError}
+      />
+      <Row
+        category="Top Rated"
+        group="Movie"
+        data={toprated}
+        isFetching={isFetching}
+        isError={isError}
+      />
     </div>
   );
 };
 
-export default connect(null, {
+const mapStateToProps = (state) => {
+  return {
+    popular: state.movies.popular,
+    upcoming: state.movies.upcoming,
+    toprated: state.movies.toprated,
+    isFetching: state.movies.isFetching,
+    isError: state.error.isError,
+  };
+};
+
+export default connect(mapStateToProps, {
   fetchMoviePopular,
   fetchMovieUpcoming,
   fetchMovieTopRated,

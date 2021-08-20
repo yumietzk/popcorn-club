@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import * as IoIcons from 'react-icons/io';
 import { searchMovies, searchTvShows } from '../../actions';
 import Navbar from './Navbar';
+import history from '../../history';
 import styles from './Header.module.css';
 
-const Header = (props) => {
+const Header = ({ searchMovies, searchTvShows }) => {
   const [term, setTerm] = useState('');
 
   const onSearchTerm = (e) => {
@@ -14,8 +15,10 @@ const Header = (props) => {
 
     if (term.trim().length === 0) return;
 
-    props.searchMovies(term);
-    props.searchTvShows(term);
+    searchMovies(term);
+    searchTvShows(term);
+    history.push(`/search/${term}`);
+
     setTerm('');
   };
 

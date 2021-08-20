@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as IoIcons from 'react-icons/io';
 import { Link, useHistory } from 'react-router-dom';
-import ReactLoading from 'react-loading';
+import { ActivityIndicator } from 'antd-mobile';
 import {
   fetchMovieDetail,
   fetchMovieCredits,
@@ -27,11 +27,17 @@ const Detail = ({
   saveMovie,
   deleteMovie,
   match,
-  favorites,
   detail,
+  favorites,
+  moviecast,
+  reviews,
+  movierelated,
+  isFetching,
+  isError,
 }) => {
   const [favorite, setFavorite] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  // const [loading, setLoading] = useState(true);
   const [locationKeys, setLocationKeys] = useState([]);
   const btnhistory = useHistory();
 
@@ -44,11 +50,11 @@ const Detail = ({
       if (btnhistory.action === 'POP') {
         if (locationKeys[1] === location.key) {
           setLocationKeys(([_, ...keys]) => keys);
-
           // Handle forward event
+          return;
         } else {
           setLocationKeys((keys) => [location.key, ...keys]);
-
+          // Handle back event
           history.goBack();
         }
       }
@@ -69,6 +75,7 @@ const Detail = ({
     };
 
     setFavorite(isFavorite(id));
+    // setLoading(false);
     setLoaded(false);
   }, [match.params]);
 
@@ -104,92 +111,115 @@ const Detail = ({
     }
   };
 
-  if (!detail) {
-    return <ReactLoading type="spin" color="f7f7f7" />;
-  }
+  const renderDetail = () => {
+    // if (!detail) {
+    //   return (
+    //     <div className={styles.loading}>
+    //       <ActivityIndicator size="large" />
+    //     </div>
+    //   );
+    // }
+
+    if (isFetching || !detail) {
+      return <div>Now loading...</div>;
+    }
+
+    if (isError?.status) {
+      return <p>{isError.error}</p>;
+    }
+
+    return (
+      <div className={styles.detail}>
+        <div className={styles.fig}>
+          <img
+            src={`https://image.tmdb.org/t/p/original${detail.poster_path}`}
+            alt={detail.original_title}
+            className={`${styles.img} ${loaded && styles['img-open']}`}
+            onLoad={onLoad}
+          />
+        </div>
+
+        <div className={styles.content}>
+          <div className={styles.title}>
+            <h4 className={styles.titleName}>{detail.original_title}</h4>
+            <button
+              className={styles.favorite}
+              onClick={() =>
+                onClick(
+                  detail.id,
+                  detail.poster_path,
+                  detail.original_title,
+                  detail.release_date
+                )
+              }
+            >
+              <IoIcons.IoIosHeart
+                className={
+                  favorite
+                    ? styles['favorite-icon-true']
+                    : styles['favorite-icon']
+                }
+              />
+            </button>
+          </div>
+
+          <p className={styles.date}>{calcYear(detail.release_date)}</p>
+
+          <div className={styles.timerate}>
+            <p className={styles.runtime}>{`${calcHour(detail.runtime)}`}</p>
+            <div className={styles.rate}>
+              <IoIcons.IoIosStar className={styles['rate-icon']} />
+              <p>{detail.vote_average} / 10</p>
+            </div>
+          </div>
+
+          <div className={styles.others}>
+            <Link to={`/detail/${detail.id}/play`} className={styles.play}>
+              <IoIcons.IoIosPlay className={styles['play-icon']} />
+              <p>Play</p>
+            </Link>
+            <Link
+              to={{ pathname: detail.homepage }}
+              target="_blank"
+              className={styles.link}
+            >
+              <IoIcons.IoIosLink className={styles['link-icon']} />
+              <p>Website</p>
+            </Link>
+          </div>
+
+          <p className={styles.overview}>{detail.overview}</p>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className={styles.item}>
       <h3 className={styles.nav}>Movies</h3>
 
       <div className={styles.container}>
-        <div className={styles.detail}>
-          <div className={styles.fig}>
-            <img
-              src={`https://image.tmdb.org/t/p/original${detail.poster_path}`}
-              alt={detail.original_title}
-              className={`${styles.img} ${loaded && styles['img-open']}`}
-              onLoad={onLoad}
-            />
-          </div>
-
-          <div className={styles.content}>
-            <div className={styles.title}>
-              <h4 className={styles.titleName}>{detail.original_title}</h4>
-              <button
-                className={styles.favorite}
-                onClick={() =>
-                  onClick(
-                    detail.id,
-                    detail.poster_path,
-                    detail.original_title,
-                    detail.release_date
-                  )
-                }
-              >
-                <IoIcons.IoIosHeart
-                  className={
-                    favorite
-                      ? styles['favorite-icon-true']
-                      : styles['favorite-icon']
-                  }
-                />
-              </button>
-            </div>
-
-            <p className={styles.date}>{calcYear(detail.release_date)}</p>
-
-            <div className={styles.timerate}>
-              <p className={styles.runtime}>{`${calcHour(detail.runtime)}`}</p>
-              <div className={styles.rate}>
-                <IoIcons.IoIosStar className={styles['rate-icon']} />
-                <p>{detail.vote_average} / 10</p>
-              </div>
-            </div>
-
-            <div className={styles.others}>
-              <Link to={`/detail/${detail.id}/play`} className={styles.play}>
-                <IoIcons.IoIosPlay className={styles['play-icon']} />
-                <p>Play</p>
-              </Link>
-              <Link
-                to={{ pathname: detail.homepage }}
-                target="_blank"
-                className={styles.link}
-              >
-                <IoIcons.IoIosLink className={styles['link-icon']} />
-                <p>Website</p>
-              </Link>
-            </div>
-
-            <p className={styles.overview}>{detail.overview}</p>
-          </div>
-        </div>
+        {renderDetail()}
 
         <button className={styles['back-btn']} onClick={() => history.goBack()}>
           &larr; Back
         </button>
 
         <div className={styles.cast}>
-          <Cast />
+          <Cast data={moviecast} isFetching={isFetching} isError={isError} />
         </div>
 
         <div className={styles.reviews}>
-          <Reviews />
+          <Reviews data={reviews} isFetching={isFetching} isError={isError} />
         </div>
 
         <div className={styles.related}>
-          <Related />
+          <Related
+            type="movie"
+            data={movierelated}
+            isFetching={isFetching}
+            isError={isError}
+          />
         </div>
       </div>
     </div>
@@ -200,6 +230,11 @@ const mapStateToProps = (state) => {
   return {
     detail: state.detail.detail,
     favorites: state.movies.favorite,
+    moviecast: state.detail.casts,
+    reviews: state.detail.reviews,
+    movierelated: state.detail.related,
+    isFetching: state.detail.isFetching,
+    isError: state.error.isError,
   };
 };
 

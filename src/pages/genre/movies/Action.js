@@ -3,14 +3,30 @@ import { connect } from 'react-redux';
 import { fetchActionMovies } from '../../../actions';
 import Genre from '../../../components/Genre';
 
-const Action = ({ fetchActionMovies }) => {
+const Action = ({ fetchActionMovies, action, isFetching, isError }) => {
   useEffect(() => {
     fetchActionMovies();
   }, []);
 
-  return <Genre title="Movies" type="Action" genre="action" />;
+  return (
+    <Genre
+      title="Movies"
+      type="Action"
+      data={action}
+      isFetching={isFetching}
+      isError={isError}
+    />
+  );
 };
 
-export default connect(null, {
+const mapStateToProps = (state) => {
+  return {
+    action: state.genre.action,
+    isFetching: state.genre.isFetching,
+    isError: state.error.isError,
+  };
+};
+
+export default connect(mapStateToProps, {
   fetchActionMovies,
 })(Action);

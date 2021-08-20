@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ReactLoading from 'react-loading';
+// import { ActivityIndicator } from 'antd-mobile';
 import styles from './Card.module.css';
 
-const Card = (props) => {
+const Card = ({ group, cname, data, isFetching, isError }) => {
   const [loaded, setLoaded] = useState(false);
+
+  // const { status, error } = isError;
 
   useEffect(() => {
     setLoaded(false);
@@ -21,106 +23,65 @@ const Card = (props) => {
   };
 
   const renderItems = () => {
-    if (props.group === 'Movie') {
-      if (!props.movies) {
-        return (
-          <ReactLoading type="spin" color="f7f7f7" height="20%" width="20%" />
-        );
-      }
+    // if (!data) {
+    //   return (
+    //     <div className={styles.loading}>
+    //       <ActivityIndicator size="large" />
+    //     </div>
+    //   );
+    // }
 
-      return props.movies.map((movie) => {
-        return (
-          <Link
-            to={`/detail/${movie.id}`}
-            key={movie.id}
-            className={`${styles.card} ${styles[props.cname]}`}
-          >
-            <div className={styles.img}>
-              <img
-                className={`${styles.poster} ${
-                  loaded && styles['poster-open']
-                }`}
-                src={
-                  props.cname
-                    ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
-                    : `https://image.tmdb.org/t/p/original${movie.poster_path}`
-                }
-                alt={movie.original_title}
-                onLoad={onLoad}
-              />
-            </div>
-            {props.cname ? (
-              ''
-            ) : (
-              <p className={styles.title}>{movie.original_title}</p>
-            )}
-            {props.cname ? (
-              ''
-            ) : (
-              <p className={styles.date}>{calcYear(movie.release_date)}</p>
-            )}
-          </Link>
-        );
-      });
+    if (isFetching || !data) {
+      return <div>Now loading...</div>;
     }
 
-    if (props.group === 'TV Show') {
-      if (!props.shows) {
-        return (
-          <ReactLoading type="spin" color="f7f7f7" height="10" width="10" />
-        );
-      }
-
-      return props.shows.map((show) => {
-        return (
-          <Link
-            to={`/detailtv/${show.id}`}
-            key={show.id}
-            className={`${styles.card} ${styles[props.cname]}`}
-          >
-            <div className={styles.img}>
-              <img
-                className={`${styles.poster} ${
-                  loaded && styles['poster-open']
-                }`}
-                src={
-                  props.cname
-                    ? `https://image.tmdb.org/t/p/original${show.backdrop_path}`
-                    : `https://image.tmdb.org/t/p/original${show.poster_path}`
-                }
-                alt={show.original_name}
-                onLoad={onLoad}
-              />
-            </div>
-            {props.cname ? (
-              ''
-            ) : (
-              <p className={styles.title}>{show.original_name}</p>
-            )}
-            {props.cname ? (
-              ''
-            ) : (
-              <p className={styles.date}>{calcYear(show.first_air_date)}</p>
-            )}
-          </Link>
-        );
-      });
+    if (isError?.status) {
+      return <p>{isError.error}</p>;
     }
+
+    return data.map((show) => {
+      return (
+        <Link
+          to={group === 'Movie' ? `/detail/${show.id}` : `/detailtv/${show.id}`}
+          key={show.id}
+          className={`${styles.card} ${styles[cname]}`}
+        >
+          <div className={styles.img}>
+            <img
+              className={`${styles.poster} ${loaded && styles['poster-open']}`}
+              src={
+                cname
+                  ? `https://image.tmdb.org/t/p/original${show.backdrop_path}`
+                  : `https://image.tmdb.org/t/p/original${show.poster_path}`
+              }
+              alt={
+                show.original_title ? show.original_title : show.original_name
+              }
+              onLoad={onLoad}
+            />
+          </div>
+          {cname ? (
+            ''
+          ) : (
+            <p className={styles.title}>
+              {show.original_title ? show.original_title : show.original_name}
+            </p>
+          )}
+          {cname ? (
+            ''
+          ) : (
+            <p className={styles.date}>
+              {calcYear(
+                show.release_date ? show.release_date : show.first_air_date
+              )}
+            </p>
+          )}
+        </Link>
+      );
+    });
   };
 
   return <React.Fragment>{renderItems()}</React.Fragment>;
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    movies: state.movies[ownProps.type],
-    shows: state.shows[ownProps.type],
-  };
-};
-
-export default connect(mapStateToProps, {
-  // fetchMovieNowPlaying,
-  // fetchTvOnAir,
-  // fetchMovieUpcoming,
-  // fetchMovieTopRated,
-})(Card);
+export default Card;
