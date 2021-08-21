@@ -14,7 +14,7 @@ import {
 import Season from '../components/detail/Season';
 import Cast from '../components/detail/Cast';
 import Related from '../components/detail/Related';
-import history from '../history';
+// import history from '../history';
 import styles from './DetailTV.module.css';
 
 const DetailTV = ({
@@ -86,6 +86,11 @@ const DetailTV = ({
       deleteTVShow(id);
       setFavorite(!favorite);
     }
+  };
+
+  const onBrowserBack = () => {
+    // console.log(window.history);
+    window.history.back();
   };
 
   const renderDetail = () => {
@@ -176,7 +181,7 @@ const DetailTV = ({
       <div className={styles.container}>
         {renderDetail()}
 
-        <button className={styles['back-btn']} onClick={() => history.goBack()}>
+        <button className={styles['back-btn']} onClick={onBrowserBack}>
           &larr; Back
         </button>
 

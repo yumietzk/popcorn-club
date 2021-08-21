@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as IoIcons from 'react-icons/io';
-import { Link, useHistory } from 'react-router-dom';
-import { ActivityIndicator } from 'antd-mobile';
+import { Link } from 'react-router-dom';
+// import { ActivityIndicator } from 'antd-mobile';
 import {
   fetchMovieDetail,
   fetchMovieCredits,
@@ -15,7 +15,7 @@ import {
 import Cast from '../components/detail/Cast';
 import Reviews from '../components/detail/Reviews';
 import Related from '../components/detail/Related';
-import history from '../history';
+// import history from '../history';
 import styles from './Detail.module.css';
 
 const Detail = ({
@@ -38,28 +38,28 @@ const Detail = ({
   const [favorite, setFavorite] = useState(false);
   const [loaded, setLoaded] = useState(false);
   // const [loading, setLoading] = useState(true);
-  const [locationKeys, setLocationKeys] = useState([]);
-  const btnhistory = useHistory();
+  // const [locationKeys, setLocationKeys] = useState([]);
+  // const btnhistory = useHistory();
 
-  useEffect(() => {
-    return btnhistory.listen((location) => {
-      if (btnhistory.action === 'PUSH') {
-        setLocationKeys([location.key]);
-      }
+  // useEffect(() => {
+  //   return btnhistory.listen((location) => {
+  //     if (btnhistory.action === 'PUSH') {
+  //       setLocationKeys([location.key]);
+  //     }
 
-      if (btnhistory.action === 'POP') {
-        if (locationKeys[1] === location.key) {
-          setLocationKeys(([_, ...keys]) => keys);
-          // Handle forward event
-          return;
-        } else {
-          setLocationKeys((keys) => [location.key, ...keys]);
-          // Handle back event
-          history.goBack();
-        }
-      }
-    });
-  }, [locationKeys]);
+  //     if (btnhistory.action === 'POP') {
+  //       if (locationKeys[1] === location.key) {
+  //         setLocationKeys(([_, ...keys]) => keys);
+  //         // Handle forward event
+  //         return;
+  //       } else {
+  //         setLocationKeys((keys) => [location.key, ...keys]);
+  //         // Handle back event
+  //         history.goBack();
+  //       }
+  //     }
+  //   });
+  // }, [locationKeys]);
 
   useEffect(() => {
     const { id } = match.params;
@@ -109,6 +109,11 @@ const Detail = ({
       deleteMovie(id);
       setFavorite(!favorite);
     }
+  };
+
+  const onBrowserBack = () => {
+    // console.log(window.history);
+    window.history.back();
   };
 
   const renderDetail = () => {
@@ -201,7 +206,7 @@ const Detail = ({
       <div className={styles.container}>
         {renderDetail()}
 
-        <button className={styles['back-btn']} onClick={() => history.goBack()}>
+        <button className={styles['back-btn']} onClick={onBrowserBack}>
           &larr; Back
         </button>
 
