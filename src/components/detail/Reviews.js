@@ -1,5 +1,4 @@
 import React from 'react';
-// import { connect } from 'react-redux';
 import * as IoIcons from 'react-icons/io';
 import styles from './Reviews.module.css';
 
@@ -9,10 +8,6 @@ const Reviews = ({ data, isFetching, isError }) => {
   };
 
   const renderReviews = () => {
-    // if (!props.reviews) {
-    //   return <div>Loading..</div>;
-    // }
-
     if (isFetching || !data) {
       return <div>Now loading...</div>;
     }
@@ -21,25 +16,28 @@ const Reviews = ({ data, isFetching, isError }) => {
       return <p>{isError.error}</p>;
     }
 
-    if (data.length === 0) {
+    if (data && data.length === 0) {
       return <p>No reviews.</p>;
     }
 
-    return data.map((review) => {
-      return (
-        <li className={styles.item} key={review.id}>
-          <div className={styles.user}>
-            <IoIcons.IoIosPerson className={styles['user-icon']} />
-            <p className={styles['user-name']}>{review.author}</p>
-          </div>
-          {/* <p className={styles.content} >{truncate(review.content, 350)}</p> */}
-          <p
-            className={styles.content}
-            dangerouslySetInnerHTML={{ __html: truncate(review.content, 350) }}
-          ></p>
-        </li>
-      );
-    });
+    if (data && data.length !== 0) {
+      return data.map((review) => {
+        return (
+          <li className={styles.item} key={review.id}>
+            <div className={styles.user}>
+              <IoIcons.IoIosPerson className={styles['user-icon']} />
+              <p className={styles['user-name']}>{review.author}</p>
+            </div>
+            <p
+              className={styles.content}
+              dangerouslySetInnerHTML={{
+                __html: truncate(review.content, 350),
+              }}
+            ></p>
+          </li>
+        );
+      });
+    }
   };
 
   return (
@@ -49,11 +47,5 @@ const Reviews = ({ data, isFetching, isError }) => {
     </React.Fragment>
   );
 };
-
-// const mapStateToProps = (state) => {
-//   return {
-//     reviews: state.detail.reviews,
-//   };
-// };
 
 export default Reviews;

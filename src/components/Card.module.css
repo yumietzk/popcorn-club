@@ -10,6 +10,13 @@
   transition: all 0.3s;
 }
 
+/* 500px */
+@media only screen and (max-width: 31.25em) {
+  .card {
+    padding-right: 1.8rem;
+  }
+}
+
 .card:hover {
   transform: scale(1.05);
 }
@@ -29,6 +36,13 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
+}
+
+/* 500px */
+@media only screen and (max-width: 31.25em) {
+  .poster {
+    width: 90%;
+  }
 }
 
 .poster-open {

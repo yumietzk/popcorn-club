@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as AiIcons from 'react-icons/ai';
 import styles from './MovieHeader.module.css';
@@ -30,10 +29,6 @@ const MovieHeader = ({ data, isFetching, isError }) => {
   };
 
   const renderHero = () => {
-    // if (!data) {
-    //   return <div>Loading...</div>;
-    // }
-
     if (isFetching || !data) {
       return <div>Now loading...</div>;
     }
@@ -42,28 +37,34 @@ const MovieHeader = ({ data, isFetching, isError }) => {
       return <p>{isError.error}</p>;
     }
 
-    return data.map((movie, i) => {
-      return (
-        <div
-          className={styles.slide}
-          key={movie.id}
-          style={{
-            transform: `translateX(${100 * (i - curSlide)}%)`,
-            backgroundImage: `linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8)), url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className={styles.description}>
-            <p className={styles.name}>{movie.original_title}</p>
-            <p className={styles.overview}>{truncate(movie.overview, 250)}</p>
-            <Link to={`/detail/${movie.id}`} className={styles.more}>
-              More
-            </Link>
+    if (data && data.length === 0) {
+      return <p>No data.</p>;
+    }
+
+    if (data && data.length !== 0) {
+      return data.map((movie, i) => {
+        return (
+          <div
+            className={styles.slide}
+            key={movie.id}
+            style={{
+              transform: `translateX(${100 * (i - curSlide)}%)`,
+              backgroundImage: `linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8)), url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          >
+            <div className={styles.description}>
+              <p className={styles.name}>{movie.original_title}</p>
+              <p className={styles.overview}>{truncate(movie.overview, 250)}</p>
+              <Link to={`/detail/${movie.id}`} className={styles.more}>
+                More
+              </Link>
+            </div>
           </div>
-        </div>
-      );
-    });
+        );
+      });
+    }
   };
 
   return (
@@ -78,11 +79,5 @@ const MovieHeader = ({ data, isFetching, isError }) => {
     </div>
   );
 };
-
-// const mapStateToProps = (state) => {
-//   return {
-//     movies: state.movies.popular,
-//   };
-// };
 
 export default MovieHeader;

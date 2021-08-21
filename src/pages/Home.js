@@ -9,8 +9,6 @@ import {
 import Row from '../components/Row';
 import HomeFavorite from '../components/HomeFavorite';
 import styles from './Home.module.css';
-// import { IoIosEyeOff } from 'react-icons/io';
-// import { defaultProps } from 'antd-mobile/lib/search-bar/PropsType';
 
 const Home = ({
   fetchMovieNowPlaying,

@@ -9,6 +9,20 @@
   flex-direction: column;
 }
 
+/* 500px */
+@media only screen and (max-width: 31.25em) {
+  .container {
+    height: 40rem;
+  }
+}
+
 .wide {
   height: 23rem;
+}
+
+/* 500px */
+@media only screen and (max-width: 31.25em) {
+  .wide {
+    height: 20rem;
+  }
 }

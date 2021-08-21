@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import { ActivityIndicator } from 'antd-mobile';
 import * as IoIcons from 'react-icons/io';
 import {
   fetchTvDetail,
@@ -14,7 +13,6 @@ import {
 import Season from '../components/detail/Season';
 import Cast from '../components/detail/Cast';
 import Related from '../components/detail/Related';
-// import history from '../history';
 import styles from './DetailTV.module.css';
 
 const DetailTV = ({
@@ -27,7 +25,6 @@ const DetailTV = ({
   match,
   detail,
   favorites,
-  // seasons,
   tvcast,
   tvrelated,
   isFetching,
@@ -44,16 +41,13 @@ const DetailTV = ({
     fetchTvRelated(id);
     fetchFavoriteTVs();
 
-    // const isFavorite = (id) => {
-    //   return props.favorite?.some((item) => item.id === +id);
-    // };
-
     setFavorite(isFavorite(id));
     setLoaded(false);
   }, [match.params]);
 
   const isFavorite = (id) => {
-    return favorites?.some((item) => item.id === +id);
+    if (!favorites) return;
+    return favorites.some((item) => item.id === +id);
   };
 
   const calcYear = (date) => {
@@ -89,19 +83,10 @@ const DetailTV = ({
   };
 
   const onBrowserBack = () => {
-    // console.log(window.history);
     window.history.back();
   };
 
   const renderDetail = () => {
-    // if (!detail) {
-    //   return (
-    //     <div className={styles.loading}>
-    //       <ActivityIndicator size="large" />
-    //     </div>
-    //   );
-    // }
-
     if (isFetching || !detail) {
       return <div>Now loading...</div>;
     }
@@ -210,7 +195,6 @@ const mapStateToProps = (state) => {
   return {
     detail: state.detail.tvdetail,
     favorites: state.shows.favorite,
-    // seasons: state.detail.tvdetail.seasons,
     tvcast: state.detail.tvcasts,
     tvrelated: state.detail.tvrelated,
     isFetching: state.detail.isFetching,

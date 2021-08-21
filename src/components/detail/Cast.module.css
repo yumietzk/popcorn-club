@@ -37,6 +37,30 @@
   overflow: hidden;
 }
 
+/* 850px */
+@media only screen and (max-width: 53.125em) {
+  .fig {
+    height: 9rem;
+    width: 9rem;
+  }
+}
+
+/* 400px */
+@media only screen and (max-width: 25em) {
+  .fig {
+    height: 7.5rem;
+    width: 7.5rem;
+  }
+}
+
+/* 300px */
+@media only screen and (max-width: 18.75em) {
+  .fig {
+    height: 6.5rem;
+    width: 6.5rem;
+  }
+}
+
 .img {
   height: 100%;
   width: 100%;
@@ -47,4 +71,12 @@
   margin-top: 1rem;
   font-weight: 400;
   font-size: 1.2rem;
+}
+
+/* 300px */
+@media only screen and (max-width: 18.75em) {
+  .name {
+    font-size: 0.7rem;
+    font-weight: 300;
+  }
 }

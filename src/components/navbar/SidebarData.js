@@ -1,12 +1,9 @@
-// const React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
-// import * as IoIcons from 'react-icons/io';
 import * as MdIcons from 'react-icons/md';
 import * as CgIcons from 'react-icons/cg';
 import * as RiIcons from 'react-icons/ri';
 
-// Can use redux here
 const SidebarData = [
   {
     title: 'Home',
@@ -24,7 +21,6 @@ const SidebarData = [
       {
         title: 'Top',
         path: '/movies',
-        // icon: <FaIcons.FaFilm />,
       },
       {
         title: 'Action',

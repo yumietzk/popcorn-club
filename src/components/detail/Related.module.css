@@ -34,6 +34,13 @@
   flex-direction: column;
 }
 
+/* 500px */
+@media only screen and (max-width: 31.25em) {
+  .item {
+    height: 95%;
+  }
+}
+
 .item:hover {
   transform: scale(1);
 }
@@ -47,6 +54,14 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+
+/* 500px */
+@media only screen and (max-width: 31.25em) {
+  .img {
+    height: 95%;
+    width: 95%;
+  }
 }
 
 .name {

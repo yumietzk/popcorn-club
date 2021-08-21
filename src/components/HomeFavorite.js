@@ -1,20 +1,10 @@
 import React from 'react';
-// import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './HomeFavorite.module.css';
 
 const HomeFavorite = ({ type, data, isFetching, isError }) => {
   const renderFavorite = () => {
-    // if (!props.shows || !props.tvshows) {
-    //   return <div>Loading...</div>;
-    // }
-
-    // const shows = props.type === 'Movies' ? props.shows : props.tvshows;
     const toPage = type === 'Movies' ? 'detail' : 'detailtv';
-
-    // if (!data) {
-    //   return null;
-    // }
 
     if (isFetching || !data) {
       return <div>Now loading...</div>;
@@ -32,26 +22,29 @@ const HomeFavorite = ({ type, data, isFetching, isError }) => {
 
     return (
       <React.Fragment>
-        {data.slice(0, 3).map((show, index) => {
-          return (
-            <Link
-              to={`/${toPage}/${show.id}`}
-              key={show.id}
-              className={`styles[content${index}]`}
-            >
-              <div className={styles.img}>
-                <img
-                  className={styles.poster}
-                  src={`https://image.tmdb.org/t/p/original${show.poster_path}`}
-                  alt={show.original_title}
-                />
-              </div>
-              <p className={styles.title}>
-                {show.original_title ? show.original_title : show.original_name}
-              </p>
-            </Link>
-          );
-        })}
+        {data &&
+          data.slice(0, 3).map((show, index) => {
+            return (
+              <Link
+                to={`/${toPage}/${show.id}`}
+                key={show.id}
+                className={`styles[content${index}]`}
+              >
+                <div className={styles.img}>
+                  <img
+                    className={styles.poster}
+                    src={`https://image.tmdb.org/t/p/original${show.poster_path}`}
+                    alt={show.original_title}
+                  />
+                </div>
+                <p className={styles.title}>
+                  {show.original_title
+                    ? show.original_title
+                    : show.original_name}
+                </p>
+              </Link>
+            );
+          })}
         <div className={styles.subcontainer}>
           <div className={styles.subcontent}>
             {data?.slice(3, 7).map((sub, index) => {
