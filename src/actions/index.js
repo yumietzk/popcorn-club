@@ -1,7 +1,8 @@
 import tmdb from '../apis/tmdb';
 import requests from '../apis/requests';
 import favorites from '../apis/favorites';
-import { API_KEY } from '../apis/config';
+
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 // HOME
 export const fetchMovieNowPlaying = () => async (dispatch) => {

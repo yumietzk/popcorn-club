@@ -1,4 +1,6 @@
-import { API_KEY } from './config';
+const API_KEY = process.env.REACT_APP_API_KEY;
+
+console.log(process.env);
 
 const requests = {
   // Home
