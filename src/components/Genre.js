@@ -25,12 +25,6 @@ const Genre = ({ title, type, data, isFetching, isError, scrollPosition }) => {
       }
     };
 
-    getAllPage();
-  }, [data]);
-
-  useEffect(() => {
-    if (!data) return;
-
     const getResultsPerPage = () => {
       const start = (curPage - 1) * 20;
       const end = curPage * 20;
@@ -38,8 +32,22 @@ const Genre = ({ title, type, data, isFetching, isError, scrollPosition }) => {
       setResults(data.slice(start, end));
     };
 
+    getAllPage();
     getResultsPerPage();
-  }, [curPage, data]);
+  }, [data, curPage]);
+
+  // useEffect(() => {
+  //   if (!data) return;
+
+  //   const getResultsPerPage = () => {
+  //     const start = (curPage - 1) * 20;
+  //     const end = curPage * 20;
+
+  //     setResults(data.slice(start, end));
+  //   };
+
+  //   getResultsPerPage();
+  // }, [curPage, data]);
 
   const onPagePrevious = () => {
     if (curPage === 1) return;

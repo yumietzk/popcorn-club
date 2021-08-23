@@ -6,7 +6,7 @@ import Genre from '../../../components/Genre';
 const Romance = ({ fetchRomanceMovies, romance, isFetching, isError }) => {
   useEffect(() => {
     fetchRomanceMovies();
-  });
+  }, []);
 
   return (
     <Genre

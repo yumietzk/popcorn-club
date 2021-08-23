@@ -6,7 +6,7 @@ import Genre from '../../../components/Genre';
 const Comedy = ({ fetchComedyMovies, comedy, isFetching, isError }) => {
   useEffect(() => {
     fetchComedyMovies();
-  });
+  }, []);
 
   return (
     <Genre

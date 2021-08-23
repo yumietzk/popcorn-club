@@ -6,7 +6,7 @@ import Genre from '../../../components/Genre';
 const Scifi = ({ fetchSciFiMovies, scifi, isFetching, isError }) => {
   useEffect(() => {
     fetchSciFiMovies();
-  });
+  }, []);
 
   return (
     <Genre

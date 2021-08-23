@@ -11,7 +11,7 @@ const Documentary = ({
 }) => {
   useEffect(() => {
     fetchDocumentaryMovies();
-  });
+  }, []);
 
   return (
     <Genre

@@ -6,7 +6,7 @@ import Genre from '../../../components/Genre';
 const Horror = ({ fetchHorrorMovies, horror, isFetching, isError }) => {
   useEffect(() => {
     fetchHorrorMovies();
-  });
+  }, []);
 
   return (
     <Genre

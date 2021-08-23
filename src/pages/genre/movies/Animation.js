@@ -11,7 +11,7 @@ const Animation = ({
 }) => {
   useEffect(() => {
     fetchAnimationMovies();
-  });
+  }, []);
 
   return (
     <Genre

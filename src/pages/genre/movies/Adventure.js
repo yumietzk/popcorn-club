@@ -11,7 +11,7 @@ const Adventure = ({
 }) => {
   useEffect(() => {
     fetchAdventureMovies();
-  });
+  }, []);
 
   return (
     <Genre

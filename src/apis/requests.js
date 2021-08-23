@@ -1,7 +1,5 @@
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-console.log(process.env);
-
 const requests = {
   // Home
   fetchMovieNowPlaying: `/movie/now_playing?api_key=${API_KEY}`,

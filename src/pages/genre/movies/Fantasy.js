@@ -6,7 +6,7 @@ import Genre from '../../../components/Genre';
 const Fantasy = ({ fetchFantasyMovies, fantasy, isFetching, isError }) => {
   useEffect(() => {
     fetchFantasyMovies();
-  });
+  }, []);
 
   return (
     <Genre
