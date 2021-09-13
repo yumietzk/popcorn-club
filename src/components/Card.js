@@ -24,24 +24,28 @@ const Card = ({ group, cname, data, isFetching, isError }) => {
     }
 
     if (isError?.status) {
-      return <p>{isError.error}</p>;
+      return <p>{isError.errorMessage}</p>;
     }
 
     if (data && data.length === 0) {
-      return <p>No data.</p>
+      return <p>No data.</p>;
     }
 
     if (data && data.length !== 0) {
       return data.map((show) => {
         return (
           <Link
-            to={group === 'Movie' ? `/detail/${show.id}` : `/detailtv/${show.id}`}
+            to={
+              group === 'Movie' ? `/detail/${show.id}` : `/detailtv/${show.id}`
+            }
             key={show.id}
             className={`${styles.card} ${styles[cname]}`}
           >
             <div className={styles.img}>
               <img
-                className={`${styles.poster} ${loaded && styles['poster-open']}`}
+                className={`${styles.poster} ${
+                  loaded && styles['poster-open']
+                }`}
                 src={
                   cname
                     ? `https://image.tmdb.org/t/p/original${show.backdrop_path}`

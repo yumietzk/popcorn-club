@@ -92,7 +92,7 @@ const DetailTV = ({
     }
 
     if (isError?.status) {
-      return <p>{isError.error}</p>;
+      return <p>{isError.errorMessage}</p>;
     }
 
     return (

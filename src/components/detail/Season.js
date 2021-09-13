@@ -8,7 +8,7 @@ const Season = ({ data, isFetching, isError }) => {
     }
 
     if (isError?.status) {
-      return <p>{isError.error}</p>;
+      return <p>{isError.errorMessage}</p>;
     }
 
     if (data && data.length === 0) {

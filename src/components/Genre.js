@@ -72,7 +72,7 @@ const Genre = ({ title, type, data, isFetching, isError, scrollPosition }) => {
     }
 
     if (isError?.status) {
-      return <p>{isError.error}</p>;
+      return <p>{isError.errorMessage}</p>;
     }
 
     if (results && results.length === 0) {
