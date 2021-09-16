@@ -22,6 +22,7 @@ const Home = ({
   isFetching,
   isFetchingTV,
   isError,
+  isSignedIn,
 }) => {
   useEffect(() => {
     fetchMovieNowPlaying();
@@ -29,6 +30,34 @@ const Home = ({
     fetchFavoriteMovies();
     fetchFavoriteTVs();
   }, []);
+
+  const renderFavorite = () => {
+    if (isSignedIn) {
+      return (
+        <div className={styles.contents}>
+          <HomeFavorite
+            type="Movies"
+            data={moviefavorite}
+            isFetching={isFetching}
+            isError={isError}
+          />
+          <HomeFavorite
+            type="TV Shows"
+            data={tvfavorite}
+            isFetching={isFetchingTV}
+            isError={isError}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <p className={styles['signin-message']}>
+          Please sign in to save your favorite movies or TV shows in favorite
+          section!
+        </p>
+      );
+    }
+  };
 
   return (
     <div className={styles.home}>
@@ -49,22 +78,13 @@ const Home = ({
         isFetching={isFetchingTV}
         isError={isError}
       />
-      <div className={styles.favorite}>
+      <div
+        className={`${styles.favorite} ${
+          !isSignedIn ? styles.subheight : null
+        }`}
+      >
         <p className={styles.category}>Favorite</p>
-        <div className={styles.contents}>
-          <HomeFavorite
-            type="Movies"
-            data={moviefavorite}
-            isFetching={isFetching}
-            isError={isError}
-          />
-          <HomeFavorite
-            type="TV Shows"
-            data={tvfavorite}
-            isFetching={isFetchingTV}
-            isError={isError}
-          />
-        </div>
+        {renderFavorite()}
       </div>
     </div>
   );
@@ -79,6 +99,7 @@ const mapStateToProps = (state) => {
     isFetching: state.movies.isFetching,
     isFetchingTV: state.shows.isFetching,
     isError: state.error.isError,
+    isSignedIn: state.auth.isSignedIn,
   };
 };
 

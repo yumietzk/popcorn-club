@@ -793,24 +793,32 @@ export const fetchRealityTv = () => async (dispatch) => {
 
 // FAVORITE
 export const saveMovie =
-  (id, poster_path, original_title, release_date) => async (dispatch) => {
+  (id, poster_path, original_title, release_date) =>
+  async (dispatch, getState) => {
+    const { userId } = getState().auth;
+
     const response = await favorites.post('/movies', {
       id,
       poster_path,
       original_title,
       release_date,
+      userId,
     });
 
     dispatch({ type: 'SAVE_MOVIE', payload: response.data });
   };
 
 export const saveTVShow =
-  (id, poster_path, original_name, first_air_date) => async (dispatch) => {
+  (id, poster_path, original_name, first_air_date) =>
+  async (dispatch, getState) => {
+    const { userId } = getState().auth;
+
     const response = await favorites.post('/tvs', {
       id,
       poster_path,
       original_name,
       first_air_date,
+      userId,
     });
 
     dispatch({ type: 'SAVE_TV', payload: response.data });

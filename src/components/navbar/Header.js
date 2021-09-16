@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as IoIcons from 'react-icons/io';
-import * as AiIcons from 'react-icons/ai';
 import { searchMovies, searchTvShows } from '../../actions';
 import Navbar from './Navbar';
-import GoogleAuth from '../../auth/GoogleAuth';
+import GoogleAuth from '../auth/GoogleAuth';
 import history from '../../history';
 import styles from './Header.module.css';
 
