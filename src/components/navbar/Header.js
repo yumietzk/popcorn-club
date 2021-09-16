@@ -42,11 +42,8 @@ const Header = ({ searchMovies, searchTvShows }) => {
             <IoIcons.IoIosSearch className={styles['btn-icon']} />
           </button>
         </form>
-        <button className={styles.user}>
-          <AiIcons.AiOutlineUser />
-        </button>
+        <GoogleAuth />
       </div>
-      <GoogleAuth />
     </Navbar>
   );
 };

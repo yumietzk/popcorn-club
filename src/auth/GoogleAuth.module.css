@@ -1,0 +1,32 @@
+.user {
+  flex: 0 1 10rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 400px */
+@media only screen and (max-width: 25em) {
+  .user {
+    flex: 0 1 5rem;
+  }
+}
+
+.user-btn {
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 1rem;
+  background-color: #3aaa6f;
+  font-size: 1.4rem;
+  color: #f7f7f7;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-btn:hover {
+  background-color: #2e8d5a;
+}

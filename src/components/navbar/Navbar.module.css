@@ -12,7 +12,12 @@
 
 .menu {
   flex: 0 0 5rem;
+  margin-right: 1rem;
   margin-left: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .menu-icon {

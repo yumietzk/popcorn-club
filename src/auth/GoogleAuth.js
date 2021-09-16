@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { signIn, signOut } from '../actions';
+import styles from './GoogleAuth.module.css';
 
 const GoogleAuth = ({ isSignedIn, signIn, signOut }) => {
   const [auth, setAuth] = useState(null);
@@ -47,13 +48,21 @@ const GoogleAuth = ({ isSignedIn, signIn, signOut }) => {
     if (isSignedIn === null) {
       return null;
     } else if (isSignedIn) {
-      return <button onClick={handleSignOut}>Sign Out</button>;
+      return (
+        <button className={styles['user-btn']} onClick={handleSignOut}>
+          Sign Out
+        </button>
+      );
     } else {
-      return <button onClick={handleSignIn}>Sign In</button>;
+      return (
+        <button className={styles['user-btn']} onClick={handleSignIn}>
+          Sign In
+        </button>
+      );
     }
   };
 
-  return <div>{renderAuthButton()}</div>;
+  return <div className={styles.user}>{renderAuthButton()}</div>;
 };
 
 const mapStateToProps = (state) => {
