@@ -4,11 +4,17 @@
   font-size: 2.5rem;
   text-decoration: none;
   color: #f7f7f7;
-  cursor: default;
+  cursor: pointer;
 }
 
 .form {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.search-form {
   margin-right: 2rem;
 
   display: flex;
@@ -109,4 +115,17 @@
   height: 2rem;
   width: 2rem;
   fill: #060b26;
+}
+
+.user {
+  border: none;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background-color: green;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as IoIcons from 'react-icons/io';
+import * as AiIcons from 'react-icons/ai';
 import { searchMovies, searchTvShows } from '../../actions';
 import Navbar from './Navbar';
+import GoogleAuth from '../../auth/GoogleAuth';
 import history from '../../history';
 import styles from './Header.module.css';
 
@@ -27,18 +29,24 @@ const Header = ({ searchMovies, searchTvShows }) => {
       <Link to="/" className={styles.title}>
         Popcorn Club
       </Link>
-      <form className={styles.form} onSubmit={onSearchTerm}>
-        <input
-          className={styles.input}
-          type="text"
-          placeholder="Search..."
-          value={term}
-          onChange={(e) => setTerm(e.target.value)}
-        />
-        <button className={styles.btn}>
-          <IoIcons.IoIosSearch className={styles['btn-icon']} />
+      <div className={styles.form}>
+        <form className={styles['search-form']} onSubmit={onSearchTerm}>
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="Search..."
+            value={term}
+            onChange={(e) => setTerm(e.target.value)}
+          />
+          <button className={styles.btn}>
+            <IoIcons.IoIosSearch className={styles['btn-icon']} />
+          </button>
+        </form>
+        <button className={styles.user}>
+          <AiIcons.AiOutlineUser />
         </button>
-      </form>
+      </div>
+      <GoogleAuth />
     </Navbar>
   );
 };

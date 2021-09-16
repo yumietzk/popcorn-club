@@ -4,6 +4,21 @@ import favorites from '../apis/favorites';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
+// SIGNIN
+export const signIn = (userId) => {
+  return {
+    type: 'SIGN_IN',
+    payload: userId,
+  };
+};
+
+// SIGNOUT
+export const signOut = () => {
+  return {
+    type: 'SIGN_OUT',
+  };
+};
+
 // HOME
 export const fetchMovieNowPlaying = () => async (dispatch) => {
   try {
