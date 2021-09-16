@@ -29,6 +29,7 @@ const DetailTV = ({
   tvrelated,
   isFetching,
   isError,
+  isSignedIn,
 }) => {
   const [favorite, setFavorite] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -41,7 +42,10 @@ const DetailTV = ({
     fetchTvRelated(id);
     fetchFavoriteTVs();
 
-    setFavorite(isFavorite(id));
+    if (isSignedIn) {
+      setFavorite(isFavorite(id));
+    }
+
     setLoaded(false);
   }, [match.params]);
 
@@ -109,25 +113,27 @@ const DetailTV = ({
         <div className={styles.content}>
           <div className={styles.title}>
             <h4 className={styles.titleName}>{detail.original_name}</h4>
-            <button
-              className={styles.favorite}
-              onClick={() =>
-                onClick(
-                  detail.id,
-                  detail.poster_path,
-                  detail.original_name,
-                  detail.first_air_date
-                )
-              }
-            >
-              <IoIcons.IoIosHeart
-                className={
-                  favorite
-                    ? styles['favorite-icon-true']
-                    : styles['favorite-icon']
+            {isSignedIn && (
+              <button
+                className={styles.favorite}
+                onClick={() =>
+                  onClick(
+                    detail.id,
+                    detail.poster_path,
+                    detail.original_name,
+                    detail.first_air_date
+                  )
                 }
-              />
-            </button>
+              >
+                <IoIcons.IoIosHeart
+                  className={
+                    favorite
+                      ? styles['favorite-icon-true']
+                      : styles['favorite-icon']
+                  }
+                />
+              </button>
+            )}
           </div>
 
           <p className={styles.date}>{calcYear(detail.first_air_date)}</p>
@@ -199,6 +205,7 @@ const mapStateToProps = (state) => {
     tvrelated: state.detail.tvrelated,
     isFetching: state.detail.isFetching,
     isError: state.error.isError,
+    isSignedIn: state.auth.isSignedIn,
   };
 };
 
