@@ -41,30 +41,28 @@ const MovieHeader = ({ data, isFetching, isError }) => {
       return <p>No data.</p>;
     }
 
-    if (data && data.length !== 0) {
-      return data.map((movie, i) => {
-        return (
-          <div
-            className={styles.slide}
-            key={movie.id}
-            style={{
-              transform: `translateX(${100 * (i - curSlide)}%)`,
-              backgroundImage: `linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8)), url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          >
-            <div className={styles.description}>
-              <p className={styles.name}>{movie.original_title}</p>
-              <p className={styles.overview}>{truncate(movie.overview, 250)}</p>
-              <Link to={`/detail/${movie.id}`} className={styles.more}>
-                More
-              </Link>
-            </div>
+    return data?.map((movie, i) => {
+      return (
+        <div
+          className={styles.slide}
+          key={movie.id}
+          style={{
+            transform: `translateX(${100 * (i - curSlide)}%)`,
+            backgroundImage: `linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8)), url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className={styles.description}>
+            <p className={styles.name}>{movie.original_title}</p>
+            <p className={styles.overview}>{truncate(movie.overview, 250)}</p>
+            <Link to={`/detail/${movie.id}`} className={styles.more}>
+              More
+            </Link>
           </div>
-        );
-      });
-    }
+        </div>
+      );
+    });
   };
 
   return (

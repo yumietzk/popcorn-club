@@ -30,7 +30,7 @@ export const fetchMovieNowPlaying = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -46,7 +46,7 @@ export const fetchTvOnAir = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -63,7 +63,7 @@ export const fetchMoviePopular = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -79,7 +79,7 @@ export const fetchMovieUpcoming = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -95,7 +95,7 @@ export const fetchMovieTopRated = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -112,7 +112,7 @@ export const fetchTvPopular = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -128,7 +128,7 @@ export const fetchTvTopRated = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -146,7 +146,7 @@ export const fetchMovieDetail = (id) => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -165,7 +165,7 @@ export const fetchMovieCredits = (id) => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -184,7 +184,7 @@ export const fetchMovieReviews = (id) => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -200,7 +200,7 @@ export const fetchMovieRelated = (id) => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -217,7 +217,7 @@ export const fetchTvDetail = (id) => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -233,7 +233,7 @@ export const fetchTvCredits = (id) => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -249,7 +249,7 @@ export const fetchTvRelated = (id) => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -269,7 +269,7 @@ export const searchMovies = (term) => async (dispatch) => {
       type: 'FAIL_RECEIVE_DATA',
       payload: {
         message:
-          'Something went wrong. Could not get data. Please search again.',
+          'Something went wrong. Could not get data. Please search again!',
       },
     });
   }
@@ -289,7 +289,7 @@ export const searchTvShows = (term) => async (dispatch) => {
       type: 'FAIL_RECEIVE_DATA',
       payload: {
         message:
-          'Something went wrong. Could not get data. Please search again.',
+          'Something went wrong. Could not get data. Please search again!',
       },
     });
   }
@@ -316,7 +316,7 @@ export const fetchActionMovies = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -342,7 +342,7 @@ export const fetchAdventureMovies = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -368,7 +368,7 @@ export const fetchAnimationMovies = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -394,7 +394,7 @@ export const fetchComedyMovies = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -420,7 +420,7 @@ export const fetchDocumentaryMovies = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -446,7 +446,7 @@ export const fetchDramaMovies = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -472,7 +472,7 @@ export const fetchFantasyMovies = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -498,7 +498,7 @@ export const fetchHorrorMovies = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -524,7 +524,7 @@ export const fetchRomanceMovies = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -550,7 +550,7 @@ export const fetchSciFiMovies = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -577,7 +577,7 @@ export const fetchActionAdventureTv = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -603,7 +603,7 @@ export const fetchAnimationTv = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -629,7 +629,7 @@ export const fetchComedyTv = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -655,7 +655,7 @@ export const fetchCrimeTv = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -681,7 +681,7 @@ export const fetchDocumentaryTv = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -707,7 +707,7 @@ export const fetchDramaTv = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -733,7 +733,7 @@ export const fetchKidsTv = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -759,7 +759,7 @@ export const fetchMysteryTv = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -785,7 +785,7 @@ export const fetchRealityTv = () => async (dispatch) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -857,7 +857,7 @@ export const fetchFavoriteMovies = () => async (dispatch, getState) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }
@@ -878,7 +878,7 @@ export const fetchFavoriteTVs = () => async (dispatch, getState) => {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
       payload: {
-        message: 'Something went wrong. Could not get data.',
+        message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
   }

@@ -15,22 +15,20 @@ const Season = ({ data, isFetching, isError }) => {
       return <p>No seasons.</p>;
     }
 
-    if (data && data.length !== 0) {
-      return data.seasons.map((season, i) => {
-        return (
-          <li className={styles.item} key={i}>
-            <div className={styles.fig}>
-              <img
-                src={`https://image.tmdb.org/t/p/original${season.poster_path}`}
-                alt={season.name}
-                className={styles.img}
-              />
-            </div>
-            <p className={styles.name}>{season.name}</p>
-          </li>
-        );
-      });
-    }
+    return data?.seasons?.map((season, i) => {
+      return (
+        <li className={styles.item} key={i}>
+          <div className={styles.fig}>
+            <img
+              src={`https://image.tmdb.org/t/p/original${season.poster_path}`}
+              alt={season.name}
+              className={styles.img}
+            />
+          </div>
+          <p className={styles.name}>{season.name}</p>
+        </li>
+      );
+    });
   };
 
   return (

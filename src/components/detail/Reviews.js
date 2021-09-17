@@ -20,24 +20,22 @@ const Reviews = ({ data, isFetching, isError }) => {
       return <p>No reviews.</p>;
     }
 
-    if (data && data.length !== 0) {
-      return data.map((review) => {
-        return (
-          <li className={styles.item} key={review.id}>
-            <div className={styles.user}>
-              <IoIcons.IoIosPerson className={styles['user-icon']} />
-              <p className={styles['user-name']}>{review.author}</p>
-            </div>
-            <p
-              className={styles.content}
-              dangerouslySetInnerHTML={{
-                __html: truncate(review.content, 350),
-              }}
-            ></p>
-          </li>
-        );
-      });
-    }
+    return data?.map((review) => {
+      return (
+        <li className={styles.item} key={review.id}>
+          <div className={styles.user}>
+            <IoIcons.IoIosPerson className={styles['user-icon']} />
+            <p className={styles['user-name']}>{review.author}</p>
+          </div>
+          <p
+            className={styles.content}
+            dangerouslySetInnerHTML={{
+              __html: truncate(review.content, 350),
+            }}
+          ></p>
+        </li>
+      );
+    });
   };
 
   return (

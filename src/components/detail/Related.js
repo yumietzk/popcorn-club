@@ -18,30 +18,28 @@ const Related = ({ type, data, isFetching, isError }) => {
       return <p>No similar movies.</p>;
     }
 
-    if (data && data.length !== 0) {
-      return data.map((item) => {
-        return (
-          <Link
-            key={item.id}
-            to={`/${toPage}/${item.id}`}
-            className={styles.item}
-          >
-            <div className={styles.fig}>
-              <img
-                src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
-                alt={
-                  item.original_title ? item.original_title : item.original_name
-                }
-                className={styles.img}
-              />
-            </div>
-            <p className={styles.name}>
-              {item.original_title ? item.original_title : item.original_name}
-            </p>
-          </Link>
-        );
-      });
-    }
+    return data?.map((item) => {
+      return (
+        <Link
+          key={item.id}
+          to={`/${toPage}/${item.id}`}
+          className={styles.item}
+        >
+          <div className={styles.fig}>
+            <img
+              src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+              alt={
+                item.original_title ? item.original_title : item.original_name
+              }
+              className={styles.img}
+            />
+          </div>
+          <p className={styles.name}>
+            {item.original_title ? item.original_title : item.original_name}
+          </p>
+        </Link>
+      );
+    });
   };
 
   return (

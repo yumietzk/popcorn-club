@@ -79,40 +79,38 @@ const Genre = ({ title, type, data, isFetching, isError, scrollPosition }) => {
       return <p>No data.</p>;
     }
 
-    if (results && results.length !== 0) {
-      return results.map((show) => {
-        return (
-          <Link
-            to={
-              title === 'Movies' ? `/detail/${show.id}` : `/detailtv/${show.id}`
-            }
-            key={show.id}
-            className={styles.content}
-          >
-            <div className={styles.img}>
-              <LazyLoadImage
-                className={styles.poster}
-                src={`https://image.tmdb.org/t/p/original/${show.poster_path}`}
-                alt={
-                  show.original_title ? show.original_title : show.original_name
-                }
-                scrollPosition={scrollPosition}
-              />
-            </div>
-            <div className={styles.description}>
-              <p className={styles.movietitle}>
-                {show.original_title ? show.original_title : show.original_name}
-              </p>
-              <p className={styles.date}>
-                {show.release_date
-                  ? calcYear(show.release_date)
-                  : calcYear(show.first_air_date)}
-              </p>
-            </div>
-          </Link>
-        );
-      });
-    }
+    return results?.map((show) => {
+      return (
+        <Link
+          to={
+            title === 'Movies' ? `/detail/${show.id}` : `/detailtv/${show.id}`
+          }
+          key={show.id}
+          className={styles.content}
+        >
+          <div className={styles.img}>
+            <LazyLoadImage
+              className={styles.poster}
+              src={`https://image.tmdb.org/t/p/original/${show.poster_path}`}
+              alt={
+                show.original_title ? show.original_title : show.original_name
+              }
+              scrollPosition={scrollPosition}
+            />
+          </div>
+          <div className={styles.description}>
+            <p className={styles.movietitle}>
+              {show.original_title ? show.original_title : show.original_name}
+            </p>
+            <p className={styles.date}>
+              {show.release_date
+                ? calcYear(show.release_date)
+                : calcYear(show.first_air_date)}
+            </p>
+          </div>
+        </Link>
+      );
+    });
   };
 
   const renderPaginationPrev = () => {
