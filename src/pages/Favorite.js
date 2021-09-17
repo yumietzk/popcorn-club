@@ -12,31 +12,51 @@ const Favorite = ({
   isFetching,
   isFetchingTV,
   isError,
+  isSignedIn,
 }) => {
   useEffect(() => {
-    fetchFavoriteMovies();
-    fetchFavoriteTVs();
-  }, []);
+    if (isSignedIn) {
+      fetchFavoriteMovies();
+      fetchFavoriteTVs();
+    }
+  }, [isSignedIn]);
+
+  const renderFavorites = () => {
+    if (!isSignedIn) {
+      return (
+        <p className={styles.message}>
+          Please sign in to save your favorite movies or TV shows in favorite
+          section!
+        </p>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <Row
+            category="Movies"
+            group="Movie"
+            data={moviefavorite}
+            isFetching={isFetching}
+            isError={isError}
+          />
+          <Row
+            category="TV Shows"
+            group="TV Show"
+            data={tvfavorite}
+            isFetching={isFetchingTV}
+            isError={isError}
+          />
+        </React.Fragment>
+      );
+    }
+  };
 
   return (
     <div className={styles.favorite}>
       <div className={styles.title}>
         <h3 className={styles.menu}>Favorite</h3>
       </div>
-      <Row
-        category="Movies"
-        group="Movie"
-        data={moviefavorite}
-        isFetching={isFetching}
-        isError={isError}
-      />
-      <Row
-        category="TV Shows"
-        group="TV Show"
-        data={tvfavorite}
-        isFetching={isFetchingTV}
-        isError={isError}
-      />
+      {renderFavorites()}
     </div>
   );
 };
@@ -48,6 +68,7 @@ const mapStateToProps = (state) => {
     isFetching: state.movies.isFetching,
     isFetchingTV: state.shows.isFetching,
     isError: state.error.isError,
+    isSignedIn: state.auth.isSignedIn,
   };
 };
 
