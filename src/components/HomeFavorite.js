@@ -27,22 +27,18 @@ const HomeFavorite = ({ type, data, isFetching, isError }) => {
       <React.Fragment>
         {data?.slice(0, 3).map((show, index) => {
           return (
-            <Link
-              to={`/${toPage}/${show.id}`}
-              key={show.id}
-              className={`styles[content${index}]`}
-            >
-              <div className={styles.img}>
+            <div key={show.id} className={`styles[content${index}]`}>
+              <Link to={`/${toPage}/${show.id}`} className={styles.img}>
                 <img
                   className={styles.poster}
                   src={`https://image.tmdb.org/t/p/original${show.poster_path}`}
                   alt={show.original_title}
                 />
-              </div>
+              </Link>
               <p className={styles.title}>
                 {show.original_title ? show.original_title : show.original_name}
               </p>
-            </Link>
+            </div>
           );
         })}
         <div className={styles.subcontainer}>
