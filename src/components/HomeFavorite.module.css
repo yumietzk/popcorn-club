@@ -25,7 +25,14 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(15rem, 1fr));
   grid-template-rows: repeat(2, 1fr);
-  gap: 2.5rem 4rem;
+  gap: 3.5rem 5rem;
+}
+
+/* 1440px */
+@media only screen and (min-width: 90em) {
+  .content {
+    padding: 4rem 7.5rem 7.5rem 2.5rem;
+  }
 }
 
 /* 850px */

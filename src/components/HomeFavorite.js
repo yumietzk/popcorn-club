@@ -27,7 +27,7 @@ const HomeFavorite = ({ type, data, isFetching, isError }) => {
       <React.Fragment>
         {data?.slice(0, 3).map((show, index) => {
           return (
-            <div key={show.id} className={`styles[content${index}]`}>
+            <div key={show.id} className={styles[`content${index}`]}>
               <Link to={`/${toPage}/${show.id}`} className={styles.img}>
                 <img
                   className={styles.poster}
@@ -47,7 +47,7 @@ const HomeFavorite = ({ type, data, isFetching, isError }) => {
               return (
                 <Link
                   to={`/${toPage}/${sub.id}`}
-                  className={`styles[subcontent${index}]`}
+                  className={styles[`subcontent${index}`]}
                   key={index}
                 >
                   <img
