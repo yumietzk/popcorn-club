@@ -16,6 +16,13 @@ export default (state = { isFetching: false }, action) => {
       return { ...state, isFetching: false, search: action.payload };
 
     case 'SAVE_TV':
+      const org = state.favorite;
+      return {
+        ...state,
+        isFetching: false,
+        favorite: [...org, action.payload],
+      };
+
     case 'FAVORITE_TVS':
       const favorites = action.payload.data?.filter(
         (data) => data.userId === action.payload.userId

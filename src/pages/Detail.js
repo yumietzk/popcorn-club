@@ -87,13 +87,11 @@ const Detail = ({
     setLoaded(true);
   };
 
-  const onClick = (id, path, title, date) => {
+  const onClickFavorite = (id, path, title, date) => {
     if (!favorite) {
       saveMovie(id, path, title, date);
-      setFavorite(!favorite);
     } else {
       deleteMovie(id);
-      setFavorite(!favorite);
     }
   };
 
@@ -128,7 +126,7 @@ const Detail = ({
               <button
                 className={styles.favorite}
                 onClick={() =>
-                  onClick(
+                  onClickFavorite(
                     detail.id,
                     detail.poster_path,
                     detail.original_title,

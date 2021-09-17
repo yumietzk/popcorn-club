@@ -85,13 +85,11 @@ const DetailTV = ({
     setLoaded(true);
   };
 
-  const onClick = (id, path, name, date) => {
+  const onClickFavorite = (id, path, name, date) => {
     if (!favorite) {
       saveTVShow(id, path, name, date);
-      setFavorite(!favorite);
     } else {
       deleteTVShow(id);
-      setFavorite(!favorite);
     }
   };
 
@@ -126,7 +124,7 @@ const DetailTV = ({
               <button
                 className={styles.favorite}
                 onClick={() =>
-                  onClick(
+                  onClickFavorite(
                     detail.id,
                     detail.poster_path,
                     detail.original_name,

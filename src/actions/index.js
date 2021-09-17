@@ -807,7 +807,7 @@ export const saveMovie =
 
     dispatch({
       type: 'SAVE_MOVIE',
-      payload: { data: response.data, userId: userId },
+      payload: response.data,
     });
   };
 
@@ -826,7 +826,7 @@ export const saveTVShow =
 
     dispatch({
       type: 'SAVE_TV',
-      payload: { data: response.data, userId: userId },
+      payload: response.data,
     });
   };
 
