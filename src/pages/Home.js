@@ -68,7 +68,7 @@ const Home = ({
     <div className={styles.home}>
       <h3 className={styles.title}>Home</h3>
       <Row
-        category="Movies"
+        category="Movies - now showing"
         group="Movie"
         cname="wide"
         data={movies}
@@ -76,7 +76,7 @@ const Home = ({
         isError={isError}
       />
       <Row
-        category="TV Shows"
+        category="TV Shows - now showing"
         group="TV Show"
         cname="wide"
         data={shows}

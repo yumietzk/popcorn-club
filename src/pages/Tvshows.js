@@ -48,6 +48,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  fetchTvPopular: fetchTvPopular,
-  fetchTvTopRated: fetchTvTopRated,
+  fetchTvPopular,
+  fetchTvTopRated,
 })(Tvshows);

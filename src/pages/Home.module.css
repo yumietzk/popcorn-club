@@ -13,7 +13,7 @@
 }
 
 .favorite {
-  min-height: 70rem;
+  min-height: 30rem;
   padding: 1.5rem;
   margin-top: 2rem;
   width: 100%;
@@ -23,7 +23,14 @@
 }
 
 .subheight {
-  min-height: 20rem;
+  min-height: 20rem !important;
+}
+
+/* 700px */
+@media only screen and (max-width: 43.75em) {
+  .subheight {
+    min-height: 7rem !important;
+  }
 }
 
 .category {
