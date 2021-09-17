@@ -27,9 +27,14 @@ const Home = ({
   useEffect(() => {
     fetchMovieNowPlaying();
     fetchTvOnAir();
-    fetchFavoriteMovies();
-    fetchFavoriteTVs();
   }, []);
+
+  useEffect(() => {
+    if (isSignedIn) {
+      fetchFavoriteMovies();
+      fetchFavoriteTVs();
+    }
+  }, [isSignedIn]);
 
   const renderFavorite = () => {
     if (isSignedIn) {

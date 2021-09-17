@@ -16,7 +16,10 @@ const HomeFavorite = ({ type, data, isFetching, isError }) => {
 
     if (data && data.length === 0) {
       return (
-        <p>No favorite yet. Click heart button to save your favorite show :)</p>
+        <p className={styles.message}>
+          Haven't saved to favorite yet. Click a heart button on detail page to
+          save your favorites!
+        </p>
       );
     }
 

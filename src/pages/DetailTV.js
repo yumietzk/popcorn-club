@@ -34,24 +34,33 @@ const DetailTV = ({
   const [favorite, setFavorite] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
-    const { id } = match.params;
+  const { id } = match.params;
 
+  useEffect(() => {
     fetchTvDetail(id);
     fetchTvCredits(id);
     fetchTvRelated(id);
-    fetchFavoriteTVs();
-
-    if (isSignedIn) {
-      setFavorite(isFavorite(id));
-    }
 
     setLoaded(false);
   }, [match.params]);
 
-  const isFavorite = (id) => {
-    if (!favorites) return;
-    return favorites.some((item) => item.id === +id);
+  useEffect(() => {
+    if (isSignedIn) {
+      fetchFavoriteTVs();
+    }
+  }, [isSignedIn]);
+
+  useEffect(() => {
+    handleFavorite();
+  }, [favorites]);
+
+  const handleFavorite = () => {
+    if (!favorites) {
+      setFavorite(false);
+    } else {
+      const isFavorite = (id) => favorites.some((item) => item.id === +id);
+      setFavorite(isFavorite(id));
+    }
   };
 
   const calcYear = (date) => {

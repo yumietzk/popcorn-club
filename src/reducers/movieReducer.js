@@ -20,7 +20,10 @@ export default (state = { isFetching: false }, action) => {
 
     case 'SAVE_MOVIE':
     case 'FAVORITE_MOVIES':
-      return { ...state, isFetching: false, favorite: action.payload };
+      const favorites = action.payload.data?.filter(
+        (data) => data.userId === action.payload.userId
+      );
+      return { ...state, isFetching: false, favorite: favorites };
 
     case 'DELETE_MOVIE':
       const data = state.favorite.filter((item) => item.id !== action.payload);

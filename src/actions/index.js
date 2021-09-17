@@ -805,7 +805,10 @@ export const saveMovie =
       userId,
     });
 
-    dispatch({ type: 'SAVE_MOVIE', payload: response.data });
+    dispatch({
+      type: 'SAVE_MOVIE',
+      payload: { data: response.data, userId: userId },
+    });
   };
 
 export const saveTVShow =
@@ -821,7 +824,10 @@ export const saveTVShow =
       userId,
     });
 
-    dispatch({ type: 'SAVE_TV', payload: response.data });
+    dispatch({
+      type: 'SAVE_TV',
+      payload: { data: response.data, userId: userId },
+    });
   };
 
 export const deleteMovie = (id) => async (dispatch) => {
@@ -836,12 +842,17 @@ export const deleteTVShow = (id) => async (dispatch) => {
   dispatch({ type: 'DELETE_TV', payload: id });
 };
 
-export const fetchFavoriteMovies = () => async (dispatch) => {
+export const fetchFavoriteMovies = () => async (dispatch, getState) => {
   try {
     dispatch({ type: 'REQUEST_DATA' });
 
+    const { userId } = getState().auth;
+
     const response = await favorites.get('/movies');
-    dispatch({ type: 'FAVORITE_MOVIES', payload: response.data });
+    dispatch({
+      type: 'FAVORITE_MOVIES',
+      payload: { data: response.data, userId: userId },
+    });
   } catch (err) {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
@@ -852,12 +863,17 @@ export const fetchFavoriteMovies = () => async (dispatch) => {
   }
 };
 
-export const fetchFavoriteTVs = () => async (dispatch) => {
+export const fetchFavoriteTVs = () => async (dispatch, getState) => {
   try {
     dispatch({ type: 'REQUEST_TVDATA' });
 
+    const { userId } = getState().auth;
+
     const response = await favorites.get('/tvs');
-    dispatch({ type: 'FAVORITE_TVS', payload: response.data });
+    dispatch({
+      type: 'FAVORITE_TVS',
+      payload: { data: response.data, userId: userId },
+    });
   } catch (err) {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',

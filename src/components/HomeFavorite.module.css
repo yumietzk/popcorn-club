@@ -178,3 +178,7 @@
   color: #060b26;
   transform: scale(1.02);
 }
+
+.message {
+  font-size: 1.3rem;
+}
