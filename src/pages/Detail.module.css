@@ -5,8 +5,15 @@
 
 .container {
   min-height: 100vh;
-  padding: 4rem 6rem;
+  padding: 4rem;
   position: relative;
+}
+
+/* 400px */
+@media only screen and (max-width: 25em) {
+  .container {
+    padding: 4rem 2rem;
+  }
 }
 
 .nav {
@@ -335,13 +342,6 @@
   flex-direction: column;
 }
 
-/* 850px */
-@media only screen and (max-width: 53.125em) {
-  .cast {
-    height: 18rem;
-  }
-}
-
 .reviews {
   height: 30rem;
   margin-bottom: 10rem;
@@ -355,11 +355,4 @@
 
   display: flex;
   flex-direction: column;
-}
-
-/* 850px */
-@media only screen and (max-width: 53.125em) {
-  .cast {
-    height: 35rem;
-  }
 }
