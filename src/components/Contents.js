@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from './Card';
 import styles from './Contents.module.css';
 
