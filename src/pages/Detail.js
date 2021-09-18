@@ -46,7 +46,7 @@ const Detail = ({
     fetchMovieRelated(id);
 
     setLoaded(false);
-  }, [match.params]);
+  }, []);
 
   useEffect(() => {
     if (isSignedIn) fetchFavoriteMovies();
