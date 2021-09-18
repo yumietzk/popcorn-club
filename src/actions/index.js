@@ -263,7 +263,10 @@ export const searchMovies = (term) => async (dispatch) => {
     const response = await tmdb.get(
       `${requests.searchMovies}&language=en-US&query=${term}`
     );
-    dispatch({ type: 'SEARCH_MOVIES', payload: response.data.results });
+    dispatch({
+      type: 'SEARCH_MOVIES',
+      payload: { data: response.data.results, term: term },
+    });
   } catch (err) {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
@@ -283,7 +286,10 @@ export const searchTvShows = (term) => async (dispatch) => {
       `${requests.searchTvShows}&language=en-US&query=${term}`
     );
 
-    dispatch({ type: 'SEARCH_TVS', payload: response.data.results });
+    dispatch({
+      type: 'SEARCH_TVS',
+      payload: response.data.results,
+    });
   } catch (err) {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',

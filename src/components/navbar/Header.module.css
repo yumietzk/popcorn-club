@@ -33,13 +33,6 @@
   justify-content: flex-end;
 }
 
-/* 400px */
-@media only screen and (max-width: 25em) {
-  .search-form {
-    /* justify-content: center; */
-  }
-}
-
 .input {
   flex: 0 1 15%;
   font-family: inherit;

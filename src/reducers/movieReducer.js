@@ -16,7 +16,12 @@ export default (state = { isFetching: false }, action) => {
       return { ...state, isFetching: false, toprated: action.payload };
 
     case 'SEARCH_MOVIES':
-      return { ...state, isFetching: false, search: action.payload };
+      return {
+        ...state,
+        isFetching: false,
+        search: action.payload.data,
+        searchTerm: action.payload.term,
+      };
 
     case 'SAVE_MOVIE':
       const org = state.favorite;

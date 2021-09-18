@@ -13,7 +13,11 @@ export default (state = { isFetching: false }, action) => {
       return { ...state, isFetching: false, toprated: action.payload };
 
     case 'SEARCH_TVS':
-      return { ...state, isFetching: false, search: action.payload };
+      return {
+        ...state,
+        isFetching: false,
+        search: action.payload,
+      };
 
     case 'SAVE_TV':
       const org = state.favorite;

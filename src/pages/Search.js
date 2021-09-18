@@ -3,10 +3,17 @@ import { connect } from 'react-redux';
 import Row from '../components/Row';
 import styles from './Search.module.css';
 
-const Search = ({ movies, shows, isFetching, isFetchingTV, isError }) => {
+const Search = ({
+  movies,
+  shows,
+  searchTerm,
+  isFetching,
+  isFetchingTV,
+  isError,
+}) => {
   return (
     <div className={styles.search}>
-      <h3 className={styles.title}>Search results</h3>
+      <h3 className={styles.title}>Search results for "{searchTerm}"</h3>
       <Row
         category="Movies"
         group="Movie"
@@ -29,6 +36,7 @@ const mapStateToProps = (state) => {
   return {
     movies: state.movies.search,
     shows: state.shows.search,
+    searchTerm: state.movies.searchTerm,
     isFetching: state.movies.isFetching,
     isFetchingTV: state.shows.isFetching,
     isError: state.error.isError,
