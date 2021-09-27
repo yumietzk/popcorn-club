@@ -6,7 +6,7 @@
 ![Popcorn Club screen shot](https://user-images.githubusercontent.com/61277579/134947887-a274599d-3d83-46c0-b359-50ee43618ddb.png)
 
 
-A movie library created with React JS using [The Movie Database API](https://www.themoviedb.org/documentation/api).  
+A movie library built with React JS using [The Movie Database API](https://www.themoviedb.org/documentation/api).  
 Users can search movies and TV shows and get data by different genres and categories. Users can also see detail of movies and TV shows and jump to a trailer and a official page.  
 I implemented Google OAuth 2.0 for user authentication. When users sign in, they can save favorite movies and TV shows. I created a rest api with JSON Server to save and fetch data saved in favorite section.   
 
