@@ -1,7 +1,7 @@
 .contents {
   flex: 1;
   padding: 1rem;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 .contents::-webkit-scrollbar {
@@ -19,5 +19,4 @@
   align-items: center;
   width: 500rem;
   height: 100%;
-  overflow-x: scroll;
 }
