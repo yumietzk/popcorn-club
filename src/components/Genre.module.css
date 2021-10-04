@@ -71,11 +71,12 @@
 
 .description {
   flex-basis: 0 1 6rem;
-  padding-bottom: 0.5rem;
+  padding: 0 0.5rem 0.5rem 0.5rem;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .movietitle {

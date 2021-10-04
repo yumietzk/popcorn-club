@@ -4,9 +4,8 @@
 
   text-decoration: none;
   color: #f7f7f7;
-  padding-right: 2.5rem;
+  padding-right: 1.7rem;
   height: 100%;
-  width: 24rem;
   transition: all 0.3s;
 }
 
@@ -21,28 +20,20 @@
   transform: scale(1.05);
 }
 
-.wide {
-  width: 45rem;
-}
-
 .img {
   flex: 1;
   overflow: hidden;
+
+  height: 100%;
+  width: 100%;
 }
 
 .poster {
   display: block;
-  width: 100%;
+  width: auto;
   height: 100%;
   object-fit: cover;
   opacity: 0;
-}
-
-/* 500px */
-@media only screen and (max-width: 31.25em) {
-  .poster {
-    width: 90%;
-  }
 }
 
 .poster-open {

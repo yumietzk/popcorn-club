@@ -20,7 +20,6 @@
   .form {
     flex-direction: column-reverse;
     align-items: flex-end;
-    margin-top: 2rem;
     margin-right: 2rem;
   }
 }
@@ -61,7 +60,7 @@
 /* 400px */
 @media only screen and (max-width: 25em) {
   .input {
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem;
     font-size: 1.05rem;
     width: 13rem;
     margin-right: 0;
@@ -127,4 +126,12 @@
   height: 2rem;
   width: 2rem;
   fill: #060b26;
+}
+
+/* 400px */
+@media only screen and (max-width: 25em) {
+  .btn-icon {
+    height: 1.6rem;
+    width: 1.6rem;
+  }
 }

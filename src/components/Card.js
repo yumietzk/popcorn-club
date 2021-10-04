@@ -36,7 +36,7 @@ const Card = ({ group, cname, data, isFetching, isError }) => {
         <Link
           to={group === 'Movie' ? `/detail/${show.id}` : `/detailtv/${show.id}`}
           key={show.id}
-          className={`${styles.card} ${styles[cname]}`}
+          className={styles.card}
         >
           <div className={styles.img}>
             <img
