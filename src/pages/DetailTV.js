@@ -42,7 +42,7 @@ const DetailTV = ({
     fetchTvRelated(id);
 
     setLoaded(false);
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (isSignedIn) {
