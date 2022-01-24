@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import movieTrailer from 'movie-trailer';
 import * as IoIcons from 'react-icons/io';
+import { truncate } from '../../helpers/Truncate';
 import styles from './DetailMain.module.css';
 
 const DetailMain = ({ data, isFetching, isError }) => {
@@ -10,6 +12,27 @@ const DetailMain = ({ data, isFetching, isError }) => {
   //     url: data?.poster_path,
   //   });
   // }, [data]);
+  const [trailerUrl, setTrailerUrl] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    movieTrailer(null, { tmdbId: data?.id })
+      .then((res) => {
+        const url = new URL(res);
+        const param = new URLSearchParams(url.search);
+        console.log(param.get('v'));
+        setTrailerUrl(param.get('v'));
+      })
+      .catch((err) => console.log(err));
+  }, [data?.id]);
+
+  const videoSrc = `https://www.youtube.com/embed/${trailerUrl}`;
+
+  // return (
+  //   <div className={styles.modal}>
+  //     <iframe src={videoSrc} title={props.id} width="100%" height="100%" />
+  //   </div>
+  // );
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];
@@ -82,7 +105,10 @@ const DetailMain = ({ data, isFetching, isError }) => {
             </div>
           </div>
           <div className={styles.others}>
-            <button className={styles.play}>
+            <button
+              className={styles.play}
+              onClick={() => setIsModalOpen(true)}
+            >
               <IoIcons.IoIosPlay className={styles['play-icon']} />
               Play
             </button>
@@ -93,10 +119,11 @@ const DetailMain = ({ data, isFetching, isError }) => {
                 className={styles['link-page']}
               >
                 <IoIcons.IoIosLink className={styles['link-icon']} />
+                Website
               </Link>
             </button>
           </div>
-          <div className={styles.overview}>{data.overview}</div>
+          <div className={styles.overview}>{truncate(data.overview, 700)}</div>
           <div className={styles.genre}>
             <div className={styles['genre-title']}>Genre</div>
             <div className={styles['genre-name']}>
@@ -104,6 +131,13 @@ const DetailMain = ({ data, isFetching, isError }) => {
             </div>
           </div>
         </div>
+        <div className={`${styles.modal} ${!isModalOpen && styles.hidden}`}>
+          <iframe src={videoSrc} title={data.id} width="100%" height="100%" />
+        </div>
+        <div
+          className={`${styles.overlay} ${!isModalOpen && styles.hidden}`}
+          onClick={() => setIsModalOpen(false)}
+        ></div>
       </React.Fragment>
     );
   };

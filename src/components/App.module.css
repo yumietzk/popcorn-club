@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: max-content 1fr;
   grid-template-rows: 8rem min-content 1fr;
+  position: relative;
   /* color: rgba(41, 38, 33, 0.938); */
 }
 
