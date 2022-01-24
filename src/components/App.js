@@ -22,11 +22,13 @@ const App = ({ init }) => {
     url: '',
   });
 
-  console.log(detailBackground.url);
-
   useEffect(() => {
     init();
   }, []);
+
+  useEffect(() => {
+    setDetailBackground({ isON: false, url: '' });
+  }, [selectedSidebar]);
 
   return (
     <div
@@ -36,7 +38,7 @@ const App = ({ init }) => {
         // backgroundColor: 'red',
         backgroundImage:
           detailBackground.isON &&
-          `linear-gradient(to top left, rgba(14, 13, 11, 0.95), rgba(14, 13, 11, 0.95)), url('https://image.tmdb.org/t/p/original${detailBackground.url}')`,
+          `linear-gradient(to top left, rgba(41, 38, 33, 0.95), rgba(41, 38, 33, 0.95)), url('https://image.tmdb.org/t/p/original${detailBackground.url}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'top',
         // backdropFilter: detailBackground.isON && 'blur(10px)',

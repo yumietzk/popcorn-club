@@ -39,7 +39,7 @@ const DetailMain = ({ data, isFetching, isError }) => {
     }
 
     return (
-      <div className={styles.main}>
+      <React.Fragment>
         <div className={styles.img}>
           <img
             src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
@@ -104,7 +104,7 @@ const DetailMain = ({ data, isFetching, isError }) => {
             </div>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   };
 

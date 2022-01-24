@@ -1,5 +1,6 @@
 .detail {
-  background-color: rosybrown;
-  padding: 0 0 2rem 3.8rem;
+  /* background-color: rosybrown; */
+  /* padding: 0 0 2rem 3.8rem; */
+  padding-bottom: 7rem;
   overflow-y: scroll;
 }

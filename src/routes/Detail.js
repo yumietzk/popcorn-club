@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchMovieDetail } from '../actions';
+import {
+  fetchMovieDetail,
+  fetchMovieCredits,
+  fetchMovieReviews,
+  fetchMovieRelated,
+} from '../actions';
 import Title from './Title';
 import DetailMain from './detail/DetailMain';
 import Cast from './detail/Cast';
@@ -12,7 +17,13 @@ import styles from './Detail.module.css';
 const Detail = ({
   setDetailBackground,
   fetchMovieDetail,
+  fetchMovieCredits,
+  fetchMovieReviews,
+  fetchMovieRelated,
   movieDetail,
+  movieCasts,
+  movieReviews,
+  movieRelated,
   isFetching,
   isError,
 }) => {
@@ -20,12 +31,15 @@ const Detail = ({
 
   useEffect(() => {
     fetchMovieDetail(id);
+    fetchMovieCredits(id);
+    fetchMovieReviews(id);
+    fetchMovieRelated(id);
   }, [id]);
 
   useEffect(() => {
     setDetailBackground({
       isON: true,
-      url: movieDetail?.poster_path,
+      url: movieDetail?.backdrop_path,
     });
   }, [movieDetail]);
 
@@ -50,9 +64,17 @@ const Detail = ({
           isFetching={isFetching}
           isError={isError}
         />
-        <Cast />
-        <Reviews />
-        <Related />
+        <Cast data={movieCasts} isFetching={isFetching} isError={isError} />
+        <Reviews
+          data={movieReviews}
+          isFetching={isFetching}
+          isError={isError}
+        />
+        <Related
+          data={movieRelated}
+          isFetching={isFetching}
+          isError={isError}
+        />
       </div>
     </React.Fragment>
   );
@@ -61,6 +83,9 @@ const Detail = ({
 const mapStateToProps = (state) => {
   return {
     movieDetail: state.detail.detail,
+    movieCasts: state.detail.casts,
+    movieReviews: state.detail.reviews,
+    movieRelated: state.detail.related,
     isFetching: state.detail.isFetching,
     isError: state.error.isError,
   };
@@ -68,4 +93,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   fetchMovieDetail,
+  fetchMovieCredits,
+  fetchMovieReviews,
+  fetchMovieRelated,
 })(Detail);

@@ -19,7 +19,7 @@ const Contents = ({ group, cname, data, isFetching, isError }) => {
     return data?.map((show, i) => {
       return (
         <li className={styles.card} key={i}>
-          <Card group={group} cname={cname} data={show} />
+          <Card group={group} data={show} />
         </li>
       );
     });

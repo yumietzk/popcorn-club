@@ -1,0 +1,11 @@
+.related {
+  color: #dec7a1;
+  /* border: 2px solid green; */
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  padding-left: 3.8rem;
+}

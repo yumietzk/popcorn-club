@@ -1,0 +1,68 @@
+.reviews {
+  color: #dec7a1;
+  margin-bottom: 6rem;
+
+  /* border: 2px solid green; */
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  padding-left: 3.8rem;
+}
+
+.content {
+  /* border: 2px solid red; */
+  padding-left: 3.8rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+.cards {
+  list-style: none;
+
+  display: flex;
+}
+
+.card {
+  flex: 0 0 35rem;
+
+  height: 22rem;
+  margin-right: 3.1rem;
+  background-color: #1d1911;
+  border-radius: 3px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 5rem;
+  padding: 3rem 2rem;
+  /* margin-bottom: 1rem; */
+}
+
+.user-icon {
+  font-size: 2.4rem;
+  margin-right: 1rem;
+}
+
+.user-name {
+  font-size: 1.4rem;
+}
+
+.review {
+  width: 100%;
+  font-size: 1.4rem;
+  padding: 2rem;
+  padding-top: 0;
+  line-height: 1.6;
+}
+
+/* 1d1911 */

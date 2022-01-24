@@ -1,11 +1,60 @@
-.title {
-  flex: 0 1 3rem;
-  font-size: 1.7rem;
-  font-weight: 400;
-  margin-bottom: 1.8rem;
+.cast {
+  color: #dec7a1;
+  margin-bottom: 6rem;
+
+  /* border: 2px solid green; */
 }
 
-.wrap {
+.title {
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  padding-left: 3.8rem;
+}
+
+.content {
+  /* border: 2px solid red; */
+  padding-left: 3.8rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+.cards {
+  list-style: none;
+
+  display: flex;
+}
+
+.card {
+  margin-right: 3.1rem;
+}
+
+.img {
+  /* border-radius: 5px; */
+  overflow: hidden;
+  /* position: relative; */
+}
+
+.poster {
+  display: block;
+  height: 17rem;
+  width: 17rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  margin-top: 1rem;
+  font-weight: 400;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+/* .wrap {
   flex: 1;
   list-style: none;
   display: flex;
@@ -35,26 +84,26 @@
   width: 11rem;
   border-radius: 50%;
   overflow: hidden;
-}
+} */
 
 /* 850px */
-@media only screen and (max-width: 53.125em) {
+/* @media only screen and (max-width: 53.125em) {
   .fig {
     height: 9rem;
     width: 9rem;
   }
-}
+} */
 
 /* 400px */
-@media only screen and (max-width: 25em) {
+/* @media only screen and (max-width: 25em) {
   .fig {
     height: 7.5rem;
     width: 7.5rem;
   }
-}
+} */
 
 /* 300px */
-@media only screen and (max-width: 18.75em) {
+/* @media only screen and (max-width: 18.75em) {
   .fig {
     height: 6.5rem;
     width: 6.5rem;
@@ -71,12 +120,12 @@
   margin-top: 1rem;
   font-weight: 400;
   font-size: 1.2rem;
-}
+} */
 
 /* 300px */
-@media only screen and (max-width: 18.75em) {
+/* @media only screen and (max-width: 18.75em) {
   .name {
     font-size: 0.7rem;
     font-weight: 300;
   }
-}
+} */

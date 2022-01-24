@@ -5,7 +5,7 @@
   display: grid;
   grid-template-columns: max-content 1fr;
   grid-template-rows: 8rem min-content 1fr;
-  /* color: rgba(14, 13, 11, 0.938); */
+  /* color: rgba(41, 38, 33, 0.938); */
 }
 
 /* .modal {

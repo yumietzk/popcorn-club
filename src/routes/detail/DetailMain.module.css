@@ -1,8 +1,11 @@
 .main {
-  border: 2px solid green;
+  /* border: 2px solid green; */
   padding-top: 1.5rem;
+  padding-left: 3.8rem;
+  margin-bottom: 6rem;
 
   display: flex;
+  justify-content: flex-start;
 }
 
 .img {
