@@ -52,6 +52,11 @@ const DetailMain = ({ data, isFetching, isError }) => {
     return `${hours(hr)} ${min} min`;
   };
 
+  // let navigate = useNavigate();
+  // const handleClick = (url) => {
+  //   navigate(url);
+  // };
+
   const renderMain = () => {
     if (isFetching || !data) {
       return <div>Now loading...</div>;
@@ -112,16 +117,19 @@ const DetailMain = ({ data, isFetching, isError }) => {
               <IoIcons.IoIosPlay className={styles['play-icon']} />
               Play
             </button>
-            <button className={styles.link}>
-              <Link
-                to={{ pathname: data.homepage }}
-                target="_blank"
-                className={styles['link-page']}
-              >
-                <IoIcons.IoIosLink className={styles['link-icon']} />
-                Website
-              </Link>
-            </button>
+            {/* <button
+              className={styles.link}
+            > */}
+            <a
+              href={`${data.homepage}`}
+              // to={{ pathname: data.homepage }}
+              target="_blank"
+              className={styles.link}
+            >
+              <IoIcons.IoIosLink className={styles['link-icon']} />
+              Website
+            </a>
+            {/* </button> */}
           </div>
           <div className={styles.overview}>{truncate(data.overview, 700)}</div>
           <div className={styles.genre}>

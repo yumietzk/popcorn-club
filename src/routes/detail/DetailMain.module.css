@@ -98,16 +98,16 @@
 }
 
 .link {
+  text-decoration: none;
+  color: #e4d1b3;
   background-color: #1d1911;
 }
 
-.link-page {
-  text-decoration: none;
-  color: #e4d1b3;
+/* .link-page {
 
   display: flex;
   align-items: center;
-}
+} */
 
 .play-icon,
 .link-icon {
@@ -122,7 +122,7 @@
 
 .link:hover,
 .link:active {
-  background-color: #dec7a18f;
+  background-color: #dec7a148;
 }
 
 .play:active,
