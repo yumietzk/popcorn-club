@@ -1,0 +1,20 @@
+.category {
+  display: flex;
+  justify-content: space-between;
+  padding: 2.8rem 4rem 1.7rem 3.8rem;
+}
+
+.category-title {
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+.category-btn {
+}
+
+.btn-left {
+  margin-right: 1.5rem;
+}
+
+.btn-right {
+}

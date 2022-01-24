@@ -1,0 +1,98 @@
+.img {
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.poster {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  opacity: 0;
+}
+
+.poster:hover {
+  filter: blur(4px);
+  border: 1px solid #edb01d;
+}
+
+.cover {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  border: 1px solid #edb01d;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.img:hover .cover {
+  display: block;
+}
+
+.cover-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  background: none;
+  border: 1.8px solid #ccc;
+  cursor: pointer;
+  transition: all 0.5s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover-btn:hover {
+  border: 1.8px solid #edb01d;
+  background: #edb01d;
+}
+
+.cover-icon {
+  color: #ccc;
+  font-size: 4.5rem;
+  transition: all 0.4s;
+}
+
+.cover-btn:hover .cover-icon {
+  color: #292929;
+}
+
+.poster-open {
+  opacity: 1;
+  transition: all 0.4s;
+}
+
+.title:link,
+.title:visited {
+  display: block;
+  text-decoration: none;
+  color: #dec7a1;
+  font-size: 1.3rem;
+  padding: 0.3rem;
+  padding-top: 1.2rem;
+  transition: all 0.5s;
+}
+
+.title:hover,
+.title:active {
+  text-decoration: underline;
+}
+
+.date {
+  display: block;
+  padding-left: 0.3rem;
+  padding-top: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 100;
+  color: #dec7a1;
+}

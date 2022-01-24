@@ -14,12 +14,12 @@
 }
 
 .user-btn {
-  border: none;
+  border: 1.3px solid #b09760;
   padding: 0.7rem 1rem;
   border-radius: 1rem;
-  background-color: #3aaa6f;
+  background-color: #1d1911;
   font-size: 1.4rem;
-  color: #f7f7f7;
+  color: #b09760;
   cursor: pointer;
 
   display: flex;
@@ -36,5 +36,7 @@
 }
 
 .user-btn:hover {
-  background-color: #2e8d5a;
+  background-color: #b09760;
+  color: #1d1911;
+  font-weight: 700;
 }

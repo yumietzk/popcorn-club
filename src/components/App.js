@@ -1,77 +1,79 @@
-import React from 'react';
-import { Router, Switch, Route } from 'react-router-dom';
-import Header from './navbar/Header';
-import Home from '../pages/Home';
-import Movies from '../pages/Movies';
-import Action from '../pages/genre/movies/Action';
-import Adventure from '../pages/genre/movies/Adventure';
-import Animation from '../pages/genre/movies/Animation';
-import Comedy from '../pages/genre/movies/Comedy';
-import Documentary from '../pages/genre/movies/Documentary';
-import Drama from '../pages/genre/movies/Drama';
-import Fantasy from '../pages/genre/movies/Fantasy';
-import Horror from '../pages/genre/movies/Horror';
-import Romance from '../pages/genre/movies/Romance';
-import Scifi from '../pages/genre/movies/Scifi';
-import TVshows from '../pages/Tvshows';
-import ActionAdventureShow from '../pages/genre/tvs/ActionAdventure';
-import AnimationShow from '../pages/genre/tvs/Animation';
-import ComedyShow from '../pages/genre/tvs/Comedy';
-import CrimeShow from '../pages/genre/tvs/Crime';
-import DocumentaryShow from '../pages/genre/tvs/Documentary';
-import DramaShow from '../pages/genre/tvs/Drama';
-import KidsShow from '../pages/genre/tvs/Kids';
-import MysteryShow from '../pages/genre/tvs/Mystery';
-import RealityShow from '../pages/genre/tvs/Reality';
-import Favorite from '../pages/Favorite';
-import Detail from '../pages/Detail';
-import DetailTV from '../pages/DetailTV';
-import Search from '../pages/Search';
-import Modal from './modal/Modal';
-import ScrollToTop from '../helpers/ScrollToTop';
-import history from '../history';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+// import { Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { init } from '../actions';
+import Header from './Header';
+import Sidebar from './Sidebar';
+import Home from '../routes/Home';
+import Movies from '../routes/Movies';
+import TVShows from '../routes/TVShows';
+import Detail from '../routes/Detail';
+import SidebarData from './data/SidebarData';
+// import ScrollToTop from '../helpers/ScrollToTop';
+// import history from '../history';
+import styles from './App.module.css';
 
-const App = () => {
+const App = ({ init }) => {
+  const [selectedSidebar, setSelectedSidebar] = useState(SidebarData[0].title);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [detailBackground, setDetailBackground] = useState({
+    isON: false,
+    url: '',
+  });
+
+  console.log(detailBackground.url);
+
+  useEffect(() => {
+    init();
+  }, []);
+
   return (
-    <Router history={history}>
-      <Header />
-      <ScrollToTop />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/movies" exact component={Movies} />
-        <Route path="/movies/action" component={Action} />
-        <Route path="/movies/adventure" component={Adventure} />
-        <Route path="/movies/animation" component={Animation} />
-        <Route path="/movies/comedy" component={Comedy} />
-        <Route path="/movies/documentary" component={Documentary} />
-        <Route path="/movies/drama" component={Drama} />
-        <Route path="/movies/fantasy" component={Fantasy} />
-        <Route path="/movies/horror" component={Horror} />
-        <Route path="/movies/romance" component={Romance} />
-        <Route path="/movies/scifi" component={Scifi} />
-        <Route path="/tvshows" exact component={TVshows} />
-        <Route
-          path="/tvshows/actionadventure"
-          component={ActionAdventureShow}
+    <div
+      className={`${styles.container} ${detailBackground.isON && styles.modal}`}
+      style={{
+        // ⚠️画像の読み込み失敗時のために、デフォルトの背景色を変更しておく！
+        // backgroundColor: 'red',
+        backgroundImage:
+          detailBackground.isON &&
+          `linear-gradient(to top left, rgba(14, 13, 11, 0.95), rgba(14, 13, 11, 0.95)), url('https://image.tmdb.org/t/p/original${detailBackground.url}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'top',
+        // backdropFilter: detailBackground.isON && 'blur(10px)',
+      }}
+    >
+      {/* <Router history={history}> */}
+      <BrowserRouter>
+        <Header isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+        <Sidebar
+          selectedSidebar={selectedSidebar}
+          setSelectedSidebar={setSelectedSidebar}
+          isCollapsed={isCollapsed}
         />
-        <Route path="/tvshows/animation" component={AnimationShow} />
-        <Route path="/tvshows/comedy" component={ComedyShow} />
-        <Route path="/tvshows/crime" component={CrimeShow} />
-        <Route path="/tvshows/documentary" component={DocumentaryShow} />
-        <Route path="/tvshows/drama" component={DramaShow} />
-        <Route path="/tvshows/kids" component={KidsShow} />
-        <Route path="/tvshows/mystery" component={MysteryShow} />
-        <Route path="/tvshows/reality" component={RealityShow} />
-        <Route path="/favorite" component={Favorite} />
-        <Route path="/detail/:id" exact component={Detail} />
-        <Route path="/detailtv/:id" exact component={DetailTV} />
-        <Route path="/search/:term" component={Search} />
-        <Route path="/detail/:id/play" component={Modal} />
-        <Route path="/detailtv/:id/play" component={Modal} />
-      </Switch>
-    </Router>
+        {/* <ScrollToTop /> */}
+        <Routes>
+          <Route
+            path="/"
+            element={<Home setSelectedSidebar={setSelectedSidebar} />}
+          />
+          <Route
+            path="movies/*"
+            element={<Movies setSelectedSidebar={setSelectedSidebar} />}
+          />
+          <Route
+            path="tvshows/*"
+            element={<TVShows setSelectedSidebar={setSelectedSidebar} />}
+          />
+          <Route
+            path="detail/:id"
+            element={<Detail setDetailBackground={setDetailBackground} />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 };
 
-export default App;
+export default connect(null, {
+  init,
+})(App);

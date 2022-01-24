@@ -3,6 +3,12 @@ export default (state = { isFetching: false }, action) => {
     case 'REQUEST_DATA':
       return { ...state, isFetching: true };
 
+    case 'MOVIE_ALL':
+      return { ...state, isFetching: false, all: action.payload };
+
+    case 'MOVIE_BYGENRE':
+      return { ...state, isFetching: false, byGenre: action.payload };
+
     case 'MOVIE_POPULAR':
       return { ...state, isFetching: false, popular: action.payload };
 

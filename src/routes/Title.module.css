@@ -1,0 +1,53 @@
+.title {
+  color: #dec7a1;
+  padding: 1.5rem 3.8rem;
+  padding-bottom: 1.3rem;
+  position: relative;
+}
+
+.title-name {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.selector-btns {
+  display: flex;
+}
+
+.selector-btn {
+  font-size: 1.6rem;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+
+  display: flex;
+  align-items: center;
+}
+
+.selector-btn:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.down-icon {
+  font-size: 2.4rem;
+
+  display: flex;
+  align-items: center;
+}
+
+.list-items {
+  position: absolute;
+  top: 100%;
+  /* left: 3.7rem; */
+  list-style: none;
+  padding: 0.7rem 0;
+  background-color: #0e0d0b;
+  color: #dec7a1;
+  width: 20rem;
+  font-size: 1.4rem;
+  border-radius: 4px;
+  max-height: 60vh;
+  overflow-y: auto;
+  z-index: 20;
+}

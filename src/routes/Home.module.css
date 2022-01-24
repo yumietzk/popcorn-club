@@ -1,0 +1,19 @@
+.title {
+  color: #dec7a1;
+  font-size: 1.8rem;
+  padding: 1.5rem 3.8rem;
+  padding-bottom: 1.9rem;
+}
+
+.rows {
+  overflow-y: scroll;
+}
+
+.rows::-webkit-scrollbar {
+  /* height: 4px; */
+}
+
+/* .rows::-webkit-scrollbar-thumb {
+  background: rgba(133, 133, 133, 0.5);
+  border-radius: 3px;
+} */
