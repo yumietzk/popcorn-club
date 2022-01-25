@@ -1,0 +1,97 @@
+.seasons {
+  color: #dec7a1;
+  margin-bottom: 6rem;
+
+  /* border: 2px solid green; */
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  padding-left: 3.8rem;
+}
+
+.content {
+  /* border: 2px solid red; */
+  padding-left: 3.8rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+.cards {
+  list-style: none;
+
+  display: flex;
+}
+
+.card {
+  margin-right: 3.1rem;
+}
+
+.img {
+  /* border-radius: 5px; */
+  overflow: hidden;
+  /* position: relative; */
+}
+
+.poster {
+  display: block;
+  height: 17rem;
+  width: 17rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* .title {
+  flex: 0 1 3rem;
+  font-size: 1.7rem;
+  font-weight: 400;
+  margin-bottom: 1.8rem;
+}
+
+.seasons {
+  flex: 1;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+}
+
+.seasons::-webkit-scrollbar {
+  height: 4px;
+}
+
+.seasons::-webkit-scrollbar-thumb {
+  background: rgba(133, 133, 133, 0.5);
+  border-radius: 3px;
+}
+
+.item {
+  height: 100%;
+  margin-right: 3rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.fig {
+  flex: 1;
+  width: 13rem;
+}
+
+.img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.name {
+  flex: 0 1 3rem;
+  margin-top: 2rem;
+  font-size: 1.3rem;
+} */

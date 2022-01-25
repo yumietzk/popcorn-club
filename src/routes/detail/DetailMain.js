@@ -1,38 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import movieTrailer from 'movie-trailer';
 import * as IoIcons from 'react-icons/io';
 import { truncate } from '../../helpers/Truncate';
 import styles from './DetailMain.module.css';
 
-const DetailMain = ({ data, isFetching, isError }) => {
-  // useEffect(() => {
-  //   setDetailBackground({
-  //     isON: true,
-  //     url: data?.poster_path,
-  //   });
-  // }, [data]);
+const DetailMain = ({ group, data, isFetching, isError }) => {
   const [trailerUrl, setTrailerUrl] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    movieTrailer(null, { tmdbId: data?.id })
-      .then((res) => {
-        const url = new URL(res);
-        const param = new URLSearchParams(url.search);
-        console.log(param.get('v'));
-        setTrailerUrl(param.get('v'));
-      })
-      .catch((err) => console.log(err));
+    if (group === 'movie') {
+      movieTrailer(null, { tmdbId: data?.id })
+        .then((res) => {
+          const url = new URL(res);
+          const param = new URLSearchParams(url.search);
+          console.log(param.get('v'));
+          setTrailerUrl(param.get('v'));
+        })
+        .catch((err) => console.log(err));
+    }
   }, [data?.id]);
 
   const videoSrc = `https://www.youtube.com/embed/${trailerUrl}`;
-
-  // return (
-  //   <div className={styles.modal}>
-  //     <iframe src={videoSrc} title={props.id} width="100%" height="100%" />
-  //   </div>
-  // );
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];
@@ -71,14 +61,16 @@ const DetailMain = ({ data, isFetching, isError }) => {
         <div className={styles.img}>
           <img
             src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
-            alt={data.original_title}
+            alt={data.original_title ? data.original_title : data.original_name}
             className={styles.poster}
             // onLoad={onLoad}
           />
         </div>
         <div className={styles.content}>
           <div className={styles.title}>
-            <h2 className={styles.titleName}>{data.original_title}</h2>
+            <h2 className={styles.titleName}>
+              {data.original_title ? data.original_title : data.original_name}
+            </h2>
             {/* {isSignedIn && (
               <button
                 className={styles.favorite}
@@ -101,35 +93,38 @@ const DetailMain = ({ data, isFetching, isError }) => {
               </button>
             )} */}
           </div>
-          <div className={styles.date}>{calcYear(data.release_date)}</div>
+          <div className={styles.date}>
+            {calcYear(
+              `${data.release_date ? data.release_date : data.first_air_date}`
+            )}
+          </div>
           <div className={styles.timerate}>
-            <div className={styles.runtime}>{`${calcHour(data.runtime)}`}</div>
+            <div className={styles.runtime}>{`${calcHour(
+              `${data.runtime ? data.runtime : data.episode_run_time[0]}`
+            )}`}</div>
             <div className={styles.rate}>
               <IoIcons.IoIosStar className={styles['rate-icon']} />
               {data.vote_average}
             </div>
           </div>
           <div className={styles.others}>
-            <button
-              className={styles.play}
-              onClick={() => setIsModalOpen(true)}
-            >
-              <IoIcons.IoIosPlay className={styles['play-icon']} />
-              Play
-            </button>
-            {/* <button
-              className={styles.link}
-            > */}
+            {group === 'movie' && (
+              <button
+                className={styles.play}
+                onClick={() => setIsModalOpen(true)}
+              >
+                <IoIcons.IoIosPlay className={styles['play-icon']} />
+                Play
+              </button>
+            )}
             <a
               href={`${data.homepage}`}
-              // to={{ pathname: data.homepage }}
               target="_blank"
               className={styles.link}
             >
               <IoIcons.IoIosLink className={styles['link-icon']} />
               Website
             </a>
-            {/* </button> */}
           </div>
           <div className={styles.overview}>{truncate(data.overview, 700)}</div>
           <div className={styles.genre}>

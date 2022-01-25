@@ -16,25 +16,28 @@ const Contents = ({ group, cname, data, isFetching, isError }) => {
       return <p>No data.</p>;
     }
 
-    return data?.map((show, i) => {
-      return (
-        <li className={styles.card} key={i}>
-          <Card group={group} data={show} />
-        </li>
-      );
-    });
+    if (group === 'tv detail') {
+      return data?.seasons?.map((item, i) => {
+        return (
+          <li className={styles.card} key={i}>
+            <Card group={group} data={item} />
+          </li>
+        );
+      });
+    } else {
+      return data?.map((item, i) => {
+        return (
+          <li className={styles.card} key={i}>
+            <Card group={group} data={item} />
+          </li>
+        );
+      });
+    }
   };
 
   return (
     <div className={styles.contents}>
       <ul className={styles.cards}>{renderCards()}</ul>
-      {/* <Card
-        group={group}
-        cname={cname}
-        data={data}
-        isFetching={isFetching}
-        isError={isError}
-      /> */}
     </div>
   );
 };

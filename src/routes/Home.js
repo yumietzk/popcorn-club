@@ -22,7 +22,6 @@ const Home = ({
   isFetching,
   isFetchingTV,
   isError,
-  // isSignedIn,
 }) => {
   useEffect(() => {
     setSelectedSidebar('Home');
@@ -31,6 +30,14 @@ const Home = ({
     fetchTVPopular();
     fetchTVTopRated();
   }, []);
+
+  // useEffect(() => {
+  //   popularShows.map((item) => fetchTVDetail(item.id));
+  // }, [popularShows]);
+
+  // useEffect(() => {
+  //   topratedShows.map((item) => fetchTVDetail(item.id));
+  // }, [topratedShows]);
 
   // useEffect(() => {
   //   if (isSignedIn) {

@@ -60,6 +60,7 @@ const Detail = ({
       <Title type="movies" isDetail={true} />
       <div className={styles.detail}>
         <DetailMain
+          group="movie"
           data={movieDetail}
           isFetching={isFetching}
           isError={isError}

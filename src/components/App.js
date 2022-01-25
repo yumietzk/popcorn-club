@@ -9,6 +9,7 @@ import Home from '../routes/Home';
 import Movies from '../routes/Movies';
 import TVShows from '../routes/TVShows';
 import Detail from '../routes/Detail';
+import TVDetail from '../routes/TVDetail';
 import SidebarData from './data/SidebarData';
 // import ScrollToTop from '../helpers/ScrollToTop';
 // import history from '../history';
@@ -69,6 +70,10 @@ const App = ({ init }) => {
           <Route
             path="detail/:id"
             element={<Detail setDetailBackground={setDetailBackground} />}
+          />
+          <Route
+            path="tvdetail/:id"
+            element={<TVDetail setDetailBackground={setDetailBackground} />}
           />
         </Routes>
       </BrowserRouter>

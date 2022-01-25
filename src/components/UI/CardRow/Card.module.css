@@ -50,6 +50,11 @@
   opacity: 0;
 }
 
+.grid-poster {
+  width: 100%;
+  height: auto;
+}
+
 .cover {
   display: none;
   position: absolute;
@@ -122,13 +127,14 @@
   text-decoration: underline;
 }
 
-.date {
+.dateseason {
   /* flex-basis: 1.8rem; */
   display: block;
   padding-left: 0.3rem;
   padding-top: 0.5rem;
   font-size: 1.2rem;
-  font-weight: 100;
+  color: #dec7a1;
+  /* font-weight: 100; */
 }
 
 .loading {

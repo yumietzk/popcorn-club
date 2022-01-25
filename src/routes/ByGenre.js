@@ -7,6 +7,7 @@ const ByGenre = ({
   selectedItem,
   isAscend,
   type,
+  group,
   movies,
   tvshows,
   fetchMoviesByGenre,
@@ -27,6 +28,7 @@ const ByGenre = ({
 
   return (
     <CardGrid
+      group={group}
       order={order}
       isAscend={isAscend}
       data={type === 'movies' ? movies : tvshows}

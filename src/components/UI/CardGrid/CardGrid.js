@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as RiIcons from 'react-icons/ri';
 import { truncate } from '../../../helpers/Truncate';
+import Card from '../CardRow/Card';
 import styles from './CardGrid.module.css';
 
-const CardGrid = ({ order, isAscend, data, isFetching, isError }) => {
+const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
   const [loaded, setLoaded] = useState(false);
 
   const onLoad = () => {
@@ -56,36 +57,9 @@ const CardGrid = ({ order, isAscend, data, isFetching, isError }) => {
     });
 
     return sortedData.map((item, i) => {
-      // return <CardGrid data={movie} key={i} />;
       return (
         <div className={styles.grid} key={i}>
-          <div className={styles.img}>
-            <img
-              className={`${styles.poster} ${loaded && styles['poster-open']}`}
-              src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
-              alt={
-                item.original_title ? item.original_title : item.original_name
-              }
-              onLoad={onLoad}
-            />
-            <div className={styles.cover}>
-              <button className={styles['cover-btn']}>
-                <Link to={`detail/${item.id}`}>
-                  <RiIcons.RiArrowRightSFill className={styles['cover-icon']} />
-                </Link>
-              </button>
-            </div>
-          </div>
-          <Link to={`../../detail/${item.id}`} className={styles.title}>
-            {item.original_title
-              ? truncate(item.original_title, 24)
-              : truncate(item.original_name, 24)}
-          </Link>
-          <p className={styles.date}>
-            {calcYear(
-              item.release_date ? item.release_date : item.first_air_date
-            )}
-          </p>
+          <Card group={group} data={item} cname="grid" />
         </div>
       );
     });

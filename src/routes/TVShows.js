@@ -45,6 +45,7 @@ const TVShows = ({ setSelectedSidebar }) => {
                 selectedItem={selectedItem}
                 isAscend={isAscend}
                 type="tvshows"
+                group="TV Show"
               />
             }
           />
@@ -55,6 +56,7 @@ const TVShows = ({ setSelectedSidebar }) => {
                 selectedItem={selectedItem}
                 isAscend={isAscend}
                 type="tvshows"
+                group="TV Show"
               />
             }
           />

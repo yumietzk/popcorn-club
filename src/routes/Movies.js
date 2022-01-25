@@ -71,6 +71,7 @@ const Movies = ({ setSelectedSidebar }) => {
                 selectedItem={selectedItem}
                 isAscend={isAscend}
                 type="movies"
+                group="Movie"
               />
             }
           />
@@ -81,6 +82,7 @@ const Movies = ({ setSelectedSidebar }) => {
                 selectedItem={selectedItem}
                 isAscend={isAscend}
                 type="movies"
+                group="Movie"
               />
             }
           />

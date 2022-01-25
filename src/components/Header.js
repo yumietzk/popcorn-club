@@ -6,7 +6,7 @@ import * as FaIcons from 'react-icons/fa';
 import * as IoIcons from 'react-icons/io';
 import { searchMovies, searchTvShows } from '../actions';
 import GoogleAuth from './auth/GoogleAuth';
-import history from '../history';
+// import history from '../history';
 import styles from './Header.module.css';
 
 const Header = ({
@@ -24,7 +24,7 @@ const Header = ({
 
     searchMovies(term);
     searchTvShows(term);
-    history.push(`/search/${term}`);
+    // history.push(`/search/${term}`);
 
     setTerm('');
   };
