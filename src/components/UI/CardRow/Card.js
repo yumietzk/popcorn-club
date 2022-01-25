@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import movieTrailer from 'movie-trailer';
 import * as RiIcons from 'react-icons/ri';
-// import { fetchTVDetail } from '../../../actions';
 import { truncate } from '../../../helpers/Truncate';
 import styles from './Card.module.css';
 
-const Card = ({
-  group,
-  data,
-  cname,
-  // fetchTVDetail,
-  detail,
-  isFetching,
-  isError,
-}) => {
+const Card = ({ group, data, cname }) => {
   const [loaded, setLoaded] = useState(false);
+  const [trailerUrl, setTrailerUrl] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // if group === tv detail, create render function
 
@@ -23,11 +16,20 @@ const Card = ({
     setLoaded(false);
   }, []);
 
-  // useEffect(() => {
-  //   if (group === 'TV Show') {
-  //     fetchTVDetail(data.id);
-  //   }
-  // }, [data.id]);
+  useEffect(() => {
+    if (group === 'Movie') {
+      movieTrailer(null, { tmdbId: data?.id })
+        .then((res) => {
+          const url = new URL(res);
+          const param = new URLSearchParams(url.search);
+          console.log(param.get('v'));
+          setTrailerUrl(param.get('v'));
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [data?.id]);
+
+  const videoSrc = `https://www.youtube.com/embed/${trailerUrl}`;
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];
@@ -49,8 +51,15 @@ const Card = ({
           alt={data.original_title ? data.original_title : data.original_name}
           onLoad={onLoad}
         />
-        <div className={styles.cover}>
-          <button className={styles['cover-btn']}>
+        <div
+          className={`${styles.cover} ${
+            group === 'Movie' && styles['cover-open']
+          }`}
+        >
+          <button
+            className={styles['cover-btn']}
+            onClick={() => setIsModalOpen(true)}
+          >
             <RiIcons.RiArrowRightSFill className={styles['cover-icon']} />
           </button>
         </div>
@@ -76,18 +85,15 @@ const Card = ({
               data.release_date ? data.release_date : data.first_air_date
             )}
       </p>
+      <div className={`${styles.modal} ${!isModalOpen && styles.hidden}`}>
+        <iframe src={videoSrc} title={data.id} width="100%" height="100%" />
+      </div>
+      <div
+        className={`${styles.overlay} ${!isModalOpen && styles.hidden}`}
+        onClick={() => setIsModalOpen(false)}
+      ></div>
     </React.Fragment>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    detail: state.detail.tvdetail,
-    isFetching: state.detail.isFetching,
-    isError: state.error.isError,
-  };
-};
-
-export default connect(mapStateToProps, {
-  // fetchTVDetail,
-})(Card);
+export default Card;
