@@ -76,7 +76,7 @@ const CardGrid = ({ order, isAscend, data, isFetching, isError }) => {
               </button>
             </div>
           </div>
-          <Link to={`detail/${item.id}`} className={styles.title}>
+          <Link to={`../../detail/${item.id}`} className={styles.title}>
             {item.original_title
               ? truncate(item.original_title, 24)
               : truncate(item.original_name, 24)}

@@ -44,7 +44,7 @@ const Card = ({ group, data }) => {
         </div>
       </div>
       <Link
-        to={group === 'Movie' ? `/detail/${data.id}` : `/detailtv/${data.id}`}
+        to={group === 'Movie' ? `detail/${data.id}` : `detailtv/${data.id}`}
         className={styles.title}
       >
         {data.original_title
