@@ -41,6 +41,13 @@ const Detail = ({
       isON: true,
       url: movieDetail?.backdrop_path,
     });
+
+    return () => {
+      setDetailBackground({
+        isON: false,
+        url: '',
+      });
+    };
   }, [movieDetail]);
 
   // useEffect(() => {

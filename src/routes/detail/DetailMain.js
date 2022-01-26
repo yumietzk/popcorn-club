@@ -129,6 +129,7 @@ const DetailMain = ({ group, data, isFetching, isError }) => {
           <div className={styles.overview}>{truncate(data.overview, 700)}</div>
           <div className={styles.genre}>
             <div className={styles['genre-title']}>Genre</div>
+            {/* genre押したら、moviebygenreのそのジャンルのページに飛ぶ */}
             <div className={styles['genre-name']}>
               {data.genres.map((genre) => genre.name).join(', ')}
             </div>

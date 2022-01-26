@@ -33,6 +33,13 @@ const TVDetail = ({
       isON: true,
       url: tvDetail?.backdrop_path,
     });
+
+    return () => {
+      setDetailBackground({
+        isON: false,
+        url: '',
+      });
+    };
   }, [tvDetail]);
 
   return (

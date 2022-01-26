@@ -16,13 +16,13 @@ const Card = ({ group, data, cname }) => {
     setLoaded(false);
   }, []);
 
+  // ここで一つ一つトレイラーを作っていることで時間がかかっているみたい。ボタンを押してからトレイラー対応するなりなんか考える
   useEffect(() => {
     if (group === 'Movie') {
       movieTrailer(null, { tmdbId: data?.id })
         .then((res) => {
           const url = new URL(res);
           const param = new URLSearchParams(url.search);
-          console.log(param.get('v'));
           setTrailerUrl(param.get('v'));
         })
         .catch((err) => console.log(err));

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { Router, Routes, Route } from 'react-router-dom';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { init } from '../actions';
 import Header from './Header';
@@ -23,13 +23,17 @@ const App = ({ init }) => {
     url: '',
   });
 
+  // const { id } = useParams();
+  // const param = useParams();
+  // console.log(param);
+
   useEffect(() => {
     init();
   }, []);
 
-  useEffect(() => {
-    setDetailBackground({ isON: false, url: '' });
-  }, [selectedSidebar]);
+  // useEffect(() => {
+  //   setDetailBackground({ isON: false, url: '' });
+  // }, []);
 
   return (
     <div
@@ -42,7 +46,6 @@ const App = ({ init }) => {
           `linear-gradient(to top left, rgba(41, 38, 33, 0.95), rgba(41, 38, 33, 0.95)), url('https://image.tmdb.org/t/p/original${detailBackground.url}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'top',
-        // backdropFilter: detailBackground.isON && 'blur(10px)',
       }}
     >
       {/* <Router history={history}> */}
@@ -75,6 +78,7 @@ const App = ({ init }) => {
             path="tvdetail/:id"
             element={<TVDetail setDetailBackground={setDetailBackground} />}
           />
+          {/* <Route path="person/:id" element={<Person />} */}
         </Routes>
       </BrowserRouter>
     </div>
