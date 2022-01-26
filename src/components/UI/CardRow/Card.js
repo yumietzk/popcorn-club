@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import movieTrailer from 'movie-trailer';
+// import movieTrailer from 'movie-trailer';
 import * as RiIcons from 'react-icons/ri';
 import { truncate } from '../../../helpers/Truncate';
+import MovieTrailer from '../../MovieTrailer';
 import styles from './Card.module.css';
 
 const Card = ({ group, data, cname }) => {
   const [loaded, setLoaded] = useState(false);
-  const [trailerUrl, setTrailerUrl] = useState('');
+  // const [trailerUrl, setTrailerUrl] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // if group === tv detail, create render function
@@ -17,19 +18,7 @@ const Card = ({ group, data, cname }) => {
   }, []);
 
   // ここで一つ一つトレイラーを作っていることで時間がかかっているみたい。ボタンを押してからトレイラー対応するなりなんか考える
-  useEffect(() => {
-    if (group === 'Movie') {
-      movieTrailer(null, { tmdbId: data?.id })
-        .then((res) => {
-          const url = new URL(res);
-          const param = new URLSearchParams(url.search);
-          setTrailerUrl(param.get('v'));
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [data?.id]);
-
-  const videoSrc = `https://www.youtube.com/embed/${trailerUrl}`;
+  // ⚠️やっぱりまだ最初のダウンロードに時間がかかっているから、トレイラーではなくてdetailに飛ぶボタンなりなんかにしてみる
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];
@@ -85,13 +74,11 @@ const Card = ({ group, data, cname }) => {
               data.release_date ? data.release_date : data.first_air_date
             )}
       </p>
-      <div className={`${styles.modal} ${!isModalOpen && styles.hidden}`}>
-        <iframe src={videoSrc} title={data.id} width="100%" height="100%" />
-      </div>
-      <div
-        className={`${styles.overlay} ${!isModalOpen && styles.hidden}`}
-        onClick={() => setIsModalOpen(false)}
-      ></div>
+      <MovieTrailer
+        id={data.id}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+      />
     </React.Fragment>
   );
 };

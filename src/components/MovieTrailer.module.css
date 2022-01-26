@@ -1,0 +1,28 @@
+.hidden {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 70%;
+  width: 75%;
+
+  background-color: #b09760;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 1000%;
+  width: 100%;
+  background-color: rgba(14, 13, 11, 0.7);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
