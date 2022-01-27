@@ -171,6 +171,7 @@ export const fetchMoviesByGenre =
   (selectedGenre, count = 60) =>
   async (dispatch, getState) => {
     try {
+      console.log(selectedGenre);
       dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
       const genres = getState().conf.movieGenres;

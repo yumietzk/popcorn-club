@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // import movieTrailer from 'movie-trailer';
-import * as RiIcons from 'react-icons/ri';
+import * as IoIcons from 'react-icons/io';
 import { truncate } from '../../../helpers/Truncate';
-import MovieTrailer from '../../MovieTrailer';
+// import MovieTrailer from '../../MovieTrailer';
 import styles from './Card.module.css';
 
 const Card = ({ group, data, cname }) => {
@@ -40,45 +40,49 @@ const Card = ({ group, data, cname }) => {
           alt={data.original_title ? data.original_title : data.original_name}
           onLoad={onLoad}
         />
-        <div
-          className={`${styles.cover} ${
-            group === 'Movie' && styles['cover-open']
-          }`}
-        >
-          <button
+        <div className={styles.cover}>
+          {/* <button
             className={styles['cover-btn']}
-            onClick={() => setIsModalOpen(true)}
+            // onClick={() => setIsModalOpen(true)}
           >
-            <RiIcons.RiArrowRightSFill className={styles['cover-icon']} />
-          </button>
+            <Link>
+              <IoIcons.IoIosMore className={styles['cover-icon']} />
+            </Link>
+          </button> */}
+          <Link
+            // to={`detail/${data.id}`}
+            to={`../../${group === 'movies' ? 'detail' : 'tvdetail'}/${
+              data.id
+            }`}
+            className={styles['cover-btn']}
+          >
+            <IoIcons.IoIosMore className={styles['cover-icon']} />
+          </Link>
         </div>
       </div>
       <Link
-        to={
-          group === 'Movie'
-            ? `../../detail/${data.id}`
-            : `../../tvdetail/${data.id}`
-        }
+        // to={`detail/${data.id}`}
+        to={`../../${group === 'movies' ? 'detail' : 'tvdetail'}/${data.id}`}
         className={styles.title}
       >
-        {group === 'tv detail'
+        {group === 'tvdetail'
           ? data.name
           : data.original_title
           ? truncate(data.original_title, 24)
           : truncate(data.original_name, 24)}
       </Link>
       <p className={styles.dateseason}>
-        {group === 'tv detail'
+        {group === 'tvdetail'
           ? `${data.episode_count} episodes`
           : calcYear(
               data.release_date ? data.release_date : data.first_air_date
             )}
       </p>
-      <MovieTrailer
+      {/* <MovieTrailer
         id={data.id}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-      />
+      /> */}
     </React.Fragment>
   );
 };

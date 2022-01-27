@@ -1,21 +1,34 @@
 import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import movieTrailer from 'movie-trailer';
 import * as IoIcons from 'react-icons/io';
 import { truncate } from '../../helpers/Truncate';
+import SelectorsData from '../../components/data/SelectorsData';
 import styles from './DetailMain.module.css';
 
-const DetailMain = ({ group, data, isFetching, isError }) => {
+// selectedItemのmovieとtvshowの違いで分けれる？？
+const DetailMain = ({
+  selectedItem,
+  setSelectedItem,
+  group,
+  data,
+  isFetching,
+  isError,
+}) => {
+  // const [selectedItem, setSelectedItem] = useState({
+  //   category: SelectorsData.movies.category[0].title,
+  //   order: SelectorsData.movies.order[0].title,
+  //   count: SelectorsData.movies.count[0].title,
+  // });
   const [trailerUrl, setTrailerUrl] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    if (group === 'movie') {
+    if (group === 'movies') {
       movieTrailer(null, { tmdbId: data?.id })
         .then((res) => {
           const url = new URL(res);
           const param = new URLSearchParams(url.search);
-          console.log(param.get('v'));
           setTrailerUrl(param.get('v'));
         })
         .catch((err) => console.log(err));
@@ -42,6 +55,14 @@ const DetailMain = ({ group, data, isFetching, isError }) => {
     return `${hours(hr)} ${min} min`;
   };
 
+  const changeSelectedItem = (genre) => {
+    setSelectedItem({
+      category: genre.name,
+      order: SelectorsData[group].order[0].title,
+      count: SelectorsData[group].count[0].title,
+    });
+  };
+
   // let navigate = useNavigate();
   // const handleClick = (url) => {
   //   navigate(url);
@@ -55,6 +76,27 @@ const DetailMain = ({ group, data, isFetching, isError }) => {
     if (isError?.status) {
       return <p>{isError.errorMessage}</p>;
     }
+
+    const genreLink = (genres) => {
+      return genres.map((genre, i) => {
+        return (
+          <p>
+            {/* ちゃんと飛ぶけど、ページとタイトルのボタンが更新されない */}
+            <Link
+              to={`../../${
+                group === 'movies' ? 'movies' : 'tvshows'
+              }/genre/${genre.name.toLowerCase()}`}
+              key={i}
+              className={styles['genre-name']}
+              onClick={() => changeSelectedItem(genre)}
+            >
+              {genre.name}
+            </Link>
+            {i !== genres.length - 1 && <>{','}&nbsp;</>}
+          </p>
+        );
+      });
+    };
 
     return (
       <React.Fragment>
@@ -108,7 +150,7 @@ const DetailMain = ({ group, data, isFetching, isError }) => {
             </div>
           </div>
           <div className={styles.others}>
-            {group === 'movie' && (
+            {group === 'movies' && (
               <button
                 className={styles.play}
                 onClick={() => setIsModalOpen(true)}
@@ -129,9 +171,8 @@ const DetailMain = ({ group, data, isFetching, isError }) => {
           <div className={styles.overview}>{truncate(data.overview, 700)}</div>
           <div className={styles.genre}>
             <div className={styles['genre-title']}>Genre</div>
-            {/* genre押したら、moviebygenreのそのジャンルのページに飛ぶ */}
-            <div className={styles['genre-name']}>
-              {data.genres.map((genre) => genre.name).join(', ')}
+            <div className={styles['genre-names']}>
+              {genreLink(data.genres)}
             </div>
           </div>
         </div>

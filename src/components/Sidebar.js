@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import SidebarData from './data/SidebarData';
 import styles from './Sidebar.module.css';
 
-const Sidebar = ({ selectedSidebar, setSelectedSidebar, isCollapsed }) => {
-  // const [selectedItem, setSelectedItem] = useState('Home');
+const Sidebar = ({
+  selectedSidebar,
+  setSelectedSidebar,
+  isCollapsed,
+  isDetail,
+}) => {
+  // const params = useParams();
+  // console.log(params);
 
   return (
     <nav className={styles.navigation}>
@@ -15,7 +21,7 @@ const Sidebar = ({ selectedSidebar, setSelectedSidebar, isCollapsed }) => {
               <Link
                 to={item.path}
                 className={`${styles['list-menu']} ${
-                  selectedSidebar === item.title && styles.selected
+                  !isDetail && selectedSidebar === item.title && styles.selected
                 }`}
                 onClick={() => setSelectedSidebar(item.title)}
               >

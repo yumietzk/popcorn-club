@@ -7,7 +7,7 @@ const Seasons = ({ data, isFetching, isError }) => {
     <div className={styles.seasons}>
       <h4 className={styles.title}>Seasons</h4>
       <Contents
-        group="tv detail"
+        group="tvdetail"
         data={data}
         isFetching={isFetching}
         isError={isError}

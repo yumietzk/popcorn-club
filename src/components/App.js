@@ -11,29 +11,33 @@ import TVShows from '../routes/TVShows';
 import Detail from '../routes/Detail';
 import TVDetail from '../routes/TVDetail';
 import SidebarData from './data/SidebarData';
+import SelectorsData from './data/SelectorsData';
 // import ScrollToTop from '../helpers/ScrollToTop';
 // import history from '../history';
 import styles from './App.module.css';
 
-const App = ({ init }) => {
+const App = ({ init, movieGenres, tvGenres }) => {
   const [selectedSidebar, setSelectedSidebar] = useState(SidebarData[0].title);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [selectedItem, setSelectedItem] = useState({
+    category: SelectorsData.movies.category[0].title,
+    order: SelectorsData.movies.order[0].title,
+    count: SelectorsData.movies.count[0].title,
+  });
+  const [selectedItemTV, setSelectedItemTV] = useState({
+    category: SelectorsData.tvshows.category[0].title,
+    order: SelectorsData.tvshows.order[0].title,
+    count: SelectorsData.tvshows.count[0].title,
+  });
   const [detailBackground, setDetailBackground] = useState({
     isON: false,
     url: '',
   });
-
-  // const { id } = useParams();
-  // const param = useParams();
-  // console.log(param);
+  const [isDetail, setIsDetail] = useState(false);
 
   useEffect(() => {
     init();
   }, []);
-
-  // useEffect(() => {
-  //   setDetailBackground({ isON: false, url: '' });
-  // }, []);
 
   return (
     <div
@@ -55,6 +59,7 @@ const App = ({ init }) => {
           selectedSidebar={selectedSidebar}
           setSelectedSidebar={setSelectedSidebar}
           isCollapsed={isCollapsed}
+          isDetail={isDetail}
         />
         {/* <ScrollToTop /> */}
         <Routes>
@@ -64,19 +69,47 @@ const App = ({ init }) => {
           />
           <Route
             path="movies/*"
-            element={<Movies setSelectedSidebar={setSelectedSidebar} />}
+            element={
+              <Movies
+                genres={movieGenres}
+                setSelectedSidebar={setSelectedSidebar}
+                selectedItem={selectedItem}
+                setSelectedItem={setSelectedItem}
+              />
+            }
           />
           <Route
             path="tvshows/*"
-            element={<TVShows setSelectedSidebar={setSelectedSidebar} />}
+            element={
+              <TVShows
+                genres={tvGenres}
+                setSelectedSidebar={setSelectedSidebar}
+                selectedItemTV={selectedItemTV}
+                setSelectedItemTV={setSelectedItemTV}
+              />
+            }
           />
           <Route
             path="detail/:id"
-            element={<Detail setDetailBackground={setDetailBackground} />}
+            element={
+              <Detail
+                selectedItem={selectedItem}
+                setSelectedItem={setSelectedItem}
+                setDetailBackground={setDetailBackground}
+                setIsDetail={setIsDetail}
+              />
+            }
           />
           <Route
             path="tvdetail/:id"
-            element={<TVDetail setDetailBackground={setDetailBackground} />}
+            element={
+              <TVDetail
+                selectedItem={selectedItemTV}
+                setSelectedItem={setSelectedItemTV}
+                setDetailBackground={setDetailBackground}
+                setIsDetail={setIsDetail}
+              />
+            }
           />
           {/* <Route path="person/:id" element={<Person />} */}
         </Routes>
@@ -85,6 +118,13 @@ const App = ({ init }) => {
   );
 };
 
-export default connect(null, {
+const mapStateToProps = (state) => {
+  return {
+    movieGenres: state.conf.movieGenres,
+    tvGenres: state.conf.tvGenres,
+  };
+};
+
+export default connect(mapStateToProps, {
   init,
 })(App);

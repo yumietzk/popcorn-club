@@ -10,17 +10,20 @@ import All from './All';
 import ByGenre from './ByGenre';
 import styles from './Movies.module.css';
 
-const Movies = ({ setSelectedSidebar }) => {
-  const [selectedItem, setSelectedItem] = useState({
-    category: SelectorsData.movies.category[0].title,
-    order: SelectorsData.movies.order[0].title,
-    count: SelectorsData.movies.count[0].title,
-  });
-  // const [selectedItemTV, setSelectedItemTV] = useState({
-  //   category: SelectorsData.tvshows.category[0].title,
-  //   order: SelectorsData.tvshows.order[0].title,
-  //   count: SelectorsData.tvshows.count[0].title,
+const Movies = ({
+  genres,
+  setSelectedSidebar,
+  selectedItem,
+  setSelectedItem,
+}) => {
+  // categoryが変わるたびに、orderとcountの値をリセットしたい
+  // const [selectedItem, setSelectedItem] = useState({
+  //   category: SelectorsData.movies.category[0].title,
+  //   order: SelectorsData.movies.order[0].title,
+  //   count: SelectorsData.movies.count[0].title,
   // });
+
+  const { category, order } = selectedItem;
   const [isAscend, setIsAscend] = useState(); // ↑
 
   useEffect(() => {
@@ -29,33 +32,14 @@ const Movies = ({ setSelectedSidebar }) => {
 
   // ⚠️Can I set the boolean to the initial state to useState? ↑↑ Because it's apparently rendered twice which is unnecessary.
   useEffect(() => {
-    if (selectedItem.order === 'Title') setIsAscend(true);
-    if (
-      selectedItem.order === 'Release Date' ||
-      selectedItem.order === 'Rating'
-      // selectedItemTV.order === 'Release Date' ||
-      // selectedItemTV.order === 'Rating'
-    )
-      setIsAscend(false);
-  }, [
-    selectedItem.category,
-    selectedItem.order,
-    // selectedItemTV.category,
-    // selectedItemTV.order,
-  ]);
-
-  // Want to reset the value of order and count every time the category value is changed
-  // useEffect(() => {
-  //   setSelectedItem({
-  //     ...selectedItem,
-  //     [selectedItem.order]: SelectorsData.movies.order[0].title,
-  //     [selectedItem.count]: SelectorsData.movies.count[0].title,
-  //   });
-  // }, [selectedItem.category]);
+    if (order === 'Title') setIsAscend(true);
+    if (order === 'Release Date' || order === 'Rating') setIsAscend(false);
+  }, [category, order]);
 
   return (
     <React.Fragment>
       <Title
+        genres={genres}
         selectedItem={selectedItem}
         setSelectedItem={setSelectedItem}
         isAscend={isAscend}
@@ -71,7 +55,7 @@ const Movies = ({ setSelectedSidebar }) => {
                 selectedItem={selectedItem}
                 isAscend={isAscend}
                 type="movies"
-                group="Movie"
+                group="movies"
               />
             }
           />
@@ -82,7 +66,7 @@ const Movies = ({ setSelectedSidebar }) => {
                 selectedItem={selectedItem}
                 isAscend={isAscend}
                 type="movies"
-                group="Movie"
+                group="movies"
               />
             }
           />

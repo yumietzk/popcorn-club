@@ -151,8 +151,22 @@
   margin-right: 5rem;
 }
 
-.genre-name {
+.genre-names {
   color: #dec7a1;
+
+  display: flex;
+  align-items: center;
+}
+
+.genre-name:link,
+.genre-name:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.genre-name:hover,
+.genre-name:active {
+  text-decoration: underline;
 }
 
 .hidden {

@@ -14,8 +14,13 @@ import Reviews from './detail/Reviews';
 import Related from './detail/Related';
 import styles from './Detail.module.css';
 
+// movieとtvを統合できるはず
+// fetchするとき、groupでmovieかtvか、typeでdetail, credits, reviews, relatedの何かをパラメータで渡してaction creatorも統合できるはず
 const Detail = ({
+  selectedItem,
+  setSelectedItem,
   setDetailBackground,
+  setIsDetail,
   fetchMovieDetail,
   fetchMovieCredits,
   fetchMovieReviews,
@@ -27,7 +32,20 @@ const Detail = ({
   isFetching,
   isError,
 }) => {
+  // const [selectedItem, setSelectedItem] = useState({
+  //   category: SelectorsData.movies.category[0].title,
+  //   order: SelectorsData.movies.order[0].title,
+  //   count: SelectorsData.movies.count[0].title,
+  // });
   const { id } = useParams();
+
+  useEffect(() => {
+    setIsDetail(true);
+
+    return () => {
+      setIsDetail(false);
+    };
+  }, []);
 
   useEffect(() => {
     fetchMovieDetail(id);
@@ -50,24 +68,14 @@ const Detail = ({
     };
   }, [movieDetail]);
 
-  // useEffect(() => {
-  //   if (!movieDetail) {
-  //     console.log('No data');
-  //     return;
-  //   }
-
-  //   setDetailBackground({
-  //     isON: true,
-  //     data: movieDetail.poster_path,
-  //   });
-  // }, [movieDetail]);
-
   return (
     <React.Fragment>
       <Title type="movies" isDetail={true} />
       <div className={styles.detail}>
         <DetailMain
-          group="movie"
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          group="movies"
           data={movieDetail}
           isFetching={isFetching}
           isError={isError}

@@ -6,12 +6,18 @@ import All from './All';
 import ByGenre from './ByGenre';
 import styles from './TVShows.module.css';
 
-const TVShows = ({ setSelectedSidebar }) => {
-  const [selectedItem, setSelectedItem] = useState({
-    category: SelectorsData.tvshows.category[0].title,
-    order: SelectorsData.tvshows.order[0].title,
-    count: SelectorsData.tvshows.count[0].title,
-  });
+const TVShows = ({
+  genres,
+  setSelectedSidebar,
+  selectedItemTV,
+  setSelectedItemTV,
+}) => {
+  // const [selectedItem, setSelectedItem] = useState({
+  //   category: SelectorsData.tvshows.category[0].title,
+  //   order: SelectorsData.tvshows.order[0].title,
+  //   count: SelectorsData.tvshows.count[0].title,
+  // });
+  const { category, order } = selectedItemTV;
   const [isAscend, setIsAscend] = useState(); // ↑
 
   useEffect(() => {
@@ -19,19 +25,16 @@ const TVShows = ({ setSelectedSidebar }) => {
   }, []);
 
   useEffect(() => {
-    if (selectedItem.order === 'Title') setIsAscend(true);
-    if (
-      selectedItem.order === 'Release Date' ||
-      selectedItem.order === 'Rating'
-    )
-      setIsAscend(false);
-  }, [selectedItem.category, selectedItem.order]);
+    if (order === 'Title') setIsAscend(true);
+    if (order === 'Release Date' || order === 'Rating') setIsAscend(false);
+  }, [category, order]);
 
   return (
     <React.Fragment>
       <Title
-        selectedItem={selectedItem}
-        setSelectedItem={setSelectedItem}
+        genres={genres}
+        selectedItem={selectedItemTV}
+        setSelectedItem={setSelectedItemTV}
         isAscend={isAscend}
         setIsAscend={setIsAscend}
         type="tvshows"
@@ -42,10 +45,10 @@ const TVShows = ({ setSelectedSidebar }) => {
             path="/"
             element={
               <All
-                selectedItem={selectedItem}
+                selectedItem={selectedItemTV}
                 isAscend={isAscend}
                 type="tvshows"
-                group="TV Show"
+                group="tvshows"
               />
             }
           />
@@ -53,10 +56,10 @@ const TVShows = ({ setSelectedSidebar }) => {
             path="genre/:genre"
             element={
               <ByGenre
-                selectedItem={selectedItem}
+                selectedItem={selectedItemTV}
                 isAscend={isAscend}
                 type="tvshows"
-                group="TV Show"
+                group="tvshows"
               />
             }
           />

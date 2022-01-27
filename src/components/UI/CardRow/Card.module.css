@@ -68,7 +68,7 @@
   z-index: 10;
 }
 
-.img:hover .cover.cover-open {
+.img:hover .cover {
   display: block;
 }
 
@@ -82,6 +82,7 @@
   border-radius: 50%;
   background: none;
   border: 1.8px solid #ccc;
+  text-decoration: none;
   cursor: pointer;
   transition: all 0.5s;
 
@@ -97,7 +98,7 @@
 
 .cover-icon {
   color: #ccc;
-  font-size: 4.5rem;
+  font-size: 3.5rem;
   transition: all 0.4s;
 }
 

@@ -5,6 +5,7 @@ import * as RiIcons from 'react-icons/ri';
 import styles from './Selector.module.css';
 
 const Selector = ({
+  genres,
   currentGroup,
   isOpen,
   setIsOpen,
@@ -28,8 +29,8 @@ const Selector = ({
     }
   };
 
-  const onSubItemClick = (sub) => {
-    setSelectedItem({ ...selectedItem, [`${group}`]: sub.title });
+  const onSubItemClick = (genre) => {
+    setSelectedItem({ ...selectedItem, [`${group}`]: genre.name });
     setIsOpen({ ...isOpen, [`${group}`]: !isOpen[`${group}`] });
   };
 
@@ -60,21 +61,21 @@ const Selector = ({
           </span>
         </Link>
 
-        {isSubOpen && item.subCategory && (
+        {isSubOpen && (
           <ul className={styles.subitems}>
-            {item.subCategory.map((sub, i) => {
+            {genres.map((genre, i) => {
               return (
                 <li key={i}>
                   <Link
-                    to={`${sub.path}`}
+                    to={`genre/${genre.name.toLowerCase()}`}
                     className={`${styles['subitem-link']} ${
-                      selectedItem[`${group}`] === sub.title && styles.selected
+                      selectedItem[`${group}`] === genre.name && styles.selected
                     }`}
-                    onClick={() => onSubItemClick(sub)}
+                    onClick={() => onSubItemClick(genre)}
                   >
-                    {sub.title}
+                    {genre.name}
                     <span className={styles['subCheck-icon']}>
-                      {selectedItem[`${group}`] === sub.title && (
+                      {selectedItem[`${group}`] === genre.name && (
                         <FaIcons.FaCheck />
                       )}
                     </span>

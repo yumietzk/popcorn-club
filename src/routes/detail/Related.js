@@ -6,10 +6,10 @@ const Related = ({ group, data, isFetching, isError }) => {
   return (
     <div className={styles.related}>
       <h4 className={styles.title}>
-        {group === 'tvshow' ? 'Related Shows' : 'Related Movies'}
+        {group === 'tvshows' ? 'Related Shows' : 'Related Movies'}
       </h4>
       <Contents
-        group="Movie"
+        group={group}
         data={data}
         isFetching={isFetching}
         isError={isError}

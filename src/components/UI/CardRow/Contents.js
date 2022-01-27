@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Card from './Card';
 import styles from './Contents.module.css';
 
-const Contents = ({ group, cname, data, isFetching, isError }) => {
+const Contents = ({ group, data, isFetching, isError }) => {
   const renderCards = () => {
     if (isFetching || !data) {
       return <div>Now loading...</div>;
@@ -16,7 +16,7 @@ const Contents = ({ group, cname, data, isFetching, isError }) => {
       return <p>No data.</p>;
     }
 
-    if (group === 'tv detail') {
+    if (group === 'tvdetail') {
       return data?.seasons?.map((item, i) => {
         return (
           <li className={styles.card} key={i}>

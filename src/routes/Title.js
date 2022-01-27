@@ -5,6 +5,7 @@ import Selector from '../components/UI/Selector/Selector';
 import styles from './Title.module.css';
 
 const Title = ({
+  genres,
   selectedItem,
   setSelectedItem,
   isAscend,
@@ -78,11 +79,13 @@ const Title = ({
         </div>
       )}
 
+      {/* このポジションについては、各ボタンをrelativeとしてtop,leftを合わせたいが、下のグリッドの上にこさせたいので、fixedとするべき？ */}
       {isOpen.category && (
         <ul className={styles['list-items']} style={{ left: '3.7rem' }}>
           {SelectorsData[type].category.map((item, i) => {
             return (
               <Selector
+                genres={genres}
                 currentGroup={currentGroup}
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}

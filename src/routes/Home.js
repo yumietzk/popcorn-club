@@ -80,28 +80,28 @@ const Home = ({
       <div className={styles.rows}>
         <Row
           category="Popular in Movies"
-          group="Movie"
+          group="movies"
           data={popularMovies}
           isFetching={isFetching}
           isError={isError}
         />
         <Row
           category="Upcoming in Movies"
-          group="Movie"
+          group="movies"
           data={upcomingMovies}
           isFetching={isFetching}
           isError={isError}
         />
         <Row
           category="Popular in TV Shows"
-          group="TV Show"
+          group="tvshows"
           data={popularShows}
           isFetching={isFetchingTV}
           isError={isError}
         />
         <Row
           category="Top Rated in TV Shows"
-          group="TV Show"
+          group="tvshows"
           data={topratedShows}
           isFetching={isFetchingTV}
           isError={isError}

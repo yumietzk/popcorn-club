@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { fetchMoviesByGenre, fetchTVShowsByGenre } from '../actions';
 import CardGrid from '../components/UI/CardGrid/CardGrid';
 
@@ -17,6 +18,8 @@ const ByGenre = ({
   isError,
 }) => {
   const { category, order, count } = selectedItem;
+  // paramじゃなくてこのcategorを変えないといけない
+  // const { genre } = useParams();
 
   useEffect(() => {
     if (type === 'movies') {

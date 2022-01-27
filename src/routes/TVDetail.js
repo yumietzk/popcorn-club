@@ -10,7 +10,10 @@ import Related from './detail/Related';
 import styles from './Detail.module.css';
 
 const TVDetail = ({
+  selectedItem,
+  setSelectedItem,
   setDetailBackground,
+  setIsDetail,
   fetchTVDetail,
   fetchTVCredits,
   fetchTVRelated,
@@ -21,6 +24,14 @@ const TVDetail = ({
   isError,
 }) => {
   const { id } = useParams();
+
+  useEffect(() => {
+    setIsDetail(true);
+
+    return () => {
+      setIsDetail(false);
+    };
+  }, []);
 
   useEffect(() => {
     fetchTVDetail(id);
@@ -47,7 +58,9 @@ const TVDetail = ({
       <Title type="tvshows" isDetail={true} />
       <div className={styles.detail}>
         <DetailMain
-          group="tvshow"
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          group="tvshows"
           data={tvDetail}
           isFetching={isFetching}
           isError={isError}
@@ -55,7 +68,7 @@ const TVDetail = ({
         <Seasons data={tvDetail} isFetching={isFetching} isError={isError} />
         <Cast data={tvCasts} isFetching={isFetching} isError={isError} />
         <Related
-          group="tvshow"
+          group="tvshows"
           data={tvRelated}
           isFetching={isFetching}
           isError={isError}
