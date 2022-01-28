@@ -1,0 +1,19 @@
+.seasons {
+  padding-bottom: 7rem;
+  overflow-y: scroll;
+}
+
+.episodes {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #dec7a1;
+  padding-left: 3.8rem;
+}
+
+.contents {
+  padding: 2rem 2rem 0 3.8rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 35rem);
+  gap: 3.9rem 3.8rem;
+  /* position: relative; */
+}

@@ -367,6 +367,7 @@ export const fetchTVDetail = (id) => async (dispatch) => {
   }
 };
 
+// cast
 export const fetchTVCredits = (id) => async (dispatch) => {
   try {
     dispatch({ type: 'REQUEST_DATA_DETAIL' });
@@ -383,12 +384,89 @@ export const fetchTVCredits = (id) => async (dispatch) => {
   }
 };
 
+// related
 export const fetchTVRelated = (id) => async (dispatch) => {
   try {
     dispatch({ type: 'REQUEST_DATA_DETAIL' });
 
     const response = await tmdb.get(`/tv/${id}/similar?api_key=${API_KEY}`);
     dispatch({ type: 'TV_RELATED', payload: response.data.results });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: {
+        message: 'Something went wrong. Could not get data. Please try again!',
+      },
+    });
+  }
+};
+
+// tv seasons detail
+export const fetchTVSeasons = (id, number) => async (dispatch) => {
+  try {
+    dispatch({ type: 'REQUEST_DATA_DETAIL' });
+
+    const response = await tmdb.get(
+      `/tv/${id}/season/${number}?api_key=${API_KEY}`
+    );
+    dispatch({ type: 'TV_SEASONS', payload: response.data });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: {
+        message: 'Something went wrong. Could not get data. Please try again!',
+      },
+    });
+  }
+};
+
+// Person
+// info
+export const fetchPersonInfo = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: 'REQUEST_DATA_PERSON' });
+
+    const response = await tmdb.get(`/person/${id}?api_key=${API_KEY}`);
+    dispatch({ type: 'PERSON_INFO', payload: response.data });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: {
+        message: 'Something went wrong. Could not get data. Please try again!',
+      },
+    });
+  }
+};
+
+// movie credits
+export const fetchPersonMovies = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: 'REQUEST_DATA_PERSON' });
+
+    const response = await tmdb.get(
+      `/person/${id}/movie_credits?api_key=${API_KEY}`
+    );
+    console.log(response.data.cast);
+    dispatch({ type: 'MOVIE_CREDITS', payload: response.data.cast });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: {
+        message: 'Something went wrong. Could not get data. Please try again!',
+      },
+    });
+  }
+};
+
+// tv credits
+export const fetchPersonTVShows = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: 'REQUEST_DATA_PERSON' });
+
+    const response = await tmdb.get(
+      `/person/${id}/tv_credits?api_key=${API_KEY}`
+    );
+    dispatch({ type: 'TV_CREDITS', payload: response.data.cast });
   } catch (err) {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',

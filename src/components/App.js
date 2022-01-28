@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { Router, Routes, Route } from 'react-router-dom';
-import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { init } from '../actions';
 import Header from './Header';
@@ -10,6 +10,7 @@ import Movies from '../routes/Movies';
 import TVShows from '../routes/TVShows';
 import Detail from '../routes/Detail';
 import TVDetail from '../routes/TVDetail';
+import Person from '../routes/Person';
 import SidebarData from './data/SidebarData';
 import SelectorsData from './data/SelectorsData';
 // import ScrollToTop from '../helpers/ScrollToTop';
@@ -101,7 +102,7 @@ const App = ({ init, movieGenres, tvGenres }) => {
             }
           />
           <Route
-            path="tvdetail/:id"
+            path="tvdetail/:id/*"
             element={
               <TVDetail
                 selectedItem={selectedItemTV}
@@ -111,7 +112,7 @@ const App = ({ init, movieGenres, tvGenres }) => {
               />
             }
           />
-          {/* <Route path="person/:id" element={<Person />} */}
+          <Route path="person/:id" element={<Person />} />
         </Routes>
       </BrowserRouter>
     </div>

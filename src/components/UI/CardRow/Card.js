@@ -36,8 +36,16 @@ const Card = ({ group, data, cname }) => {
           className={`${styles.poster} ${
             cname === 'grid' && styles['grid-poster']
           } ${loaded && styles['poster-open']}`}
-          src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
-          alt={data.original_title ? data.original_title : data.original_name}
+          src={`https://image.tmdb.org/t/p/original${
+            group === 'tvseasons' ? data.still_path : data.poster_path
+          }`}
+          alt={
+            group === 'tvseasons'
+              ? data.name
+              : data.original_title
+              ? data.original_title
+              : data.original_name
+          }
           onLoad={onLoad}
         />
         <div className={styles.cover}>
@@ -51,9 +59,13 @@ const Card = ({ group, data, cname }) => {
           </button> */}
           <Link
             // to={`detail/${data.id}`}
-            to={`../../${group === 'movies' ? 'detail' : 'tvdetail'}/${
-              data.id
-            }`}
+            to={
+              group === 'tvdetail'
+                ? `season/${data.season_number}`
+                : `../../${group === 'movies' ? 'detail' : 'tvdetail'}/${
+                    data.id
+                  }`
+            }
             className={styles['cover-btn']}
           >
             <IoIcons.IoIosMore className={styles['cover-icon']} />
@@ -62,27 +74,32 @@ const Card = ({ group, data, cname }) => {
       </div>
       <Link
         // to={`detail/${data.id}`}
-        to={`../../${group === 'movies' ? 'detail' : 'tvdetail'}/${data.id}`}
+        to={
+          group === 'tvdetail'
+            ? `season/${data.season_number}`
+            : `../../${group === 'movies' ? 'detail' : 'tvdetail'}/${data.id}`
+        }
         className={styles.title}
       >
-        {group === 'tvdetail'
+        {group === 'tvdetail' || group === 'tvseasons'
           ? data.name
           : data.original_title
           ? truncate(data.original_title, 24)
           : truncate(data.original_name, 24)}
       </Link>
-      <p className={styles.dateseason}>
+      <p
+        className={`${styles.dateseason} ${
+          group === 'tvseasons' && styles.episode
+        }`}
+      >
         {group === 'tvdetail'
           ? `${data.episode_count} episodes`
+          : group === 'tvseasons'
+          ? `Episode ${data.episode_number}`
           : calcYear(
               data.release_date ? data.release_date : data.first_air_date
             )}
       </p>
-      {/* <MovieTrailer
-        id={data.id}
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
-      /> */}
     </React.Fragment>
   );
 };

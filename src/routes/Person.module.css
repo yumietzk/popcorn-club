@@ -1,0 +1,11 @@
+.person {
+  padding-bottom: 7rem;
+  overflow-y: scroll;
+}
+
+.person-credits {
+  padding-left: 3.8rem;
+  font-size: 1.7rem;
+  color: #dec7a1;
+  margin-bottom: 3rem;
+}

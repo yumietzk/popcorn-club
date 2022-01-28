@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Cast.module.css';
 
 const Cast = ({ data, isFetching, isError }) => {
@@ -25,8 +26,19 @@ const Cast = ({ data, isFetching, isError }) => {
               alt={person.original_name}
               className={styles.poster}
             />
+            <Link
+              to={`../../person/${person.id}`}
+              className={styles.cover}
+            ></Link>
           </div>
-          <p className={styles.name}>{person.original_name}</p>
+          <div className={styles.name}>
+            <Link
+              to={`../../person/${person.id}`}
+              className={styles['name-text']}
+            >
+              {person.original_name}
+            </Link>
+          </div>
         </li>
       );
     });

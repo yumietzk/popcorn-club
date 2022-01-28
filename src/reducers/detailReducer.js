@@ -24,6 +24,9 @@ export default (state = { isFetching: false }, action) => {
     case 'TV_RELATED':
       return { ...state, isFetching: false, tvrelated: action.payload };
 
+    case 'TV_SEASONS':
+      return { ...state, isFetching: false, tvseasons: action.payload };
+
     default:
       return state;
   }

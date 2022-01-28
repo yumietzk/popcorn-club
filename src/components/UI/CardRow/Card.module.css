@@ -137,6 +137,10 @@
   /* font-weight: 100; */
 }
 
+.episode {
+  color: #dec7a18f;
+}
+
 .loading {
   position: fixed;
   top: 0;

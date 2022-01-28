@@ -12,6 +12,9 @@ const Title = ({
   setIsAscend,
   type,
   isDetail,
+  person,
+  isFetching,
+  isError,
 }) => {
   const [currentGroup, setCurrentGroup] = useState('');
   const [isOpen, setIsOpen] = useState({
@@ -35,13 +38,43 @@ const Title = ({
     setIsOpen({ category: false, order: false, count: !isOpen.count });
   };
 
+  const renderType = () => {
+    if (type === 'movies') {
+      return 'Movies';
+    } else if (type === 'tvshows') {
+      return 'TV Shows';
+    } else if (type === 'person') {
+      if (isFetching || !person) {
+        return <div>Now loading...</div>;
+      }
+      if (isError?.status) {
+        return <p>{isError.errorMessage}</p>;
+      }
+      return person?.name;
+    }
+  };
+
+  // type=personの時は
   return (
     <div className={styles.title}>
       <div className={styles['title-name']}>
-        {type === 'movies' ? 'Movies' : 'TV Shows'}
+        {/* {type === 'movies' ? 'Movies' : 'TV Shows'} */}
+        {renderType()}
       </div>
 
-      {!isDetail && (
+      {/* !isDetailの条件式は他のものに変えるかも */}
+      {/* か、!isDetailプラスtype=personの時の条件式も加えてreturnを追加するかも */}
+
+      {type === 'person' && !isFetching && !isError?.status && person && (
+        <div className={styles['person-sub']}>
+          <span>Born: </span>
+          {person.birthday.replaceAll('-', '/')}
+          <span> in </span>
+          {person.place_of_birth}
+        </div>
+      )}
+
+      {type !== 'person' && !isDetail && (
         <div className={styles['selector-btns']}>
           <button
             className={styles['selector-btn']}

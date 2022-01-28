@@ -1,0 +1,48 @@
+.seasons-main {
+  padding-top: 1.5rem;
+  padding-left: 3.8rem;
+  margin-bottom: 6rem;
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+.img {
+  flex: 0 1 25rem;
+
+  margin-right: 5rem;
+}
+
+.poster {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  font-size: 2.8rem;
+  letter-spacing: 1px;
+  color: #dec7a1;
+  margin-bottom: 1rem;
+}
+
+.season {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #dec7a18f;
+  margin-bottom: 2rem;
+}
+
+.overview {
+  width: 65%;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #dec7a1;
+  line-height: 1.4;
+}

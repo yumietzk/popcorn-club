@@ -10,6 +10,14 @@
   margin-bottom: 2rem;
 }
 
+.person-sub {
+  font-size: 1.4rem;
+}
+
+span {
+  color: #dec7a18f;
+}
+
 .selector-btns {
   display: flex;
 }

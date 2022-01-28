@@ -36,7 +36,7 @@
 .img {
   /* border-radius: 5px; */
   overflow: hidden;
-  /* position: relative; */
+  position: relative;
 }
 
 .poster {
@@ -47,11 +47,41 @@
   object-fit: cover;
 }
 
+.cover {
+  display: none;
+  text-decoration: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  /* background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)); */
+  border: 1.3px solid #edb01d;
+  border-radius: 50%;
+  z-index: 10;
+  transition: all 0.4s;
+}
+
+.img:hover .cover {
+  display: block;
+}
+
 .name {
   margin-top: 1rem;
   font-weight: 400;
   font-size: 1.4rem;
   text-align: center;
+}
+
+.name-text:link,
+.name-text:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.name-text:hover,
+.name-text:active {
+  text-decoration: underline;
 }
 
 /* .wrap {
