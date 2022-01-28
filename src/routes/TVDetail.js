@@ -4,7 +4,7 @@ import { Routes, Route, useParams } from 'react-router-dom';
 import { fetchTVDetail, fetchTVCredits, fetchTVRelated } from '../actions';
 import Title from './Title';
 import TVDetailContent from './TVDetailContent';
-import TVDetailSeasons from './TVDetailSeasons';
+import TVDetailMore from './TVDetailMore';
 
 const TVDetail = ({
   selectedItem,
@@ -68,10 +68,9 @@ const TVDetail = ({
             />
           }
         />
-        {/* ここはTVDetailMoreとかにして、TVDetailMorenのページでrouteを作成する */}
         <Route
-          path="season/:number"
-          element={<TVDetailSeasons id={id} name={tvDetail?.original_name} />}
+          path="season/:number/*"
+          element={<TVDetailMore id={id} name={tvDetail?.original_name} />}
         />
       </Routes>
     </React.Fragment>

@@ -7,18 +7,18 @@ import CardGrid from '../components/UI/CardGrid/CardGrid';
 import styles from './TVDetailSeasons.module.css';
 
 const TVDetailSeasons = ({
-  id,
+  // id,
   name,
-  fetchTVSeasons,
+  // fetchTVSeasons,
   seasons,
   isFetching,
   isError,
 }) => {
-  const { number } = useParams();
+  // const { number } = useParams();
 
-  useEffect(() => {
-    fetchTVSeasons(id, number);
-  }, [number]);
+  // useEffect(() => {
+  //   fetchTVSeasons(id, number);
+  // }, [number]);
 
   if (isFetching || !seasons) {
     return <div>Now loading...</div>;
@@ -44,14 +44,16 @@ const TVDetailSeasons = ({
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    seasons: state.detail.tvseasons,
-    isFetching: state.detail.isFetching,
-    isError: state.error.isError,
-  };
-};
+export default TVDetailSeasons;
 
-export default connect(mapStateToProps, {
-  fetchTVSeasons,
-})(TVDetailSeasons);
+// const mapStateToProps = (state) => {
+//   return {
+//     seasons: state.detail.tvseasons,
+//     isFetching: state.detail.isFetching,
+//     isError: state.error.isError,
+//   };
+// };
+
+// export default connect(mapStateToProps, {
+//   fetchTVSeasons,
+// })(TVDetailSeasons);

@@ -58,10 +58,11 @@ const Card = ({ group, data, cname }) => {
             </Link>
           </button> */}
           <Link
-            // to={`detail/${data.id}`}
             to={
               group === 'tvdetail'
                 ? `season/${data.season_number}`
+                : group === 'tvseasons'
+                ? `episode/${data.episode_number}`
                 : `../../${group === 'movies' ? 'detail' : 'tvdetail'}/${
                     data.id
                   }`
@@ -73,10 +74,11 @@ const Card = ({ group, data, cname }) => {
         </div>
       </div>
       <Link
-        // to={`detail/${data.id}`}
         to={
           group === 'tvdetail'
             ? `season/${data.season_number}`
+            : group === 'tvseasons'
+            ? `episode/${data.episode_number}`
             : `../../${group === 'movies' ? 'detail' : 'tvdetail'}/${data.id}`
         }
         className={styles.title}
