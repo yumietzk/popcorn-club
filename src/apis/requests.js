@@ -19,6 +19,10 @@ const requests = {
   // get tv show genres
   getTVGenres: `genre/tv/list?api_key=${API_KEY}`,
 
+  // Search
+  searchMovies: `/search/movie?api_key=${API_KEY}`,
+  searchTvShows: `/search/tv?api_key=${API_KEY}`,
+
   // Detail
   // movie
   // getMovieDetail: `https://api.themoviedb.org/3/movie/550?api_key=8a45061d820fb7b5b5f574766f028ff6`,
@@ -44,10 +48,6 @@ const requests = {
   // Movie top
   // fetchMovieTopRated: `/movie/top_rated?api_key=${API_KEY}`,
   // TV top
-
-  // Search term
-  searchMovies: `/search/movie?api_key=${API_KEY}`,
-  searchTvShows: `/search/tv?api_key=${API_KEY}`,
 
   // tv
   // fetchActionAdventureTv: `/discover/tv?api_key=${API_KEY}&with_genres=10759`,

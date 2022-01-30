@@ -1,32 +1,25 @@
-// New component
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { useState, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
 import * as IoIcons from 'react-icons/io';
-import { searchMovies, searchTvShows } from '../actions';
 import GoogleAuth from './auth/GoogleAuth';
-// import history from '../history';
 import styles from './Header.module.css';
 
-const Header = ({
-  isCollapsed,
-  setIsCollapsed,
-  searchMovies,
-  searchTvShows,
-}) => {
+const Header = ({ isCollapsed, setIsCollapsed }) => {
   const [term, setTerm] = useState('');
+  const ref = useRef();
+  const navigate = useNavigate();
 
   const onSearchTerm = (e) => {
     e.preventDefault();
 
+    // ここのエラーハンドリングなんかしたいな
     if (term.trim().length === 0) return;
 
-    searchMovies(term);
-    searchTvShows(term);
-    // history.push(`/search/${term}`);
+    navigate(`/search/${term}`);
 
     setTerm('');
+    ref.current.blur();
   };
 
   const handleSidebar = () => {
@@ -52,6 +45,7 @@ const Header = ({
             placeholder="Search..."
             value={term}
             onChange={(e) => setTerm(e.target.value)}
+            ref={ref}
           />
           <button className={styles.btn}>
             <IoIcons.IoIosSearch className={styles['btn-icon']} />
@@ -63,7 +57,4 @@ const Header = ({
   );
 };
 
-export default connect(null, {
-  searchMovies,
-  searchTvShows,
-})(Header);
+export default Header;

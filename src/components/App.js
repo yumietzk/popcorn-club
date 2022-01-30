@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { Router, Routes, Route } from 'react-router-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { init } from '../actions';
@@ -11,10 +10,9 @@ import TVShows from '../routes/TVShows';
 import Detail from '../routes/Detail';
 import TVDetail from '../routes/TVDetail';
 import Person from '../routes/Person';
+import Search from '../routes/Search';
 import SidebarData from './data/SidebarData';
 import SelectorsData from './data/SelectorsData';
-// import ScrollToTop from '../helpers/ScrollToTop';
-// import history from '../history';
 import styles from './App.module.css';
 
 const App = ({ init, movieGenres, tvGenres }) => {
@@ -53,7 +51,6 @@ const App = ({ init, movieGenres, tvGenres }) => {
         backgroundPosition: 'top',
       }}
     >
-      {/* <Router history={history}> */}
       <BrowserRouter>
         <Header isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
         <Sidebar
@@ -62,7 +59,6 @@ const App = ({ init, movieGenres, tvGenres }) => {
           isCollapsed={isCollapsed}
           isDetail={isDetail}
         />
-        {/* <ScrollToTop /> */}
         <Routes>
           <Route
             path="/"
@@ -112,7 +108,14 @@ const App = ({ init, movieGenres, tvGenres }) => {
               />
             }
           />
-          <Route path="person/:id" element={<Person />} />
+          <Route
+            path="person/:id"
+            element={<Person setIsDetail={setIsDetail} />}
+          />
+          <Route
+            path="search/:term"
+            element={<Search setIsDetail={setIsDetail} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

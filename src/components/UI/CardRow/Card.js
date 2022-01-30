@@ -63,9 +63,11 @@ const Card = ({ group, data, cname }) => {
                 ? `season/${data.season_number}`
                 : group === 'tvseasons'
                 ? `episode/${data.episode_number}`
-                : `../../${group === 'movies' ? 'detail' : 'tvdetail'}/${
-                    data.id
-                  }`
+                : `../../${
+                    group === 'movies' || group === 'search'
+                      ? 'detail'
+                      : 'tvdetail'
+                  }/${data.id}`
             }
             className={styles['cover-btn']}
           >
@@ -79,7 +81,9 @@ const Card = ({ group, data, cname }) => {
             ? `season/${data.season_number}`
             : group === 'tvseasons'
             ? `episode/${data.episode_number}`
-            : `../../${group === 'movies' ? 'detail' : 'tvdetail'}/${data.id}`
+            : `../../${
+                group === 'movies' || group === 'search' ? 'detail' : 'tvdetail'
+              }/${data.id}`
         }
         className={styles.title}
       >

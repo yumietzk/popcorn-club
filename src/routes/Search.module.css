@@ -1,0 +1,64 @@
+.title {
+  color: #dec7a1;
+  padding: 1.5rem 3.8rem;
+  padding-bottom: 1.3rem;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.title-left {
+}
+
+.title-name {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.term {
+  font-size: 1.5rem;
+}
+
+.title-right {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid transparent;
+  color: #dec7a1;
+  font-size: 1.8rem;
+  transition: all 0.3s;
+}
+
+.title-btn:not(:last-child) {
+  margin-right: 3rem;
+}
+
+.title-btn:hover {
+  color: #dec7a18f;
+}
+
+.selected {
+  border-bottom: 2px solid #edb01d;
+  color: #edb01d;
+  transition: all 0.3s;
+}
+
+.selected:hover {
+  border-bottom: 2px solid #dec7a18f;
+}
+
+.results {
+  padding: 2rem 2rem 2rem 3.8rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 14rem);
+  gap: 3.9rem 3.8rem;
+  overflow-y: scroll;
+  position: relative;
+}

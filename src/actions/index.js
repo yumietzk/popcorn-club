@@ -136,7 +136,6 @@ const makeRequest = (count, url) => {
 };
 
 // MOVIES
-
 // all
 export const fetchAllMovies =
   (count = 60) =>
@@ -271,8 +270,7 @@ export const fetchTVShowsByGenre =
     }
   };
 
-// Detail
-// movie
+// DETAIL
 // detail
 export const fetchMovieDetail = (id) => async (dispatch) => {
   try {
@@ -290,7 +288,7 @@ export const fetchMovieDetail = (id) => async (dispatch) => {
   }
 };
 
-// cast
+// casts
 export const fetchMovieCredits = (id) => async (dispatch) => {
   try {
     dispatch({ type: 'REQUEST_DATA_DETAIL' });
@@ -349,7 +347,7 @@ export const fetchMovieRelated = (id) => async (dispatch) => {
   }
 };
 
-// tvshow
+// TV DETAIL
 // detail
 export const fetchTVDetail = (id) => async (dispatch) => {
   try {
@@ -367,7 +365,7 @@ export const fetchTVDetail = (id) => async (dispatch) => {
   }
 };
 
-// cast
+// casts
 export const fetchTVCredits = (id) => async (dispatch) => {
   try {
     dispatch({ type: 'REQUEST_DATA_DETAIL' });
@@ -401,7 +399,7 @@ export const fetchTVRelated = (id) => async (dispatch) => {
   }
 };
 
-// tv seasons detail
+// TV SEASONS
 export const fetchTVSeasons = (id, number) => async (dispatch) => {
   try {
     dispatch({ type: 'REQUEST_DATA_DETAIL' });
@@ -420,7 +418,7 @@ export const fetchTVSeasons = (id, number) => async (dispatch) => {
   }
 };
 
-// Person
+// PERSON
 // info
 export const fetchPersonInfo = (id) => async (dispatch) => {
   try {
@@ -472,6 +470,52 @@ export const fetchPersonTVShows = (id) => async (dispatch) => {
       type: 'FAIL_RECEIVE_DATA',
       payload: {
         message: 'Something went wrong. Could not get data. Please try again!',
+      },
+    });
+  }
+};
+
+// SEARCH
+export const searchMovies = (term) => async (dispatch) => {
+  try {
+    dispatch({ type: 'REQUEST_DATA' });
+
+    const response = await tmdb.get(
+      `${requests.searchMovies}&language=en-US&query=${term}`
+    );
+    dispatch({
+      type: 'SEARCH_MOVIES',
+      payload: { data: response.data.results, term: term },
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: {
+        message:
+          'Something went wrong. Could not get data. Please search again!',
+      },
+    });
+  }
+};
+
+export const searchTVShows = (term) => async (dispatch) => {
+  try {
+    dispatch({ type: 'REQUEST_TVDATA' });
+
+    const response = await tmdb.get(
+      `${requests.searchTvShows}&language=en-US&query=${term}`
+    );
+
+    dispatch({
+      type: 'SEARCH_TVS',
+      payload: response.data.results,
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: {
+        message:
+          'Something went wrong. Could not get data. Please search again!',
       },
     });
   }
@@ -738,342 +782,63 @@ export const fetchPersonTVShows = (id) => async (dispatch) => {
 
 // all
 
-export const fetchMovieNowPlaying = () => async (dispatch) => {
-  try {
-    dispatch({ type: 'REQUEST_DATA' });
+// export const fetchMovieNowPlaying = () => async (dispatch) => {
+//   try {
+//     dispatch({ type: 'REQUEST_DATA' });
 
-    const response = await tmdb.get(requests.fetchMovieNowPlaying);
-    dispatch({ type: 'MOVIE_NOWPLAYING', payload: response.data.results });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message: 'Something went wrong. Could not get data. Please try again!',
-      },
-    });
-  }
-};
+//     const response = await tmdb.get(requests.fetchMovieNowPlaying);
+//     dispatch({ type: 'MOVIE_NOWPLAYING', payload: response.data.results });
+//   } catch (err) {
+//     dispatch({
+//       type: 'FAIL_RECEIVE_DATA',
+//       payload: {
+//         message: 'Something went wrong. Could not get data. Please try again!',
+//       },
+//     });
+//   }
+// };
 
-export const fetchTvOnAir = () => async (dispatch) => {
-  try {
-    dispatch({ type: 'REQUEST_TVDATA' });
+// export const fetchTvOnAir = () => async (dispatch) => {
+//   try {
+//     dispatch({ type: 'REQUEST_TVDATA' });
 
-    const response = await tmdb.get(requests.fetchTvOnAir);
-    dispatch({ type: 'TV_ONAIR', payload: response.data.results });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message: 'Something went wrong. Could not get data. Please try again!',
-      },
-    });
-  }
-};
+//     const response = await tmdb.get(requests.fetchTvOnAir);
+//     dispatch({ type: 'TV_ONAIR', payload: response.data.results });
+//   } catch (err) {
+//     dispatch({
+//       type: 'FAIL_RECEIVE_DATA',
+//       payload: {
+//         message: 'Something went wrong. Could not get data. Please try again!',
+//       },
+//     });
+//   }
+// };
 
-export const fetchMovieTopRated = () => async (dispatch) => {
-  try {
-    dispatch({ type: 'REQUEST_DATA' });
+// export const fetchMovieTopRated = () => async (dispatch) => {
+//   try {
+//     dispatch({ type: 'REQUEST_DATA' });
 
-    const response = await tmdb.get(requests.fetchMovieTopRated);
-    dispatch({ type: 'MOVIE_TOPRATED', payload: response.data.results });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message: 'Something went wrong. Could not get data. Please try again!',
-      },
-    });
-  }
-};
+//     const response = await tmdb.get(requests.fetchMovieTopRated);
+//     dispatch({ type: 'MOVIE_TOPRATED', payload: response.data.results });
+//   } catch (err) {
+//     dispatch({
+//       type: 'FAIL_RECEIVE_DATA',
+//       payload: {
+//         message: 'Something went wrong. Could not get data. Please try again!',
+//       },
+//     });
+//   }
+// };
 
 // DETAIL
 // movie
 
 // tv
 
-// SEARCH
-export const searchMovies = (term) => async (dispatch) => {
-  try {
-    dispatch({ type: 'REQUEST_DATA' });
-
-    const response = await tmdb.get(
-      `${requests.searchMovies}&language=en-US&query=${term}`
-    );
-    dispatch({
-      type: 'SEARCH_MOVIES',
-      payload: { data: response.data.results, term: term },
-    });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message:
-          'Something went wrong. Could not get data. Please search again!',
-      },
-    });
-  }
-};
-
-export const searchTvShows = (term) => async (dispatch) => {
-  try {
-    dispatch({ type: 'REQUEST_TVDATA' });
-
-    const response = await tmdb.get(
-      `${requests.searchTvShows}&language=en-US&query=${term}`
-    );
-
-    dispatch({
-      type: 'SEARCH_TVS',
-      payload: response.data.results,
-    });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message:
-          'Something went wrong. Could not get data. Please search again!',
-      },
-    });
-  }
-};
-
 // Genre
 // movie
 
 // tv
-export const fetchActionAdventureTv = () => async (dispatch) => {
-  try {
-    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-    const response = await Promise.all([
-      tmdb.get(`${requests.fetchActionAdventureTv}&page=1`),
-      tmdb.get(`${requests.fetchActionAdventureTv}&page=2`),
-      tmdb.get(`${requests.fetchActionAdventureTv}&page=3`),
-    ]);
-
-    const data = response.map((res) => res.data.results);
-
-    dispatch({
-      type: 'FETCH_ACTIONADVENTURESHOW',
-      payload: [...data[0], ...data[1], ...data[2]],
-    });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message: 'Something went wrong. Could not get data. Please try again!',
-      },
-    });
-  }
-};
-
-export const fetchAnimationTv = () => async (dispatch) => {
-  try {
-    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-    const response = await Promise.all([
-      tmdb.get(`${requests.fetchAnimationTv}&page=1`),
-      tmdb.get(`${requests.fetchAnimationTv}&page=2`),
-      tmdb.get(`${requests.fetchAnimationTv}&page=3`),
-    ]);
-
-    const data = response.map((res) => res.data.results);
-
-    dispatch({
-      type: 'FETCH_ANIMATIONSHOW',
-      payload: [...data[0], ...data[1], ...data[2]],
-    });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message: 'Something went wrong. Could not get data. Please try again!',
-      },
-    });
-  }
-};
-
-export const fetchComedyTv = () => async (dispatch) => {
-  try {
-    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-    const response = await Promise.all([
-      tmdb.get(`${requests.fetchComedyTv}&page=1`),
-      tmdb.get(`${requests.fetchComedyTv}&page=2`),
-      tmdb.get(`${requests.fetchComedyTv}&page=3`),
-    ]);
-
-    const data = response.map((res) => res.data.results);
-
-    dispatch({
-      type: 'FETCH_COMEDYSHOW',
-      payload: [...data[0], ...data[1], ...data[2]],
-    });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message: 'Something went wrong. Could not get data. Please try again!',
-      },
-    });
-  }
-};
-
-export const fetchCrimeTv = () => async (dispatch) => {
-  try {
-    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-    const response = await Promise.all([
-      tmdb.get(`${requests.fetchCrimeTv}&page=1`),
-      tmdb.get(`${requests.fetchCrimeTv}&page=2`),
-      tmdb.get(`${requests.fetchCrimeTv}&page=3`),
-    ]);
-
-    const data = response.map((res) => res.data.results);
-
-    dispatch({
-      type: 'FETCH_CRIMESHOW',
-      payload: [...data[0], ...data[1], ...data[2]],
-    });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message: 'Something went wrong. Could not get data. Please try again!',
-      },
-    });
-  }
-};
-
-export const fetchDocumentaryTv = () => async (dispatch) => {
-  try {
-    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-    const response = await Promise.all([
-      tmdb.get(`${requests.fetchDocumentaryTv}&page=1`),
-      tmdb.get(`${requests.fetchDocumentaryTv}&page=2`),
-      tmdb.get(`${requests.fetchDocumentaryTv}&page=3`),
-    ]);
-
-    const data = response.map((res) => res.data.results);
-
-    dispatch({
-      type: 'FETCH_DOCUMENTARYSHOW',
-      payload: [...data[0], ...data[1], ...data[2]],
-    });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message: 'Something went wrong. Could not get data. Please try again!',
-      },
-    });
-  }
-};
-
-export const fetchDramaTv = () => async (dispatch) => {
-  try {
-    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-    const response = await Promise.all([
-      tmdb.get(`${requests.fetchDramaTv}&page=1`),
-      tmdb.get(`${requests.fetchDramaTv}&page=2`),
-      tmdb.get(`${requests.fetchDramaTv}&page=3`),
-    ]);
-
-    const data = response.map((res) => res.data.results);
-
-    dispatch({
-      type: 'FETCH_DRAMASHOW',
-      payload: [...data[0], ...data[1], ...data[2]],
-    });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message: 'Something went wrong. Could not get data. Please try again!',
-      },
-    });
-  }
-};
-
-export const fetchKidsTv = () => async (dispatch) => {
-  try {
-    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-    const response = await Promise.all([
-      tmdb.get(`${requests.fetchKidsTv}&page=1`),
-      tmdb.get(`${requests.fetchKidsTv}&page=2`),
-      tmdb.get(`${requests.fetchKidsTv}&page=3`),
-    ]);
-
-    const data = response.map((res) => res.data.results);
-
-    dispatch({
-      type: 'FETCH_KIDSSHOW',
-      payload: [...data[0], ...data[1], ...data[2]],
-    });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message: 'Something went wrong. Could not get data. Please try again!',
-      },
-    });
-  }
-};
-
-export const fetchMysteryTv = () => async (dispatch) => {
-  try {
-    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-    const response = await Promise.all([
-      tmdb.get(`${requests.fetchMysteryTv}&page=1`),
-      tmdb.get(`${requests.fetchMysteryTv}&page=2`),
-      tmdb.get(`${requests.fetchMysteryTv}&page=3`),
-    ]);
-
-    const data = response.map((res) => res.data.results);
-
-    dispatch({
-      type: 'FETCH_MYSTERYSHOW',
-      payload: [...data[0], ...data[1], ...data[2]],
-    });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message: 'Something went wrong. Could not get data. Please try again!',
-      },
-    });
-  }
-};
-
-export const fetchRealityTv = () => async (dispatch) => {
-  try {
-    dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-    const response = await Promise.all([
-      tmdb.get(`${requests.fetchRealityTv}&page=1`),
-      tmdb.get(`${requests.fetchRealityTv}&page=2`),
-      tmdb.get(`${requests.fetchRealityTv}&page=3`),
-    ]);
-
-    const data = response.map((res) => res.data.results);
-
-    dispatch({
-      type: 'FETCH_REALITYSHOW',
-      payload: [...data[0], ...data[1], ...data[2]],
-    });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message: 'Something went wrong. Could not get data. Please try again!',
-      },
-    });
-  }
-};
 
 // FAVORITE
 export const saveMovie =

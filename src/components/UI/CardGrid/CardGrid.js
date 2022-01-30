@@ -16,7 +16,7 @@ const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
     }
 
     let targetData;
-    if (group === 'tvseasons') {
+    if (group === 'tvseasons' || group === 'search' || group === 'searchTV') {
       targetData = data;
     } else {
       const sortedData = data?.sort((a, b) => {

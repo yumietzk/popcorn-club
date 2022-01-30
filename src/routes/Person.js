@@ -12,6 +12,7 @@ import Credits from './Credits';
 import styles from './Person.module.css';
 
 const Person = ({
+  setIsDetail,
   fetchPersonInfo,
   fetchPersonMovies,
   fetchPersonTVShows,
@@ -24,6 +25,14 @@ const Person = ({
   // DetailみたいにPersonページに来たときに背景を変えたい
 
   const { id } = useParams();
+
+  useEffect(() => {
+    setIsDetail(true);
+
+    return () => {
+      setIsDetail(false);
+    };
+  }, []);
 
   useEffect(() => {
     fetchPersonInfo(id);

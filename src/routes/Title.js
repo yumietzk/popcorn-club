@@ -54,16 +54,9 @@ const Title = ({
     }
   };
 
-  // type=personの時は
   return (
     <div className={styles.title}>
-      <div className={styles['title-name']}>
-        {/* {type === 'movies' ? 'Movies' : 'TV Shows'} */}
-        {renderType()}
-      </div>
-
-      {/* !isDetailの条件式は他のものに変えるかも */}
-      {/* か、!isDetailプラスtype=personの時の条件式も加えてreturnを追加するかも */}
+      <div className={styles['title-name']}>{renderType()}</div>
 
       {type === 'person' && !isFetching && !isError?.status && person && (
         <div className={styles['person-sub']}>
