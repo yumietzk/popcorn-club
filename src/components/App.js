@@ -47,6 +47,7 @@ const App = ({ init, movieGenres, tvGenres }) => {
         backgroundImage:
           detailBackground.isON &&
           `linear-gradient(to top left, rgba(41, 38, 33, 0.95), rgba(41, 38, 33, 0.95)), url('https://image.tmdb.org/t/p/original${detailBackground.url}')`,
+        // `linear-gradient(to top left, rgba(41, 38, 33, 0.95), rgba(41, 38, 33, 0.95)), url('https://image.tmdb.org/t/p/original${detailBackground.url}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'top',
       }}
@@ -110,7 +111,12 @@ const App = ({ init, movieGenres, tvGenres }) => {
           />
           <Route
             path="person/:id"
-            element={<Person setIsDetail={setIsDetail} />}
+            element={
+              <Person
+                setDetailBackground={setDetailBackground}
+                setIsDetail={setIsDetail}
+              />
+            }
           />
           <Route
             path="search/:term"

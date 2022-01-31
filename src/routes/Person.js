@@ -12,6 +12,7 @@ import Credits from './Credits';
 import styles from './Person.module.css';
 
 const Person = ({
+  setDetailBackground,
   setIsDetail,
   fetchPersonInfo,
   fetchPersonMovies,
@@ -22,8 +23,6 @@ const Person = ({
   isFetching,
   isError,
 }) => {
-  // DetailみたいにPersonページに来たときに背景を変えたい
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -39,6 +38,20 @@ const Person = ({
     fetchPersonMovies(id);
     fetchPersonTVShows(id);
   }, [id]);
+
+  useEffect(() => {
+    setDetailBackground({
+      isON: true,
+      url: info?.profile_path,
+    });
+
+    return () => {
+      setDetailBackground({
+        isON: false,
+        url: '',
+      });
+    };
+  }, [info]);
 
   return (
     <React.Fragment>
