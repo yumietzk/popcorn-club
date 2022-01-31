@@ -34,25 +34,27 @@
 } */
 
 .img {
-  /* flex: 1; */
   border-radius: 5px;
   overflow: hidden;
   position: relative;
+}
+
+.grid-img {
+  flex: 1;
 }
 
 .poster {
   display: block;
   height: 26rem;
   width: auto;
-  /* width: 100%;
-  height: auto; */
-  object-fit: cover;
+  object-fit: contain;
   opacity: 0;
 }
 
 .grid-poster {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .cover {
@@ -127,6 +129,10 @@
   text-decoration: underline;
 }
 
+.grid-title {
+  flex: 0 0 1.7rem;
+}
+
 .dateseason {
   /* flex-basis: 1.8rem; */
   display: block;
@@ -135,6 +141,10 @@
   font-size: 1.2rem;
   color: #dec7a1;
   /* font-weight: 100; */
+}
+
+.grid-dateseason {
+  flex: 0 0 2rem;
 }
 
 .episode {

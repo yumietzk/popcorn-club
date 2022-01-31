@@ -31,7 +31,9 @@ const Card = ({ group, data, cname }) => {
 
   return (
     <React.Fragment>
-      <div className={styles.img}>
+      <div
+        className={`${styles.img} ${cname === 'grid' && styles['grid-img']}`}
+      >
         <img
           className={`${styles.poster} ${
             cname === 'grid' && styles['grid-poster']
@@ -85,7 +87,9 @@ const Card = ({ group, data, cname }) => {
                 group === 'movies' || group === 'search' ? 'detail' : 'tvdetail'
               }/${data.id}`
         }
-        className={styles.title}
+        className={`${styles.title} ${
+          cname === 'grid' && styles['grid-title']
+        }`}
       >
         {group === 'tvdetail' || group === 'tvseasons'
           ? data.name
@@ -95,8 +99,8 @@ const Card = ({ group, data, cname }) => {
       </Link>
       <p
         className={`${styles.dateseason} ${
-          group === 'tvseasons' && styles.episode
-        }`}
+          cname === 'grid' && styles['grid-dateseason']
+        } ${group === 'tvseasons' && styles.episode}`}
       >
         {group === 'tvdetail'
           ? `${data.episode_count} episodes`

@@ -57,7 +57,7 @@ const Detail = ({
   useEffect(() => {
     setDetailBackground({
       isON: true,
-      url: movieDetail?.backdrop_path,
+      url: movieDetail?.backdrop_path || movieDetail?.poster_path,
     });
 
     return () => {
@@ -87,6 +87,7 @@ const Detail = ({
           isError={isError}
         />
         <Related
+          group="movies"
           data={movieRelated}
           isFetching={isFetching}
           isError={isError}

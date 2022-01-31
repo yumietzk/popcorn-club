@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../CardRow/Card';
+import styles from './CardGrid.module.css';
 
 const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
   const renderShows = () => {
@@ -50,7 +51,7 @@ const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
 
     return targetData.map((item, i) => {
       return (
-        <div key={i}>
+        <div key={i} className={styles.grid}>
           <Card group={group} data={item} cname="grid" />
         </div>
       );

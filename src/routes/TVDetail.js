@@ -39,7 +39,7 @@ const TVDetail = ({
   useEffect(() => {
     setDetailBackground({
       isON: true,
-      url: tvDetail?.backdrop_path,
+      url: tvDetail?.backdrop_path || tvDetail?.poster_path,
     });
 
     return () => {
