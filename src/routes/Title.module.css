@@ -39,23 +39,34 @@ span {
 
 .down-icon {
   font-size: 2.4rem;
+  margin-left: 0;
 
   display: flex;
   align-items: center;
 }
 
-.list-items {
+.lists-item {
   position: absolute;
   top: 100%;
-  /* left: 3.7rem; */
   list-style: none;
   padding: 0.7rem 0;
   background-color: #0e0d0b;
   color: #dec7a1;
-  width: 20rem;
   font-size: 1.4rem;
   border-radius: 4px;
   max-height: 60vh;
   overflow-y: auto;
   z-index: 20;
+}
+
+.lists-category {
+  width: 23rem;
+}
+
+.lists-order {
+  width: 20rem;
+}
+
+.lists-count {
+  width: 13rem;
 }

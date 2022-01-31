@@ -58,6 +58,8 @@ const Title = ({
     <div className={styles.title}>
       <div className={styles['title-name']}>{renderType()}</div>
 
+      {/* isFetchingやisErrorの時の条件式も付け足しておく */}
+      {/* isFetching ? 'loading' : isError?.status ? 'Error is ...' */}
       {type === 'person' && !isFetching && !isError?.status && person && (
         <div className={styles['person-sub']}>
           <span>Born: </span>
@@ -81,7 +83,32 @@ const Title = ({
                 <RiIcons.RiArrowDownSFill />
               )}
             </span>
+
+            {isOpen.category && (
+              <ul
+                className={`${styles['lists-item']} ${styles['lists-category']}`}
+              >
+                {SelectorsData[type].category.map((item, i) => {
+                  return (
+                    <Selector
+                      genres={genres}
+                      currentGroup={currentGroup}
+                      isOpen={isOpen}
+                      setIsOpen={setIsOpen}
+                      selectedItem={selectedItem}
+                      setSelectedItem={setSelectedItem}
+                      isAscend={isAscend}
+                      setIsAscend={setIsAscend}
+                      group="category"
+                      item={item}
+                      key={i}
+                    />
+                  );
+                })}
+              </ul>
+            )}
           </button>
+
           <button className={styles['selector-btn']} onClick={handleOrderOpen}>
             By {selectedItem.order}
             <span className={styles['down-icon']}>
@@ -91,7 +118,30 @@ const Title = ({
                 <RiIcons.RiArrowDownSFill />
               )}
             </span>
+            {isOpen.order && (
+              <ul
+                className={`${styles['lists-item']} ${styles['lists-order']}`}
+              >
+                {SelectorsData[type].order.map((item, i) => {
+                  return (
+                    <Selector
+                      currentGroup={currentGroup}
+                      isOpen={isOpen}
+                      setIsOpen={setIsOpen}
+                      selectedItem={selectedItem}
+                      setSelectedItem={setSelectedItem}
+                      isAscend={isAscend}
+                      setIsAscend={setIsAscend}
+                      group="order"
+                      item={item}
+                      key={i}
+                    />
+                  );
+                })}
+              </ul>
+            )}
           </button>
+
           <button className={styles['selector-btn']} onClick={handleCountOpen}>
             {selectedItem.count}
             <span className={styles['down-icon']}>
@@ -101,74 +151,31 @@ const Title = ({
                 <RiIcons.RiArrowDownSFill />
               )}
             </span>
+
+            {isOpen.count && (
+              <ul
+                className={`${styles['lists-item']} ${styles['lists-count']}`}
+              >
+                {SelectorsData[type].count.map((item, i) => {
+                  return (
+                    <Selector
+                      currentGroup={currentGroup}
+                      isOpen={isOpen}
+                      setIsOpen={setIsOpen}
+                      selectedItem={selectedItem}
+                      setSelectedItem={setSelectedItem}
+                      isAscend={isAscend}
+                      setIsAscend={setIsAscend}
+                      group="count"
+                      item={item}
+                      key={i}
+                    />
+                  );
+                })}
+              </ul>
+            )}
           </button>
         </div>
-      )}
-
-      {/* このポジションについては、各ボタンをrelativeとしてtop,leftを合わせたいが、下のグリッドの上にこさせたいので、fixedとするべき？ */}
-      {isOpen.category && (
-        <ul className={styles['list-items']} style={{ left: '3.7rem' }}>
-          {SelectorsData[type].category.map((item, i) => {
-            return (
-              <Selector
-                genres={genres}
-                currentGroup={currentGroup}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                selectedItem={selectedItem}
-                setSelectedItem={setSelectedItem}
-                isAscend={isAscend}
-                setIsAscend={setIsAscend}
-                group="category"
-                item={item}
-                key={i}
-              />
-            );
-          })}
-        </ul>
-      )}
-      {isOpen.order && (
-        <ul className={styles['list-items']} style={{ left: '10rem' }}>
-          {SelectorsData[type].order.map((item, i) => {
-            return (
-              <Selector
-                currentGroup={currentGroup}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                selectedItem={selectedItem}
-                setSelectedItem={setSelectedItem}
-                isAscend={isAscend}
-                setIsAscend={setIsAscend}
-                group="order"
-                item={item}
-                key={i}
-              />
-            );
-          })}
-        </ul>
-      )}
-      {isOpen.count && (
-        <ul
-          className={styles['list-items']}
-          style={{ left: '19.5rem', width: '10rem' }}
-        >
-          {SelectorsData[type].count.map((item, i) => {
-            return (
-              <Selector
-                currentGroup={currentGroup}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                selectedItem={selectedItem}
-                setSelectedItem={setSelectedItem}
-                isAscend={isAscend}
-                setIsAscend={setIsAscend}
-                group="count"
-                item={item}
-                key={i}
-              />
-            );
-          })}
-        </ul>
       )}
     </div>
   );

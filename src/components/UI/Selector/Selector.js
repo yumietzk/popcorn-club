@@ -18,7 +18,7 @@ const Selector = ({
 }) => {
   const [isSubOpen, setIsSubOpen] = useState(false);
 
-  const onItemClick = (item) => {
+  const onItemClick = (e, item) => {
     if (group === 'order') setIsAscend(!isAscend);
 
     if (!item.subCategory) {
@@ -27,9 +27,12 @@ const Selector = ({
     } else {
       setIsSubOpen(!isSubOpen);
     }
+
+    e.stopPropagation();
   };
 
   const onSubItemClick = (genre) => {
+    console.log('sub clicked');
     setSelectedItem({ ...selectedItem, [`${group}`]: genre.name });
     setIsOpen({ ...isOpen, [`${group}`]: !isOpen[`${group}`] });
   };
@@ -53,7 +56,7 @@ const Selector = ({
           className={`${styles['item-link']} ${
             selectedItem[`${group}`] === item.title && styles.selected
           }`}
-          onClick={() => onItemClick(item)}
+          onClick={(e) => onItemClick(e, item)}
         >
           {item.title}
           <span className={styles['check-icon']}>
