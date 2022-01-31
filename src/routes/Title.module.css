@@ -14,8 +14,9 @@
   font-size: 1.4rem;
 }
 
-span {
+.person-sub span {
   color: #dec7a18f;
+  margin-left: 0;
 }
 
 .selector-btns {
