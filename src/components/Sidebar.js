@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import SidebarData from './data/SidebarData';
 import styles from './Sidebar.module.css';
 
@@ -9,9 +9,6 @@ const Sidebar = ({
   isCollapsed,
   isDetail,
 }) => {
-  // const params = useParams();
-  // console.log(params);
-
   return (
     <nav className={styles.navigation}>
       <ul className={styles.lists}>
