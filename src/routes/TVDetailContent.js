@@ -7,7 +7,6 @@ import Related from './detail/Related';
 import styles from './TVDetailContent.module.css';
 
 const TVDetailContent = ({
-  selectedItem,
   setSelectedItem,
   detail,
   casts,
@@ -18,7 +17,6 @@ const TVDetailContent = ({
   return (
     <div className={styles.detail}>
       <DetailMain
-        selectedItem={selectedItem}
         setSelectedItem={setSelectedItem}
         group="tvshows"
         data={detail}

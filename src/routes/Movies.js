@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 // import {
 //   LazyLoadImage,
 //   trackWindowScroll,
 // } from 'react-lazy-load-image-component';
 import Title from './Title';
-import SelectorsData from '../components/data/SelectorsData';
 import All from './All';
 import ByGenre from './ByGenre';
 import styles from './Movies.module.css';
@@ -15,26 +14,16 @@ const Movies = ({
   setSelectedSidebar,
   selectedItem,
   setSelectedItem,
+  isAscend,
+  setIsAscend,
+  isClearAll,
+  setIsClearAll,
 }) => {
-  // categoryが変わるたびに、orderとcountの値をリセットしたい
-  // const [selectedItem, setSelectedItem] = useState({
-  //   category: SelectorsData.movies.category[0].title,
-  //   order: SelectorsData.movies.order[0].title,
-  //   count: SelectorsData.movies.count[0].title,
-  // });
-
-  const { category, order } = selectedItem;
-  const [isAscend, setIsAscend] = useState(); // ↑
+  // ⚠️categoryが変わるたびに、orderとcountの値をリセットしたい
 
   useEffect(() => {
     setSelectedSidebar('Movies');
   }, []);
-
-  // ⚠️Can I set the boolean to the initial state to useState? ↑↑ Because it's apparently rendered twice which is unnecessary.
-  useEffect(() => {
-    if (order === 'Title') setIsAscend(true);
-    if (order === 'Release Date' || order === 'Rating') setIsAscend(false);
-  }, [category, order]);
 
   return (
     <React.Fragment>
@@ -44,6 +33,7 @@ const Movies = ({
         setSelectedItem={setSelectedItem}
         isAscend={isAscend}
         setIsAscend={setIsAscend}
+        setIsClearAll={setIsClearAll}
         type="movies"
       />
       <div className={styles.movies}>
@@ -54,6 +44,7 @@ const Movies = ({
               <All
                 selectedItem={selectedItem}
                 isAscend={isAscend}
+                isClearAll={isClearAll}
                 type="movies"
                 group="movies"
               />

@@ -7,14 +7,7 @@ import SelectorsData from '../../components/data/SelectorsData';
 import styles from './DetailMain.module.css';
 
 // selectedItemのmovieとtvshowの違いで分けれる？？
-const DetailMain = ({
-  selectedItem,
-  setSelectedItem,
-  group,
-  data,
-  isFetching,
-  isError,
-}) => {
+const DetailMain = ({ setSelectedItem, group, data, isFetching, isError }) => {
   // const [selectedItem, setSelectedItem] = useState({
   //   category: SelectorsData.movies.category[0].title,
   //   order: SelectorsData.movies.order[0].title,

@@ -10,6 +10,7 @@ const Title = ({
   setSelectedItem,
   isAscend,
   setIsAscend,
+  setIsClearAll,
   type,
   isDetail,
   person,
@@ -52,6 +53,22 @@ const Title = ({
       }
       return person?.name;
     }
+  };
+
+  const clearAll = () => {
+    setSelectedItem({
+      category: SelectorsData[type].category[0].title,
+      order: SelectorsData[type].order[0].title,
+      count: SelectorsData[type].count[0].title,
+    });
+
+    setIsAscend({
+      title: true,
+      releaseDate: false,
+      rating: false,
+    });
+
+    setIsClearAll(true);
   };
 
   return (
@@ -97,8 +114,6 @@ const Title = ({
                       setIsOpen={setIsOpen}
                       selectedItem={selectedItem}
                       setSelectedItem={setSelectedItem}
-                      isAscend={isAscend}
-                      setIsAscend={setIsAscend}
                       group="category"
                       item={item}
                       key={i}
@@ -164,8 +179,6 @@ const Title = ({
                       setIsOpen={setIsOpen}
                       selectedItem={selectedItem}
                       setSelectedItem={setSelectedItem}
-                      isAscend={isAscend}
-                      setIsAscend={setIsAscend}
                       group="count"
                       item={item}
                       key={i}
@@ -177,6 +190,10 @@ const Title = ({
           </button>
         </div>
       )}
+
+      <button className={styles.clear} onClick={clearAll}>
+        Clear
+      </button>
     </div>
   );
 };

@@ -16,10 +16,27 @@ const Selector = ({
   group,
   item,
 }) => {
+  // const [isAscend, setIsAscend] = useState({
+  //   title: true,
+  //   releaseDate: false,
+  //   rating: false,
+  // }); // ↑
+
   const [isSubOpen, setIsSubOpen] = useState(false);
 
+  // selectedItemでそのタイトルが選ばれていたら、矢印変える。選ばれていなかったらそのまま
   const onItemClick = (e, item) => {
-    if (group === 'order') setIsAscend(!isAscend);
+    if (group === 'order') {
+      if (selectedItem[`${group}`] === item.title) {
+        if (item.title === 'Title') {
+          setIsAscend({ ...isAscend, title: !isAscend.title });
+        } else if (item.title === 'Release Date') {
+          setIsAscend({ ...isAscend, releaseDate: !isAscend.releaseDate });
+        } else if (item.title === 'Rating') {
+          setIsAscend({ ...isAscend, rating: !isAscend.rating });
+        }
+      }
+    }
 
     if (!item.subCategory) {
       setSelectedItem({ ...selectedItem, [`${group}`]: item.title });
@@ -37,8 +54,17 @@ const Selector = ({
     setIsOpen({ ...isOpen, [`${group}`]: !isOpen[`${group}`] });
   };
 
-  const showIcon = () => {
-    const orderArrow = isAscend ? (
+  const showIcon = (title) => {
+    const condition =
+      title === 'Title'
+        ? isAscend.title
+        : title === 'Release Date'
+        ? isAscend.releaseDate
+        : title === 'Rating'
+        ? isAscend.rating
+        : null;
+
+    const orderArrow = condition ? (
       <RiIcons.RiArrowUpFill />
     ) : (
       <RiIcons.RiArrowDownFill />
@@ -60,7 +86,10 @@ const Selector = ({
         >
           {item.title}
           <span className={styles['check-icon']}>
-            {selectedItem[`${group}`] === item.title && showIcon()}
+            {group === 'order'
+              ? showIcon(item.title)
+              : selectedItem[`${group}`] === item.title && showIcon(item.title)}
+            {/* {selectedItem[`${group}`] === item.title && showIcon(item.title)} */}
           </span>
         </Link>
 

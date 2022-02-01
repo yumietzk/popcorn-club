@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Title from './Title';
-import SelectorsData from '../components/data/SelectorsData';
 import All from './All';
 import ByGenre from './ByGenre';
 import styles from './TVShows.module.css';
@@ -11,23 +10,12 @@ const TVShows = ({
   setSelectedSidebar,
   selectedItemTV,
   setSelectedItemTV,
+  isAscend,
+  setIsAscend,
 }) => {
-  // const [selectedItem, setSelectedItem] = useState({
-  //   category: SelectorsData.tvshows.category[0].title,
-  //   order: SelectorsData.tvshows.order[0].title,
-  //   count: SelectorsData.tvshows.count[0].title,
-  // });
-  const { category, order } = selectedItemTV;
-  const [isAscend, setIsAscend] = useState(); // ↑
-
   useEffect(() => {
     setSelectedSidebar('TV Shows');
   }, []);
-
-  useEffect(() => {
-    if (order === 'Title') setIsAscend(true);
-    if (order === 'Release Date' || order === 'Rating') setIsAscend(false);
-  }, [category, order]);
 
   return (
     <React.Fragment>

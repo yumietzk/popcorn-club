@@ -73,7 +73,6 @@ const Detail = ({
       <Title type="movies" isDetail={true} />
       <div className={styles.detail}>
         <DetailMain
-          selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
           group="movies"
           data={movieDetail}

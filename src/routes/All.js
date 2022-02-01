@@ -6,6 +6,7 @@ import CardGrid from '../components/UI/CardGrid/CardGrid';
 const All = ({
   selectedItem,
   isAscend,
+  isClearAll,
   type,
   group,
   fetchAllMovies,
@@ -24,12 +25,13 @@ const All = ({
     } else if (type === 'tvshows') {
       fetchAllTVShows(count);
     }
-  }, [count]);
+  }, [isClearAll, count]);
 
   return (
     <CardGrid
       group={group}
-      order={order}
+      // order={order}
+      selectedItem={selectedItem}
       isAscend={isAscend}
       data={type === 'movies' ? movies : tvshows}
       isFetching={type === 'movies' ? isFetching : isFetchingTV}

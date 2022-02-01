@@ -71,3 +71,9 @@
 .lists-count {
   width: 13rem;
 }
+
+.clear {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+}

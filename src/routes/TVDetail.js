@@ -7,7 +7,6 @@ import TVDetailContent from './TVDetailContent';
 import TVDetailMore from './TVDetailMore';
 
 const TVDetail = ({
-  selectedItem,
   setSelectedItem,
   setDetailBackground,
   setIsDetail,
@@ -58,7 +57,6 @@ const TVDetail = ({
           path="/"
           element={
             <TVDetailContent
-              selectedItem={selectedItem}
               setSelectedItem={setSelectedItem}
               detail={tvDetail}
               casts={tvCasts}

@@ -28,6 +28,17 @@ const App = ({ init, movieGenres, tvGenres }) => {
     order: SelectorsData.tvshows.order[0].title,
     count: SelectorsData.tvshows.count[0].title,
   });
+  const [isAscend, setIsAscend] = useState({
+    title: true,
+    releaseDate: false,
+    rating: false,
+  }); // ↑
+  const [isAscendTV, setIsAscendTV] = useState({
+    title: true,
+    releaseDate: false,
+    rating: false,
+  }); // ↑
+  const [isClearAll, setIsClearAll] = useState(false);
   const [detailBackground, setDetailBackground] = useState({
     isON: false,
     url: '',
@@ -55,6 +66,8 @@ const App = ({ init, movieGenres, tvGenres }) => {
       <BrowserRouter>
         <Header isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
         <Sidebar
+          selectedItem={selectedItem}
+          selectedItemTV={selectedItemTV}
           selectedSidebar={selectedSidebar}
           setSelectedSidebar={setSelectedSidebar}
           isCollapsed={isCollapsed}
@@ -73,6 +86,10 @@ const App = ({ init, movieGenres, tvGenres }) => {
                 setSelectedSidebar={setSelectedSidebar}
                 selectedItem={selectedItem}
                 setSelectedItem={setSelectedItem}
+                isAscend={isAscend}
+                setIsAscend={setIsAscend}
+                isClearAll={isClearAll}
+                setIsClearAll={setIsClearAll}
               />
             }
           />
@@ -84,6 +101,8 @@ const App = ({ init, movieGenres, tvGenres }) => {
                 setSelectedSidebar={setSelectedSidebar}
                 selectedItemTV={selectedItemTV}
                 setSelectedItemTV={setSelectedItemTV}
+                isAscend={isAscendTV}
+                setIsAscend={setIsAscendTV}
               />
             }
           />
@@ -91,7 +110,6 @@ const App = ({ init, movieGenres, tvGenres }) => {
             path="detail/:id"
             element={
               <Detail
-                selectedItem={selectedItem}
                 setSelectedItem={setSelectedItem}
                 setDetailBackground={setDetailBackground}
                 setIsDetail={setIsDetail}
@@ -102,7 +120,6 @@ const App = ({ init, movieGenres, tvGenres }) => {
             path="tvdetail/:id/*"
             element={
               <TVDetail
-                selectedItem={selectedItemTV}
                 setSelectedItem={setSelectedItemTV}
                 setDetailBackground={setDetailBackground}
                 setIsDetail={setIsDetail}
