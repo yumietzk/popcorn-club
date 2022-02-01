@@ -27,7 +27,11 @@ const TVDetailEpisodes = ({ name, seasons, isFetching, isError }) => {
       <div className={styles.main}>
         <div className={styles.img}>
           <img
-            src={`https://image.tmdb.org/t/p/original${data.still_path}`}
+            src={
+              !data.still_path
+                ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/1568f08221d5a887546e2d386179ff4b.png?compress=1&resize=1000x750&vertical=top'
+                : `https://image.tmdb.org/t/p/original${data.still_path}`
+            }
             alt={data.name}
             className={styles.poster}
           />

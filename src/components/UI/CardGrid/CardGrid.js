@@ -15,12 +15,13 @@ const CardGrid = ({
   // title: true,
   // releaseDate: false,
   // rating: false,
-  const { title, releaseDate, rating } = isAscend;
 
   let targetData;
   if (group === 'tvseasons' || group === 'search' || group === 'searchTV') {
     targetData = data;
   } else {
+    const { title, releaseDate, rating } = isAscend;
+
     const sortedData = data?.sort((a, b) => {
       let targetDataA;
       let targetDataB;

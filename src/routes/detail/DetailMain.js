@@ -95,7 +95,11 @@ const DetailMain = ({ setSelectedItem, group, data, isFetching, isError }) => {
       <React.Fragment>
         <div className={styles.img}>
           <img
-            src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
+            src={
+              !data.poster_path
+                ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/f7c46c1ebbd7195bed3b6aa27228b1fd.png?compress=1&resize=1200x900&vertical=top'
+                : `https://image.tmdb.org/t/p/original${data.poster_path}`
+            }
             alt={data.original_title ? data.original_title : data.original_name}
             className={styles.poster}
             // onLoad={onLoad}

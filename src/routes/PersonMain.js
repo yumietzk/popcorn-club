@@ -13,7 +13,11 @@ const PersonMain = ({ person, isFetching, isError }) => {
     <div className={styles.main}>
       <div className={styles.img}>
         <img
-          src={`https://image.tmdb.org/t/p/original${person.profile_path}`}
+          src={
+            !person.profile_path
+              ? 'https://cdn.dribbble.com/users/1090020/screenshots/15509551/media/fe29a709b7a89315c1673d143c23c2c1.png?compress=1&resize=1200x900&vertical=top'
+              : `https://image.tmdb.org/t/p/original${person.profile_path}`
+          }
           alt={person.name}
           className={styles.poster}
         />

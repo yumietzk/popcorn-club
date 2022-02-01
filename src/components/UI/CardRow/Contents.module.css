@@ -29,8 +29,12 @@
 }
 
 .card {
-  margin-right: 3.1rem;
+  flex: 0 0 17rem;
+  margin-right: 3.2rem;
   text-decoration: none;
   color: #dec7a1;
-  /* width: 20rem; */
+  /* width: 17rem; */
+
+  display: flex;
+  flex-direction: column;
 }

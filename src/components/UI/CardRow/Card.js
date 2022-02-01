@@ -1,24 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import movieTrailer from 'movie-trailer';
 import * as IoIcons from 'react-icons/io';
 import { truncate } from '../../../helpers/Truncate';
-// import MovieTrailer from '../../MovieTrailer';
 import styles from './Card.module.css';
 
 const Card = ({ group, data, cname }) => {
   const [loaded, setLoaded] = useState(false);
-  // const [trailerUrl, setTrailerUrl] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // if group === tv detail, create render function
 
   useEffect(() => {
     setLoaded(false);
   }, []);
-
-  // ここで一つ一つトレイラーを作っていることで時間がかかっているみたい。ボタンを押してからトレイラー対応するなりなんか考える
-  // ⚠️やっぱりまだ最初のダウンロードに時間がかかっているから、トレイラーではなくてdetailに飛ぶボタンなりなんかにしてみる
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];
@@ -32,15 +23,29 @@ const Card = ({ group, data, cname }) => {
   return (
     <React.Fragment>
       <div
-        className={`${styles.img} ${cname === 'grid' && styles['grid-img']}`}
+        className={`${styles.img} ${cname === 'grid' && styles['grid-img']} ${
+          group === 'tvseasons' && styles['seasons-img']
+        }`}
       >
         <img
           className={`${styles.poster} ${
             cname === 'grid' && styles['grid-poster']
-          } ${loaded && styles['poster-open']}`}
-          src={`https://image.tmdb.org/t/p/original${
-            group === 'tvseasons' ? data.still_path : data.poster_path
           }`}
+          // className={`${styles.poster} ${
+          //   cname === 'grid' && styles['grid-poster']
+          // } ${loaded && styles['poster-open']}`}
+          // ⚠️posterない時にunsplashから取ってきた写真だけど、おしゃれなイラストにしたいな
+          src={
+            !data.still_path && !data.poster_path && group === 'tvdetail'
+              ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/0be875c520dcf6b4b7176738ec346334.png?compress=1&resize=1000x750&vertical=top'
+              : !data.still_path && !data.poster_path && group === 'tvseasons'
+              ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/1568f08221d5a887546e2d386179ff4b.png?compress=1&resize=1000x750&vertical=top'
+              : !data.still_path && !data.poster_path
+              ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/f7c46c1ebbd7195bed3b6aa27228b1fd.png?compress=1&resize=1200x900&vertical=top'
+              : `https://image.tmdb.org/t/p/original${
+                  group === 'tvseasons' ? data.still_path : data.poster_path
+                }`
+          }
           alt={
             group === 'tvseasons'
               ? data.name
@@ -48,17 +53,9 @@ const Card = ({ group, data, cname }) => {
               ? data.original_title
               : data.original_name
           }
-          onLoad={onLoad}
+          // onLoad={onLoad}
         />
         <div className={styles.cover}>
-          {/* <button
-            className={styles['cover-btn']}
-            // onClick={() => setIsModalOpen(true)}
-          >
-            <Link>
-              <IoIcons.IoIosMore className={styles['cover-icon']} />
-            </Link>
-          </button> */}
           <Link
             to={
               group === 'tvdetail'

@@ -19,13 +19,14 @@ const All = ({
 }) => {
   const { order, count } = selectedItem;
 
+  // When clearall is true, fetching doesn't happen
   useEffect(() => {
     if (type === 'movies') {
       fetchAllMovies(count);
     } else if (type === 'tvshows') {
       fetchAllTVShows(count);
     }
-  }, [isClearAll, count]);
+  }, [count]);
 
   return (
     <CardGrid

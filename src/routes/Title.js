@@ -55,6 +55,7 @@ const Title = ({
     }
   };
 
+  // clearallした時に、最初のAllページを表示させたいけど、エラーになる
   const clearAll = () => {
     setSelectedItem({
       category: SelectorsData[type].category[0].title,
@@ -80,7 +81,7 @@ const Title = ({
       {type === 'person' && !isFetching && !isError?.status && person && (
         <div className={styles['person-sub']}>
           <span>Born: </span>
-          {person.birthday.replaceAll('-', '/')}
+          {person.birthday?.replaceAll('-', '/')}
           <span> in </span>
           {person.place_of_birth}
         </div>
