@@ -7,7 +7,14 @@ import SelectorsData from '../../components/data/SelectorsData';
 import styles from './DetailMain.module.css';
 
 // selectedItemのmovieとtvshowの違いで分けれる？？
-const DetailMain = ({ setSelectedItem, group, data, isFetching, isError }) => {
+const DetailMain = ({
+  setSelectedItem,
+  setIsAscend,
+  group,
+  data,
+  isFetching,
+  isError,
+}) => {
   // const [selectedItem, setSelectedItem] = useState({
   //   category: SelectorsData.movies.category[0].title,
   //   order: SelectorsData.movies.order[0].title,
@@ -53,6 +60,12 @@ const DetailMain = ({ setSelectedItem, group, data, isFetching, isError }) => {
       category: genre.name,
       order: SelectorsData[group].order[0].title,
       count: SelectorsData[group].count[0].title,
+    });
+
+    setIsAscend({
+      title: true,
+      releaseDate: false,
+      rating: false,
     });
   };
 

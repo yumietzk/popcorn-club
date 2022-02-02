@@ -170,7 +170,6 @@ export const fetchMoviesByGenre =
   (selectedGenre, count = 60) =>
   async (dispatch, getState) => {
     try {
-      console.log(selectedGenre);
       dispatch({ type: 'REQUEST_DATA_BYGENRE' });
 
       const genres = getState().conf.movieGenres;
@@ -444,7 +443,6 @@ export const fetchPersonMovies = (id) => async (dispatch) => {
     const response = await tmdb.get(
       `/person/${id}/movie_credits?api_key=${API_KEY}`
     );
-    console.log(response.data.cast);
     dispatch({ type: 'MOVIE_CREDITS', payload: response.data.cast });
   } catch (err) {
     dispatch({

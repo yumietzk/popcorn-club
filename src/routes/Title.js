@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as RiIcons from 'react-icons/ri';
 import SelectorsData from '../components/data/SelectorsData';
 import Selector from '../components/UI/Selector/Selector';
@@ -10,7 +11,6 @@ const Title = ({
   setSelectedItem,
   isAscend,
   setIsAscend,
-  setIsClearAll,
   type,
   isDetail,
   person,
@@ -23,6 +23,8 @@ const Title = ({
     order: false,
     count: false,
   });
+
+  const navigate = useNavigate();
 
   const handleCategoryOpen = () => {
     setCurrentGroup('category');
@@ -55,7 +57,6 @@ const Title = ({
     }
   };
 
-  // clearallした時に、最初のAllページを表示させたいけど、エラーになる
   const clearAll = () => {
     setSelectedItem({
       category: SelectorsData[type].category[0].title,
@@ -69,7 +70,39 @@ const Title = ({
       rating: false,
     });
 
-    setIsClearAll(true);
+    navigate(`/${type === 'movies' ? 'movies' : 'tvshows'}`);
+  };
+
+  const renderClearBtn = () => {
+    if (
+      selectedItem.category !== SelectorsData[type].category[0].title ||
+      selectedItem.order !== SelectorsData[type].order[0].title ||
+      selectedItem.count !== SelectorsData[type].count[0].title ||
+      !isAscend.title ||
+      isAscend.releaseDate ||
+      isAscend.rating
+    ) {
+      return (
+        type !== 'person' &&
+        !isDetail && (
+          <button className={styles.clear} onClick={clearAll}>
+            <RiIcons.RiCloseFill className={styles['clear-icon']} />
+          </button>
+        )
+      );
+    }
+
+    // const [selectedItem, setSelectedItem] = useState({
+    //   category: SelectorsData[type].category[0].title,
+    //   order: SelectorsData[type].order[0].title,
+    //   count: SelectorsData[type].count[0].title,
+    // });
+
+    // const [isAscend, setIsAscend] = useState({
+    //   title: true,
+    //   releaseDate: false,
+    //   rating: false,
+    // }); // ↑
   };
 
   return (
@@ -192,9 +225,7 @@ const Title = ({
         </div>
       )}
 
-      <button className={styles.clear} onClick={clearAll}>
-        Clear
-      </button>
+      {renderClearBtn()}
     </div>
   );
 };

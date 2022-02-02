@@ -6,7 +6,6 @@ import CardGrid from '../components/UI/CardGrid/CardGrid';
 const All = ({
   selectedItem,
   isAscend,
-  isClearAll,
   type,
   group,
   fetchAllMovies,
@@ -19,7 +18,6 @@ const All = ({
 }) => {
   const { order, count } = selectedItem;
 
-  // When clearall is true, fetching doesn't happen
   useEffect(() => {
     if (type === 'movies') {
       fetchAllMovies(count);
@@ -31,8 +29,7 @@ const All = ({
   return (
     <CardGrid
       group={group}
-      // order={order}
-      selectedItem={selectedItem}
+      order={order}
       isAscend={isAscend}
       data={type === 'movies' ? movies : tvshows}
       isFetching={type === 'movies' ? isFetching : isFetchingTV}

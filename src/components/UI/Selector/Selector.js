@@ -49,7 +49,6 @@ const Selector = ({
   };
 
   const onSubItemClick = (genre) => {
-    console.log('sub clicked');
     setSelectedItem({ ...selectedItem, [`${group}`]: genre.name });
     setIsOpen({ ...isOpen, [`${group}`]: !isOpen[`${group}`] });
   };

@@ -17,8 +17,8 @@ import styles from './Detail.module.css';
 // movieとtvを統合できるはず
 // fetchするとき、groupでmovieかtvか、typeでdetail, credits, reviews, relatedの何かをパラメータで渡してaction creatorも統合できるはず
 const Detail = ({
-  selectedItem,
   setSelectedItem,
+  setIsAscend,
   setDetailBackground,
   setIsDetail,
   fetchMovieDetail,
@@ -32,11 +32,6 @@ const Detail = ({
   isFetching,
   isError,
 }) => {
-  // const [selectedItem, setSelectedItem] = useState({
-  //   category: SelectorsData.movies.category[0].title,
-  //   order: SelectorsData.movies.order[0].title,
-  //   count: SelectorsData.movies.count[0].title,
-  // });
   const { id } = useParams();
 
   useEffect(() => {
@@ -74,6 +69,7 @@ const Detail = ({
       <div className={styles.detail}>
         <DetailMain
           setSelectedItem={setSelectedItem}
+          setIsAscend={setIsAscend}
           group="movies"
           data={movieDetail}
           isFetching={isFetching}

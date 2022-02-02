@@ -16,8 +16,6 @@ const Movies = ({
   setSelectedItem,
   isAscend,
   setIsAscend,
-  isClearAll,
-  setIsClearAll,
 }) => {
   // ⚠️categoryが変わるたびに、orderとcountの値をリセットしたい
 
@@ -33,7 +31,6 @@ const Movies = ({
         setSelectedItem={setSelectedItem}
         isAscend={isAscend}
         setIsAscend={setIsAscend}
-        setIsClearAll={setIsClearAll}
         type="movies"
       />
       <div className={styles.movies}>
@@ -44,7 +41,6 @@ const Movies = ({
               <All
                 selectedItem={selectedItem}
                 isAscend={isAscend}
-                isClearAll={isClearAll}
                 type="movies"
                 group="movies"
               />

@@ -8,6 +8,7 @@ import styles from './TVDetailContent.module.css';
 
 const TVDetailContent = ({
   setSelectedItem,
+  setIsAscend,
   detail,
   casts,
   related,
@@ -18,6 +19,7 @@ const TVDetailContent = ({
     <div className={styles.detail}>
       <DetailMain
         setSelectedItem={setSelectedItem}
+        setIsAscend={setIsAscend}
         group="tvshows"
         data={detail}
         isFetching={isFetching}

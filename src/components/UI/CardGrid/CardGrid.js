@@ -1,27 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Card from '../CardRow/Card';
 import styles from './CardGrid.module.css';
 
-const CardGrid = ({
-  group,
-  // selectedItem,
-  order,
-  isAscend,
-  data,
-  isFetching,
-  isError,
-}) => {
-  // isAscend
-  // title: true,
-  // releaseDate: false,
-  // rating: false,
-
+const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
   let targetData;
+  const { title, releaseDate, rating } = isAscend;
+
+  // useEffect(() => {
+
+  // }, [group, selectedItem, isAscend]);
+
   if (group === 'tvseasons' || group === 'search' || group === 'searchTV') {
     targetData = data;
   } else {
-    const { title, releaseDate, rating } = isAscend;
-
     const sortedData = data?.sort((a, b) => {
       let targetDataA;
       let targetDataB;
@@ -62,9 +53,6 @@ const CardGrid = ({
 
     targetData = sortedData;
   }
-  // useEffect(() => {
-
-  // }, [group, selectedItem, isAscend]);
 
   const renderShows = () => {
     if (isFetching || !data) {

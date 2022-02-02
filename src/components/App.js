@@ -38,7 +38,6 @@ const App = ({ init, movieGenres, tvGenres }) => {
     releaseDate: false,
     rating: false,
   }); // ↑
-  const [isClearAll, setIsClearAll] = useState(false);
   const [detailBackground, setDetailBackground] = useState({
     isON: false,
     url: '',
@@ -88,8 +87,6 @@ const App = ({ init, movieGenres, tvGenres }) => {
                 setSelectedItem={setSelectedItem}
                 isAscend={isAscend}
                 setIsAscend={setIsAscend}
-                isClearAll={isClearAll}
-                setIsClearAll={setIsClearAll}
               />
             }
           />
@@ -111,6 +108,7 @@ const App = ({ init, movieGenres, tvGenres }) => {
             element={
               <Detail
                 setSelectedItem={setSelectedItem}
+                setIsAscend={setIsAscend}
                 setDetailBackground={setDetailBackground}
                 setIsDetail={setIsDetail}
               />
@@ -121,6 +119,7 @@ const App = ({ init, movieGenres, tvGenres }) => {
             element={
               <TVDetail
                 setSelectedItem={setSelectedItemTV}
+                setIsAscend={setIsAscendTV}
                 setDetailBackground={setDetailBackground}
                 setIsDetail={setIsDetail}
               />

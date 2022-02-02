@@ -8,6 +8,7 @@ import TVDetailMore from './TVDetailMore';
 
 const TVDetail = ({
   setSelectedItem,
+  setIsAscend,
   setDetailBackground,
   setIsDetail,
   fetchTVDetail,
@@ -58,6 +59,7 @@ const TVDetail = ({
           element={
             <TVDetailContent
               setSelectedItem={setSelectedItem}
+              setIsAscend={setIsAscend}
               detail={tvDetail}
               casts={tvCasts}
               related={tvRelated}
