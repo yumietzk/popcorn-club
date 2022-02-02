@@ -29,6 +29,7 @@ const Cast = ({ data, isFetching, isError }) => {
               }
               alt={person.original_name}
               className={styles.poster}
+              loading="lazy"
             />
             <Link
               to={`../../person/${person.id}`}

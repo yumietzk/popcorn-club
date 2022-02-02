@@ -20,6 +20,7 @@ const PersonMain = ({ person, isFetching, isError }) => {
           }
           alt={person.name}
           className={styles.poster}
+          loading="lazy"
         />
       </div>
       <div className={styles.bio}>

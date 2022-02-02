@@ -115,6 +115,7 @@ const DetailMain = ({
             }
             alt={data.original_title ? data.original_title : data.original_name}
             className={styles.poster}
+            loading="lazy"
             // onLoad={onLoad}
           />
         </div>

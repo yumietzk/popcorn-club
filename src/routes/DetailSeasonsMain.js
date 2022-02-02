@@ -22,6 +22,7 @@ const DetailSeasonsMain = ({ name, data, isFetching, isError }) => {
           }
           alt={name}
           className={styles.poster}
+          loading="lazy"
         />
       </div>
       <div className={styles.content}>

@@ -67,6 +67,11 @@
   object-fit: cover;
 }
 
+/* .poster-open {
+  opacity: 1;
+  transition: all 0.4s;
+} */
+
 .cover {
   display: none;
   position: absolute;
@@ -117,11 +122,6 @@
 .cover-btn:hover .cover-icon {
   color: #292929;
 }
-
-/* .poster-open {
-  opacity: 1;
-  transition: all 0.4s;
-} */
 
 .title:link,
 .title:visited {
