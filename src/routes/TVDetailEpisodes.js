@@ -4,7 +4,6 @@ import styles from './TVDetailEpisodes.module.css';
 
 const TVDetailEpisodes = ({ name, seasons, isFetching, isError }) => {
   const { episodenum } = useParams();
-  console.log(episodenum);
 
   if (isFetching || !seasons) {
     return <div>Now loading...</div>;
@@ -14,13 +13,9 @@ const TVDetailEpisodes = ({ name, seasons, isFetching, isError }) => {
     return <p>{isError.errorMessage}</p>;
   }
 
-  console.log(seasons);
-
   const data = seasons?.episodes.find(
     (item) => item.episode_number === +episodenum
   );
-
-  console.log(data);
 
   return (
     <div className={styles.episode}>

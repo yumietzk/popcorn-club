@@ -75,9 +75,9 @@ const Title = ({
 
   const renderClearBtn = () => {
     if (
-      selectedItem.category !== SelectorsData[type].category[0].title ||
-      selectedItem.order !== SelectorsData[type].order[0].title ||
-      selectedItem.count !== SelectorsData[type].count[0].title ||
+      selectedItem?.category !== SelectorsData[type].category[0].title ||
+      selectedItem?.order !== SelectorsData[type].order[0].title ||
+      selectedItem?.count !== SelectorsData[type].count[0].title ||
       !isAscend.title ||
       isAscend.releaseDate ||
       isAscend.rating

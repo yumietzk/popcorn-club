@@ -13,6 +13,7 @@ import Person from '../routes/Person';
 import Search from '../routes/Search';
 import SidebarData from './data/SidebarData';
 import SelectorsData from './data/SelectorsData';
+import ScrollToTop from '../helpers/ScrollToTop';
 import styles from './App.module.css';
 
 const App = ({ init, movieGenres, tvGenres }) => {
@@ -63,6 +64,7 @@ const App = ({ init, movieGenres, tvGenres }) => {
       }}
     >
       <BrowserRouter>
+        <ScrollToTop />
         <Header isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
         <Sidebar
           selectedItem={selectedItem}

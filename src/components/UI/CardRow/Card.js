@@ -8,9 +8,9 @@ import styles from './Card.module.css';
 const Card = ({ group, data, cname }) => {
   // const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
-    setLoaded(false);
-  }, []);
+  // useEffect(() => {
+  //   setLoaded(false);
+  // }, []);
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Card from '../CardRow/Card';
 import styles from './CardGrid.module.css';
 
 const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
   let targetData;
-  const { title, releaseDate, rating } = isAscend;
+  // const { title, releaseDate, rating } = isAscend;
 
   // useEffect(() => {
 
@@ -21,7 +21,7 @@ const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
         targetDataA = a.original_title ? a.original_title : a.original_name;
         targetDataB = b.original_title ? b.original_title : b.original_name;
 
-        if (title) {
+        if (isAscend?.title) {
           return targetDataA < targetDataB ? -1 : 1;
         } else {
           return targetDataA < targetDataB ? 1 : -1;
@@ -32,7 +32,7 @@ const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
         targetDataA = a.release_date ? a.release_date : a.first_air_date;
         targetDataB = b.release_date ? b.release_date : b.first_air_date;
 
-        if (releaseDate) {
+        if (isAscend?.releaseDate) {
           return targetDataA < targetDataB ? -1 : 1;
         } else {
           return targetDataA < targetDataB ? 1 : -1;
@@ -43,7 +43,7 @@ const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
         targetDataA = a.vote_average;
         targetDataB = b.vote_average;
 
-        if (rating) {
+        if (isAscend?.rating) {
           return targetDataA < targetDataB ? -1 : 1;
         } else {
           return targetDataA < targetDataB ? 1 : -1;
