@@ -1,12 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import LoadingIcon from '../helpers/LoadingIcon';
 import styles from './TVDetailEpisodes.module.css';
 
 const TVDetailEpisodes = ({ name, seasons, isFetching, isError }) => {
   const { episodenum } = useParams();
 
   if (isFetching || !seasons) {
-    return <div>Now loading...</div>;
+    return <LoadingIcon />;
   }
 
   if (isError?.status) {

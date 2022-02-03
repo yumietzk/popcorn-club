@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import movieTrailer from 'movie-trailer';
 import * as IoIcons from 'react-icons/io';
+import LoadingIcon from '../../helpers/LoadingIcon';
 import { truncate } from '../../helpers/Truncate';
 import SelectorsData from '../../components/data/SelectorsData';
 import styles from './DetailMain.module.css';
@@ -76,7 +77,7 @@ const DetailMain = ({
 
   const renderMain = () => {
     if (isFetching || !data) {
-      return <div>Now loading...</div>;
+      return <LoadingIcon />;
     }
 
     if (isError?.status) {

@@ -28,6 +28,11 @@
   display: flex;
 }
 
+.loading {
+  justify-content: center;
+  align-items: center;
+}
+
 .card {
   flex: 0 0 17rem;
   margin-right: 3.2rem;

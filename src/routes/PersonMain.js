@@ -1,9 +1,10 @@
 import React from 'react';
+import LoadingIcon from '../helpers/LoadingIcon';
 import styles from './PersonMain.module.css';
 
 const PersonMain = ({ person, isFetching, isError }) => {
   if (isFetching || !person) {
-    return <div>Now loading...</div>;
+    return <LoadingIcon />;
   }
   if (isError?.status) {
     return <p>{isError.errorMessage}</p>;

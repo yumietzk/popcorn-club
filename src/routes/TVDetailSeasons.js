@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { fetchTVSeasons } from '../actions';
 import DetailSeasonsMain from './DetailSeasonsMain';
 import CardGrid from '../components/UI/CardGrid/CardGrid';
+import LoadingIcon from '../helpers/LoadingIcon';
 import styles from './TVDetailSeasons.module.css';
 
 const TVDetailSeasons = ({
@@ -21,7 +22,7 @@ const TVDetailSeasons = ({
   // }, [number]);
 
   if (isFetching || !seasons) {
-    return <div>Now loading...</div>;
+    return <LoadingIcon />;
   }
 
   if (isError?.status) {

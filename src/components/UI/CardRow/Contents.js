@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Card from './Card';
+import LoadingIcon from '../../../helpers/LoadingIcon';
 import styles from './Contents.module.css';
 
 const Contents = ({ group, data, isFetching, isError }) => {
   const renderCards = () => {
     if (isFetching || !data) {
-      return <div>Now loading...</div>;
+      return <LoadingIcon />;
     }
 
     if (isError?.status) {
@@ -37,7 +38,13 @@ const Contents = ({ group, data, isFetching, isError }) => {
 
   return (
     <div className={styles.contents}>
-      <ul className={styles.cards}>{renderCards()}</ul>
+      <ul
+        className={`${styles.cards} ${
+          isFetching || !data ? styles.loading : null
+        }`}
+      >
+        {renderCards()}
+      </ul>
     </div>
   );
 };

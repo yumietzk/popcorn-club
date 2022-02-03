@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 // import {
 //   LazyLoadImage,
@@ -39,32 +39,30 @@ const Movies = ({
         setIsAscend={setIsAscend}
         type="movies"
       />
-      <div className={styles.movies}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <All
-                selectedItem={selectedItem}
-                isAscend={isAscend}
-                type="movies"
-                group="movies"
-              />
-            }
-          />
-          <Route
-            path="genre/:genre"
-            element={
-              <ByGenre
-                selectedItem={selectedItem}
-                isAscend={isAscend}
-                type="movies"
-                group="movies"
-              />
-            }
-          />
-        </Routes>
-      </div>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <All
+              selectedItem={selectedItem}
+              isAscend={isAscend}
+              type="movies"
+              group="movies"
+            />
+          }
+        />
+        <Route
+          path="genre/:genre"
+          element={
+            <ByGenre
+              selectedItem={selectedItem}
+              isAscend={isAscend}
+              type="movies"
+              group="movies"
+            />
+          }
+        />
+      </Routes>
     </React.Fragment>
   );
 };

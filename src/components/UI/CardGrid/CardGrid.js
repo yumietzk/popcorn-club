@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Card from '../CardRow/Card';
+import LoadingIcon from '../../../helpers/LoadingIcon';
 import styles from './CardGrid.module.css';
 
 const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
@@ -9,6 +10,14 @@ const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
   // useEffect(() => {
 
   // }, [group, selectedItem, isAscend]);
+
+  // useEffect(() => {
+  //   if (isFetching || !data) {
+  //     setIsLoading(true);
+  //   } else {
+  //     setIsLoading(false);
+  //   }
+  // }, [isFetching, data]);
 
   if (group === 'tvseasons' || group === 'search' || group === 'searchTV') {
     targetData = data;
@@ -56,7 +65,7 @@ const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
 
   const renderShows = () => {
     if (isFetching || !data) {
-      return <div>Now loading...</div>;
+      return <LoadingIcon />;
     }
 
     if (isError?.status) {
@@ -67,13 +76,17 @@ const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
       return <p>No data.</p>;
     }
 
-    return targetData?.map((item, i) => {
-      return (
-        <div key={i} className={styles.grid}>
-          <Card group={group} data={item} cname="grid" />
-        </div>
-      );
-    });
+    return (
+      <div className={styles.grids}>
+        {targetData?.map((item, i) => {
+          return (
+            <div key={i} className={styles.grid}>
+              <Card group={group} data={item} cname="grid" />
+            </div>
+          );
+        })}
+      </div>
+    );
   };
 
   return renderShows();

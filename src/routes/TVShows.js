@@ -27,32 +27,30 @@ const TVShows = ({
         setIsAscend={setIsAscend}
         type="tvshows"
       />
-      <div className={styles.tvshows}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <All
-                selectedItem={selectedItemTV}
-                isAscend={isAscend}
-                type="tvshows"
-                group="tvshows"
-              />
-            }
-          />
-          <Route
-            path="genre/:genre"
-            element={
-              <ByGenre
-                selectedItem={selectedItemTV}
-                isAscend={isAscend}
-                type="tvshows"
-                group="tvshows"
-              />
-            }
-          />
-        </Routes>
-      </div>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <All
+              selectedItem={selectedItemTV}
+              isAscend={isAscend}
+              type="tvshows"
+              group="tvshows"
+            />
+          }
+        />
+        <Route
+          path="genre/:genre"
+          element={
+            <ByGenre
+              selectedItem={selectedItemTV}
+              isAscend={isAscend}
+              type="tvshows"
+              group="tvshows"
+            />
+          }
+        />
+      </Routes>
     </React.Fragment>
   );
 };

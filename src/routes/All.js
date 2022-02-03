@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllMovies, fetchAllTVShows } from '../actions';
 import CardGrid from '../components/UI/CardGrid/CardGrid';
