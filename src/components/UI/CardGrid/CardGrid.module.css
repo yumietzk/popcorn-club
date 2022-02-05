@@ -3,8 +3,12 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, 17rem);
   gap: 3.9rem 3.8rem;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   position: relative;
+}
+
+.seasons {
+  grid-template-columns: repeat(auto-fill, 31rem);
 }
 
 .grid {

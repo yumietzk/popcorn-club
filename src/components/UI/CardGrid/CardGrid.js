@@ -77,7 +77,9 @@ const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
     }
 
     return (
-      <div className={styles.grids}>
+      <div
+        className={`${styles.grids} ${group === 'tvseasons' && styles.seasons}`}
+      >
         {targetData?.map((item, i) => {
           return (
             <div key={i} className={styles.grid}>

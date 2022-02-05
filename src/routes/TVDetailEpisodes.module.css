@@ -1,5 +1,6 @@
 .episode {
   padding-bottom: 7rem;
+  color: #dec7a1;
   overflow-y: scroll;
 }
 
@@ -33,15 +34,15 @@
 .title {
   font-size: 2.8rem;
   letter-spacing: 1px;
-  color: #dec7a1;
+  /* color: #dec7a1; */
   margin-bottom: 1rem;
 }
 
 .season,
-.episode {
+.episode-title {
   font-size: 1.6rem;
   font-weight: 500;
-  color: #dec7a1;
+  /* color: #dec7a1; */
   margin-bottom: 1rem;
 }
 

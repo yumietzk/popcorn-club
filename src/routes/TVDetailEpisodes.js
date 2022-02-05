@@ -36,7 +36,7 @@ const TVDetailEpisodes = ({ name, seasons, isFetching, isError }) => {
         <div className={styles.content}>
           <h2 className={styles.title}>{name}</h2>
           <div className={styles.season}>Season {data.season_number}</div>
-          <div className={styles.episode}>
+          <div className={styles['episode-title']}>
             Episode {data.episode_number} <>&middot;</> {data.name}
           </div>
         </div>

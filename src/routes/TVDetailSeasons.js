@@ -38,9 +38,10 @@ const TVDetailSeasons = ({
         // isError={isError}
       />
       <h4 className={styles.episodes}>{seasons.episodes?.length} Episodes</h4>
-      <div className={styles.contents}>
+      <CardGrid group="tvseasons" data={seasons?.episodes} />
+      {/* <div className={styles.contents}>
         <CardGrid group="tvseasons" data={seasons?.episodes} />
-      </div>
+      </div> */}
     </div>
   );
 };
