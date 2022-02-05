@@ -74,6 +74,8 @@ const Title = ({
   };
 
   const renderClearBtn = () => {
+    if (isDetail || type === 'person') return;
+
     if (
       selectedItem?.category !== SelectorsData[type].category[0].title ||
       selectedItem?.order !== SelectorsData[type].order[0].title ||
