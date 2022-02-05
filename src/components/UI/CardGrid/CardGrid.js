@@ -1,23 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import Card from '../CardRow/Card';
-import LoadingIcon from '../../../helpers/LoadingIcon';
+import LoadingIndicator from '../../../helpers/LoadingIndicator';
 import styles from './CardGrid.module.css';
 
 const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
   let targetData;
-  // const { title, releaseDate, rating } = isAscend;
-
-  // useEffect(() => {
-
-  // }, [group, selectedItem, isAscend]);
-
-  // useEffect(() => {
-  //   if (isFetching || !data) {
-  //     setIsLoading(true);
-  //   } else {
-  //     setIsLoading(false);
-  //   }
-  // }, [isFetching, data]);
 
   if (group === 'tvseasons' || group === 'search' || group === 'searchTV') {
     targetData = data;
@@ -65,30 +52,34 @@ const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
 
   const renderShows = () => {
     if (isFetching || !data) {
-      return <LoadingIcon />;
+      return <LoadingIndicator />;
     }
 
     if (isError?.status) {
       return <p>{isError.errorMessage}</p>;
     }
 
-    if (data && data.length === 0) {
-      return <p>No data.</p>;
+    if (data) {
+      if (data.length === 0) {
+        return <p>No data.</p>;
+      } else {
+        return (
+          <div
+            className={`${
+              group === 'tvseasons' ? styles.seasons : styles.grids
+            }`}
+          >
+            {targetData?.map((item, i) => {
+              return (
+                <div key={i} className={styles.grid}>
+                  <Card group={group} data={item} cname="grid" />
+                </div>
+              );
+            })}
+          </div>
+        );
+      }
     }
-
-    return (
-      <div
-        className={`${group === 'tvseasons' ? styles.seasons : styles.grids}`}
-      >
-        {targetData?.map((item, i) => {
-          return (
-            <div key={i} className={styles.grid}>
-              <Card group={group} data={item} cname="grid" />
-            </div>
-          );
-        })}
-      </div>
-    );
   };
 
   return renderShows();

@@ -50,8 +50,6 @@ const TVDetailMore = ({
   );
 };
 
-// export default TVDetailMore;
-
 const mapStateToProps = (state) => {
   return {
     seasons: state.detail.tvseasons,

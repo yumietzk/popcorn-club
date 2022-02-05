@@ -89,7 +89,6 @@ const Search = ({
         </div>
       </div>
       {renderContent()}
-      {/* <div className={styles.results}>{renderContent()}</div> */}
     </React.Fragment>
   );
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import DetailMain from './detail/DetailMain';
 import Seasons from './detail/Seasons';
 import Cast from './detail/Cast';

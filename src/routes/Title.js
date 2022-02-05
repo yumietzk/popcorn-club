@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as RiIcons from 'react-icons/ri';
+import LoadingIndicator from '../helpers/LoadingIndicator';
 import SelectorsData from '../components/data/SelectorsData';
 import Selector from '../components/UI/Selector/Selector';
 import styles from './Title.module.css';
@@ -48,12 +49,14 @@ const Title = ({
       return 'TV Shows';
     } else if (type === 'person') {
       if (isFetching || !person) {
-        return <div>Now loading...</div>;
+        return <LoadingIndicator />;
       }
       if (isError?.status) {
         return <p>{isError.errorMessage}</p>;
       }
-      return person?.name;
+      if (person) {
+        return person.name;
+      }
     }
   };
 
@@ -93,26 +96,12 @@ const Title = ({
         )
       );
     }
-
-    // const [selectedItem, setSelectedItem] = useState({
-    //   category: SelectorsData[type].category[0].title,
-    //   order: SelectorsData[type].order[0].title,
-    //   count: SelectorsData[type].count[0].title,
-    // });
-
-    // const [isAscend, setIsAscend] = useState({
-    //   title: true,
-    //   releaseDate: false,
-    //   rating: false,
-    // }); // ↑
   };
 
   return (
     <div className={styles.title}>
       <div className={styles['title-name']}>{renderType()}</div>
 
-      {/* isFetchingやisErrorの時の条件式も付け足しておく */}
-      {/* isFetching ? 'loading' : isError?.status ? 'Error is ...' */}
       {type === 'person' && !isFetching && !isError?.status && person && (
         <div className={styles['person-sub']}>
           <span>Born: </span>

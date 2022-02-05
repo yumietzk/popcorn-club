@@ -31,49 +31,6 @@ const Home = ({
     fetchTVTopRated();
   }, []);
 
-  // useEffect(() => {
-  //   popularShows.map((item) => fetchTVDetail(item.id));
-  // }, [popularShows]);
-
-  // useEffect(() => {
-  //   topratedShows.map((item) => fetchTVDetail(item.id));
-  // }, [topratedShows]);
-
-  // useEffect(() => {
-  //   if (isSignedIn) {
-  //     fetchFavoriteMovies();
-  //     fetchFavoriteTVs();
-  //   }
-  // }, [isSignedIn]);
-
-  // const renderFavorite = () => {
-  //   if (isSignedIn) {
-  //     return (
-  //       <div className={styles.contents}>
-  //         <HomeFavorite
-  //           type="Movies"
-  //           data={moviefavorite}
-  //           isFetching={isFetching}
-  //           isError={isError}
-  //         />
-  //         <HomeFavorite
-  //           type="TV Shows"
-  //           data={tvfavorite}
-  //           isFetching={isFetchingTV}
-  //           isError={isError}
-  //         />
-  //       </div>
-  //     );
-  //   } else {
-  //     return (
-  //       <p className={styles['signin-message']}>
-  //         Please sign in to save your favorite movies or TV shows in favorite
-  //         section!
-  //       </p>
-  //     );
-  //   }
-  // };
-
   return (
     <React.Fragment>
       <div className={styles.title}>Home</div>

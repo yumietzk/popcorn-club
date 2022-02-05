@@ -2,15 +2,7 @@ import React from 'react';
 import { truncate } from '../helpers/Truncate';
 import styles from './DetailSeasonsMain.module.css';
 
-const DetailSeasonsMain = ({ name, data, isFetching, isError }) => {
-  // if (isFetching || !data) {
-  //   return <div>Now loading...</div>;
-  // }
-
-  // if (isError?.status) {
-  //   return <p>{isError.errorMessage}</p>;
-  // }
-
+const DetailSeasonsMain = ({ name, data }) => {
   return (
     <div className={styles['seasons-main']}>
       <div className={styles.img}>

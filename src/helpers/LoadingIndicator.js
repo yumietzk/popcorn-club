@@ -1,8 +1,8 @@
 import React from 'react';
 import * as AiIcons from 'react-icons/ai';
-import styles from './LoadingIcon.module.css';
+import styles from './LoadingIndicator.module.css';
 
-const LoadingIcon = () => {
+const LoadingIndicator = () => {
   return (
     <div className={styles.loading}>
       <AiIcons.AiOutlineLoading3Quarters className={styles.icon} />
@@ -10,4 +10,4 @@ const LoadingIcon = () => {
   );
 };
 
-export default LoadingIcon;
+export default LoadingIndicator;

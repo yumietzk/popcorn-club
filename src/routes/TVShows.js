@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import Title from './Title';
 import All from './All';
 import ByGenre from './ByGenre';
-import styles from './TVShows.module.css';
 
 const TVShows = ({
   genres,
