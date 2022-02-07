@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Routes, Route, useParams } from 'react-router-dom';
-import { fetchTVDetail, fetchTVCredits, fetchTVRelated } from '../actions';
+import { fetchTVDetail, fetchTVCasts, fetchTVRelated } from '../actions';
 import Title from './Title';
 import TVDetailContent from './TVDetailContent';
 import TVDetailMore from './TVDetailMore';
@@ -12,7 +12,7 @@ const TVDetail = ({
   setDetailBackground,
   setIsDetail,
   fetchTVDetail,
-  fetchTVCredits,
+  fetchTVCasts,
   fetchTVRelated,
   tvDetail,
   tvCasts,
@@ -32,7 +32,7 @@ const TVDetail = ({
 
   useEffect(() => {
     fetchTVDetail(id);
-    fetchTVCredits(id);
+    fetchTVCasts(id);
     fetchTVRelated(id);
   }, [id]);
 
@@ -89,6 +89,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   fetchTVDetail,
-  fetchTVCredits,
+  fetchTVCasts,
   fetchTVRelated,
 })(TVDetail);

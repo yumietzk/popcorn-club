@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
   fetchMovieDetail,
-  fetchMovieCredits,
+  fetchMovieCasts,
   fetchMovieReviews,
   fetchMovieRelated,
 } from '../actions';
@@ -12,6 +12,7 @@ import DetailMain from './detail/DetailMain';
 import Cast from './detail/Cast';
 import Reviews from './detail/Reviews';
 import Related from './detail/Related';
+import LoadingIndicator from '../helpers/LoadingIndicator';
 import styles from './Detail.module.css';
 
 // movieとtvを統合できるはず
@@ -22,7 +23,7 @@ const Detail = ({
   setDetailBackground,
   setIsDetail,
   fetchMovieDetail,
-  fetchMovieCredits,
+  fetchMovieCasts,
   fetchMovieReviews,
   fetchMovieRelated,
   movieDetail,
@@ -44,7 +45,7 @@ const Detail = ({
 
   useEffect(() => {
     fetchMovieDetail(id);
-    fetchMovieCredits(id);
+    fetchMovieCasts(id);
     fetchMovieReviews(id);
     fetchMovieRelated(id);
   }, [id]);
@@ -63,30 +64,43 @@ const Detail = ({
     };
   }, [movieDetail]);
 
+  const renderDetail = () => {
+    if (
+      isFetching ||
+      !movieDetail ||
+      !movieCasts ||
+      !movieReviews ||
+      !movieRelated
+    ) {
+      return <LoadingIndicator />;
+    }
+
+    if (isError?.status) {
+      return <p>{isError.errorMessage}</p>;
+    }
+
+    if (movieDetail && movieCasts && movieReviews && movieRelated) {
+      return (
+        <React.Fragment>
+          <DetailMain
+            setSelectedItem={setSelectedItem}
+            setIsAscend={setIsAscend}
+            group="movies"
+            data={movieDetail}
+          />
+          <Cast data={movieCasts} />
+          <Reviews data={movieReviews} />
+          <Related group="movies" data={movieRelated} />
+        </React.Fragment>
+      );
+    }
+  };
+
   return (
     <React.Fragment>
       <Title type="movies" isDetail={true} />
-      <div className={styles.detail}>
-        <DetailMain
-          setSelectedItem={setSelectedItem}
-          setIsAscend={setIsAscend}
-          group="movies"
-          data={movieDetail}
-          isFetching={isFetching}
-          isError={isError}
-        />
-        <Cast data={movieCasts} isFetching={isFetching} isError={isError} />
-        <Reviews
-          data={movieReviews}
-          isFetching={isFetching}
-          isError={isError}
-        />
-        <Related
-          group="movies"
-          data={movieRelated}
-          isFetching={isFetching}
-          isError={isError}
-        />
+      <div className={`${styles.detail} ${isFetching ? styles.loading : null}`}>
+        {renderDetail()}
       </div>
     </React.Fragment>
   );
@@ -105,7 +119,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   fetchMovieDetail,
-  fetchMovieCredits,
+  fetchMovieCasts,
   fetchMovieReviews,
   fetchMovieRelated,
 })(Detail);

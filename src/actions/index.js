@@ -288,13 +288,13 @@ export const fetchMovieDetail = (id) => async (dispatch) => {
 };
 
 // casts
-export const fetchMovieCredits = (id) => async (dispatch) => {
+export const fetchMovieCasts = (id) => async (dispatch) => {
   try {
     dispatch({ type: 'REQUEST_DATA_DETAIL' });
 
     const response = await tmdb.get(`/movie/${id}/credits?api_key=${API_KEY}`);
     dispatch({
-      type: 'MOVIE_CREDITS',
+      type: 'MOVIE_CASTS',
       payload: response.data.cast,
       // payload: response.data.cast.slice(0, 15),
     });
@@ -365,12 +365,12 @@ export const fetchTVDetail = (id) => async (dispatch) => {
 };
 
 // casts
-export const fetchTVCredits = (id) => async (dispatch) => {
+export const fetchTVCasts = (id) => async (dispatch) => {
   try {
     dispatch({ type: 'REQUEST_DATA_DETAIL' });
 
     const response = await tmdb.get(`/tv/${id}/credits?api_key=${API_KEY}`);
-    dispatch({ type: 'TV_CREDITS', payload: response.data.cast.slice(0, 15) });
+    dispatch({ type: 'TV_CASTS', payload: response.data.cast.slice(0, 15) });
   } catch (err) {
     dispatch({
       type: 'FAIL_RECEIVE_DATA',
@@ -483,7 +483,7 @@ export const searchMovies = (term) => async (dispatch) => {
     );
     dispatch({
       type: 'SEARCH_MOVIES',
-      payload: { data: response.data.results, term: term },
+      payload: { data: response.data.results },
     });
   } catch (err) {
     dispatch({

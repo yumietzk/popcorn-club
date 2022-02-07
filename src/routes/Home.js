@@ -7,6 +7,7 @@ import {
   fetchTVTopRated,
 } from '../actions';
 import Row from '../components/UI/CardRow/Row';
+import LoadingIndicator from '../helpers/LoadingIndicator';
 import styles from './Home.module.css';
 
 const Home = ({
@@ -31,38 +32,59 @@ const Home = ({
     fetchTVTopRated();
   }, []);
 
+  const renderRows = () => {
+    if (
+      isFetching ||
+      isFetchingTV ||
+      !popularMovies ||
+      !upcomingMovies ||
+      !popularShows ||
+      !topratedShows
+    ) {
+      return <LoadingIndicator />;
+    }
+
+    if (isError?.status) {
+      return <p>{isError.errorMessage}</p>;
+    }
+
+    if (popularMovies && upcomingMovies && popularShows && topratedShows) {
+      return (
+        <React.Fragment>
+          <Row
+            category="Popular in Movies"
+            group="movies"
+            data={popularMovies}
+          />
+          <Row
+            category="Upcoming in Movies"
+            group="movies"
+            data={upcomingMovies}
+          />
+          <Row
+            category="Popular in TV Shows"
+            group="tvshows"
+            data={popularShows}
+          />
+          <Row
+            category="Top Rated in TV Shows"
+            group="tvshows"
+            data={topratedShows}
+          />
+        </React.Fragment>
+      );
+    }
+  };
+
   return (
     <React.Fragment>
       <div className={styles.title}>Home</div>
-      <div className={styles.rows}>
-        <Row
-          category="Popular in Movies"
-          group="movies"
-          data={popularMovies}
-          isFetching={isFetching}
-          isError={isError}
-        />
-        <Row
-          category="Upcoming in Movies"
-          group="movies"
-          data={upcomingMovies}
-          isFetching={isFetching}
-          isError={isError}
-        />
-        <Row
-          category="Popular in TV Shows"
-          group="tvshows"
-          data={popularShows}
-          isFetching={isFetchingTV}
-          isError={isError}
-        />
-        <Row
-          category="Top Rated in TV Shows"
-          group="tvshows"
-          data={topratedShows}
-          isFetching={isFetchingTV}
-          isError={isError}
-        />
+      <div
+        className={`${styles.rows} ${
+          isFetching || isFetchingTV ? styles.loading : null
+        }`}
+      >
+        {renderRows()}
       </div>
     </React.Fragment>
   );

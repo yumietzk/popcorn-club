@@ -6,7 +6,7 @@ export default (state = { isFetching: false }, action) => {
     case 'MOVIE_DETAIL':
       return { ...state, isFetching: false, detail: action.payload };
 
-    case 'MOVIE_CREDITS':
+    case 'MOVIE_CASTS':
       return { ...state, isFetching: false, casts: action.payload };
 
     case 'MOVIE_REVIEWS':
@@ -18,7 +18,7 @@ export default (state = { isFetching: false }, action) => {
     case 'TV_DETAIL':
       return { ...state, isFetching: false, tvdetail: action.payload };
 
-    case 'TV_CREDITS':
+    case 'TV_CASTS':
       return { ...state, isFetching: false, tvcasts: action.payload };
 
     case 'TV_RELATED':

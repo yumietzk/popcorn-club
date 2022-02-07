@@ -18,7 +18,7 @@ const TVDetailSeasons = ({ name, seasons, isFetching, isError }) => {
       <div className={styles.seasons}>
         <DetailSeasonsMain name={name} data={seasons} />
         <h4 className={styles.episodes}>{seasons.episodes?.length} Episodes</h4>
-        <CardGrid group="tvseasons" data={seasons?.episodes} />
+        <CardGrid group="tvseasons" data={seasons.episodes} />
       </div>
     );
   }

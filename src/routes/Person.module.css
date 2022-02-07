@@ -1,5 +1,5 @@
 .person {
-  padding-bottom: 7rem;
+  /* padding-bottom: 7rem; */
   overflow-y: scroll;
 }
 
@@ -8,4 +8,10 @@
   font-size: 1.7rem;
   color: #dec7a1;
   margin-bottom: 3rem;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

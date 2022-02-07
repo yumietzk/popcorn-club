@@ -9,6 +9,7 @@ import {
 import Title from './Title';
 import PersonMain from './PersonMain';
 import Credits from './Credits';
+import LoadingIndicator from '../helpers/LoadingIndicator';
 import styles from './Person.module.css';
 
 const Person = ({
@@ -53,6 +54,32 @@ const Person = ({
     };
   }, [info]);
 
+  const renderContent = () => {
+    if (isFetching || !info || !movies || !tvshows) {
+      return <LoadingIndicator />;
+    }
+
+    if (isError?.status) {
+      return <p>{isError.errorMessage}</p>;
+    }
+
+    if (info && movies && tvshows) {
+      return (
+        <React.Fragment>
+          <PersonMain person={info} />
+          <h4 className={styles['person-credits']}>Known For</h4>
+          {/* ここはRowにしたけど、Gridの方がいい？あとで考える */}
+          <Credits
+            group="movies"
+            data={movies}
+            style={{ marginBottom: '6rem' }}
+          />
+          <Credits group="tvshows" data={tvshows} />
+        </React.Fragment>
+      );
+    }
+  };
+
   return (
     <React.Fragment>
       <Title
@@ -61,23 +88,8 @@ const Person = ({
         isFetching={isFetching}
         isError={isError}
       />
-      <div className={styles.person}>
-        <PersonMain person={info} isFetching={isFetching} isError={isError} />
-        <h4 className={styles['person-credits']}>Known For</h4>
-        {/* ここはRowにしたけど、Gridの方がいい？あとで考える */}
-        <Credits
-          group="movies"
-          data={movies}
-          isFetching={isFetching}
-          isError={isError}
-          style={{ marginBottom: '6rem' }}
-        />
-        <Credits
-          group="tvshows"
-          data={tvshows}
-          isFetching={isFetching}
-          isError={isError}
-        />
+      <div className={`${styles.person} ${isFetching ? styles.loading : null}`}>
+        {renderContent()}
       </div>
     </React.Fragment>
   );

@@ -49,10 +49,12 @@ const Title = ({
       return 'TV Shows';
     } else if (type === 'person') {
       if (isFetching || !person) {
-        return <LoadingIndicator />;
+        return null;
+        // return <LoadingIndicator />;
       }
       if (isError?.status) {
-        return <p>{isError.errorMessage}</p>;
+        return null;
+        // return <p>{isError.errorMessage}</p>;
       }
       if (person) {
         return person.name;

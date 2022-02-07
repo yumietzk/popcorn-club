@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { searchMovies, searchTVShows } from '../actions';
 import CardGrid from '../components/UI/CardGrid/CardGrid';
+import LoadingIndicator from '../helpers/LoadingIndicator';
 import styles from './Search.module.css';
 
 const Search = ({
@@ -41,24 +42,20 @@ const Search = ({
   };
 
   const renderContent = () => {
-    if (selectedLibrary === 'movies') {
-      return (
-        <CardGrid
-          group="search"
-          data={movies}
-          isFetching={isFetching}
-          isError={isError}
-        />
-      );
-    } else if (selectedLibrary === 'tvshows') {
-      return (
-        <CardGrid
-          group="searchTV"
-          data={tvshows}
-          isFetching={isFetchingTV}
-          isError={isError}
-        />
-      );
+    if (isFetching || isFetchingTV || !movies || !tvshows) {
+      return <LoadingIndicator />;
+    }
+
+    if (isError?.status) {
+      return <p>{isError.errorMessage}</p>;
+    }
+
+    if (movies && tvshows) {
+      if (selectedLibrary === 'movies') {
+        return <CardGrid group="search" data={movies} />;
+      } else if (selectedLibrary === 'tvshows') {
+        return <CardGrid group="searchTV" data={tvshows} />;
+      }
     }
   };
 
