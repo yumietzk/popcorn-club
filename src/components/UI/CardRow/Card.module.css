@@ -59,6 +59,9 @@
   object-fit: cover;
   /* object-fit: contain; */
   /* opacity: 0; */
+
+  /* set placeholder */
+  background-color: #1d1911;
 }
 
 .grid-poster {
@@ -163,7 +166,7 @@
   color: #dec7a18f;
 }
 
-.loading {
+/* .loading {
   position: fixed;
   top: 0;
   left: 0;
@@ -173,4 +176,4 @@
   justify-content: center;
   align-items: center;
   color: #f7f7f7;
-}
+} */

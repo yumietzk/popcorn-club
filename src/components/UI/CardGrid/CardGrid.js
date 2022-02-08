@@ -1,34 +1,24 @@
 import React from 'react';
 import Card from '../CardRow/Card';
-import LoadingIndicator from '../../../helpers/LoadingIndicator';
+// import LoadingIndicator from '../../../helpers/LoadingIndicator';
 import styles from './CardGrid.module.css';
 
-const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
+const CardGrid = ({ group, order, isAscend, data }) => {
   const renderShows = () => {
-    if (group === 'tvseasons' || group === 'search' || group === 'searchTV') {
-      if (!data || data.length === 0) {
-        return <p>No data.</p>;
-      } else {
-        return (
-          <div
-            className={`${
-              group === 'tvseasons' ? styles.seasons : styles.grids
-            }`}
-          >
-            {data.map((item, i) => {
-              return (
-                <div key={i} className={styles.grid}>
-                  <Card group={group} data={item} cname="grid" />
-                </div>
-              );
-            })}
-          </div>
-        );
-      }
-    } else {
-      let targetData;
+    // if (isFetching || !data) {
+    //   return <LoadingIndicator />;
+    // }
 
-      const sortedData = data?.sort((a, b) => {
+    // if (isError?.status) {
+    //   return <p>{isError.errorMessage}</p>;
+    // }
+
+    let targetData;
+
+    if (group === 'tvseasons' || group === 'search' || group === 'searchTV') {
+      targetData = data;
+    } else {
+      const sortedData = data.sort((a, b) => {
         let targetDataA;
         let targetDataB;
 
@@ -67,36 +57,24 @@ const CardGrid = ({ group, order, isAscend, data, isFetching, isError }) => {
       });
 
       targetData = sortedData;
+    }
 
-      if (isFetching || !data) {
-        return <LoadingIndicator />;
-      }
-
-      if (isError?.status) {
-        return <p>{isError.errorMessage}</p>;
-      }
-
-      if (data) {
-        if (data.length === 0) {
-          return <p>No data.</p>;
-        } else {
-          return (
-            <div
-              className={`${
-                group === 'tvseasons' ? styles.seasons : styles.grids
-              }`}
-            >
-              {targetData?.map((item, i) => {
-                return (
-                  <div key={i} className={styles.grid}>
-                    <Card group={group} data={item} cname="grid" />
-                  </div>
-                );
-              })}
-            </div>
-          );
-        }
-      }
+    if (!data || data.length === 0) {
+      return <p>No data.</p>;
+    } else {
+      return (
+        <div
+          className={`${group === 'tvseasons' ? styles.seasons : styles.grids}`}
+        >
+          {targetData?.map((item, i) => {
+            return (
+              <div key={i} className={styles.grid}>
+                <Card group={group} data={item} cname="grid" />
+              </div>
+            );
+          })}
+        </div>
+      );
     }
   };
 

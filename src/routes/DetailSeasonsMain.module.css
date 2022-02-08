@@ -16,9 +16,12 @@
 .poster {
   display: block;
   width: 100%;
-  height: auto;
+  height: 37.5rem;
   object-fit: cover;
   border-radius: 3px;
+
+  /* set placeholder */
+  background-color: #1d1911;
 }
 
 .content {

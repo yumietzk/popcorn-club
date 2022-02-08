@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import movieTrailer from 'movie-trailer';
 import * as IoIcons from 'react-icons/io';
 // import LoadingIndicator from '../../helpers/LoadingIndicator';
+import useObserver from '../../hooks/useObserver';
 import { truncate } from '../../helpers/Truncate';
 import SelectorsData from '../../components/data/SelectorsData';
 import styles from './DetailMain.module.css';
@@ -10,6 +11,17 @@ import styles from './DetailMain.module.css';
 const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
   const [trailerUrl, setTrailerUrl] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const ref = useRef();
+  const [curElement, setSrc] = useObserver(ref);
+
+  const targetData = !data.poster_path
+    ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/f7c46c1ebbd7195bed3b6aa27228b1fd.png?compress=1&resize=1200x900&vertical=top'
+    : `https://image.tmdb.org/t/p/original${data.poster_path}`;
+
+  useEffect(() => {
+    setSrc(targetData);
+  }, [curElement]);
 
   useEffect(() => {
     if (group === 'movies') {
@@ -88,16 +100,16 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
 
     return (
       <React.Fragment>
-        <div className={styles.img}>
+        <div className={styles.img} ref={ref}>
           <img
-            src={
-              !data.poster_path
-                ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/f7c46c1ebbd7195bed3b6aa27228b1fd.png?compress=1&resize=1200x900&vertical=top'
-                : `https://image.tmdb.org/t/p/original${data.poster_path}`
-            }
+            // src={
+            //   !data.poster_path
+            //     ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/f7c46c1ebbd7195bed3b6aa27228b1fd.png?compress=1&resize=1200x900&vertical=top'
+            //     : `https://image.tmdb.org/t/p/original${data.poster_path}`
+            // }
             alt={data.original_title ? data.original_title : data.original_name}
             className={styles.poster}
-            loading="lazy"
+            // loading="lazy"
           />
         </div>
         <div className={styles.content}>

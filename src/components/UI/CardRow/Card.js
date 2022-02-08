@@ -1,11 +1,57 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 // import { LazyLoadImage } from 'react-lazy-load-image-component';
 import * as IoIcons from 'react-icons/io';
+import useObserver from '../../../hooks/useObserver';
 import { truncate } from '../../../helpers/Truncate';
 import styles from './Card.module.css';
 
 const Card = ({ group, data, cname }) => {
+  const ref = useRef();
+  const [curElement, setSrc] = useObserver(ref);
+  // console.log(ref.current?.childNodes[0].src);
+
+  // const [curElement, setElement] = useState();
+
+  // useEffect(() => {
+  //   setElement(ref.current.childNodes[0]);
+  // }, []);
+
+  const tagetData =
+    !data.still_path && !data.poster_path && group === 'tvdetail'
+      ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/0be875c520dcf6b4b7176738ec346334.png?compress=1&resize=1000x750&vertical=top'
+      : !data.still_path && !data.poster_path && group === 'tvseasons'
+      ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/1568f08221d5a887546e2d386179ff4b.png?compress=1&resize=1000x750&vertical=top'
+      : !data.still_path && !data.poster_path
+      ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/f7c46c1ebbd7195bed3b6aa27228b1fd.png?compress=1&resize=1200x900&vertical=top'
+      : `https://image.tmdb.org/t/p/original${
+          group === 'tvseasons' ? data.still_path : data.poster_path
+        }`;
+
+  // データはカスタムフックにインプットする形で、各コンポーネントで条件式作っておく。多分できた✅
+  useEffect(() => {
+    setSrc(tagetData);
+    // if (!curElement) return;
+
+    // // Intersection Observer
+    // const obsCallback = function (entries, observer) {
+    //   const [entry] = entries;
+
+    //   if (!entry.isIntersecting) return;
+    //   entry.target.src = tagetData;
+
+    //   observer.unobserve(entry.target);
+    // };
+
+    // const obsOptions = {
+    //   root: null,
+    //   threshold: 0.1,
+    // };
+
+    // const observer = new IntersectionObserver(obsCallback, obsOptions);
+    // observer.observe(curElement);
+  }, [curElement]);
+
   const calcYear = (date) => {
     const year = date?.split('-')[0];
     return year;
@@ -17,23 +63,25 @@ const Card = ({ group, data, cname }) => {
         className={`${styles.img} ${cname === 'grid' && styles['grid-img']} ${
           group === 'tvseasons' && styles['seasons-img']
         }`}
+        ref={ref}
       >
         <img
           className={`${styles.poster} ${
             cname === 'grid' && styles['grid-poster']
-          } `}
+          }  `}
           // ⚠️posterない時にunsplashから取ってきた写真だけど、おしゃれなイラストにしたいな
-          src={
-            !data.still_path && !data.poster_path && group === 'tvdetail'
-              ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/0be875c520dcf6b4b7176738ec346334.png?compress=1&resize=1000x750&vertical=top'
-              : !data.still_path && !data.poster_path && group === 'tvseasons'
-              ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/1568f08221d5a887546e2d386179ff4b.png?compress=1&resize=1000x750&vertical=top'
-              : !data.still_path && !data.poster_path
-              ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/f7c46c1ebbd7195bed3b6aa27228b1fd.png?compress=1&resize=1200x900&vertical=top'
-              : `https://image.tmdb.org/t/p/original${
-                  group === 'tvseasons' ? data.still_path : data.poster_path
-                }`
-          }
+          // src={
+          //   !data.still_path && !data.poster_path && group === 'tvdetail'
+          //     ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/0be875c520dcf6b4b7176738ec346334.png?compress=1&resize=1000x750&vertical=top'
+          //     : !data.still_path && !data.poster_path && group === 'tvseasons'
+          //     ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/1568f08221d5a887546e2d386179ff4b.png?compress=1&resize=1000x750&vertical=top'
+          //     : !data.still_path && !data.poster_path
+          //     ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/f7c46c1ebbd7195bed3b6aa27228b1fd.png?compress=1&resize=1200x900&vertical=top'
+          //     : `https://image.tmdb.org/t/p/original${
+          //         group === 'tvseasons' ? data.still_path : data.poster_path
+          //       }`
+          // }
+          // alt=""
           alt={
             group === 'tvseasons'
               ? data.name
@@ -42,8 +90,9 @@ const Card = ({ group, data, cname }) => {
               : data.original_name
           }
           // とりあえずloading入れてみたけど、もっとかっこいいplaceholderとかにしたい
-          loading="lazy"
+          // loading="lazy"
         />
+        {/* {!isSrc && <div className={styles.placeholder}></div>} */}
         <div className={styles.cover}>
           <Link
             to={

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchMoviesByGenre, fetchTVShowsByGenre } from '../actions';
 import CardGrid from '../components/UI/CardGrid/CardGrid';
+import LoadingIndicator from '../helpers/LoadingIndicator';
 
 const ByGenre = ({
   selectedItem,
@@ -26,16 +27,57 @@ const ByGenre = ({
     }
   }, [category, count]);
 
-  return (
-    <CardGrid
-      group={group}
-      order={order}
-      isAscend={isAscend}
-      data={type === 'movies' ? movies : tvshows}
-      isFetching={type === 'movies' ? isFetching : isFetchingTV}
-      isError={isError}
-    />
-  );
+  const renderContent = () => {
+    if (type === 'movies') {
+      if (isFetching || !movies) {
+        return <LoadingIndicator />;
+      }
+    } else if (type === 'tvshows') {
+      if (isFetchingTV || !tvshows) {
+        return <LoadingIndicator />;
+      }
+    }
+
+    if (isError?.status) {
+      return <p>{isError.errorMessage}</p>;
+    }
+
+    if (type === 'movies') {
+      if (movies) {
+        return (
+          <CardGrid
+            group={group}
+            order={order}
+            isAscend={isAscend}
+            data={movies}
+          />
+        );
+      }
+    } else if (type === 'tvshows') {
+      if (tvshows) {
+        return (
+          <CardGrid
+            group={group}
+            order={order}
+            isAscend={isAscend}
+            data={tvshows}
+          />
+        );
+      }
+    }
+  };
+
+  return renderContent();
+  // return (
+  //   <CardGrid
+  //     group={group}
+  //     order={order}
+  //     isAscend={isAscend}
+  //     data={type === 'movies' ? movies : tvshows}
+  //     isFetching={type === 'movies' ? isFetching : isFetchingTV}
+  //     isError={isError}
+  //   />
+  // );
 };
 
 const mapStateToProps = (state) => {
