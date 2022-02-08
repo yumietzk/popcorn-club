@@ -31,6 +31,7 @@ const useObserver = (ref) => {
   };
 
   // output
+  // return setSrc;
   return [curElement, setSrc];
 };
 

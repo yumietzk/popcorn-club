@@ -2,26 +2,36 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import movieTrailer from 'movie-trailer';
 import * as IoIcons from 'react-icons/io';
+// import * as RiIcons from 'react-icons/ri';
 // import LoadingIndicator from '../../helpers/LoadingIndicator';
-import useObserver from '../../hooks/useObserver';
+// import useObserver from '../../hooks/useObserver';
+import { setImage } from '../../helpers/SetImage';
 import { truncate } from '../../helpers/Truncate';
+import ToggleBtn from '../../components/UI/ToggleBtn';
 import SelectorsData from '../../components/data/SelectorsData';
 import styles from './DetailMain.module.css';
 
 const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
   const [trailerUrl, setTrailerUrl] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isToggleOpen, setIsToggleOpen] = useState(false);
 
   const ref = useRef();
-  const [curElement, setSrc] = useObserver(ref);
+  const [curElement, setElement] = useState();
+  // const setSrc = useObserver(ref);
+  // const [curElement, setSrc] = useObserver(ref);
 
   const targetData = !data.poster_path
     ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/f7c46c1ebbd7195bed3b6aa27228b1fd.png?compress=1&resize=1200x900&vertical=top'
     : `https://image.tmdb.org/t/p/original${data.poster_path}`;
 
   useEffect(() => {
-    setSrc(targetData);
-  }, [curElement]);
+    setElement(ref.current.childNodes[0]);
+  }, []);
+
+  useEffect(() => {
+    setImage(curElement, targetData);
+  }, [curElement, targetData]);
 
   useEffect(() => {
     if (group === 'movies') {
@@ -69,35 +79,45 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
     });
   };
 
-  const renderMain = () => {
-    // if (isFetching || !data) {
-    //   return <LoadingIndicator />;
-    // }
-
-    // if (isError?.status) {
-    //   return <p>{isError.errorMessage}</p>;
-    // }
-
-    const genreLink = (genres) => {
-      return genres.map((genre, i) => {
+  const renderOverview = () => {
+    if (data.overview.length > 400) {
+      if (isToggleOpen) {
+        return <div className={styles.overview}>{data.overview}</div>;
+      } else {
         return (
-          <p>
-            <Link
-              to={`../../${
-                group === 'movies' ? 'movies' : 'tvshows'
-              }/genre/${genre.name.toLowerCase()}`}
-              key={i}
-              className={styles['genre-name']}
-              onClick={() => changeSelectedItem(genre)}
-            >
-              {genre.name}
-            </Link>
-            {i !== genres.length - 1 && <>{','}&nbsp;</>}
-          </p>
+          <div className={styles.overview}>{truncate(data.overview, 400)}</div>
         );
-      });
-    };
+      }
+    } else {
+      return (
+        <div className={styles.overview} style={{ marginBottom: '3rem' }}>
+          {data.overview}
+        </div>
+      );
+    }
+  };
 
+  const genreLink = (genres) => {
+    return genres.map((genre, i) => {
+      return (
+        <p key={i}>
+          <Link
+            to={`../../${
+              group === 'movies' ? 'movies' : 'tvshows'
+            }/genre/${genre.name.toLowerCase()}`}
+            key={i}
+            className={styles['genre-name']}
+            onClick={() => changeSelectedItem(genre)}
+          >
+            {genre.name}
+          </Link>
+          {i !== genres.length - 1 && <>{','}&nbsp;</>}
+        </p>
+      );
+    });
+  };
+
+  const renderMain = () => {
     return (
       <React.Fragment>
         <div className={styles.img} ref={ref}>
@@ -172,8 +192,18 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
               Website
             </a>
           </div>
-          <div className={styles.overview}>{truncate(data.overview, 700)}</div>
-          <div className={styles.genre}>
+          {/* <div className={styles.overview}>{truncate(data.overview, 700)}</div> */}
+          {renderOverview()}
+          <ToggleBtn
+            condition={data.overview.length > 400}
+            isToggleOpen={isToggleOpen}
+            setIsToggleOpen={setIsToggleOpen}
+          />
+          {/* {renderBtn()} */}
+          <div
+            className={styles.genre}
+            style={{ marginTop: data.overview.length > 400 && '3rem' }}
+          >
             <div className={styles['genre-title']}>Genre</div>
             <div className={styles['genre-names']}>
               {genreLink(data.genres)}

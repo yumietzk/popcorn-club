@@ -1,16 +1,20 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 // import { LazyLoadImage } from 'react-lazy-load-image-component';
 import * as IoIcons from 'react-icons/io';
-import useObserver from '../../../hooks/useObserver';
+// import useObserver from '../../../hooks/useObserver';
+import { setImage } from '../../../helpers/SetImage';
 import { truncate } from '../../../helpers/Truncate';
 import styles from './Card.module.css';
 
 const Card = ({ group, data, cname }) => {
   const ref = useRef();
-  const [curElement, setSrc] = useObserver(ref);
+  // const setSrc = useObserver(ref);
+  // const [curElement, setSrc] = useObserver(ref);
 
-  const tagetData =
+  const [curElement, setElement] = useState();
+
+  const targetData =
     !data.still_path && !data.poster_path && group === 'tvdetail'
       ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/0be875c520dcf6b4b7176738ec346334.png?compress=1&resize=1000x750&vertical=top'
       : !data.still_path && !data.poster_path && group === 'tvseasons'
@@ -22,8 +26,34 @@ const Card = ({ group, data, cname }) => {
         }`;
 
   useEffect(() => {
-    setSrc(tagetData);
-  }, [curElement, group, data]);
+    setElement(ref.current.childNodes[0]);
+  }, []);
+
+  // const setSrc = () => {
+  //   if (!curElement) return;
+
+  //   // Intersection Observer
+  //   const obsCallback = function (entries, observer) {
+  //     const [entry] = entries;
+
+  //     if (!entry.isIntersecting) return;
+  //     entry.target.src = targetData;
+
+  //     observer.unobserve(entry.target);
+  //   };
+
+  //   const obsOptions = {
+  //     root: null,
+  //     threshold: 0.1,
+  //   };
+
+  //   const observer = new IntersectionObserver(obsCallback, obsOptions);
+  //   observer.observe(curElement);
+  // };
+
+  useEffect(() => {
+    setImage(curElement, targetData);
+  }, [curElement, targetData]);
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];

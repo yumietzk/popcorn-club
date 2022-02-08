@@ -10,8 +10,8 @@ const Cast = ({ data }) => {
     if (data.length === 0) {
       return <p>No cast registered.</p>;
     } else {
-      return data.map((person) => {
-        return <CastCard data={person} />;
+      return data.map((person, i) => {
+        return <CastCard data={person} key={i} />;
       });
     }
   };

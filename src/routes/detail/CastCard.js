@@ -1,19 +1,25 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import useObserver from '../../hooks/useObserver';
+// import useObserver from '../../hooks/useObserver';
+import { setImage } from '../../helpers/SetImage';
 import styles from './CastCard.module.css';
 
 const CastCard = ({ data }) => {
   const ref = useRef();
-  const [curElement, setSrc] = useObserver(ref);
+  // const [curElement, setSrc] = useObserver(ref);
+  const [curElement, setElement] = useState();
 
   const targetData = !data.profile_path
     ? 'https://cdn.dribbble.com/users/1090020/screenshots/15509551/media/fe29a709b7a89315c1673d143c23c2c1.png?compress=1&resize=1200x900&vertical=top'
     : `https://image.tmdb.org/t/p/original${data.profile_path}`;
 
   useEffect(() => {
-    setSrc(targetData);
-  }, [curElement]);
+    setElement(ref.current.childNodes[0]);
+  }, []);
+
+  useEffect(() => {
+    setImage(curElement, targetData);
+  }, [curElement, targetData]);
 
   return (
     <li key={data.id} className={styles.card}>

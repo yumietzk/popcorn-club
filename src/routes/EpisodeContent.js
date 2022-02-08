@@ -1,18 +1,41 @@
-import React, { useEffect, useRef } from 'react';
-import useObserver from '../hooks/useObserver';
+import React, { useState, useEffect, useRef } from 'react';
+// import useObserver from '../hooks/useObserver';
+import { setImage } from '../helpers/SetImage';
+import { truncate } from '../helpers/Truncate';
+import ToggleBtn from '../components/UI/ToggleBtn';
 import styles from './EpisodeContent.module.css';
 
 const EpisodeContent = ({ name, data }) => {
   const ref = useRef();
-  const [curElement, setSrc] = useObserver(ref);
+  // const [curElement, setSrc] = useObserver(ref);
+  const [curElement, setElement] = useState();
+  const [isToggleOpen, setIsToggleOpen] = useState(false);
 
   const targetData = !data.still_path
     ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/1568f08221d5a887546e2d386179ff4b.png?compress=1&resize=1000x750&vertical=top'
     : `https://image.tmdb.org/t/p/original${data.still_path}`;
 
   useEffect(() => {
-    setSrc(targetData);
-  }, [curElement]);
+    setElement(ref.current.childNodes[0]);
+  }, []);
+
+  useEffect(() => {
+    setImage(curElement, targetData);
+  }, [curElement, targetData]);
+
+  const renderOverview = () => {
+    if (data.overview.length > 500) {
+      if (isToggleOpen) {
+        return <div className={styles.overview}>{data.overview}</div>;
+      } else {
+        return (
+          <div className={styles.overview}>{truncate(data.overview, 500)}</div>
+        );
+      }
+    } else {
+      return <div className={styles.overview}>{data.overview}</div>;
+    }
+  };
 
   return (
     <div className={styles.episode}>
@@ -37,7 +60,15 @@ const EpisodeContent = ({ name, data }) => {
           </div>
         </div>
       </div>
-      <div className={styles.overview}>{data.overview}</div>
+      {/* <div className={styles.overview}>{data.overview}</div> */}
+      {renderOverview()}
+      <div style={{ paddingLeft: '3.8rem', marginBottom: '3rem' }}>
+        <ToggleBtn
+          condition={data.overview.length > 500}
+          isToggleOpen={isToggleOpen}
+          setIsToggleOpen={setIsToggleOpen}
+        />
+      </div>
       <div className={styles['release-date']}>
         Released
         <span>{data.air_date.replaceAll('-', '/')}</span>
