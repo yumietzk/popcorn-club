@@ -44,25 +44,33 @@ const All = ({
 
     if (type === 'movies') {
       if (movies) {
-        return (
-          <CardGrid
-            group={group}
-            order={order}
-            isAscend={isAscend}
-            data={movies}
-          />
-        );
+        if (movies.length === 0) {
+          return <p>No data.</p>;
+        } else {
+          return (
+            <CardGrid
+              group={group}
+              order={order}
+              isAscend={isAscend}
+              data={movies}
+            />
+          );
+        }
       }
     } else if (type === 'tvshows') {
       if (tvshows) {
-        return (
-          <CardGrid
-            group={group}
-            order={order}
-            isAscend={isAscend}
-            data={tvshows}
-          />
-        );
+        if (tvshows.length === 0) {
+          return <p>No data.</p>;
+        } else {
+          return (
+            <CardGrid
+              group={group}
+              order={order}
+              isAscend={isAscend}
+              data={tvshows}
+            />
+          );
+        }
       }
     }
 

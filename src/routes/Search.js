@@ -42,18 +42,26 @@ const Search = ({
   };
 
   const renderContent = () => {
-    if (isFetching || isFetchingTV || !movies || !tvshows) {
-      return <LoadingIndicator />;
+    if (selectedLibrary === 'movies') {
+      if (isFetching || !movies) {
+        return <LoadingIndicator />;
+      }
+    } else if (selectedLibrary === 'tvshows') {
+      if (isFetchingTV || !tvshows) {
+        return <LoadingIndicator />;
+      }
     }
 
     if (isError?.status) {
       return <p>{isError.errorMessage}</p>;
     }
 
-    if (movies && tvshows) {
-      if (selectedLibrary === 'movies') {
+    if (selectedLibrary === 'movies') {
+      if (movies) {
         return <CardGrid group="search" data={movies} />;
-      } else if (selectedLibrary === 'tvshows') {
+      }
+    } else if (selectedLibrary === 'tvshows') {
+      if (tvshows) {
         return <CardGrid group="searchTV" data={tvshows} />;
       }
     }

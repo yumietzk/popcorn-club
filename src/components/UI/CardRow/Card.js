@@ -9,13 +9,6 @@ import styles from './Card.module.css';
 const Card = ({ group, data, cname }) => {
   const ref = useRef();
   const [curElement, setSrc] = useObserver(ref);
-  // console.log(ref.current?.childNodes[0].src);
-
-  // const [curElement, setElement] = useState();
-
-  // useEffect(() => {
-  //   setElement(ref.current.childNodes[0]);
-  // }, []);
 
   const tagetData =
     !data.still_path && !data.poster_path && group === 'tvdetail'
@@ -28,29 +21,9 @@ const Card = ({ group, data, cname }) => {
           group === 'tvseasons' ? data.still_path : data.poster_path
         }`;
 
-  // データはカスタムフックにインプットする形で、各コンポーネントで条件式作っておく。多分できた✅
   useEffect(() => {
     setSrc(tagetData);
-    // if (!curElement) return;
-
-    // // Intersection Observer
-    // const obsCallback = function (entries, observer) {
-    //   const [entry] = entries;
-
-    //   if (!entry.isIntersecting) return;
-    //   entry.target.src = tagetData;
-
-    //   observer.unobserve(entry.target);
-    // };
-
-    // const obsOptions = {
-    //   root: null,
-    //   threshold: 0.1,
-    // };
-
-    // const observer = new IntersectionObserver(obsCallback, obsOptions);
-    // observer.observe(curElement);
-  }, [curElement]);
+  }, [curElement, group, data]);
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];
