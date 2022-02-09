@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as RiIcons from 'react-icons/ri';
+import * as BiIcons from 'react-icons/bi';
 // import LoadingIndicator from '../helpers/LoadingIndicator';
 import SelectorsData from '../components/data/SelectorsData';
 import Selector from '../components/UI/Selector/Selector';
@@ -25,7 +26,7 @@ const Title = ({
     count: false,
   });
 
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 
   const handleCategoryOpen = () => {
     setCurrentGroup('category');
@@ -50,15 +51,23 @@ const Title = ({
     } else if (type === 'person') {
       if (isFetching || !person) {
         return null;
-        // return <LoadingIndicator />;
       }
       if (isError?.status) {
         return null;
-        // return <p>{isError.errorMessage}</p>;
       }
       if (person) {
         return person.name;
       }
+    }
+  };
+
+  const renderBackBtn = () => {
+    if (isDetail || type === 'person') {
+      return (
+        <button className={styles['back-btn']} onClick={() => navigate(-1)}>
+          <BiIcons.BiArrowBack />
+        </button>
+      );
     }
   };
 
@@ -102,7 +111,10 @@ const Title = ({
 
   return (
     <div className={styles.title}>
-      <div className={styles['title-name']}>{renderType()}</div>
+      <div className={styles['title-name']}>
+        {renderType()}
+        {renderBackBtn()}
+      </div>
 
       {type === 'person' && !isFetching && !isError?.status && person && (
         <div className={styles['person-sub']}>

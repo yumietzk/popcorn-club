@@ -8,6 +8,36 @@
 .title-name {
   font-size: 1.8rem;
   margin-bottom: 2rem;
+
+  display: flex;
+  align-items: center;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-left: 2rem;
+  color: #dec7a18f;
+  font-size: 1.8rem;
+}
+
+.back-btn::after {
+  content: 'Back';
+  color: transparent;
+  padding-left: 0.2rem;
+  font-size: 1.5rem;
+}
+
+.back-btn:hover {
+  color: #dec7a1;
+}
+
+.back-btn:hover::after {
+  color: #dec7a1;
 }
 
 .person-sub {
