@@ -1,4 +1,4 @@
-# Popcorn Club (old version)
+# Popcorn Club
 
 [View Demo here](https://popcorn-club.netlify.app/)
 
