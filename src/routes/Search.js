@@ -53,16 +53,24 @@ const Search = ({
     }
 
     if (isError?.status) {
-      return <p>{isError.errorMessage}</p>;
+      return <p className={styles.error}>{isError.errorMessage}</p>;
     }
 
     if (selectedLibrary === 'movies') {
       if (movies) {
-        return <CardGrid group="search" data={movies} />;
+        if (movies.length === 0) {
+          return <p className={styles['no-data']}>Sorry, no data.</p>;
+        } else {
+          return <CardGrid group="search" data={movies} />;
+        }
       }
     } else if (selectedLibrary === 'tvshows') {
       if (tvshows) {
-        return <CardGrid group="searchTV" data={tvshows} />;
+        if (tvshows.length === 0) {
+          return <p className={styles['no-data']}>Sorry, no data.</p>;
+        } else {
+          return <CardGrid group="searchTV" data={tvshows} />;
+        }
       }
     }
   };

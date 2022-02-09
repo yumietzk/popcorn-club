@@ -1,8 +1,6 @@
 .cast {
   color: #dec7a1;
   margin-bottom: 6rem;
-
-  /* border: 2px solid green; */
 }
 
 .title {
@@ -13,7 +11,6 @@
 }
 
 .content {
-  /* border: 2px solid red; */
   padding-left: 3.8rem;
   overflow-x: auto;
   overflow-y: hidden;
@@ -31,6 +28,11 @@
 
 .card {
   margin-right: 3.1rem;
+}
+
+.no-casts {
+  font-size: 1.5rem;
+  color: #dec7a18f;
 }
 
 /* .wrap {

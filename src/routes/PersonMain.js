@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-// import * as RiIcons from 'react-icons/ri';
-// import useObserver from '../hooks/useObserver';
 import { setImage } from '../helpers/SetImage';
 import { truncate } from '../helpers/Truncate';
 import ToggleBtn from '../components/UI/ToggleBtn';
@@ -8,7 +6,6 @@ import styles from './PersonMain.module.css';
 
 const PersonMain = ({ person }) => {
   const ref = useRef();
-  // const [curElement, setSrc] = useObserver(ref);
   const [curElement, setElement] = useState();
   const [isToggleOpen, setIsToggleOpen] = useState(false);
 
@@ -24,9 +21,11 @@ const PersonMain = ({ person }) => {
     setImage(curElement, targetData);
   }, [curElement, person]);
 
-  // console.log(person.biography.length);
-
   const renderBio = () => {
+    if (!person.biography) {
+      return <p className={styles['no-bio']}>Sorry, no biography.</p>;
+    }
+
     if (person.biography.length > 850) {
       if (isToggleOpen) {
         return <p className={styles['bio-text']}>{person.biography}</p>;
@@ -42,41 +41,18 @@ const PersonMain = ({ person }) => {
     }
   };
 
-  // const renderBtn = () => {
-  //   if (person.biography.length > 850) {
-  //     if (isToggleOpen) {
-  //       return (
-  //         <button className={styles.btn} onClick={() => setIsToggleOpen(false)}>
-  //           Read Less <RiIcons.RiArrowUpSFill className={styles['btn-icon']} />
-  //         </button>
-  //       );
-  //     } else {
-  //       return (
-  //         <button className={styles.btn} onClick={() => setIsToggleOpen(true)}>
-  //           Read More{' '}
-  //           <RiIcons.RiArrowDownSFill className={styles['btn-icon']} />
-  //         </button>
-  //       );
-  //     }
-  //   }
-  // };
-
   return (
     <div className={styles.main}>
       <div className={styles.img} ref={ref}>
         <img alt={person.name} className={styles.poster} />
       </div>
       <div className={styles.bio}>
-        {/* truncateしたい、read moreでトグルできるように */}
-        {/* <p className={styles['bio-text']}>{truncate(person.biography, 850)}</p> */}
-        {/* <p className={styles['bio-text']}>{person.biography}</p> */}
         {renderBio()}
         <ToggleBtn
           condition={person.biography.length > 850}
           isToggleOpen={isToggleOpen}
           setIsToggleOpen={setIsToggleOpen}
         />
-        {/* {renderBtn()} */}
       </div>
     </div>
   );

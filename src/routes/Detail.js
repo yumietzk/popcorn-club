@@ -76,7 +76,7 @@ const Detail = ({
     }
 
     if (isError?.status) {
-      return <p>{isError.errorMessage}</p>;
+      return <p className={styles.error}>{isError.errorMessage}</p>;
     }
 
     if (movieDetail && movieCasts && movieReviews && movieRelated) {

@@ -21,7 +21,7 @@ const TVDetailContent = ({
     }
 
     if (isError?.status) {
-      return <p>{isError.errorMessage}</p>;
+      return <p className={styles.error}>{isError.errorMessage}</p>;
     }
 
     if (detail && casts && related) {

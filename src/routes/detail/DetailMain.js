@@ -2,9 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import movieTrailer from 'movie-trailer';
 import * as IoIcons from 'react-icons/io';
-// import * as RiIcons from 'react-icons/ri';
-// import LoadingIndicator from '../../helpers/LoadingIndicator';
-// import useObserver from '../../hooks/useObserver';
 import { setImage } from '../../helpers/SetImage';
 import { truncate } from '../../helpers/Truncate';
 import ToggleBtn from '../../components/UI/ToggleBtn';
@@ -18,8 +15,6 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
 
   const ref = useRef();
   const [curElement, setElement] = useState();
-  // const setSrc = useObserver(ref);
-  // const [curElement, setSrc] = useObserver(ref);
 
   const targetData = !data.poster_path
     ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/f7c46c1ebbd7195bed3b6aa27228b1fd.png?compress=1&resize=1200x900&vertical=top'
@@ -53,6 +48,8 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
   };
 
   const calcHour = (runtime) => {
+    if (!runtime) return null;
+
     const hr = Math.floor(runtime / 60);
     const min = runtime % 60;
     const hours = (hr) => {
@@ -80,6 +77,8 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
   };
 
   const renderOverview = () => {
+    if (!data.overview) return null;
+
     if (data.overview.length > 400) {
       if (isToggleOpen) {
         return <div className={styles.overview}>{data.overview}</div>;
@@ -98,6 +97,8 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
   };
 
   const genreLink = (genres) => {
+    if (!genres || genres.length === 0) return null;
+
     return genres.map((genre, i) => {
       return (
         <p key={i}>
@@ -122,16 +123,11 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
       <React.Fragment>
         <div className={styles.img} ref={ref}>
           <img
-            // src={
-            //   !data.poster_path
-            //     ? 'https://cdn.dribbble.com/users/2549306/screenshots/14306992/media/f7c46c1ebbd7195bed3b6aa27228b1fd.png?compress=1&resize=1200x900&vertical=top'
-            //     : `https://image.tmdb.org/t/p/original${data.poster_path}`
-            // }
             alt={data.original_title ? data.original_title : data.original_name}
             className={styles.poster}
-            // loading="lazy"
           />
         </div>
+
         <div className={styles.content}>
           <div className={styles.title}>
             <h2 className={styles.titleName}>
@@ -159,20 +155,23 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
               </button>
             )} */}
           </div>
+
           <div className={styles.date}>
             {calcYear(
               `${data.release_date ? data.release_date : data.first_air_date}`
             )}
           </div>
+
           <div className={styles.timerate}>
             <div className={styles.runtime}>{`${calcHour(
               `${data.runtime ? data.runtime : data.episode_run_time[0]}`
             )}`}</div>
             <div className={styles.rate}>
               <IoIcons.IoIosStar className={styles['rate-icon']} />
-              {data.vote_average}
+              {data.vote_average ? data.vote_average : 0}
             </div>
           </div>
+
           <div className={styles.others}>
             {group === 'movies' && (
               <button
@@ -192,14 +191,14 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
               Website
             </a>
           </div>
-          {/* <div className={styles.overview}>{truncate(data.overview, 700)}</div> */}
+
           {renderOverview()}
           <ToggleBtn
             condition={data.overview.length > 400}
             isToggleOpen={isToggleOpen}
             setIsToggleOpen={setIsToggleOpen}
           />
-          {/* {renderBtn()} */}
+
           <div
             className={styles.genre}
             style={{ marginTop: data.overview.length > 400 && '3rem' }}
@@ -210,6 +209,7 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
             </div>
           </div>
         </div>
+
         <div className={`${styles.modal} ${!isModalOpen && styles.hidden}`}>
           <iframe src={videoSrc} title={data.id} width="100%" height="100%" />
         </div>

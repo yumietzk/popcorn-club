@@ -60,9 +60,12 @@
 .review {
   width: 100%;
   font-size: 1.4rem;
-  padding: 2rem;
+  padding: 2.5rem;
   padding-top: 0;
   line-height: 1.6;
 }
 
-/* 1d1911 */
+.no-reviews {
+  font-size: 1.5rem;
+  color: #dec7a18f;
+}

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchMoviesByGenre, fetchTVShowsByGenre } from '../actions';
 import CardGrid from '../components/UI/CardGrid/CardGrid';
 import LoadingIndicator from '../helpers/LoadingIndicator';
+import styles from './ByGenre.module.css';
 
 const ByGenre = ({
   selectedItem,
@@ -39,45 +40,43 @@ const ByGenre = ({
     }
 
     if (isError?.status) {
-      return <p>{isError.errorMessage}</p>;
+      return <p className={styles.error}>{isError.errorMessage}</p>;
     }
 
     if (type === 'movies') {
       if (movies) {
-        return (
-          <CardGrid
-            group={group}
-            order={order}
-            isAscend={isAscend}
-            data={movies}
-          />
-        );
+        if (movies.length === 0) {
+          return <p className={styles['no-data']}>Sorry, no data.</p>;
+        } else {
+          return (
+            <CardGrid
+              group={group}
+              order={order}
+              isAscend={isAscend}
+              data={movies}
+            />
+          );
+        }
       }
     } else if (type === 'tvshows') {
       if (tvshows) {
-        return (
-          <CardGrid
-            group={group}
-            order={order}
-            isAscend={isAscend}
-            data={tvshows}
-          />
-        );
+        if (tvshows.length === 0) {
+          return <p className={styles['no-data']}>Sorry, no data.</p>;
+        } else {
+          return (
+            <CardGrid
+              group={group}
+              order={order}
+              isAscend={isAscend}
+              data={tvshows}
+            />
+          );
+        }
       }
     }
   };
 
   return renderContent();
-  // return (
-  //   <CardGrid
-  //     group={group}
-  //     order={order}
-  //     isAscend={isAscend}
-  //     data={type === 'movies' ? movies : tvshows}
-  //     isFetching={type === 'movies' ? isFetching : isFetchingTV}
-  //     isError={isError}
-  //   />
-  // );
 };
 
 const mapStateToProps = (state) => {

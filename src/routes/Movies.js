@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-// import {
-//   LazyLoadImage,
-//   trackWindowScroll,
-// } from 'react-lazy-load-image-component';
 import Title from './Title';
 import All from './All';
 import ByGenre from './ByGenre';
@@ -16,12 +12,6 @@ const Movies = ({
   isAscend,
   setIsAscend,
 }) => {
-  // ⚠️categoryが変わるたびに、orderとcountの値をリセットしたい
-
-  // useEffect(() => {
-  //   ref.current.scrollIntoView({ behavior: 'smooth' });
-  // }, [selectedItem, isAscend]);
-
   useEffect(() => {
     setSelectedSidebar('Movies');
   }, []);

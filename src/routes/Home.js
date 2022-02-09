@@ -45,7 +45,7 @@ const Home = ({
     }
 
     if (isError?.status) {
-      return <p>{isError.errorMessage}</p>;
+      return <p className={styles.error}>{isError.errorMessage}</p>;
     }
 
     if (popularMovies && upcomingMovies && popularShows && topratedShows) {

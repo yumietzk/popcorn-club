@@ -118,9 +118,11 @@ const Title = ({
 
       {type === 'person' && !isFetching && !isError?.status && person && (
         <div className={styles['person-sub']}>
-          <span>Born: </span>
-          {person.birthday?.replaceAll('-', '/')}
-          <span> in </span>
+          {!person.birthday && !person.place_of_birth ? null : (
+            <span>Born: </span>
+          )}
+          {person.birthday ? person.birthday.replaceAll('-', '/') : null}
+          {person.place_of_birth && <span> in </span>}
           {person.place_of_birth}
         </div>
       )}

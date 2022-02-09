@@ -10,15 +10,27 @@ const TVDetailSeasons = ({ name, seasons, isFetching, isError }) => {
   }
 
   if (isError?.status) {
-    return <p>{isError.errorMessage}</p>;
+    return <p className={styles.error}>{isError.errorMessage}</p>;
   }
+
+  const renderEpisodes = () => {
+    if (!seasons.episodes || seasons.episodes.length === 0) {
+      return <p className={styles['no-episodes']}>Sorry, no episodes.</p>;
+    }
+
+    return <CardGrid group="tvseasons" data={seasons.episodes} />;
+  };
 
   if (seasons) {
     return (
       <div className={styles.seasons}>
         <DetailSeasonsMain name={name} data={seasons} />
-        <h4 className={styles.episodes}>{seasons.episodes?.length} Episodes</h4>
-        <CardGrid group="tvseasons" data={seasons.episodes} />
+        {seasons.episodes && seasons.episodes.length !== 0 && (
+          <h4 className={styles.episodes}>
+            {seasons.episodes?.length} Episodes
+          </h4>
+        )}
+        {renderEpisodes()}
       </div>
     );
   }

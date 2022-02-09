@@ -60,7 +60,7 @@ const Person = ({
     }
 
     if (isError?.status) {
-      return <p>{isError.errorMessage}</p>;
+      return <p className={styles.error}>{isError.errorMessage}</p>;
     }
 
     if (info && movies && tvshows) {
@@ -68,7 +68,6 @@ const Person = ({
         <React.Fragment>
           <PersonMain person={info} />
           <h4 className={styles['person-credits']}>Known For</h4>
-          {/* ここはRowにしたけど、Gridの方がいい？あとで考える */}
           <Credits
             group="movies"
             data={movies}

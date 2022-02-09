@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchAllMovies, fetchAllTVShows } from '../actions';
 import CardGrid from '../components/UI/CardGrid/CardGrid';
 import LoadingIndicator from '../helpers/LoadingIndicator';
+import styles from './All.module.css';
 
 const All = ({
   selectedItem,
@@ -39,13 +40,13 @@ const All = ({
     }
 
     if (isError?.status) {
-      return <p>{isError.errorMessage}</p>;
+      return <p className={styles.error}>{isError.errorMessage}</p>;
     }
 
     if (type === 'movies') {
       if (movies) {
         if (movies.length === 0) {
-          return <p>No data.</p>;
+          return <p className={styles['no-data']}>Sorry, no data.</p>;
         } else {
           return (
             <CardGrid
@@ -60,7 +61,7 @@ const All = ({
     } else if (type === 'tvshows') {
       if (tvshows) {
         if (tvshows.length === 0) {
-          return <p>No data.</p>;
+          return <p className={styles['no-data']}>Sorry, no data.</p>;
         } else {
           return (
             <CardGrid
@@ -73,50 +74,9 @@ const All = ({
         }
       }
     }
-
-    // if (`${type === 'movies' ? movies : tvshows}`) {
-    //   return (
-    //     <CardGrid
-    //       group={group}
-    //       order={order}
-    //       isAscend={isAscend}
-    //       data={type === 'movies' ? movies : tvshows}
-    //     />
-    //   );
-    // if (data.length === 0) {
-    //   return <p>No data.</p>;
-    // } else {
-    //   return (
-    //     <div
-    //       className={`${
-    //         group === 'tvseasons' ? styles.seasons : styles.grids
-    //       }`}
-    //     >
-    //       {targetData?.map((item, i) => {
-    //         return (
-    //           <div key={i} className={styles.grid}>
-    //             <Card group={group} data={item} cname="grid" />
-    //           </div>
-    //         );
-    //       })}
-    //     </div>
-    //   );
-    // }
-    // }
   };
 
   return renderContent();
-
-  // return (
-  //   <CardGrid
-  //     group={group}
-  //     order={order}
-  //     isAscend={isAscend}
-  //     data={type === 'movies' ? movies : tvshows}
-  //     isFetching={type === 'movies' ? isFetching : isFetchingTV}
-  //     isError={isError}
-  //   />
-  // );
 };
 
 const mapStateToProps = (state) => {
