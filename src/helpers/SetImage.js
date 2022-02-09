@@ -7,7 +7,6 @@ export const setImage = (curElement, data) => {
     // console.log(entry);
 
     if (!entry.isIntersecting) return;
-    // entry.target.src = '';
     entry.target.src = data;
 
     observer.unobserve(entry.target);
