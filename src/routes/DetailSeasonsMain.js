@@ -16,12 +16,12 @@ const DetailSeasonsMain = ({ name, data }) => {
     : `https://image.tmdb.org/t/p/original${data.poster_path}`;
 
   useEffect(() => {
-    setElement(ref.current.childNodes[0]);
-  }, []);
+    setElement(ref?.current?.childNodes[0]);
+  }, [ref]);
 
   useEffect(() => {
     setImage(curElement, targetData);
-  }, [curElement, targetData]);
+  }, [curElement, data]);
 
   const renderOverview = () => {
     if (data.overview.length > 400) {

@@ -26,34 +26,12 @@ const Card = ({ group, data, cname }) => {
         }`;
 
   useEffect(() => {
-    setElement(ref.current.childNodes[0]);
-  }, []);
-
-  // const setSrc = () => {
-  //   if (!curElement) return;
-
-  //   // Intersection Observer
-  //   const obsCallback = function (entries, observer) {
-  //     const [entry] = entries;
-
-  //     if (!entry.isIntersecting) return;
-  //     entry.target.src = targetData;
-
-  //     observer.unobserve(entry.target);
-  //   };
-
-  //   const obsOptions = {
-  //     root: null,
-  //     threshold: 0.1,
-  //   };
-
-  //   const observer = new IntersectionObserver(obsCallback, obsOptions);
-  //   observer.observe(curElement);
-  // };
+    setElement(ref?.current?.childNodes[0]);
+  }, [ref]);
 
   useEffect(() => {
     setImage(curElement, targetData);
-  }, [curElement, targetData]);
+  }, [curElement, data]);
 
   const calcYear = (date) => {
     const year = date?.split('-')[0];

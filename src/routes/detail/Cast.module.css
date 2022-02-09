@@ -29,6 +29,10 @@
   display: flex;
 }
 
+.card {
+  margin-right: 3.1rem;
+}
+
 /* .wrap {
   flex: 1;
   list-style: none;

@@ -26,12 +26,12 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
     : `https://image.tmdb.org/t/p/original${data.poster_path}`;
 
   useEffect(() => {
-    setElement(ref.current.childNodes[0]);
-  }, []);
+    setElement(ref?.current?.childNodes[0]);
+  }, [ref]);
 
   useEffect(() => {
     setImage(curElement, targetData);
-  }, [curElement, targetData]);
+  }, [curElement, data]);
 
   useEffect(() => {
     if (group === 'movies') {

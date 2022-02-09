@@ -17,12 +17,12 @@ const PersonMain = ({ person }) => {
     : `https://image.tmdb.org/t/p/original${person.profile_path}`;
 
   useEffect(() => {
-    setElement(ref.current.childNodes[0]);
-  }, []);
+    setElement(ref?.current?.childNodes[0]);
+  }, [ref]);
 
   useEffect(() => {
     setImage(curElement, targetData);
-  }, [curElement, targetData]);
+  }, [curElement, person]);
 
   // console.log(person.biography.length);
 

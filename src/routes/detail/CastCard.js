@@ -13,16 +13,18 @@ const CastCard = ({ data }) => {
     ? 'https://cdn.dribbble.com/users/1090020/screenshots/15509551/media/fe29a709b7a89315c1673d143c23c2c1.png?compress=1&resize=1200x900&vertical=top'
     : `https://image.tmdb.org/t/p/original${data.profile_path}`;
 
+  console.log(targetData);
+
   useEffect(() => {
-    setElement(ref.current.childNodes[0]);
-  }, []);
+    setElement(ref?.current?.childNodes[0]);
+  }, [ref]);
 
   useEffect(() => {
     setImage(curElement, targetData);
-  }, [curElement, targetData]);
+  }, [curElement, data]);
 
   return (
-    <li key={data.id} className={styles.card}>
+    <React.Fragment>
       <div className={styles.img} ref={ref}>
         <img
           // src={
@@ -41,7 +43,7 @@ const CastCard = ({ data }) => {
           {data.original_name}
         </Link>
       </div>
-    </li>
+    </React.Fragment>
   );
 };
 

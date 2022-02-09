@@ -11,7 +11,11 @@ const Cast = ({ data }) => {
       return <p>No cast registered.</p>;
     } else {
       return data.map((person, i) => {
-        return <CastCard data={person} key={i} />;
+        return (
+          <li key={i} className={styles.card}>
+            <CastCard data={person} />
+          </li>
+        );
       });
     }
   };
