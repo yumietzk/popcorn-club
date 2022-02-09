@@ -14,6 +14,7 @@ const Title = ({
   isAscend,
   setIsAscend,
   type,
+  setIsChangeSelection,
   isDetail,
   person,
   isFetching,
@@ -155,6 +156,7 @@ const Title = ({
                       setIsOpen={setIsOpen}
                       selectedItem={selectedItem}
                       setSelectedItem={setSelectedItem}
+                      setIsChangeSelection={setIsChangeSelection}
                       group="category"
                       item={item}
                       key={i}

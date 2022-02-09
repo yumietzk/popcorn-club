@@ -52,6 +52,7 @@ const All = ({
             <CardGrid
               group={group}
               order={order}
+              count={count}
               isAscend={isAscend}
               data={movies}
             />
@@ -67,6 +68,7 @@ const All = ({
             <CardGrid
               group={group}
               order={order}
+              count={count}
               isAscend={isAscend}
               data={tvshows}
             />

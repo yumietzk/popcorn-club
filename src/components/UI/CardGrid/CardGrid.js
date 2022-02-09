@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Card from '../CardRow/Card';
 import styles from './CardGrid.module.css';
 
-const CardGrid = ({ group, order, isAscend, data }) => {
+const CardGrid = ({ group, order, count, isAscend, data }) => {
+  const ref = useRef();
+
+  useEffect(() => {
+    if (ref?.current) {
+      ref.current.scrollTop = 0;
+      ref.current.scrollLeft = 0;
+    }
+  }, [order, count, isAscend]);
+
   let targetData;
   if (group === 'tvseasons' || group === 'search' || group === 'searchTV') {
     targetData = data;
@@ -50,6 +59,7 @@ const CardGrid = ({ group, order, isAscend, data }) => {
     return (
       <div
         className={`${group === 'tvseasons' ? styles.seasons : styles.grids}`}
+        ref={ref}
       >
         {targetData?.map((item, i) => {
           return (

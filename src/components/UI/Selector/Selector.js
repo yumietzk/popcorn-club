@@ -11,20 +11,14 @@ const Selector = ({
   setIsOpen,
   selectedItem,
   setSelectedItem,
+  setIsChangeSelection,
   isAscend,
   setIsAscend,
   group,
   item,
 }) => {
-  // const [isAscend, setIsAscend] = useState({
-  //   title: true,
-  //   releaseDate: false,
-  //   rating: false,
-  // }); // ↑
-
   const [isSubOpen, setIsSubOpen] = useState(false);
 
-  // selectedItemでそのタイトルが選ばれていたら、矢印変える。選ばれていなかったらそのまま
   const onItemClick = (e, item) => {
     if (group === 'order') {
       if (selectedItem[`${group}`] === item.title) {
@@ -118,8 +112,6 @@ const Selector = ({
         )}
       </li>
     </React.Fragment>
-    // <RiIcons.RiArrowUpFill/> ascend
-    // <RiIcons.RiArrowDownFill/> descend
   );
 };
 
