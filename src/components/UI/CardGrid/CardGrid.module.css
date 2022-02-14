@@ -1,18 +1,45 @@
 .grids {
-  padding: 2rem 2rem 2rem 3.8rem;
+  padding: 2rem 1rem 2rem 3.8rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, 17rem);
-  gap: 3.9rem 3.8rem;
+  gap: 3.9rem 3.4rem;
   overflow-y: scroll;
   position: relative;
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .grids {
+    padding: 1rem 3rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem 3rem;
+  }
 }
 
 .seasons {
   padding: 2rem 2rem 2rem 3.8rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 31rem);
-  gap: 3.9rem 3.8rem;
+  grid-template-columns: repeat(auto-fill, 32rem);
+  gap: 3.5rem 3rem;
   position: relative;
+}
+
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .seasons {
+    padding: 2rem 1.3rem 2rem 3.8rem;
+    grid-template-columns: repeat(auto-fill, 27rem);
+    gap: 2.7rem 1.5rem;
+  }
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .seasons {
+    padding: 1rem 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem 3rem;
+  }
 }
 
 .grid {

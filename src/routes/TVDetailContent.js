@@ -9,6 +9,7 @@ import styles from './TVDetailContent.module.css';
 const TVDetailContent = ({
   setSelectedItem,
   setIsAscend,
+  width,
   detail,
   casts,
   related,
@@ -32,10 +33,11 @@ const TVDetailContent = ({
             setIsAscend={setIsAscend}
             group="tvshows"
             data={detail}
+            width={width}
           />
-          <Seasons data={detail} />
-          <Cast data={casts} />
-          <Related group="tvshows" data={related} />
+          <Seasons data={detail} width={width} />
+          <Cast data={casts} width={width} />
+          <Related group="tvshows" data={related} width={width} />
         </React.Fragment>
       );
     }

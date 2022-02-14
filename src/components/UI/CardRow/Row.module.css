@@ -1,20 +1,11 @@
 .container {
-  /* height: 40rem; */
-  /* background-color: #fff;
-  border: 5px solid blue; */
   color: #dec7a1;
   margin-bottom: 3rem;
-
-  /* display: flex;
-  flex-direction: column; */
 }
 
-/* .container:not(:last-child) {
-} */
-
-/* 500px */
-@media only screen and (max-width: 31.25em) {
+/* 450px */
+@media only screen and (max-width: 28.125em) {
   .container {
-    /* height: 40rem; */
+    margin-bottom: 1rem;
   }
 }

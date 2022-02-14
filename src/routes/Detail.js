@@ -22,6 +22,7 @@ const Detail = ({
   setIsAscend,
   setDetailBackground,
   setIsDetail,
+  width,
   fetchMovieDetail,
   fetchMovieCasts,
   fetchMovieReviews,
@@ -87,10 +88,11 @@ const Detail = ({
             setIsAscend={setIsAscend}
             group="movies"
             data={movieDetail}
+            width={width}
           />
-          <Cast data={movieCasts} />
-          <Reviews data={movieReviews} />
-          <Related group="movies" data={movieRelated} />
+          <Cast data={movieCasts} width={width} />
+          <Reviews data={movieReviews} width={width} />
+          <Related group="movies" data={movieRelated} width={width} />
         </React.Fragment>
       );
     }

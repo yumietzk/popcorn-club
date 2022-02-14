@@ -9,6 +9,7 @@ import React from 'react';
 const TVDetailMore = ({
   id,
   name,
+  width,
   fetchTVSeasons,
   seasons,
   isFetching,
@@ -28,6 +29,7 @@ const TVDetailMore = ({
           element={
             <TVDetailSeasons
               name={name}
+              width={width}
               seasons={seasons}
               isFetching={isFetching}
               isError={isError}

@@ -9,3 +9,17 @@
   margin-bottom: 2rem;
   padding-left: 3.8rem;
 }
+
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .title {
+    font-size: 1.3rem;
+  }
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .title {
+    padding-left: 2rem;
+  }
+}

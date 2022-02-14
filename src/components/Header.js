@@ -5,7 +5,7 @@ import * as IoIcons from 'react-icons/io';
 import GoogleAuth from './auth/GoogleAuth';
 import styles from './Header.module.css';
 
-const Header = ({ isCollapsed, setIsCollapsed }) => {
+const Header = ({ isCollapsed, setIsCollapsed, isMobile, setIsMobile }) => {
   const [term, setTerm] = useState('');
   const ref = useRef();
   const navigate = useNavigate();
@@ -24,6 +24,10 @@ const Header = ({ isCollapsed, setIsCollapsed }) => {
 
   const handleSidebar = () => {
     setIsCollapsed(!isCollapsed);
+
+    if (isMobile.state) {
+      setIsMobile({ ...isMobile, sidebar: !isMobile.sidebar });
+    }
   };
 
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card';
 import styles from './Contents.module.css';
 
-const Contents = ({ group, data }) => {
+const Contents = ({ width, group, data }) => {
   const renderCards = () => {
     if (group === 'tvdetail') {
       if (!data.seasons || data.seasons.length === 0) {
@@ -11,7 +11,7 @@ const Contents = ({ group, data }) => {
         return data.seasons?.map((item, i) => {
           return (
             <li className={styles.card} key={i}>
-              <Card group={group} data={item} />
+              <Card width={width} group={group} data={item} />
             </li>
           );
         });
@@ -24,7 +24,7 @@ const Contents = ({ group, data }) => {
           return data.seasons?.map((item, i) => {
             return (
               <li className={styles.card} key={i}>
-                <Card group={group} data={item} />
+                <Card width={width} group={group} data={item} />
               </li>
             );
           });
@@ -32,7 +32,7 @@ const Contents = ({ group, data }) => {
           return data.map((item, i) => {
             return (
               <li className={styles.card} key={i}>
-                <Card group={group} data={item} />
+                <Card width={width} group={group} data={item} />
               </li>
             );
           });

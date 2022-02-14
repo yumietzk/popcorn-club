@@ -13,10 +13,26 @@
   justify-content: flex-start;
 }
 
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .main {
+    padding-left: 2rem;
+    margin-bottom: 3.5rem;
+  }
+}
+
 .img {
   flex: 0 1 31rem;
 
   margin-right: 5rem;
+}
+
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .img {
+    flex: 0 1 28rem;
+    margin-right: 3rem;
+  }
 }
 
 .poster {
@@ -30,6 +46,13 @@
   background-color: #1d1911;
 }
 
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .poster {
+    height: 15.7rem;
+  }
+}
+
 .content {
   flex: 1;
 }
@@ -37,16 +60,29 @@
 .title {
   font-size: 2.8rem;
   letter-spacing: 1px;
-  /* color: #dec7a1; */
   margin-bottom: 1rem;
+}
+
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .title {
+    font-size: 2.3rem;
+  }
 }
 
 .season,
 .episode-title {
   font-size: 1.6rem;
   font-weight: 500;
-  /* color: #dec7a1; */
   margin-bottom: 1rem;
+}
+
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .season,
+  .episode-title {
+    font-size: 1.3rem;
+  }
 }
 
 .overview {
@@ -55,11 +91,33 @@
   font-weight: 400;
   width: 60%;
   line-height: 1.7;
-  /* margin-bottom: 1rem; */
 }
 
-.btn {
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .overview {
+    font-size: 1.3rem;
+  }
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .overview {
+    width: 100%;
+    padding: 0 2rem;
+  }
+}
+
+.toggle-btn {
   padding-left: 3.8rem;
+  margin-bottom: 3rem;
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .toggle-btn {
+    padding-left: 0;
+  }
 }
 
 .release-date {
@@ -69,9 +127,37 @@
   color: #dec7a18f;
 }
 
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .release-date {
+    font-size: 1.2rem;
+  }
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .release-date {
+    padding-left: 2rem;
+  }
+}
+
 span {
   font-size: 1.6rem;
   font-weight: 400;
   color: #dec7a1;
   margin-left: 6rem;
+}
+
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  span {
+    font-size: 1.3rem;
+  }
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  span {
+    margin-left: 3rem;
+  }
 }

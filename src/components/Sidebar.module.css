@@ -8,6 +8,23 @@
   border-radius: 3px;
 }
 
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .navigation {
+    display: none;
+    width: 25rem;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+}
+
+.mobile {
+  display: block;
+}
+
 .lists {
   list-style: none;
 }
@@ -65,4 +82,11 @@
   color: inherit;
   margin-left: 1.7rem;
   margin-right: 11rem;
+}
+
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .list-title {
+    margin-right: 6rem;
+  }
 }

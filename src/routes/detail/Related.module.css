@@ -1,6 +1,5 @@
 .related {
   color: #dec7a1;
-  /* border: 2px solid green; */
 }
 
 .title {
@@ -8,4 +7,11 @@
   font-weight: 400;
   margin-bottom: 2rem;
   padding-left: 3.8rem;
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .title {
+    padding-left: 2rem;
+  }
 }

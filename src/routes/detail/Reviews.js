@@ -3,7 +3,7 @@ import * as IoIcons from 'react-icons/io';
 import { truncate } from '../../helpers/Truncate';
 import styles from './Reviews.module.css';
 
-const Reviews = ({ data }) => {
+const Reviews = ({ data, width }) => {
   const renderReviews = () => {
     if (data.length === 0) {
       return <p className={styles['no-reviews']}>Sorry, no reviews.</p>;
@@ -20,7 +20,10 @@ const Reviews = ({ data }) => {
                 <p
                   className={styles.review}
                   dangerouslySetInnerHTML={{
-                    __html: truncate(review.content, 250),
+                    __html: truncate(
+                      review.content,
+                      `${width <= 450 ? 120 : 250}`
+                    ),
                   }}
                 ></p>
               </li>

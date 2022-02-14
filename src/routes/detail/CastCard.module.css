@@ -1,5 +1,4 @@
 .img {
-  /* border-radius: 5px; */
   overflow: hidden;
   position: relative;
 }
@@ -13,6 +12,22 @@
 
   /* set placeholder */
   background-color: #1d1911;
+}
+
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .poster {
+    height: 14rem;
+    width: 14rem;
+  }
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .poster {
+    height: 13rem;
+    width: 13rem;
+  }
 }
 
 .cover {
@@ -39,6 +54,13 @@
   font-weight: 400;
   font-size: 1.4rem;
   text-align: center;
+}
+
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .name {
+    font-size: 1.2rem;
+  }
 }
 
 .name-text:link,

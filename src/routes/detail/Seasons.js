@@ -2,7 +2,7 @@ import React from 'react';
 import Contents from '../../components/UI/CardRow/Contents';
 import styles from './Seasons.module.css';
 
-const Seasons = ({ data }) => {
+const Seasons = ({ data, width }) => {
   return (
     <div className={styles.seasons}>
       <h4 className={styles.title}>Seasons</h4>

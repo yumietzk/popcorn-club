@@ -1,64 +1,59 @@
-/* .card {
-  line-height: 4.5rem;
-  border-bottom: none;
-} */
-
-/* .list-menu {
-  color: #b09760;
-  font-size: 1.8rem;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-  position: relative;
-} */
-
-/* .card:hover {
-  transform: scale(1.02);
-} */
-
-/* .card-menu {
-  display: flex;
-  flex-direction: column;
-
-  text-decoration: none;
-  color: #dec7a1;
-} */
-
-/* 500px */
-/* @media only screen and (max-width: 31.25em) {
-  .card {
-    padding-right: 1.8rem;
-  }
-} */
-
 .img {
   flex: 0 0 25rem;
-  /* flex: 1; */
   width: 100%;
   border-radius: 5px;
   overflow: hidden;
   position: relative;
 }
 
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .img {
+    flex: 0 0 23.5rem;
+  }
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .img {
+    flex: 0 0 22rem;
+  }
+}
+
 .grid-img {
-  /* flex: 1; */
   flex: 0 0 25rem;
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .grid-img {
+    flex: 1;
+  }
 }
 
 .seasons-img {
   flex: 0 0 20rem;
 }
 
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .seasons-img {
+    flex: 0 0 15rem;
+  }
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .seasons-img {
+    flex: 0 0 16rem;
+  }
+}
+
 .poster {
   display: block;
-  /* height: 26rem; */
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* object-fit: contain; */
-  /* opacity: 0; */
 
   /* set placeholder */
   background-color: #1d1911;
@@ -69,11 +64,6 @@
   height: 100%;
   object-fit: cover;
 }
-
-/* .poster-open {
-  opacity: 1;
-  transition: all 0.4s;
-} */
 
 .cover {
   display: none;
@@ -138,6 +128,14 @@
   transition: all 0.5s;
 }
 
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .title:link,
+  .title:visited {
+    font-size: 1.2rem;
+  }
+}
+
 .title:hover,
 .title:active {
   text-decoration: underline;
@@ -148,14 +146,19 @@
 }
 
 .dateseason {
-  /* flex-basis: 1.8rem; */
   flex: 0 0 2rem;
   display: block;
   padding-left: 0.3rem;
   padding-top: 0.5rem;
   font-size: 1.2rem;
   color: #dec7a1;
-  /* font-weight: 100; */
+}
+
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .dateseason {
+    font-size: 1.1rem;
+  }
 }
 
 .grid-dateseason {
@@ -165,15 +168,3 @@
 .episode {
   color: #dec7a18f;
 }
-
-/* .loading {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #f7f7f7;
-} */

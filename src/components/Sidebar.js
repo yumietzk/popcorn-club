@@ -10,6 +10,8 @@ const Sidebar = ({
   setSelectedSidebar,
   isCollapsed,
   isDetail,
+  isMobile,
+  setIsMobile,
 }) => {
   const linkPath = (item) => {
     if (item.title === 'Movies') {
@@ -29,23 +31,38 @@ const Sidebar = ({
     }
   };
 
+  const handleClick = (item) => {
+    setSelectedSidebar(item.title);
+
+    if (isMobile.state) {
+      setIsMobile({ ...isMobile, sidebar: !isMobile.sidebar });
+    }
+  };
+
   return (
-    <nav className={styles.navigation}>
+    <nav
+      className={`${styles.navigation} ${
+        isMobile.state && isMobile.sidebar && styles.mobile
+      }`}
+    >
       <ul className={styles.lists}>
         {SidebarData.map((item, index) => {
           return (
             <li className={styles.list} key={index}>
               <Link
                 to={linkPath(item)}
-                // to={item.path}
                 className={`${styles['list-menu']} ${
                   !isDetail && selectedSidebar === item.title && styles.selected
                 }`}
-                onClick={() => setSelectedSidebar(item.title)}
+                onClick={() => handleClick(item)}
               >
                 <div className={styles['list-icon']}>{item.icon}</div>
-                {!isCollapsed && (
+                {isMobile.state ? (
                   <span className={styles['list-title']}>{item.title}</span>
+                ) : (
+                  !isCollapsed && (
+                    <span className={styles['list-title']}>{item.title}</span>
+                  )
                 )}
               </Link>
             </li>

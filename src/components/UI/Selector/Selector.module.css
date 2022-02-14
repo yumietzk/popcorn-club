@@ -9,6 +9,13 @@
   align-items: center;
 }
 
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .item-link {
+    padding: 1.2rem 1.5rem;
+  }
+}
+
 .item-link:hover {
   background-color: #555555;
   color: #edb01d;

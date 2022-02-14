@@ -1,14 +1,15 @@
 .contents {
-  /* border: 2px solid red; */
   padding-left: 3.8rem;
   overflow-x: auto;
   overflow-y: hidden;
   -ms-overflow-style: none;
-  /* height: 35rem; */
+}
 
-  /* display: flex;
-  justify-content: flex-start;
-  align-items: center; */
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .contents {
+    padding-left: 2rem;
+  }
 }
 
 .contents::-webkit-scrollbar {
@@ -23,7 +24,6 @@
 
 .cards {
   list-style: none;
-  /* overflow-x: auto; */
 
   display: flex;
 }
@@ -38,10 +38,25 @@
   margin-right: 3.2rem;
   text-decoration: none;
   color: #dec7a1;
-  /* width: 17rem; */
 
   display: flex;
   flex-direction: column;
+}
+
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .card {
+    flex: 0 0 16rem;
+    margin-right: 2.2rem;
+  }
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .card {
+    flex: 0 0 15rem;
+    margin-right: 1.2rem;
+  }
 }
 
 .no-data {

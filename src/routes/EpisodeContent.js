@@ -52,7 +52,7 @@ const EpisodeContent = ({ name, data }) => {
         </div>
       </div>
       {renderOverview()}
-      <div style={{ paddingLeft: '3.8rem', marginBottom: '3rem' }}>
+      <div className={styles['toggle-btn']}>
         <ToggleBtn
           condition={data.overview.length > 500}
           isToggleOpen={isToggleOpen}

@@ -12,6 +12,7 @@ import styles from './Home.module.css';
 
 const Home = ({
   setSelectedSidebar,
+  width,
   fetchMoviePopular,
   fetchMovieUpcoming,
   fetchTVPopular,
@@ -52,21 +53,25 @@ const Home = ({
       return (
         <React.Fragment>
           <Row
+            width={width}
             category="Popular in Movies"
             group="movies"
             data={popularMovies}
           />
           <Row
+            width={width}
             category="Upcoming in Movies"
             group="movies"
             data={upcomingMovies}
           />
           <Row
+            width={width}
             category="Popular in TV Shows"
             group="tvshows"
             data={popularShows}
           />
           <Row
+            width={width}
             category="Top Rated in TV Shows"
             group="tvshows"
             data={topratedShows}

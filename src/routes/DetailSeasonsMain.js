@@ -4,7 +4,7 @@ import { truncate } from '../helpers/Truncate';
 import ToggleBtn from '../components/UI/ToggleBtn';
 import styles from './DetailSeasonsMain.module.css';
 
-const DetailSeasonsMain = ({ name, data }) => {
+const DetailSeasonsMain = ({ name, width, data }) => {
   const ref = useRef();
   const [curElement, setElement] = useState();
   const [isToggleOpen, setIsToggleOpen] = useState(false);
@@ -24,12 +24,19 @@ const DetailSeasonsMain = ({ name, data }) => {
   const renderOverview = () => {
     if (!data.overview) return null;
 
-    if (data.overview.length > 400) {
+    if (
+      data.overview.length > `${width >= 2000 ? 800 : width <= 600 ? 270 : 400}`
+    ) {
       if (isToggleOpen) {
         return <div className={styles.overview}>{data.overview}</div>;
       } else {
         return (
-          <div className={styles.overview}>{truncate(data.overview, 400)}</div>
+          <div className={styles.overview}>
+            {truncate(
+              data.overview,
+              `${width >= 2000 ? 800 : width <= 600 ? 270 : 400}`
+            )}
+          </div>
         );
       }
     } else {
@@ -38,21 +45,43 @@ const DetailSeasonsMain = ({ name, data }) => {
   };
 
   return (
-    <div className={styles['seasons-main']}>
-      <div className={styles.img} ref={ref}>
-        <img alt={name} className={styles.poster} />
+    <React.Fragment>
+      <div className={styles['seasons-main']}>
+        <div className={styles.img} ref={ref}>
+          <img alt={name} className={styles.poster} />
+        </div>
+        {width <= 450 ? (
+          <div className={styles['mobile-content']}>
+            <h2 className={styles.title}>{name}</h2>
+            <p className={styles.season}>{data.name}</p>
+          </div>
+        ) : (
+          <div className={styles.content}>
+            <h2 className={styles.title}>{name}</h2>
+            <p className={styles.season}>{data.name}</p>
+            {renderOverview()}
+            <ToggleBtn
+              condition={data.overview.length > 400}
+              isToggleOpen={isToggleOpen}
+              setIsToggleOpen={setIsToggleOpen}
+            />
+          </div>
+        )}
       </div>
-      <div className={styles.content}>
-        <h2 className={styles.title}>{name}</h2>
-        <p className={styles.season}>{data.name}</p>
-        {renderOverview()}
-        <ToggleBtn
-          condition={data.overview.length > 400}
-          isToggleOpen={isToggleOpen}
-          setIsToggleOpen={setIsToggleOpen}
-        />
-      </div>
-    </div>
+      {width <= 450 && (
+        <React.Fragment>
+          {renderOverview()}
+          <ToggleBtn
+            condition={
+              data.overview.length >
+              `${width >= 2000 ? 800 : width <= 600 ? 270 : 400}`
+            }
+            isToggleOpen={isToggleOpen}
+            setIsToggleOpen={setIsToggleOpen}
+          />
+        </React.Fragment>
+      )}
+    </React.Fragment>
   );
 };
 

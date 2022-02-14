@@ -5,6 +5,13 @@
   position: relative;
 }
 
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .title {
+    padding-left: 2rem;
+  }
+}
+
 .title-name {
   font-size: 1.8rem;
   margin-bottom: 2rem;

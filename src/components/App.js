@@ -33,21 +33,47 @@ const App = ({ init, movieGenres, tvGenres }) => {
     title: true,
     releaseDate: false,
     rating: false,
-  }); // ↑
+  });
   const [isAscendTV, setIsAscendTV] = useState({
     title: true,
     releaseDate: false,
     rating: false,
-  }); // ↑
+  });
   const [detailBackground, setDetailBackground] = useState({
     isON: false,
     url: '',
   });
   const [isDetail, setIsDetail] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [isMobile, setIsMobile] = useState({
+    state: false,
+    sidebar: false,
+  });
 
   useEffect(() => {
     init();
+
+    window.addEventListener('resize', updateDimension);
+    return () => window.addEventListener('resize', updateDimension);
   }, []);
+
+  const updateDimension = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    if (width <= 800) {
+      setIsCollapsed(true);
+    } else {
+      setIsCollapsed(false);
+    }
+
+    if (width > 450) {
+      setIsMobile({ ...isMobile, state: false });
+    } else {
+      setIsMobile({ ...isMobile, state: true });
+    }
+  }, [width]);
 
   return (
     <div
@@ -57,15 +83,19 @@ const App = ({ init, movieGenres, tvGenres }) => {
         // backgroundColor: 'red',
         backgroundImage:
           detailBackground.isON &&
-          `linear-gradient(to top left, rgba(41, 38, 33, 0.95), rgba(41, 38, 33, 0.95)), url('https://image.tmdb.org/t/p/original${detailBackground.url}')`,
-        // `linear-gradient(to top left, rgba(41, 38, 33, 0.95), rgba(41, 38, 33, 0.95)), url('https://image.tmdb.org/t/p/original${detailBackground.url}')`,
+          `linear-gradient(to top left, rgba(41, 38, 33, 0.97), rgba(41, 38, 33, 0.97)), url('https://image.tmdb.org/t/p/original${detailBackground.url}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'top',
       }}
     >
       <BrowserRouter>
         <ScrollToTop />
-        <Header isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+        <Header
+          isCollapsed={isCollapsed}
+          setIsCollapsed={setIsCollapsed}
+          isMobile={isMobile}
+          setIsMobile={setIsMobile}
+        />
         <Sidebar
           selectedItem={selectedItem}
           selectedItemTV={selectedItemTV}
@@ -73,11 +103,18 @@ const App = ({ init, movieGenres, tvGenres }) => {
           setSelectedSidebar={setSelectedSidebar}
           isCollapsed={isCollapsed}
           isDetail={isDetail}
+          isMobile={isMobile}
+          setIsMobile={setIsMobile}
         />
+        {/* {width > 450 && (
+          
+        )} */}
         <Routes>
           <Route
             path="/"
-            element={<Home setSelectedSidebar={setSelectedSidebar} />}
+            element={
+              <Home setSelectedSidebar={setSelectedSidebar} width={width} />
+            }
           />
           <Route
             path="movies/*"
@@ -113,6 +150,7 @@ const App = ({ init, movieGenres, tvGenres }) => {
                 setIsAscend={setIsAscend}
                 setDetailBackground={setDetailBackground}
                 setIsDetail={setIsDetail}
+                width={width}
               />
             }
           />
@@ -124,6 +162,7 @@ const App = ({ init, movieGenres, tvGenres }) => {
                 setIsAscend={setIsAscendTV}
                 setDetailBackground={setDetailBackground}
                 setIsDetail={setIsDetail}
+                width={width}
               />
             }
           />
@@ -133,6 +172,7 @@ const App = ({ init, movieGenres, tvGenres }) => {
               <Person
                 setDetailBackground={setDetailBackground}
                 setIsDetail={setIsDetail}
+                width={width}
               />
             }
           />

@@ -3,6 +3,13 @@
   margin-bottom: 6rem;
 }
 
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .cast {
+    margin-bottom: 4rem;
+  }
+}
+
 .title {
   font-size: 1.6rem;
   font-weight: 400;
@@ -10,10 +17,25 @@
   padding-left: 3.8rem;
 }
 
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .title {
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
 .content {
   padding-left: 3.8rem;
   overflow-x: auto;
   overflow-y: hidden;
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .content {
+    padding-left: 2rem;
+  }
 }
 
 .content::-webkit-scrollbar {
@@ -30,83 +52,28 @@
   margin-right: 3.1rem;
 }
 
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .card {
+    margin-right: 2.2rem;
+  }
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .card {
+    margin-right: 1.7rem;
+  }
+}
+
 .no-casts {
   font-size: 1.5rem;
   color: #dec7a18f;
 }
 
-/* .wrap {
-  flex: 1;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  overflow-x: scroll;
-}
-
-.wrap::-webkit-scrollbar {
-  height: 4px;
-}
-
-.wrap::-webkit-scrollbar-thumb {
-  background: rgba(133, 133, 133, 0.5);
-  border-radius: 3px;
-}
-
-.list {
-  margin-right: 4rem;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.fig {
-  height: 11rem;
-  width: 11rem;
-  border-radius: 50%;
-  overflow: hidden;
-} */
-
-/* 850px */
-/* @media only screen and (max-width: 53.125em) {
-  .fig {
-    height: 9rem;
-    width: 9rem;
-  }
-} */
-
-/* 400px */
-/* @media only screen and (max-width: 25em) {
-  .fig {
-    height: 7.5rem;
-    width: 7.5rem;
-  }
-} */
-
-/* 300px */
-/* @media only screen and (max-width: 18.75em) {
-  .fig {
-    height: 6.5rem;
-    width: 6.5rem;
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .no-casts {
+    font-size: 1.4rem;
   }
 }
-
-.img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
-.name {
-  margin-top: 1rem;
-  font-weight: 400;
-  font-size: 1.2rem;
-} */
-
-/* 300px */
-/* @media only screen and (max-width: 18.75em) {
-  .name {
-    font-size: 0.7rem;
-    font-weight: 300;
-  }
-} */

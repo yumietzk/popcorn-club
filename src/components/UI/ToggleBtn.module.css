@@ -11,8 +11,30 @@
   align-items: center;
 }
 
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .btn {
+    margin-top: 0.5rem;
+  }
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .btn {
+    padding-left: 2rem;
+    margin-bottom: 4rem;
+  }
+}
+
 .btn:hover {
   color: #dec7a1;
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .person-btn {
+    padding-left: 0;
+  }
 }
 
 .btn-icon {

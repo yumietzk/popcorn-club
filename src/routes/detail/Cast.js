@@ -2,7 +2,7 @@ import React from 'react';
 import CastCard from './CastCard';
 import styles from './Cast.module.css';
 
-const Cast = ({ data }) => {
+const Cast = ({ data, width }) => {
   // ⚠️最初のデータによく違うデータが入るからなぜか調べる！
   // console.log(data);
 
@@ -15,7 +15,7 @@ const Cast = ({ data }) => {
           {data.map((person, i) => {
             return (
               <li key={i} className={styles.card}>
-                <CastCard data={person} />
+                <CastCard data={person} width={width} />
               </li>
             );
           })}

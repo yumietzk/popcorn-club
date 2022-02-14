@@ -4,7 +4,7 @@ import CardGrid from '../components/UI/CardGrid/CardGrid';
 import LoadingIndicator from '../helpers/LoadingIndicator';
 import styles from './TVDetailSeasons.module.css';
 
-const TVDetailSeasons = ({ name, seasons, isFetching, isError }) => {
+const TVDetailSeasons = ({ name, width, seasons, isFetching, isError }) => {
   if (isFetching || !seasons) {
     return <LoadingIndicator />;
   }
@@ -24,7 +24,7 @@ const TVDetailSeasons = ({ name, seasons, isFetching, isError }) => {
   if (seasons) {
     return (
       <div className={styles.seasons}>
-        <DetailSeasonsMain name={name} data={seasons} />
+        <DetailSeasonsMain name={name} width={width} data={seasons} />
         {seasons.episodes && seasons.episodes.length !== 0 && (
           <h4 className={styles.episodes}>
             {seasons.episodes?.length} Episodes

@@ -11,6 +11,7 @@ const TVDetail = ({
   setIsAscend,
   setDetailBackground,
   setIsDetail,
+  width,
   fetchTVDetail,
   fetchTVCasts,
   fetchTVRelated,
@@ -60,6 +61,7 @@ const TVDetail = ({
             <TVDetailContent
               setSelectedItem={setSelectedItem}
               setIsAscend={setIsAscend}
+              width={width}
               detail={tvDetail}
               casts={tvCasts}
               related={tvRelated}
@@ -70,7 +72,13 @@ const TVDetail = ({
         />
         <Route
           path="season/:number/*"
-          element={<TVDetailMore id={id} name={tvDetail?.original_name} />}
+          element={
+            <TVDetailMore
+              id={id}
+              name={tvDetail?.original_name}
+              width={width}
+            />
+          }
         />
       </Routes>
     </React.Fragment>

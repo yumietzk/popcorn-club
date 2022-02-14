@@ -3,3 +3,10 @@
   font-size: 1.5rem;
   color: #dec7a18f;
 }
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .error {
+    padding-left: 2rem;
+  }
+}

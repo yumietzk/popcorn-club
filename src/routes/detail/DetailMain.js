@@ -8,7 +8,7 @@ import ToggleBtn from '../../components/UI/ToggleBtn';
 import SelectorsData from '../../components/data/SelectorsData';
 import styles from './DetailMain.module.css';
 
-const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
+const DetailMain = ({ setSelectedItem, setIsAscend, group, data, width }) => {
   const [trailerUrl, setTrailerUrl] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isToggleOpen, setIsToggleOpen] = useState(false);
@@ -79,12 +79,20 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
   const renderOverview = () => {
     if (!data.overview) return null;
 
-    if (data.overview.length > 400) {
+    if (
+      data.overview.length >
+      `${width > 450 && width <= 600 ? 100 : width <= 450 ? 200 : 300}`
+    ) {
       if (isToggleOpen) {
         return <div className={styles.overview}>{data.overview}</div>;
       } else {
         return (
-          <div className={styles.overview}>{truncate(data.overview, 400)}</div>
+          <div className={styles.overview}>
+            {truncate(
+              data.overview,
+              `${width > 450 && width <= 600 ? 100 : width <= 450 ? 200 : 300}`
+            )}
+          </div>
         );
       }
     } else {
@@ -128,12 +136,57 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
           />
         </div>
 
-        <div className={styles.content}>
-          <div className={styles.title}>
-            <h2 className={styles.titleName}>
-              {data.original_title ? data.original_title : data.original_name}
-            </h2>
-            {/* {isSignedIn && (
+        {width <= 450 ? (
+          <div className={styles['mobile-content']}>
+            <div className={styles.title}>
+              <h2 className={styles['title-name']}>
+                {data.original_title ? data.original_title : data.original_name}
+              </h2>
+            </div>
+
+            <div className={styles.date}>
+              {calcYear(
+                `${data.release_date ? data.release_date : data.first_air_date}`
+              )}
+            </div>
+
+            <div className={styles.timerate}>
+              <div className={styles.runtime}>{`${calcHour(
+                `${data.runtime ? data.runtime : data.episode_run_time[0]}`
+              )}`}</div>
+              <div className={styles.rate}>
+                <IoIcons.IoIosStar className={styles['rate-icon']} />
+                {data.vote_average ? data.vote_average : 0}
+              </div>
+            </div>
+
+            <div className={styles.others}>
+              {group === 'movies' && (
+                <button
+                  className={styles.play}
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  <IoIcons.IoIosPlay className={styles['play-icon']} />
+                  Play
+                </button>
+              )}
+              <a
+                href={`${data.homepage}`}
+                target="_blank"
+                className={styles.link}
+              >
+                <IoIcons.IoIosLink className={styles['link-icon']} />
+                Website
+              </a>
+            </div>
+          </div>
+        ) : (
+          <div className={styles.content}>
+            <div className={styles.title}>
+              <h2 className={styles['title-name']}>
+                {data.original_title ? data.original_title : data.original_name}
+              </h2>
+              {/* {isSignedIn && (
               <button
                 className={styles.favorite}
                 onClick={() =>
@@ -154,61 +207,67 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
                 />
               </button>
             )} */}
-          </div>
-
-          <div className={styles.date}>
-            {calcYear(
-              `${data.release_date ? data.release_date : data.first_air_date}`
-            )}
-          </div>
-
-          <div className={styles.timerate}>
-            <div className={styles.runtime}>{`${calcHour(
-              `${data.runtime ? data.runtime : data.episode_run_time[0]}`
-            )}`}</div>
-            <div className={styles.rate}>
-              <IoIcons.IoIosStar className={styles['rate-icon']} />
-              {data.vote_average ? data.vote_average : 0}
             </div>
-          </div>
 
-          <div className={styles.others}>
-            {group === 'movies' && (
-              <button
-                className={styles.play}
-                onClick={() => setIsModalOpen(true)}
+            <div className={styles.date}>
+              {calcYear(
+                `${data.release_date ? data.release_date : data.first_air_date}`
+              )}
+            </div>
+
+            <div className={styles.timerate}>
+              <div className={styles.runtime}>{`${calcHour(
+                `${data.runtime ? data.runtime : data.episode_run_time[0]}`
+              )}`}</div>
+              <div className={styles.rate}>
+                <IoIcons.IoIosStar className={styles['rate-icon']} />
+                {data.vote_average ? data.vote_average : 0}
+              </div>
+            </div>
+
+            <div className={styles.others}>
+              {group === 'movies' && (
+                <button
+                  className={styles.play}
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  <IoIcons.IoIosPlay className={styles['play-icon']} />
+                  Play
+                </button>
+              )}
+              <a
+                href={`${data.homepage}`}
+                target="_blank"
+                className={styles.link}
               >
-                <IoIcons.IoIosPlay className={styles['play-icon']} />
-                Play
-              </button>
-            )}
-            <a
-              href={`${data.homepage}`}
-              target="_blank"
-              className={styles.link}
+                <IoIcons.IoIosLink className={styles['link-icon']} />
+                Website
+              </a>
+            </div>
+
+            {renderOverview()}
+            <ToggleBtn
+              condition={
+                data.overview.length >
+                `${
+                  width > 450 && width <= 600 ? 100 : width <= 450 ? 200 : 300
+                }`
+              }
+              isToggleOpen={isToggleOpen}
+              setIsToggleOpen={setIsToggleOpen}
+            />
+
+            <div
+              className={styles.genre}
+              style={{ marginTop: data.overview.length > 400 && '3rem' }}
             >
-              <IoIcons.IoIosLink className={styles['link-icon']} />
-              Website
-            </a>
-          </div>
-
-          {renderOverview()}
-          <ToggleBtn
-            condition={data.overview.length > 400}
-            isToggleOpen={isToggleOpen}
-            setIsToggleOpen={setIsToggleOpen}
-          />
-
-          <div
-            className={styles.genre}
-            style={{ marginTop: data.overview.length > 400 && '3rem' }}
-          >
-            <div className={styles['genre-title']}>Genre</div>
-            <div className={styles['genre-names']}>
-              {genreLink(data.genres)}
+              <div className={styles['genre-title']}>Genre</div>
+              <div className={styles['genre-names']}>
+                {genreLink(data.genres)}
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         <div className={`${styles.modal} ${!isModalOpen && styles.hidden}`}>
           <iframe src={videoSrc} title={data.id} width="100%" height="100%" />
@@ -221,7 +280,24 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data }) => {
     );
   };
 
-  return <div className={styles.main}>{renderMain()}</div>;
+  return (
+    <React.Fragment>
+      <div className={styles.main}>{renderMain()}</div>
+      {width <= 450 && (
+        <React.Fragment>
+          {renderOverview()}
+          <ToggleBtn
+            condition={
+              data.overview.length >
+              `${width > 450 && width <= 600 ? 100 : width <= 450 ? 200 : 300}`
+            }
+            isToggleOpen={isToggleOpen}
+            setIsToggleOpen={setIsToggleOpen}
+          />
+        </React.Fragment>
+      )}
+    </React.Fragment>
+  );
 };
 
 export default DetailMain;

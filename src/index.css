@@ -11,15 +11,15 @@ html {
   box-sizing: border-box;
 }
 
-/* 700px */
-@media only screen and (max-width: 43.75em) {
+/* 800px */
+@media only screen and (max-width: 50em) {
   html {
     font-size: 50%;
   }
 }
 
-/* 300px */
-@media only screen and (max-width: 18.75em) {
+/* 450px */
+@media only screen and (max-width: 28.125em) {
   html {
     font-size: 40%;
   }
@@ -44,3 +44,13 @@ body {
 #dec7a18f
 #EDB01D
 #eebb44 hover */
+
+/* 2000px 125em */
+/* 1200px 75em */
+/* 800px 50em */
+/* 450px 28.125em */
+
+/*  */
+/* 600px 37.5em */
+/* 700px 43.75em */
+/* 300px 18.75em */

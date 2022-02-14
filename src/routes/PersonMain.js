@@ -4,7 +4,7 @@ import { truncate } from '../helpers/Truncate';
 import ToggleBtn from '../components/UI/ToggleBtn';
 import styles from './PersonMain.module.css';
 
-const PersonMain = ({ person }) => {
+const PersonMain = ({ person, width }) => {
   const ref = useRef();
   const [curElement, setElement] = useState();
   const [isToggleOpen, setIsToggleOpen] = useState(false);
@@ -26,13 +26,13 @@ const PersonMain = ({ person }) => {
       return <p className={styles['no-bio']}>Sorry, no biography.</p>;
     }
 
-    if (person.biography.length > 850) {
+    if (person.biography.length > `${width <= 1200 ? 600 : 850}`) {
       if (isToggleOpen) {
         return <p className={styles['bio-text']}>{person.biography}</p>;
       } else {
         return (
           <p className={styles['bio-text']}>
-            {truncate(person.biography, 850)}
+            {truncate(person.biography, `${width <= 1200 ? 600 : 850}`)}
           </p>
         );
       }
@@ -49,7 +49,8 @@ const PersonMain = ({ person }) => {
       <div className={styles.bio}>
         {renderBio()}
         <ToggleBtn
-          condition={person.biography.length > 850}
+          type="person"
+          condition={person.biography.length > `${width <= 1200 ? 600 : 850}`}
           isToggleOpen={isToggleOpen}
           setIsToggleOpen={setIsToggleOpen}
         />

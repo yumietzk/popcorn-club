@@ -1,5 +1,4 @@
 .person {
-  /* padding-bottom: 7rem; */
   overflow-y: scroll;
 }
 
@@ -8,6 +7,20 @@
   font-size: 1.7rem;
   color: #dec7a1;
   margin-bottom: 3rem;
+}
+
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .person-credits {
+    font-size: 1.5rem;
+  }
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .person-credits {
+    padding-left: 2rem;
+  }
 }
 
 .loading {
@@ -20,4 +33,11 @@
   padding-left: 3.8rem;
   font-size: 1.5rem;
   color: #dec7a18f;
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .error {
+    padding-left: 2rem;
+  }
 }

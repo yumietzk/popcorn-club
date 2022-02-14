@@ -15,6 +15,7 @@ import styles from './Person.module.css';
 const Person = ({
   setDetailBackground,
   setIsDetail,
+  width,
   fetchPersonInfo,
   fetchPersonMovies,
   fetchPersonTVShows,
@@ -66,7 +67,7 @@ const Person = ({
     if (info && movies && tvshows) {
       return (
         <React.Fragment>
-          <PersonMain person={info} />
+          <PersonMain person={info} width={width} />
           <h4 className={styles['person-credits']}>Known For</h4>
           <Credits
             group="movies"

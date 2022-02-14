@@ -5,7 +5,7 @@ import { setImage } from '../../../helpers/SetImage';
 import { truncate } from '../../../helpers/Truncate';
 import styles from './Card.module.css';
 
-const Card = ({ group, data, cname }) => {
+const Card = ({ width, group, data, cname }) => {
   const ref = useRef();
   const [curElement, setElement] = useState();
 
@@ -89,8 +89,8 @@ const Card = ({ group, data, cname }) => {
         {group === 'tvdetail' || group === 'tvseasons'
           ? data.name
           : data.original_title
-          ? truncate(data.original_title, 24)
-          : truncate(data.original_name, 24)}
+          ? truncate(data.original_title, `${width <= 450 ? 16 : 24}`)
+          : truncate(data.original_name, `${width <= 450 ? 16 : 24}`)}
       </Link>
       <p
         className={`${styles.dateseason} ${

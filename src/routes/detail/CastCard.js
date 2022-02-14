@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { setImage } from '../../helpers/SetImage';
+import { truncate } from '../../helpers/Truncate';
 import styles from './CastCard.module.css';
 
-const CastCard = ({ data }) => {
+const CastCard = ({ data, width }) => {
   const ref = useRef();
   const [curElement, setElement] = useState();
 
@@ -27,7 +28,7 @@ const CastCard = ({ data }) => {
       </div>
       <div className={styles.name}>
         <Link to={`../../person/${data.id}`} className={styles['name-text']}>
-          {data.original_name}
+          {truncate(data.original_name, `${width <= 450 ? 13 : 27}`)}
         </Link>
       </div>
     </React.Fragment>
