@@ -136,6 +136,7 @@
   text-transform: uppercase;
   padding: 0.7rem 1.6rem;
   cursor: pointer;
+  transition: all 0.5s;
 }
 
 /* 1200px */
@@ -298,6 +299,7 @@
 .genre-name:visited {
   text-decoration: none;
   color: inherit;
+  transition: all 0.5s;
 }
 
 .genre-name:hover,
@@ -321,6 +323,29 @@
   border-radius: 5px;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
+}
+
+/* 1200px */
+@media only screen and (max-width: 75em) {
+  .modal {
+    height: 60%;
+  }
+}
+
+/* 800px */
+@media only screen and (max-width: 50em) {
+  .modal {
+    height: 40%;
+    width: 80%;
+  }
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .modal {
+    width: 90%;
+    height: 30%;
+  }
 }
 
 .overlay {

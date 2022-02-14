@@ -6,6 +6,7 @@
   cursor: pointer;
   color: #dec7a18f;
   font-size: 1.3rem;
+  transition: all 0.5s;
 
   display: flex;
   align-items: center;

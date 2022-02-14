@@ -30,7 +30,7 @@
   border-bottom: 2px solid transparent;
   color: #dec7a1;
   font-size: 1.8rem;
-  transition: all 0.3s;
+  transition: all 0.5s;
 }
 
 .title-btn:not(:last-child) {
@@ -44,7 +44,7 @@
 .selected {
   border-bottom: 2px solid #edb01d;
   color: #edb01d;
-  transition: all 0.3s;
+  transition: all 0.5s;
 }
 
 .selected:hover {

@@ -30,6 +30,7 @@
   margin-left: 2rem;
   color: #dec7a18f;
   font-size: 1.8rem;
+  transition: all 0.5s;
 }
 
 .back-btn::after {
@@ -37,6 +38,7 @@
   color: transparent;
   padding-left: 0.2rem;
   font-size: 1.5rem;
+  transition: all 0.5s;
 }
 
 .back-btn:hover {

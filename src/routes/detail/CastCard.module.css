@@ -42,7 +42,7 @@
   border: 1.3px solid #edb01d;
   border-radius: 50%;
   z-index: 10;
-  transition: all 0.4s;
+  transition: all 0.5s;
 }
 
 .img:hover .cover {
@@ -67,6 +67,7 @@
 .name-text:visited {
   text-decoration: none;
   color: inherit;
+  transition: all 0.5s;
 }
 
 .name-text:hover,
