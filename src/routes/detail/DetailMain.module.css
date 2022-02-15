@@ -352,7 +352,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 1000%;
+  height: 100%;
   width: 100%;
   background-color: rgba(14, 13, 11, 0.7);
   backdrop-filter: blur(3px);
