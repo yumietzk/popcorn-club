@@ -5,7 +5,6 @@ import movieReducer from './movieReducer';
 import tvReducer from './tvReducer';
 import detailReducer from './detailReducer';
 import personReducer from './personReducer';
-// import genreReducer from './genreReducer';
 import errorReducer from './errorReducer';
 
 export default combineReducers({
@@ -15,6 +14,5 @@ export default combineReducers({
   shows: tvReducer,
   detail: detailReducer,
   person: personReducer,
-  // genre: genreReducer,
   error: errorReducer,
 });

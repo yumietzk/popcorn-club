@@ -11,6 +11,7 @@ import Detail from '../routes/Detail';
 import TVDetail from '../routes/TVDetail';
 import Person from '../routes/Person';
 import Search from '../routes/Search';
+import Favorite from '../routes/Favorite';
 import SidebarData from './data/SidebarData';
 import SelectorsData from './data/SelectorsData';
 import ScrollToTop from '../helpers/ScrollToTop';
@@ -106,9 +107,6 @@ const App = ({ init, movieGenres, tvGenres }) => {
           isMobile={isMobile}
           setIsMobile={setIsMobile}
         />
-        {/* {width > 450 && (
-          
-        )} */}
         <Routes>
           <Route
             path="/"
@@ -179,6 +177,10 @@ const App = ({ init, movieGenres, tvGenres }) => {
           <Route
             path="search/:term"
             element={<Search setIsDetail={setIsDetail} />}
+          />
+          <Route
+            path="favorite"
+            element={<Favorite setSelectedSidebar={setSelectedSidebar} />}
           />
         </Routes>
       </BrowserRouter>

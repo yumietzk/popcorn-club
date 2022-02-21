@@ -1,54 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { searchMovies, searchTVShows } from '../actions';
+import { fetchFavoriteMovies, fetchFavoriteTVShows } from '../actions';
 import AltTitle from './AltTitle';
 import LibraryContent from './LibraryContent';
 
-const Search = ({
-  setIsDetail,
-  searchMovies,
-  searchTVShows,
-  movies,
-  tvshows,
+const Favorite = ({
+  fetchFavoriteMovies,
+  fetchFavoriteTVShows,
+  favoriteMovies,
+  favoriteTVShows,
   isFetching,
   isFetchingTV,
   isError,
 }) => {
   const [selectedLibrary, setSelectedLibrary] = useState('movies');
   const [data, setData] = useState({});
-  const { term } = useParams();
 
   useEffect(() => {
-    setIsDetail(true);
-
-    return () => {
-      setIsDetail(false);
-    };
+    fetchFavoriteMovies();
+    fetchFavoriteTVShows();
+    setSelectedLibrary('movies');
   }, []);
 
   useEffect(() => {
-    setData({ ...data, movies: movies, tvshows: tvshows });
-  }, [movies, tvshows]);
-
-  useEffect(() => {
-    searchMovies(term);
-    searchTVShows(term);
-    setSelectedLibrary('movies');
-  }, [term]);
+    setData({ ...data, movies: favoriteMovies, tvshows: favoriteTVShows });
+  }, [favoriteMovies, favoriteTVShows]);
 
   return (
     <React.Fragment>
       <AltTitle
-        title="Search"
-        term={term}
-        search={true}
+        title="Favorite"
         selectedLibrary={selectedLibrary}
         setSelectedLibrary={setSelectedLibrary}
       />
       <LibraryContent
         selectedLibrary={selectedLibrary}
-        type="search"
+        type="favorite"
         data={data}
         isFetching={isFetching}
         isFetchingTV={isFetchingTV}
@@ -60,8 +47,8 @@ const Search = ({
 
 const mapStateToProps = (state) => {
   return {
-    movies: state.movies.search,
-    tvshows: state.shows.search,
+    favoriteMovies: state.movies.favorite,
+    favoriteTVShows: state.shows.favorite,
     isFetching: state.movies.isFetching,
     isFetchingTV: state.shows.isFetching,
     isError: state.error.isError,
@@ -69,6 +56,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  searchMovies,
-  searchTVShows,
-})(Search);
+  fetchFavoriteMovies,
+  fetchFavoriteTVShows,
+})(Favorite);

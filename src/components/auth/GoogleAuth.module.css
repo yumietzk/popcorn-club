@@ -1,5 +1,6 @@
 .user {
   flex: 0 1 10rem;
+  margin-right: 1rem;
 
   display: flex;
   justify-content: center;

@@ -50,10 +50,3 @@
 .selected:hover {
   border-bottom: 2px solid #dec7a18f;
 }
-
-.error,
-.no-data {
-  padding-left: 3.8rem;
-  font-size: 1.5rem;
-  color: #dec7a18f;
-}

@@ -474,6 +474,7 @@ export const fetchPersonTVShows = (id) => async (dispatch) => {
 };
 
 // SEARCH
+// movies
 export const searchMovies = (term) => async (dispatch) => {
   try {
     dispatch({ type: 'REQUEST_DATA' });
@@ -496,6 +497,7 @@ export const searchMovies = (term) => async (dispatch) => {
   }
 };
 
+// tvshows
 export const searchTVShows = (term) => async (dispatch) => {
   try {
     dispatch({ type: 'REQUEST_TVDATA' });
@@ -519,326 +521,51 @@ export const searchTVShows = (term) => async (dispatch) => {
   }
 };
 
-// export const fetchActionMovies = () => async (dispatch) => {
-//   try {
-//     dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-//     const response = await Promise.all([
-//       tmdb.get(`${requests.fetchActionMovies}&page=1`),
-//       tmdb.get(`${requests.fetchActionMovies}&page=2`),
-//       tmdb.get(`${requests.fetchActionMovies}&page=3`),
-//     ]);
-//     const data = response.map((res) => res.data.results);
-
-//     dispatch({
-//       type: 'FETCH_ACTION',
-//       payload: [...data[0], ...data[1], ...data[2]],
-//     });
-//   } catch (err) {
-//     dispatch({
-//       type: 'FAIL_RECEIVE_DATA',
-//       payload: {
-//         message: 'Something went wrong. Could not get data. Please try again!',
-//       },
-//     });
-//   }
-// };
-
-// export const fetchAdventureMovies = () => async (dispatch) => {
-//   try {
-//     dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-//     const response = await Promise.all([
-//       tmdb.get(`${requests.fetchAdventureMovies}&page=1`),
-//       tmdb.get(`${requests.fetchAdventureMovies}&page=2`),
-//       tmdb.get(`${requests.fetchAdventureMovies}&page=3`),
-//     ]);
-
-//     const data = response.map((res) => res.data.results);
-
-//     dispatch({
-//       type: 'FETCH_ADVENTURE',
-//       payload: [...data[0], ...data[1], ...data[2]],
-//     });
-//   } catch (err) {
-//     dispatch({
-//       type: 'FAIL_RECEIVE_DATA',
-//       payload: {
-//         message: 'Something went wrong. Could not get data. Please try again!',
-//       },
-//     });
-//   }
-// };
-
-// export const fetchAnimationMovies = () => async (dispatch) => {
-//   try {
-//     dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-//     const response = await Promise.all([
-//       tmdb.get(`${requests.fetchAnimationMovies}&page=1`),
-//       tmdb.get(`${requests.fetchAnimationMovies}&page=2`),
-//       tmdb.get(`${requests.fetchAnimationMovies}&page=3`),
-//     ]);
-
-//     const data = response.map((res) => res.data.results);
-
-//     dispatch({
-//       type: 'FETCH_ANIMATION',
-//       payload: [...data[0], ...data[1], ...data[2]],
-//     });
-//   } catch (err) {
-//     dispatch({
-//       type: 'FAIL_RECEIVE_DATA',
-//       payload: {
-//         message: 'Something went wrong. Could not get data. Please try again!',
-//       },
-//     });
-//   }
-// };
-
-// export const fetchComedyMovies = () => async (dispatch) => {
-//   try {
-//     dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-//     const response = await Promise.all([
-//       tmdb.get(`${requests.fetchComedyMovies}&page=1`),
-//       tmdb.get(`${requests.fetchComedyMovies}&page=2`),
-//       tmdb.get(`${requests.fetchComedyMovies}&page=3`),
-//     ]);
-
-//     const data = response.map((res) => res.data.results);
-
-//     dispatch({
-//       type: 'FETCH_COMEDY',
-//       payload: [...data[0], ...data[1], ...data[2]],
-//     });
-//   } catch (err) {
-//     dispatch({
-//       type: 'FAIL_RECEIVE_DATA',
-//       payload: {
-//         message: 'Something went wrong. Could not get data. Please try again!',
-//       },
-//     });
-//   }
-// };
-
-// export const fetchDocumentaryMovies = () => async (dispatch) => {
-//   try {
-//     dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-//     const response = await Promise.all([
-//       tmdb.get(`${requests.fetchDocumentaryMovies}&page=1`),
-//       tmdb.get(`${requests.fetchDocumentaryMovies}&page=2`),
-//       tmdb.get(`${requests.fetchDocumentaryMovies}&page=3`),
-//     ]);
-
-//     const data = response.map((res) => res.data.results);
-
-//     dispatch({
-//       type: 'FETCH_DOCUMENTARY',
-//       payload: [...data[0], ...data[1], ...data[2]],
-//     });
-//   } catch (err) {
-//     dispatch({
-//       type: 'FAIL_RECEIVE_DATA',
-//       payload: {
-//         message: 'Something went wrong. Could not get data. Please try again!',
-//       },
-//     });
-//   }
-// };
-
-// export const fetchDramaMovies = () => async (dispatch) => {
-//   try {
-//     dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-//     const response = await Promise.all([
-//       tmdb.get(`${requests.fetchDramaMovies}&page=1`),
-//       tmdb.get(`${requests.fetchDramaMovies}&page=2`),
-//       tmdb.get(`${requests.fetchDramaMovies}&page=3`),
-//     ]);
-
-//     const data = response.map((res) => res.data.results);
-
-//     dispatch({
-//       type: 'FETCH_DRAMA',
-//       payload: [...data[0], ...data[1], ...data[2]],
-//     });
-//   } catch (err) {
-//     dispatch({
-//       type: 'FAIL_RECEIVE_DATA',
-//       payload: {
-//         message: 'Something went wrong. Could not get data. Please try again!',
-//       },
-//     });
-//   }
-// };
-
-// export const fetchFantasyMovies = () => async (dispatch) => {
-//   try {
-//     dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-//     const response = await Promise.all([
-//       tmdb.get(`${requests.fetchFantasyMovies}&page=1`),
-//       tmdb.get(`${requests.fetchFantasyMovies}&page=2`),
-//       tmdb.get(`${requests.fetchFantasyMovies}&page=3`),
-//     ]);
-
-//     const data = response.map((res) => res.data.results);
-
-//     dispatch({
-//       type: 'FETCH_FANTASY',
-//       payload: [...data[0], ...data[1], ...data[2]],
-//     });
-//   } catch (err) {
-//     dispatch({
-//       type: 'FAIL_RECEIVE_DATA',
-//       payload: {
-//         message: 'Something went wrong. Could not get data. Please try again!',
-//       },
-//     });
-//   }
-// };
-
-// export const fetchHorrorMovies = () => async (dispatch) => {
-//   try {
-//     dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-//     const response = await Promise.all([
-//       tmdb.get(`${requests.fetchHorrorMovies}&page=1`),
-//       tmdb.get(`${requests.fetchHorrorMovies}&page=2`),
-//       tmdb.get(`${requests.fetchHorrorMovies}&page=3`),
-//     ]);
-
-//     const data = response.map((res) => res.data.results);
-
-//     dispatch({
-//       type: 'FETCH_HORROR',
-//       payload: [...data[0], ...data[1], ...data[2]],
-//     });
-//   } catch (err) {
-//     dispatch({
-//       type: 'FAIL_RECEIVE_DATA',
-//       payload: {
-//         message: 'Something went wrong. Could not get data. Please try again!',
-//       },
-//     });
-//   }
-// };
-
-// export const fetchRomanceMovies = () => async (dispatch) => {
-//   try {
-//     dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-//     const response = await Promise.all([
-//       tmdb.get(`${requests.fetchRomanceMovies}&page=1`),
-//       tmdb.get(`${requests.fetchRomanceMovies}&page=2`),
-//       tmdb.get(`${requests.fetchRomanceMovies}&page=3`),
-//     ]);
-
-//     const data = response.map((res) => res.data.results);
-
-//     dispatch({
-//       type: 'FETCH_ROMANCE',
-//       payload: [...data[0], ...data[1], ...data[2]],
-//     });
-//   } catch (err) {
-//     dispatch({
-//       type: 'FAIL_RECEIVE_DATA',
-//       payload: {
-//         message: 'Something went wrong. Could not get data. Please try again!',
-//       },
-//     });
-//   }
-// };
-
-// export const fetchSciFiMovies = () => async (dispatch) => {
-//   try {
-//     dispatch({ type: 'REQUEST_DATA_BYGENRE' });
-
-//     const response = await Promise.all([
-//       tmdb.get(`${requests.fetchSciFiMovies}&page=1`),
-//       tmdb.get(`${requests.fetchSciFiMovies}&page=2`),
-//       tmdb.get(`${requests.fetchSciFiMovies}&page=3`),
-//     ]);
-
-//     const data = response.map((res) => res.data.results);
-
-//     dispatch({
-//       type: 'FETCH_SCIFI',
-//       payload: [...data[0], ...data[1], ...data[2]],
-//     });
-//   } catch (err) {
-//     dispatch({
-//       type: 'FAIL_RECEIVE_DATA',
-//       payload: {
-//         message: 'Something went wrong. Could not get data. Please try again!',
-//       },
-//     });
-//   }
-// };
-
-// all
-
-// export const fetchMovieNowPlaying = () => async (dispatch) => {
-//   try {
-//     dispatch({ type: 'REQUEST_DATA' });
-
-//     const response = await tmdb.get(requests.fetchMovieNowPlaying);
-//     dispatch({ type: 'MOVIE_NOWPLAYING', payload: response.data.results });
-//   } catch (err) {
-//     dispatch({
-//       type: 'FAIL_RECEIVE_DATA',
-//       payload: {
-//         message: 'Something went wrong. Could not get data. Please try again!',
-//       },
-//     });
-//   }
-// };
-
-// export const fetchTvOnAir = () => async (dispatch) => {
-//   try {
-//     dispatch({ type: 'REQUEST_TVDATA' });
-
-//     const response = await tmdb.get(requests.fetchTvOnAir);
-//     dispatch({ type: 'TV_ONAIR', payload: response.data.results });
-//   } catch (err) {
-//     dispatch({
-//       type: 'FAIL_RECEIVE_DATA',
-//       payload: {
-//         message: 'Something went wrong. Could not get data. Please try again!',
-//       },
-//     });
-//   }
-// };
-
-// export const fetchMovieTopRated = () => async (dispatch) => {
-//   try {
-//     dispatch({ type: 'REQUEST_DATA' });
-
-//     const response = await tmdb.get(requests.fetchMovieTopRated);
-//     dispatch({ type: 'MOVIE_TOPRATED', payload: response.data.results });
-//   } catch (err) {
-//     dispatch({
-//       type: 'FAIL_RECEIVE_DATA',
-//       payload: {
-//         message: 'Something went wrong. Could not get data. Please try again!',
-//       },
-//     });
-//   }
-// };
-
-// DETAIL
-// movie
-
-// tv
-
-// Genre
-// movie
-
-// tv
-
 // FAVORITE
+// movies
+export const fetchFavoriteMovies = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: 'REQUEST_DATA' });
+
+    const { userId } = getState().auth;
+
+    const response = await favorites.get('/movies');
+    dispatch({
+      type: 'FAVORITE_MOVIES',
+      payload: { data: response.data, userId: userId },
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: {
+        message: 'Something went wrong. Could not get data. Please try again!',
+      },
+    });
+  }
+};
+
+// tvshows
+export const fetchFavoriteTVShows = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: 'REQUEST_TVDATA' });
+
+    const { userId } = getState().auth;
+
+    const response = await favorites.get('/tvs');
+    dispatch({
+      type: 'FAVORITE_TVS',
+      payload: { data: response.data, userId: userId },
+    });
+  } catch (err) {
+    dispatch({
+      type: 'FAIL_RECEIVE_DATA',
+      payload: {
+        message: 'Something went wrong. Could not get data. Please try again!',
+      },
+    });
+  }
+};
+
 export const saveMovie =
   (id, poster_path, original_title, release_date) =>
   async (dispatch, getState) => {
@@ -887,46 +614,4 @@ export const deleteTVShow = (id) => async (dispatch) => {
   await favorites.delete(`/tvs/${id}`);
 
   dispatch({ type: 'DELETE_TV', payload: id });
-};
-
-export const fetchFavoriteMovies = () => async (dispatch, getState) => {
-  try {
-    dispatch({ type: 'REQUEST_DATA' });
-
-    const { userId } = getState().auth;
-
-    const response = await favorites.get('/movies');
-    dispatch({
-      type: 'FAVORITE_MOVIES',
-      payload: { data: response.data, userId: userId },
-    });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message: 'Something went wrong. Could not get data. Please try again!',
-      },
-    });
-  }
-};
-
-export const fetchFavoriteTVs = () => async (dispatch, getState) => {
-  try {
-    dispatch({ type: 'REQUEST_TVDATA' });
-
-    const { userId } = getState().auth;
-
-    const response = await favorites.get('/tvs');
-    dispatch({
-      type: 'FAVORITE_TVS',
-      payload: { data: response.data, userId: userId },
-    });
-  } catch (err) {
-    dispatch({
-      type: 'FAIL_RECEIVE_DATA',
-      payload: {
-        message: 'Something went wrong. Could not get data. Please try again!',
-      },
-    });
-  }
 };

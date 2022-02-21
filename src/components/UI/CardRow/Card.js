@@ -61,7 +61,9 @@ const Card = ({ width, group, data, cname }) => {
                 : group === 'tvseasons'
                 ? `episode/${data.episode_number}`
                 : `../../${
-                    group === 'movies' || group === 'search'
+                    group === 'movies' ||
+                    group === 'search' ||
+                    group === 'favorite'
                       ? 'detail'
                       : 'tvdetail'
                   }/${data.id}`
@@ -79,7 +81,9 @@ const Card = ({ width, group, data, cname }) => {
             : group === 'tvseasons'
             ? `episode/${data.episode_number}`
             : `../../${
-                group === 'movies' || group === 'search' ? 'detail' : 'tvdetail'
+                group === 'movies' || group === 'search' || group === 'favorite'
+                  ? 'detail'
+                  : 'tvdetail'
               }/${data.id}`
         }
         className={`${styles.title} ${

@@ -63,6 +63,7 @@
 
 .search-form {
   flex: 1;
+  margin-right: 0.7rem;
 
   display: flex;
   align-items: center;
