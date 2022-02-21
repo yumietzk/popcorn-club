@@ -522,7 +522,7 @@ export const searchTVShows = (term) => async (dispatch) => {
 };
 
 // FAVORITE
-// movies
+// get movies
 export const fetchFavoriteMovies = () => async (dispatch, getState) => {
   try {
     dispatch({ type: 'REQUEST_DATA' });
@@ -544,7 +544,7 @@ export const fetchFavoriteMovies = () => async (dispatch, getState) => {
   }
 };
 
-// tvshows
+// get tvshows
 export const fetchFavoriteTVShows = () => async (dispatch, getState) => {
   try {
     dispatch({ type: 'REQUEST_TVDATA' });
@@ -566,6 +566,7 @@ export const fetchFavoriteTVShows = () => async (dispatch, getState) => {
   }
 };
 
+// save movie
 export const saveMovie =
   (id, poster_path, original_title, release_date) =>
   async (dispatch, getState) => {
@@ -585,6 +586,7 @@ export const saveMovie =
     });
   };
 
+// save tvshow
 export const saveTVShow =
   (id, poster_path, original_name, first_air_date) =>
   async (dispatch, getState) => {
@@ -604,12 +606,14 @@ export const saveTVShow =
     });
   };
 
+// delete movie
 export const deleteMovie = (id) => async (dispatch) => {
   await favorites.delete(`/movies/${id}`);
 
   dispatch({ type: 'DELETE_MOVIE', payload: id });
 };
 
+// delete tvshow
 export const deleteTVShow = (id) => async (dispatch) => {
   await favorites.delete(`/tvs/${id}`);
 

@@ -1,17 +1,42 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import movieTrailer from 'movie-trailer';
 import * as IoIcons from 'react-icons/io';
+import {
+  fetchFavoriteMovies,
+  fetchFavoriteTVShows,
+  saveMovie,
+  saveTVShow,
+  deleteMovie,
+  deleteTVShow,
+} from '../../actions';
 import { setImage } from '../../helpers/SetImage';
 import { truncate } from '../../helpers/Truncate';
 import ToggleBtn from '../../components/UI/ToggleBtn';
 import SelectorsData from '../../components/data/SelectorsData';
 import styles from './DetailMain.module.css';
 
-const DetailMain = ({ setSelectedItem, setIsAscend, group, data, width }) => {
+const DetailMain = ({
+  setSelectedItem,
+  setIsAscend,
+  group,
+  data,
+  width,
+  fetchFavoriteMovies,
+  fetchFavoriteTVShows,
+  saveMovie,
+  saveTVShow,
+  deleteMovie,
+  deleteTVShow,
+  isSignedIn,
+  favoriteMovies,
+  favoriteTVShows,
+}) => {
   const [trailerUrl, setTrailerUrl] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isToggleOpen, setIsToggleOpen] = useState(false);
+  const [favorite, setFavorite] = useState(false);
 
   const ref = useRef();
   const [curElement, setElement] = useState();
@@ -39,6 +64,32 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data, width }) => {
         .catch((err) => console.log(err));
     }
   }, [data?.id]);
+
+  useEffect(() => {
+    handleFavorite();
+  }, [favoriteMovies, favoriteTVShows]);
+
+  const { id } = useParams();
+
+  const handleFavorite = () => {
+    if (group === 'movies') {
+      if (!favoriteMovies) {
+        setFavorite(false);
+      } else {
+        const isFavorite = (id) =>
+          favoriteMovies.some((item) => item.id === +id);
+        setFavorite(isFavorite(id));
+      }
+    } else if (group === 'tvshows') {
+      if (!favoriteTVShows) {
+        setFavorite(false);
+      } else {
+        const isFavorite = (id) =>
+          favoriteTVShows.some((item) => item.id === +id);
+        setFavorite(isFavorite(id));
+      }
+    }
+  };
 
   const videoSrc = `https://www.youtube.com/embed/${trailerUrl}`;
 
@@ -74,6 +125,22 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data, width }) => {
       releaseDate: false,
       rating: false,
     });
+  };
+
+  const onClickFavorite = (id, path, title, date) => {
+    if (!favorite) {
+      if (group === 'movies') {
+        saveMovie(id, path, title, date);
+      } else if (group === 'tvshows') {
+        saveTVShow(id, path, title, date);
+      }
+    } else {
+      if (group === 'movies') {
+        deleteMovie(id);
+      } else if (group === 'tvshows') {
+        deleteTVShow(id);
+      }
+    }
   };
 
   const renderOverview = () => {
@@ -186,27 +253,6 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data, width }) => {
               <h2 className={styles['title-name']}>
                 {data.original_title ? data.original_title : data.original_name}
               </h2>
-              {/* {isSignedIn && (
-              <button
-                className={styles.favorite}
-                onClick={() =>
-                  onClickFavorite(
-                    data.id,
-                    data.poster_path,
-                    data.original_title,
-                    data.release_date
-                  )
-                }
-              >
-                <IoIcons.IoIosHeart
-                  className={
-                    favorite
-                      ? styles['favorite-icon-true']
-                      : styles['favorite-icon']
-                  }
-                />
-              </button>
-            )} */}
             </div>
 
             <div className={styles.date}>
@@ -243,6 +289,29 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data, width }) => {
                 <IoIcons.IoIosLink className={styles['link-icon']} />
                 Website
               </a>
+              {isSignedIn && (
+                <button
+                  className={styles.favorite}
+                  onClick={() =>
+                    onClickFavorite(
+                      data.id,
+                      data.poster_path,
+                      group === 'movies'
+                        ? data.original_title
+                        : data.original_name,
+                      group === 'movies'
+                        ? data.release_date
+                        : data.first_air_date
+                    )
+                  }
+                >
+                  <IoIcons.IoIosHeart
+                    className={`${styles['favorite-icon']} ${
+                      favorite && styles['favorite-true']
+                    }`}
+                  />
+                </button>
+              )}
             </div>
 
             {renderOverview()}
@@ -300,4 +369,19 @@ const DetailMain = ({ setSelectedItem, setIsAscend, group, data, width }) => {
   );
 };
 
-export default DetailMain;
+const mapStateToProps = (state) => {
+  return {
+    isSignedIn: state.auth.isSignedIn,
+    favoriteMovies: state.movies.favorite,
+    favoriteTVShows: state.shows.favorite,
+  };
+};
+
+export default connect(mapStateToProps, {
+  fetchFavoriteMovies,
+  fetchFavoriteTVShows,
+  saveMovie,
+  saveTVShow,
+  deleteMovie,
+  deleteTVShow,
+})(DetailMain);
