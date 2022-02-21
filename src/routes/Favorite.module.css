@@ -1,0 +1,13 @@
+.message {
+  padding-top: 1.5rem;
+  padding-left: 3.8rem;
+  font-size: 1.5rem;
+  color: #dec7a18f;
+}
+
+/* 450px */
+@media only screen and (max-width: 28.125em) {
+  .message {
+    padding-left: 2rem;
+  }
+}

@@ -31,7 +31,11 @@ const LibraryContent = ({
     if (selectedLibrary === 'movies') {
       if (movies) {
         if (movies.length === 0) {
-          return <p className={styles['no-data']}>Sorry, no data.</p>;
+          if (type === 'favorite') {
+            return <p className={styles['no-data']}>No favorite movies yet.</p>;
+          } else {
+            return <p className={styles['no-data']}>Sorry, no data.</p>;
+          }
         } else {
           return <CardGrid group={type} data={movies} />;
         }
@@ -39,7 +43,13 @@ const LibraryContent = ({
     } else if (selectedLibrary === 'tvshows') {
       if (tvshows) {
         if (tvshows.length === 0) {
-          return <p className={styles['no-data']}>Sorry, no data.</p>;
+          if (type === 'favorite') {
+            return (
+              <p className={styles['no-data']}>No favorite tv shows yet.</p>
+            );
+          } else {
+            return <p className={styles['no-data']}>Sorry, no data.</p>;
+          }
         } else {
           return <CardGrid group={`${type}TV`} data={tvshows} />;
         }

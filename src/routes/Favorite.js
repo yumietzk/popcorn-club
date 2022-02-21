@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchFavoriteMovies, fetchFavoriteTVShows } from '../actions';
 import AltTitle from './AltTitle';
 import LibraryContent from './LibraryContent';
+import styles from './Favorite.module.css';
 
 const Favorite = ({
   fetchFavoriteMovies,
@@ -12,6 +13,7 @@ const Favorite = ({
   isFetching,
   isFetchingTV,
   isError,
+  isSignedIn,
 }) => {
   const [selectedLibrary, setSelectedLibrary] = useState('movies');
   const [data, setData] = useState({});
@@ -26,6 +28,27 @@ const Favorite = ({
     setData({ ...data, movies: favoriteMovies, tvshows: favoriteTVShows });
   }, [favoriteMovies, favoriteTVShows]);
 
+  const renderContent = () => {
+    if (isSignedIn) {
+      return (
+        <LibraryContent
+          selectedLibrary={selectedLibrary}
+          type="favorite"
+          data={data}
+          isFetching={isFetching}
+          isFetchingTV={isFetchingTV}
+          isError={isError}
+        />
+      );
+    } else {
+      return (
+        <div className={styles.message}>
+          <p>Please sign in to see a favorite page.</p>
+        </div>
+      );
+    }
+  };
+
   return (
     <React.Fragment>
       <AltTitle
@@ -33,14 +56,7 @@ const Favorite = ({
         selectedLibrary={selectedLibrary}
         setSelectedLibrary={setSelectedLibrary}
       />
-      <LibraryContent
-        selectedLibrary={selectedLibrary}
-        type="favorite"
-        data={data}
-        isFetching={isFetching}
-        isFetchingTV={isFetchingTV}
-        isError={isError}
-      />
+      {renderContent()}
     </React.Fragment>
   );
 };
@@ -52,6 +68,7 @@ const mapStateToProps = (state) => {
     isFetching: state.movies.isFetching,
     isFetchingTV: state.shows.isFetching,
     isError: state.error.isError,
+    isSignedIn: state.auth.isSignedIn,
   };
 };
 
