@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { setImage } from '../helpers/SetImage';
-import { truncate } from '../helpers/Truncate';
-import ToggleBtn from '../components/UI/ToggleBtn';
+import { setImage } from '../../helpers/SetImage';
+import { truncate } from '../../helpers/Truncate';
+import ToggleBtn from '../UI/Button/ToggleBtn';
 import styles from './PersonMain.module.css';
 
 const PersonMain = ({ person, width }) => {

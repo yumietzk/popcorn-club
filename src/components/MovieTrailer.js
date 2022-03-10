@@ -13,15 +13,6 @@ const MovieTrailer = ({ id, isModalOpen, setIsModalOpen }) => {
         setTrailerUrl(param.get('v'));
       })
       .catch((err) => console.log(err));
-    // if (group === 'Movie') {
-    //   movieTrailer(null, { tmdbId: data?.id })
-    //     .then((res) => {
-    //       const url = new URL(res);
-    //       const param = new URLSearchParams(url.search);
-    //       setTrailerUrl(param.get('v'));
-    //     })
-    //     .catch((err) => console.log(err));
-    // }
   }, [id]);
 
   const videoSrc = `https://www.youtube.com/embed/${trailerUrl}`;

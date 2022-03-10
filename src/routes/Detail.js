@@ -7,11 +7,11 @@ import {
   fetchMovieReviews,
   fetchMovieRelated,
 } from '../actions';
-import Title from './Title';
-import DetailMain from './detail/DetailMain';
-import Cast from './detail/Cast';
-import Reviews from './detail/Reviews';
-import Related from './detail/Related';
+import Title from '../components/Title';
+import DetailMain from '../components/detail/DetailMain';
+import Cast from '../components/detail/Cast';
+import Reviews from '../components/detail/Reviews';
+import Related from '../components/detail/Related';
 import LoadingIndicator from '../helpers/LoadingIndicator';
 import styles from './Detail.module.css';
 

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Routes, Route, useParams } from 'react-router-dom';
-import { fetchTVDetail, fetchTVCasts, fetchTVRelated } from '../actions';
-import Title from './Title';
+import { fetchTVDetail, fetchTVCasts, fetchTVRelated } from '../../actions';
+import Title from '../../components/Title';
 import TVDetailContent from './TVDetailContent';
 import TVDetailMore from './TVDetailMore';
 

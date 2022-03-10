@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Title from './Title';
+import Title from '../components/Title';
 import All from './All';
 import ByGenre from './ByGenre';
 

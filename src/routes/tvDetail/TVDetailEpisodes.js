@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import LoadingIndicator from '../helpers/LoadingIndicator';
-import EpisodeContent from './EpisodeContent';
+import LoadingIndicator from '../../helpers/LoadingIndicator';
+import EpisodeContent from '../../components/tvdetail/EpisodeContent';
 import styles from './TVDetailEpisodes.module.css';
 
 const TVDetailEpisodes = ({ name, seasons, isFetching, isError }) => {

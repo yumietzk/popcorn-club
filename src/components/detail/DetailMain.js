@@ -13,7 +13,7 @@ import {
 } from '../../actions';
 import { setImage } from '../../helpers/SetImage';
 import { truncate } from '../../helpers/Truncate';
-import ToggleBtn from '../../components/UI/ToggleBtn';
+import ToggleBtn from '../../components/UI/Button/ToggleBtn';
 import SelectorsData from '../../components/data/SelectorsData';
 import styles from './DetailMain.module.css';
 

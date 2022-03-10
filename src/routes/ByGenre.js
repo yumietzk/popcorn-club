@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchMoviesByGenre, fetchTVShowsByGenre } from '../actions';
-import CardGrid from '../components/UI/CardGrid/CardGrid';
+import CardGrid from '../components/UI/CardUI/CardGrid';
 import LoadingIndicator from '../helpers/LoadingIndicator';
 import styles from './ByGenre.module.css';
 

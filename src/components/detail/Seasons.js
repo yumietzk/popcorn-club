@@ -1,5 +1,5 @@
 import React from 'react';
-import Contents from '../../components/UI/CardRow/Contents';
+import Contents from '../UI/CardUI/Contents';
 import styles from './Seasons.module.css';
 
 const Seasons = ({ data, width }) => {

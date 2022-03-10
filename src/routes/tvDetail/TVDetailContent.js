@@ -1,9 +1,9 @@
 import React from 'react';
-import DetailMain from './detail/DetailMain';
-import Seasons from './detail/Seasons';
-import Cast from './detail/Cast';
-import Related from './detail/Related';
-import LoadingIndicator from '../helpers/LoadingIndicator';
+import DetailMain from '../../components/detail/DetailMain';
+import Seasons from '../../components/detail/Seasons';
+import Cast from '../../components/detail/Cast';
+import Related from '../../components/detail/Related';
+import LoadingIndicator from '../../helpers/LoadingIndicator';
 import styles from './TVDetailContent.module.css';
 
 const TVDetailContent = ({

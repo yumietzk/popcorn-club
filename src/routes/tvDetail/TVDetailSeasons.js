@@ -1,7 +1,7 @@
 import React from 'react';
-import DetailSeasonsMain from './DetailSeasonsMain';
-import CardGrid from '../components/UI/CardGrid/CardGrid';
-import LoadingIndicator from '../helpers/LoadingIndicator';
+import DetailSeasonsMain from '../../components/tvdetail/DetailSeasonsMain';
+import CardGrid from '../../components/UI/CardUI/CardGrid';
+import LoadingIndicator from '../../helpers/LoadingIndicator';
 import styles from './TVDetailSeasons.module.css';
 
 const TVDetailSeasons = ({ name, width, seasons, isFetching, isError }) => {

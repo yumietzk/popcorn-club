@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import Card from '../CardRow/Card';
+import Card from './Card';
 import styles from './CardGrid.module.css';
 
 const CardGrid = ({ group, order, count, isAscend, data }) => {

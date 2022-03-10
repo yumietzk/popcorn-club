@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { searchMovies, searchTVShows } from '../actions';
-import AltTitle from './AltTitle';
-import LibraryContent from './LibraryContent';
+import AltTitle from '../components/AltTitle';
+import LibraryContent from '../components/LibraryContent';
 
 const Search = ({
   setIsDetail,

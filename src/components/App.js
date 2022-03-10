@@ -8,7 +8,7 @@ import Home from '../routes/Home';
 import Movies from '../routes/Movies';
 import TVShows from '../routes/TVShows';
 import Detail from '../routes/Detail';
-import TVDetail from '../routes/TVDetail';
+import TVDetail from '../routes/tvDetail/TVDetail';
 import Person from '../routes/Person';
 import Search from '../routes/Search';
 import Favorite from '../routes/Favorite';

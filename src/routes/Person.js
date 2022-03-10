@@ -6,9 +6,9 @@ import {
   fetchPersonMovies,
   fetchPersonTVShows,
 } from '../actions';
-import Title from './Title';
-import PersonMain from './PersonMain';
-import Credits from './Credits';
+import Title from '../components/Title';
+import PersonMain from '../components/person/PersonMain';
+import Credits from '../components/person/Credits';
 import LoadingIndicator from '../helpers/LoadingIndicator';
 import styles from './Person.module.css';
 

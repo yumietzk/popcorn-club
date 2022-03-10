@@ -1,5 +1,5 @@
 import React from 'react';
-import Contents from '../components/UI/CardRow/Contents';
+import Contents from '../UI/CardUI/Contents';
 import styles from './Credits.module.css';
 
 const Credits = ({ group, data }) => {

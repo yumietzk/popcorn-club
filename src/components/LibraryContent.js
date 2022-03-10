@@ -1,6 +1,6 @@
 import React from 'react';
 import LoadingIndicator from '../helpers/LoadingIndicator';
-import CardGrid from '../components/UI/CardGrid/CardGrid';
+import CardGrid from './UI/CardUI/CardGrid';
 import styles from './LibraryContent.module.css';
 
 const LibraryContent = ({

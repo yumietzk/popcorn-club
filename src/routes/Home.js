@@ -6,7 +6,7 @@ import {
   fetchTVPopular,
   fetchTVTopRated,
 } from '../actions';
-import Row from '../components/UI/CardRow/Row';
+import Row from '../components/UI/CardUI/Row';
 import LoadingIndicator from '../helpers/LoadingIndicator';
 import styles from './Home.module.css';
 

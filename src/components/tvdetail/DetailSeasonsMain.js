@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { setImage } from '../helpers/SetImage';
-import { truncate } from '../helpers/Truncate';
-import ToggleBtn from '../components/UI/ToggleBtn';
+import { setImage } from '../../helpers/SetImage';
+import { truncate } from '../../helpers/Truncate';
+import ToggleBtn from '../UI/Button/ToggleBtn';
 import styles from './DetailSeasonsMain.module.css';
 
 const DetailSeasonsMain = ({ name, width, data }) => {
