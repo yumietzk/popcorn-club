@@ -1,0 +1,112 @@
+.search-form {
+  flex: 1;
+  margin-right: 0.7rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.input {
+  flex: 0 1 15%;
+  font-family: inherit;
+  font-size: 1.2rem;
+  border: none;
+  background-color: #b09760;
+  padding: 0.7rem 1.2rem;
+  border-radius: 10rem;
+  margin-right: -2.8rem;
+}
+
+/* 1000px */
+@media only screen and (max-width: 62.5em) {
+  .input {
+    flex: 0 1 20%;
+  }
+}
+
+/* 700px */
+@media only screen and (max-width: 43.75em) {
+  .input {
+    flex: 0 1 30%;
+  }
+}
+
+/* 400px */
+@media only screen and (max-width: 25em) {
+  .input {
+    padding: 0.4rem 0.8rem;
+    font-size: 1.05rem;
+    width: 13rem;
+    margin-right: 0;
+  }
+}
+
+.input::-webkit-input-placeholder {
+  font-size: 1.2rem;
+  color: #dec7a1;
+}
+
+/* 400px */
+@media only screen and (max-width: 25em) {
+  .input::-webkit-input-placeholder {
+    font-size: 1rem;
+  }
+}
+
+/* 300px */
+@media only screen and (max-width: 18.75em) {
+  .input::-webkit-input-placeholder {
+    font-size: 0.9rem;
+  }
+}
+
+.input:focus {
+  outline: none;
+  flex: 0 1 25%;
+}
+
+/* 1000px */
+@media only screen and (max-width: 62.5em) {
+  .input:focus {
+    flex: 0 1 50%;
+  }
+}
+
+/* 700px */
+@media only screen and (max-width: 43.75em) {
+  .input:focus {
+    flex: 0 1 60%;
+  }
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+/* 400px */
+@media only screen and (max-width: 25em) {
+  .btn {
+    margin-left: -2.8rem;
+  }
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn-icon {
+  height: 2rem;
+  width: 2rem;
+  fill: #1d1911;
+}
+
+/* 400px */
+@media only screen and (max-width: 25em) {
+  .btn-icon {
+    height: 1.6rem;
+    width: 1.6rem;
+  }
+}

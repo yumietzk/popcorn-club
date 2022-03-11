@@ -55,6 +55,7 @@ const Sidebar = ({
                   !isDetail && selectedSidebar === item.title && styles.selected
                 }`}
                 onClick={() => handleClick(item)}
+                data-testid={`link-btn-${index}`}
               >
                 <div className={styles['list-icon']}>{item.icon}</div>
                 {isMobile.state ? (

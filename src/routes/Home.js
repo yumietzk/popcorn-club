@@ -104,7 +104,6 @@ const mapStateToProps = (state) => {
     isFetching: state.movies.isFetching,
     isFetchingTV: state.shows.isFetching,
     isError: state.error.isError,
-    // isSignedIn: state.auth.isSignedIn,
   };
 };
 

@@ -89,6 +89,7 @@ const Card = ({ width, group, data, cname }) => {
         className={`${styles.title} ${
           cname === 'grid' && styles['grid-title']
         }`}
+        data-testid="title-content"
       >
         {group === 'tvdetail' || group === 'tvseasons'
           ? data.name

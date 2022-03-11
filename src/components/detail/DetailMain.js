@@ -304,6 +304,7 @@ const DetailMain = ({
                         : data.first_air_date
                     )
                   }
+                  data-testid="favorite-btn"
                 >
                   <IoIcons.IoIosHeart
                     className={`${styles['favorite-icon']} ${
