@@ -10,19 +10,19 @@ I implemented Google OAuth 2.0 for user authentication. When users sign in, they
 
 - Search and sort data by categories
   ![Search by category](./assets/searchByCategory.gif)
-  A user can search data by changing genres and sort data by title name, release date and rating. A user can also decide how many data they get.
+  Users can search data by changing genres and sort data by title name, release date and rating. Users can also decide how many data they want to get.
 
 - See detail
   ![See detail](./assets/seeDetail.gif)
-  A user can see the detail of movies and TV shows such as a preview video, a website, casts, reviews, related shows. A user can also jump to a detail page of casts. And more to explore.
+  Users can see the detail of movies and TV shows such as a preview video, a website, casts, reviews and related shows. Users can also jump to a detail page of casts. And more to explore!
 
 - Search
   ![Search](./assets/search.gif)
-  A user can search both movies and TV shows related to a term submitted in a search input.
+  Users can search both movies and TV shows related to a term submitted in a search input.
 
 - Sign In & Sign Out
   ![Sign in](./assets/sigin.gif)
-  After signing in, a user can save favorite movies or TV shows, and can see the data in a favorite page. Without signing in, a favorite heart button which a user can click and save its data doesn't show up and a user can't save data.
+  After users sign in, they can save their favorite movies or TV shows, and can see the data in a favorite page. Without signing in, a favorite heart button which users can click and save its data doesn't show up and they can't save data.
 
 ## Built With
 
