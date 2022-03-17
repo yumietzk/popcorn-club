@@ -10,6 +10,8 @@ I implemented Google OAuth 2.0 for user authentication. When users sign in, they
 
 ## Key Features
 
+![Search by category](./assets/searchByCategory.gif)
+
 ## Built With
 
 - React JS
