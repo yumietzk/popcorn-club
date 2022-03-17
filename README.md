@@ -2,7 +2,8 @@
 
 [View Demo here](https://popcorn-club.netlify.app/)
 
-![Popcorn Club Screen Shot]()
+![Popcorn Club Screen Shot](https://user-images.githubusercontent.com/61277579/158883569-d1812921-c0ef-4c79-96e9-d951f4b28ab2.png)
+
 
 A redesigned and refactored movie library built with React JS using [The Movie Database API](https://www.themoviedb.org/documentation/api). For an older version, take a look [here](https://github.com/yumietzk/popcorn-club-old).  
 Users can search movies and TV shows and get data by different genres and categories. Users can also see a movie and TV show’s details, trailer, and official webpage.  
