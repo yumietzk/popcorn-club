@@ -8,9 +8,23 @@ A redesigned and refactored movie library built with React JS using [The Movie D
 Users can search movies and TV shows and get data by different genres and categories. Users can also see a movie and TV show’s details, trailer, and official webpage.  
 I implemented Google OAuth 2.0 for user authentication. When users sign in, they can save their favorite movies and TV shows. I created a rest api with JSON Server run on Heroku to save and fetch data stored in favorite section.
 
-## Key Features
+## Features
 
-![Search by category](./assets/searchByCategory.gif)
+- Search and sort data by categories
+  ![Search by category](./assets/searchByCategory.gif)
+  A user can search data by changing genres and sort data by title name, release date and rating. A user can also decide how many data they get.
+
+- See detail
+  ![See detail](./assets/seeDetail.gif)
+  A user can see the detail of movies and TV shows such as a preview video, a website, casts, reviews, related shows. A user can also jump to a detail page of casts. And more to explore.
+
+- Search
+  ![Search](./assets/search.gif)
+  A user can search both movies and TV shows related to a term submitted in a search input.
+
+- Sign In & Sign Out
+  ![Sign in](./assets/sigin.gif)
+  After signing in, a user can save favorite movies or TV shows, and can see the data in a favorite page. Without signing in, a favorite heart button which a user can click and save its data doesn't show up and a user can't save data.
 
 ## Built With
 
