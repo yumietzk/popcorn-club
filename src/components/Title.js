@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as RiIcons from 'react-icons/ri';
 import * as BiIcons from 'react-icons/bi';
-// import LoadingIndicator from '../helpers/LoadingIndicator';
 import SelectorsData from './data/SelectorsData';
 import Selector from './UI/Selector/Selector';
 import styles from './Title.module.css';

@@ -2,7 +2,7 @@ import React from 'react';
 import Contents from '../UI/CardUI/Contents';
 import styles from './Seasons.module.css';
 
-const Seasons = ({ data, width }) => {
+const Seasons = ({ data }) => {
   return (
     <div className={styles.seasons}>
       <h4 className={styles.title}>Seasons</h4>

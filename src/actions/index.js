@@ -19,8 +19,6 @@ export const signOut = () => {
   };
 };
 
-// ⚠️ Consider about configuration later
-
 // Initialization
 export const init = () => async (dispatch) => {
   await dispatch(getMovieGenres());
@@ -219,10 +217,6 @@ export const fetchAllTVShows =
         type: 'TV_ALL',
         payload: data,
       });
-
-      // const dataID = data.map((item) => item.id); // [id, id, id]
-
-      // fetchTVDetail
     } catch (err) {
       dispatch({
         type: 'FAIL_RECEIVE_DATA',
@@ -296,7 +290,6 @@ export const fetchMovieCasts = (id) => async (dispatch) => {
     dispatch({
       type: 'MOVIE_CASTS',
       payload: response.data.cast,
-      // payload: response.data.cast.slice(0, 15),
     });
   } catch (err) {
     dispatch({
@@ -317,7 +310,6 @@ export const fetchMovieReviews = (id) => async (dispatch) => {
     dispatch({
       type: 'MOVIE_REVIEWS',
       payload: response.data.results,
-      // payload: response.data.results.slice(0, 10),
     });
   } catch (err) {
     dispatch({

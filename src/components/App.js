@@ -80,7 +80,6 @@ const App = ({ init, movieGenres, tvGenres }) => {
     <div
       className={`${styles.container} ${detailBackground.isON && styles.modal}`}
       style={{
-        // ⚠️画像の読み込み失敗時のために、デフォルトの背景色を変更しておく！
         // backgroundColor: 'red',
         backgroundImage:
           detailBackground.isON &&

@@ -15,8 +15,6 @@ import Related from '../components/detail/Related';
 import LoadingIndicator from '../helpers/LoadingIndicator';
 import styles from './Detail.module.css';
 
-// movieとtvを統合できるはず
-// fetchするとき、groupでmovieかtvか、typeでdetail, credits, reviews, relatedの何かをパラメータで渡してaction creatorも統合できるはず
 const Detail = ({
   setSelectedItem,
   setIsAscend,

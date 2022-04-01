@@ -16,15 +16,6 @@
   overflow-y: scroll;
 }
 
-.rows::-webkit-scrollbar {
-  /* height: 4px; */
-}
-
-/* .rows::-webkit-scrollbar-thumb {
-  background: rgba(133, 133, 133, 0.5);
-  border-radius: 3px;
-} */
-
 .loading {
   display: flex;
   justify-content: center;

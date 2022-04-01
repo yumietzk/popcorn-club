@@ -11,7 +11,6 @@ const SearchInput = () => {
   const onSearchTerm = (e) => {
     e.preventDefault();
 
-    // ここのエラーハンドリングなんかしたいな
     if (term.trim().length === 0) return;
 
     navigate(`/search/${term}`);
