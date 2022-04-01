@@ -2,29 +2,28 @@
 
 [View Demo here](https://popcorn-club.netlify.app/)
 
-![Popcorn Club Screen Shot](https://user-images.githubusercontent.com/61277579/158883569-d1812921-c0ef-4c79-96e9-d951f4b28ab2.png)
-
 A redesigned and refactored movie library built with React JS using [The Movie Database API](https://www.themoviedb.org/documentation/api). For an older version, take a look [here](https://github.com/yumietzk/popcorn-club-old).  
-Users can search movies and TV shows and get data by different genres and categories. Users can also see a movie and TV show’s details, trailer, and official webpage.  
-I implemented Google OAuth 2.0 for user authentication. When users sign in, they can save their favorite movies and TV shows. I created a rest api with JSON Server run on Heroku to save and fetch data stored in favorite section.
+Users can search movies and TV shows and get data by different genres and categories. Users can also see a movie and TV show’s details, movie trailer, and official webpage.  
+I implemented Google OAuth 2.0 for user authentication. When users sign in, they can save their favorite movies and TV shows. I created a REST API with JSON Server run on Heroku to save and fetch data stored in favorite.  
+I also wrote unit tests with [Jest](https://jestjs.io/) and [Testing Library](https://testing-library.com/).
 
 ## Features
 
-- Search and sort data by categories
-  ![Search by category](./assets/searchByCategory.gif)
-  A user can search data by changing genres and sort data by title name, release date and rating. A user can also decide how many data they get.
+### Search and sort data by categories  
+Users can search data by changing genres and sort data by title name, release date and rating. Users can also decide how many data they want to get.  
+![Search by category](./assets/searchByCategory.gif)
 
-- See detail
-  ![See detail](./assets/seeDetail.gif)
-  A user can see the detail of movies and TV shows such as a preview video, a website, casts, reviews, related shows. A user can also jump to a detail page of casts. And more to explore.
+### See detail  
+Users can see the detail of movies and TV shows such as movie trailer, website, casts, reviews and related shows. Users can also jump to a detail page of casts. For TV shows, users can see all seasons and episodes' details. And more to explore!  
+![See detail](./assets/seeDetail.gif)
 
-- Search
-  ![Search](./assets/search.gif)
-  A user can search both movies and TV shows related to a term submitted in a search input.
+### Search  
+Users can search both movies and TV shows related to a term submitted in a search input.  
+![Search](./assets/search.gif)
 
-- Sign In & Sign Out
-  ![Sign in](./assets/sigin.gif)
-  After signing in, a user can save favorite movies or TV shows, and can see the data in a favorite page. Without signing in, a favorite heart button which a user can click and save its data doesn't show up and a user can't save data.
+### Sign In & Sign Out  
+After users sign in, they can save their favorite movies or TV shows by clicking a favorite heart button in each movie and TV show's detail page, and can see the saved data in a favorite page. Without signing in, the favorite button doesn't show up and they can't save data.  
+![Sign in](./assets/sigin.gif)
 
 ## Built With
 
