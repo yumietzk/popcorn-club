@@ -9,19 +9,23 @@ I also wrote unit tests with [Jest](https://jestjs.io/) and [Testing Library](ht
 
 ## Features
 
-### Search and sort data by categories  
-Users can search data by changing genres and sort data by title name, release date and rating. Users can also decide how many data they want to get.  
+### Search and sort data by categories
+
+Users can search data by changing genres and sort data by title name(an ascending order and a descending order of alphabets), release date(newest to oldest and oldest to newest) and rating(high to low and low to high). Users can also decide how many data they want to get.  
 ![Search by category](./assets/searchByCategory.gif)
 
-### See detail  
+### See detail
+
 Users can see the detail of movies and TV shows such as movie trailer, website, casts, reviews and related shows. Users can also jump to a detail page of casts. For TV shows, users can see all seasons and episodes' details. And more to explore!  
 ![See detail](./assets/seeDetail.gif)
 
-### Search  
+### Search
+
 Users can search both movies and TV shows related to a term submitted in a search input.  
 ![Search](./assets/search.gif)
 
-### Sign In & Sign Out  
+### Sign In & Sign Out
+
 After users sign in, they can save their favorite movies or TV shows by clicking a favorite heart button in each movie and TV show's detail page, and can see the saved data in a favorite page. Without signing in, the favorite button doesn't show up and they can't save data.  
 ![Sign in](./assets/sigin.gif)
 
