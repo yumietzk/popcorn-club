@@ -5,6 +5,7 @@ const SelectorsData = {
       {
         title: 'Genre',
         path: '#',
+        subCategory: [],
       },
     ],
     order: [
@@ -25,6 +26,7 @@ const SelectorsData = {
       {
         title: 'Genre',
         path: '#',
+        subCategory: [],
       },
     ],
     order: [
