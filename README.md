@@ -2,6 +2,7 @@
 
 [View Demo here](https://popcorn-club.netlify.app/)
 
+⚠️ Rewriting authentication.
 A redesigned and refactored movie library built with React JS using [The Movie Database API](https://www.themoviedb.org/documentation/api). For an older version, take a look [here](https://github.com/yumietzk/popcorn-club-old).  
 Users can search movies and TV shows and get data by different genres and categories. Users can also see a movie and TV show’s details, movie trailer, and official webpage.  
 I implemented Google OAuth 2.0 for user authentication. When users sign in, they can save their favorite movies and TV shows. I created a REST API with JSON Server run on Heroku to save and fetch data stored in favorite.  
