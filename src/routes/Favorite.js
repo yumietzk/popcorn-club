@@ -44,6 +44,10 @@ const Favorite = ({
       return (
         <div className={styles.message}>
           <p>Please sign in to see a favorite page.</p>
+          <p>
+            (👋 Currently working on to update authentication. Please come back
+            later!)
+          </p>
         </div>
       );
     }

@@ -19,12 +19,6 @@ export const signOut = () => {
   };
 };
 
-// Initialization
-export const init = () => async (dispatch) => {
-  await dispatch(getMovieGenres());
-  await dispatch(getTVGenres());
-};
-
 // Get movie genres
 const getMovieGenres = () => async (dispatch) => {
   try {
@@ -39,6 +33,8 @@ const getMovieGenres = () => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -56,7 +52,15 @@ const getTVGenres = () => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
+};
+
+// Initialization
+export const init = () => async (dispatch) => {
+  await dispatch(getMovieGenres());
+  await dispatch(getTVGenres());
 };
 
 // HOME
@@ -73,6 +77,8 @@ export const fetchMoviePopular = () => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -89,6 +95,8 @@ export const fetchMovieUpcoming = () => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -105,6 +113,8 @@ export const fetchTVPopular = () => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -121,6 +131,8 @@ export const fetchTVTopRated = () => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -160,6 +172,8 @@ export const fetchAllMovies =
             'Something went wrong. Could not get data. Please try again!',
         },
       });
+    } finally {
+      dispatch({ type: 'FINISH' });
     }
   };
 
@@ -195,6 +209,8 @@ export const fetchMoviesByGenre =
             'Something went wrong. Could not get data. Please try again!',
         },
       });
+    } finally {
+      dispatch({ type: 'FINISH' });
     }
   };
 
@@ -225,6 +241,8 @@ export const fetchAllTVShows =
             'Something went wrong. Could not get data. Please try again!',
         },
       });
+    } finally {
+      dispatch({ type: 'FINISH' });
     }
   };
 
@@ -260,6 +278,8 @@ export const fetchTVShowsByGenre =
             'Something went wrong. Could not get data. Please try again!',
         },
       });
+    } finally {
+      dispatch({ type: 'FINISH' });
     }
   };
 
@@ -278,6 +298,8 @@ export const fetchMovieDetail = (id) => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -298,6 +320,8 @@ export const fetchMovieCasts = (id) => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -318,6 +342,8 @@ export const fetchMovieReviews = (id) => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -335,6 +361,8 @@ export const fetchMovieRelated = (id) => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -353,6 +381,8 @@ export const fetchTVDetail = (id) => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -370,6 +400,8 @@ export const fetchTVCasts = (id) => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -387,6 +419,8 @@ export const fetchTVRelated = (id) => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -406,6 +440,8 @@ export const fetchTVSeasons = (id, number) => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -424,6 +460,8 @@ export const fetchPersonInfo = (id) => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -443,6 +481,8 @@ export const fetchPersonMovies = (id) => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -462,6 +502,8 @@ export const fetchPersonTVShows = (id) => async (dispatch) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -486,6 +528,8 @@ export const searchMovies = (term) => async (dispatch) => {
           'Something went wrong. Could not get data. Please search again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -510,6 +554,8 @@ export const searchTVShows = (term) => async (dispatch) => {
           'Something went wrong. Could not get data. Please search again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -533,6 +579,8 @@ export const fetchFavoriteMovies = () => async (dispatch, getState) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
@@ -555,6 +603,8 @@ export const fetchFavoriteTVShows = () => async (dispatch, getState) => {
         message: 'Something went wrong. Could not get data. Please try again!',
       },
     });
+  } finally {
+    dispatch({ type: 'FINISH' });
   }
 };
 
