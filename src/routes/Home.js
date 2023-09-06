@@ -34,14 +34,7 @@ const Home = ({
   }, []);
 
   const renderRows = () => {
-    if (
-      isFetching ||
-      isFetchingTV ||
-      !popularMovies ||
-      !upcomingMovies ||
-      !popularShows ||
-      !topratedShows
-    ) {
+    if (isFetching || isFetchingTV) {
       return <LoadingIndicator />;
     }
 

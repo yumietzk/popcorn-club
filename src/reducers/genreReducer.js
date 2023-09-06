@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 export default (state = { isFetching: false }, action) => {
   switch (action.type) {
     case 'REQUEST_DATA_BYGENRE':

@@ -28,7 +28,8 @@ const Header = ({ isCollapsed, setIsCollapsed, isMobile, setIsMobile }) => {
       </Link>
       <div className={styles.form}>
         <SearchInput />
-        <GoogleAuth />
+        <span></span>
+        {/* <GoogleAuth /> */}
       </div>
     </div>
   );

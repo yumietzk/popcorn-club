@@ -1,30 +1,30 @@
+/* eslint-disable import/no-anonymous-default-export */
 export default (state = { isFetching: false }, action) => {
   switch (action.type) {
     case 'REQUEST_DATA':
       return { ...state, isFetching: true };
 
     case 'MOVIE_ALL':
-      return { ...state, isFetching: false, all: action.payload };
+      return { ...state, all: action.payload };
 
     case 'MOVIE_BYGENRE':
-      return { ...state, isFetching: false, byGenre: action.payload };
+      return { ...state, byGenre: action.payload };
 
     case 'MOVIE_POPULAR':
-      return { ...state, isFetching: false, popular: action.payload };
+      return { ...state, popular: action.payload };
 
     case 'MOVIE_NOWPLAYING':
-      return { ...state, isFetching: false, nowplaying: action.payload };
+      return { ...state, nowplaying: action.payload };
 
     case 'MOVIE_UPCOMING':
-      return { ...state, isFetching: false, upcoming: action.payload };
+      return { ...state, upcoming: action.payload };
 
     case 'MOVIE_TOPRATED':
-      return { ...state, isFetching: false, toprated: action.payload };
+      return { ...state, toprated: action.payload };
 
     case 'SEARCH_MOVIES':
       return {
         ...state,
-        isFetching: false,
         search: action.payload.data,
         searchTerm: action.payload.term,
       };
@@ -41,11 +41,14 @@ export default (state = { isFetching: false }, action) => {
       const favorites = action.payload.data?.filter(
         (data) => data.userId === action.payload.userId
       );
-      return { ...state, isFetching: false, favorite: favorites };
+      return { ...state, favorite: favorites };
 
     case 'DELETE_MOVIE':
       const data = state.favorite.filter((item) => item.id !== action.payload);
       return { ...state, isFetching: false, favorite: data };
+
+    case 'FINISH':
+      return { ...state, isFetching: false };
 
     default:
       return state;
